@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Nicht gefunden | Michael Barabanov</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <style>
+    :root { --bg:#0d1117; --surface:#161b22; --border:#30363d; --text:#e6edf3; --accent:#2f81f7; --muted:#8b949e; --green:#3fb950; --red:#f85149; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      padding:24px;
+      background-image:
+        linear-gradient(rgba(47,129,247,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(47,129,247,.04) 1px,transparent 1px);
+      background-size:52px 52px;
+    }
+    .wrap { text-align:center; max-width:480px; }
+    .term {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:8px; overflow:hidden;
+      box-shadow:0 16px 48px rgba(0,0,0,.5);
+      margin-bottom:40px;
+    }
+    .term-bar {
+      display:flex; align-items:center; gap:8px;
+      padding:10px 16px; background:#21262d;
+      border-bottom:1px solid var(--border);
+    }
+    .dot { width:12px; height:12px; border-radius:50%; }
+    .dot.r { background:#ff5f57; }
+    .dot.y { background:#febc2e; }
+    .dot.g { background:#28c840; }
+    .term-title { margin-left:8px; font-family:monospace; font-size:13px; color:var(--muted); }
+    .term-body { padding:24px 20px; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:15px; text-align:left; line-height:1.8; }
+    .p  { color:var(--green); }
+    .e  { color:var(--red); }
+    .c  { color:var(--muted); }
+    .code { font-family:'Cascadia Code','Fira Code',monospace; font-size:clamp(56px,10vw,100px); font-weight:900; color:var(--accent); line-height:1; margin-bottom:12px; }
+    .subtitle { font-family:monospace; font-size:15px; color:var(--muted); margin-bottom:32px; }
+    .back {
+      font-family:'Cascadia Code','Fira Code',monospace; font-size:14px;
+      color:var(--text); border:1px solid var(--border);
+      padding:10px 24px; border-radius:6px; text-decoration:none;
+      display:inline-block; transition:border-color .2s,color .2s;
+    }
+    .back:hover { border-color:var(--accent); color:var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="code">404</div>
+    <div class="term">
+      <div class="term-bar">
+        <span class="dot r"></span>
+        <span class="dot y"></span>
+        <span class="dot g"></span>
+        <span class="term-title">michael@portfolio:~</span>
+      </div>
+      <div class="term-body">
+        <div><span class="p">$ </span>cd <span class="c">$REQUESTED_PATH</span></div>
+        <div class="e">bash: cd: page not found: No such file or directory</div>
+        <div style="margin-top:12px"><span class="p">$ </span>ls /</div>
+        <div class="c">about/&nbsp; stack/&nbsp; projekte/&nbsp; plugins/&nbsp; kontakt/</div>
+        <div style="margin-top:12px"><span class="p">$ </span><span style="animation:blink 1s step-end infinite;color:var(--accent)">▋</span></div>
+      </div>
+    </div>
+    <p class="subtitle">Diese Seite existiert nicht – aber der Rest schon.</p>
+    <a class="back" href="/">← zurück zum Portfolio</a>
+  </div>
+  <style>@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}</style>
+</body>
+</html>

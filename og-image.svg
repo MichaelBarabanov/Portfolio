@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <!-- grid pattern -->
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#2f81f7" stroke-width="0.4" opacity="0.35"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="4" height="630" fill="#2f81f7"/>
+
+  <!-- Terminal prompt line -->
+  <text x="72" y="188" font-family="'Courier New',monospace" font-size="20" fill="#3fb950">$ whoami</text>
+
+  <!-- Name – main heading -->
+  <text x="70" y="290" font-family="'Courier New',Courier,monospace" font-size="78" font-weight="900" fill="#e6edf3" letter-spacing="-2">MICHAEL BARABANOV</text>
+
+  <!-- Glitch accent layers (static simulation) -->
+  <text x="72" y="290" font-family="'Courier New',Courier,monospace" font-size="78" font-weight="900" fill="#ff2d78" opacity="0.25" letter-spacing="-2" clip-path="inset(0 0 62% 0)">MICHAEL BARABANOV</text>
+  <text x="68" y="290" font-family="'Courier New',Courier,monospace" font-size="78" font-weight="900" fill="#00ffe5" opacity="0.2" letter-spacing="-2" clip-path="inset(62% 0 0 0)">MICHAEL BARABANOV</text>
+
+  <!-- Role -->
+  <text x="72" y="348" font-family="'Courier New',monospace" font-size="28" fill="#2f81f7">Backend &amp; Fullstack Developer</text>
+
+  <!-- Divider -->
+  <line x1="72" y1="380" x2="500" y2="380" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Info row -->
+  <text x="72" y="418" font-family="'Courier New',monospace" font-size="18" fill="#8b949e">📍 Koblenz, DE</text>
+  <text x="240" y="418" font-family="'Courier New',monospace" font-size="18" fill="#30363d">·</text>
+  <text x="262" y="418" font-family="'Courier New',monospace" font-size="18" fill="#8b949e">PHP</text>
+  <text x="316" y="418" font-family="'Courier New',monospace" font-size="18" fill="#30363d">·</text>
+  <text x="336" y="418" font-family="'Courier New',monospace" font-size="18" fill="#8b949e">Shopware 6</text>
+  <text x="494" y="418" font-family="'Courier New',monospace" font-size="18" fill="#30363d">·</text>
+  <text x="514" y="418" font-family="'Courier New',monospace" font-size="18" fill="#8b949e">MySQL</text>
+
+  <!-- Available badge -->
+  <rect x="72" y="450" width="230" height="36" rx="18" fill="rgba(63,185,80,0.1)" stroke="#3fb950" stroke-width="1.2"/>
+  <circle cx="96" cy="468" r="5" fill="#3fb950"/>
+  <text x="110" y="474" font-family="'Courier New',monospace" font-size="15" fill="#3fb950">Available for Hire</text>
+
+  <!-- URL / domain placeholder -->
+  <text x="72" y="570" font-family="'Courier New',monospace" font-size="16" fill="#30363d">michaelbarabanov.dev</text>
+
+  <!-- Right side: decorative terminal window -->
+  <rect x="820" y="120" width="320" height="400" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <!-- terminal bar -->
+  <rect x="820" y="120" width="320" height="36" rx="8" fill="#21262d"/>
+  <rect x="820" y="144" width="320" height="12" fill="#21262d"/>
+  <circle cx="848" cy="138" r="6" fill="#ff5f57"/>
+  <circle cx="872" cy="138" r="6" fill="#febc2e"/>
+  <circle cx="896" cy="138" r="6" fill="#28c840"/>
+  <!-- terminal content lines -->
+  <text x="840" y="186" font-family="'Courier New',monospace" font-size="13" fill="#3fb950">$ </text>
+  <text x="858" y="186" font-family="'Courier New',monospace" font-size="13" fill="#e6edf3">help</text>
+  <text x="840" y="212" font-family="'Courier New',monospace" font-size="12" fill="#58a6ff">whoami</text>
+  <text x="920" y="212" font-family="'Courier New',monospace" font-size="12" fill="#8b949e">→ Wer ist...</text>
+  <text x="840" y="234" font-family="'Courier New',monospace" font-size="12" fill="#58a6ff">skills</text>
+  <text x="920" y="234" font-family="'Courier New',monospace" font-size="12" fill="#8b949e">→ Tech Stack</text>
+  <text x="840" y="256" font-family="'Courier New',monospace" font-size="12" fill="#58a6ff">projects</text>
+  <text x="920" y="256" font-family="'Courier New',monospace" font-size="12" fill="#8b949e">→ Projekte</text>
+  <text x="840" y="278" font-family="'Courier New',monospace" font-size="12" fill="#58a6ff">hire</text>
+  <text x="920" y="278" font-family="'Courier New',monospace" font-size="12" fill="#8b949e">→ Anfragen</text>
+  <text x="840" y="310" font-family="'Courier New',monospace" font-size="13" fill="#3fb950">$ </text>
+  <text x="858" y="310" font-family="'Courier New',monospace" font-size="13" fill="#e6edf3">whoami</text>
+  <text x="840" y="336" font-family="'Courier New',monospace" font-size="12" fill="#58a6ff">Michael Barabanov</text>
+  <text x="840" y="356" font-family="'Courier New',monospace" font-size="12" fill="#8b949e">20 · Koblenz · PHP</text>
+  <text x="840" y="376" font-family="'Courier New',monospace" font-size="12" fill="#8b949e">Shopware 6 · MySQL</text>
+  <text x="840" y="406" font-family="'Courier New',monospace" font-size="13" fill="#3fb950">$ </text>
+  <rect x="858" y="394" width="8" height="16" fill="#2f81f7" opacity="0.9"/>
+</svg>
