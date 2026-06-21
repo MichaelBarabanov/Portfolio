@@ -1,37 +1,42 @@
 (function () {
   if (!window.matchMedia('(pointer: fine)').matches) return;
 
-  /* ── Sprite sheet: cat/spritesheet.png ──────────────────────────────────
-     256×256px per cell, displayed at 96px → background-size: 576×480px
-     Row 0 = idle(4f)  Row 1 = walk(6f)  Row 2 = jump(4f)
-     Row 3 = food(4f)  Row 4 = sleep(3f)                                   */
-  const CELL  = 96;
-  const CW    = CELL;
-  const CH    = CELL;
-  const BGSZ  = `${CELL * 6}px ${CELL * 5}px`;
-  const SHEET = 'cat/spritesheet.png';
-
-  // State → CSS animation config (keyframes defined in style.css)
-  const A = {
-    walk: { kf: 'cat-spr-walk', f: 6, dur: '0.6s',  row: 1 },
-    sit:  { kf: 'cat-spr-idle', f: 4, dur: '1.4s',  row: 0 },
-    eat:  { kf: 'cat-spr-food', f: 4, dur: '0.55s', row: 3 },
-    jump: { kf: 'cat-spr-jump', f: 4, dur: '0.7s',  row: 2 },
+  const CW = 68, CH = 68;
+  const BASE = 'cat_animation/';
+  const SRCS = {
+    walk_r:  BASE + 'Walking_Right.gif',
+    walk_l:  BASE + 'Walking_Left.gif',
+    run_r:   BASE + 'Running_Right.gif',
+    run_l:   BASE + 'Running_Left.gif',
+    jump_r:  BASE + 'Jump_Right.gif',
+    jump_l:  BASE + 'Jump_Left.gif',
   };
 
-  // Preload sheet
-  new Image().src = SHEET;
+  Object.values(SRCS).forEach(src => { new Image().src = src; });
 
   const FOODS   = ['🐟', '🍖', '🐠', '🧀'];
   const ITEM_PX = 28;
   const floorY  = () => window.innerHeight - CH;
 
-  /* ── State ── */
-  let posX = 120, dir = 1; // sprite faces LEFT → dir 1=right needs scaleX(-1)
+  let posX = 120, dir = 1; // 1 = right, -1 = left
   let state = 'walk', timer = 0;
   let targetX = null, lastTs = 0;
-  let wrapEl, sprEl, heartWrap;
+  let wrapEl, imgEl, heartWrap;
   let items = [], drag = null;
+
+  function srcFor(s, d) {
+    if (s === 'jump') return d === 1 ? SRCS.jump_r : SRCS.jump_l;
+    if (s === 'run')  return d === 1 ? SRCS.run_r  : SRCS.run_l;
+    return d === 1 ? SRCS.walk_r : SRCS.walk_l;
+  }
+
+  function draw() {
+    const want = srcFor(state, dir);
+    if (!imgEl.src.endsWith(want)) imgEl.src = want;
+  }
+
+  function face(d) { if (d !== dir) { dir = d; draw(); } }
+  function go(s, dur) { state = s; timer = dur || 0; draw(); }
 
   /* ── Init ── */
   function init() {
@@ -39,13 +44,12 @@
     wrapEl.id = 'site-cat';
     wrapEl.style.cssText = `position:fixed;bottom:0;left:${posX}px;z-index:9999;cursor:pointer;user-select:none;width:${CW}px;height:${CH}px;`;
 
-    sprEl = document.createElement('div');
-    sprEl.style.cssText =
-      `width:${CW}px;height:${CH}px;` +
-      `background-image:url('${SHEET}');background-size:${BGSZ};` +
-      `background-repeat:no-repeat;image-rendering:pixelated;` +
-      `animation-iteration-count:infinite;`;
-    wrapEl.appendChild(sprEl);
+    imgEl = document.createElement('img');
+    imgEl.src = SRCS.walk_r;
+    imgEl.width = CW;
+    imgEl.height = CH;
+    imgEl.style.cssText = 'display:block;image-rendering:pixelated;';
+    wrapEl.appendChild(imgEl);
 
     heartWrap = document.createElement('div');
     heartWrap.style.cssText = `position:absolute;bottom:${CH}px;left:0;width:${CW}px;pointer-events:none;`;
@@ -61,7 +65,7 @@
 
     wrapEl.addEventListener('mouseenter', () => { tip.style.opacity = '1'; tip.style.left = posX + 'px'; });
     wrapEl.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
-    wrapEl.addEventListener('click', () => { if (state === 'walk') { go('sit', 2200); hearts(['💙']); } });
+    wrapEl.addEventListener('click', () => { if (state === 'walk' || state === 'run') { go('sit', 2200); hearts(['💙']); } });
 
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseup', onUp);
@@ -72,23 +76,7 @@
     requestAnimationFrame(tick);
   }
 
-  /* ── Sprite control ── */
-  function draw() {
-    const cfg = A[state] || A.walk;
-    sprEl.style.backgroundPositionY = (cfg.row * -CELL) + 'px';
-    // Set all animation props atomically to avoid partial-update flicker
-    sprEl.style.animation = `${cfg.kf} ${cfg.dur} steps(${cfg.f}) infinite`;
-    sprEl.style.transform = dir === 1 ? 'scaleX(-1)' : '';
-  }
-
-  // Change direction without restarting the current animation
-  function face(d) {
-    if (d !== dir) { dir = d; sprEl.style.transform = d === 1 ? 'scaleX(-1)' : ''; }
-  }
-
-  function go(s, dur) { state = s; timer = dur || 0; draw(); }
-
-  /* ── Food spawn ── */
+  /* ── Food ── */
   function spawnFood() {
     const e = FOODS[Math.floor(Math.random() * FOODS.length)];
     const margin = 80;
@@ -96,14 +84,15 @@
     const fy = window.innerHeight - ITEM_PX - 10;
     const el = document.createElement('div');
     el.textContent = e;
-    el.style.cssText = `position:fixed;left:${fx - ITEM_PX/2}px;top:${fy}px;font-size:${ITEM_PX}px;cursor:grab;z-index:9998;user-select:none;` +
+    el.style.cssText =
+      `position:fixed;left:${fx - ITEM_PX/2}px;top:${fy}px;font-size:${ITEM_PX}px;cursor:grab;z-index:9998;user-select:none;` +
       `filter:drop-shadow(0 0 5px rgba(47,129,247,.5));` +
       `animation:cat-float ${(1.8 + Math.random() * .7).toFixed(2)}s ease-in-out infinite;` +
       `animation-delay:${(Math.random() * 2).toFixed(2)}s;transition:filter .15s;`;
     const item = { el, x: fx, y: fy + ITEM_PX / 2, dragging: false };
     items.push(item);
     document.body.appendChild(el);
-    el.addEventListener('mousedown', e => { e.preventDefault(); startDrag(item, e); });
+    el.addEventListener('mousedown', ev => { ev.preventDefault(); startDrag(item, ev); });
   }
 
   function killFood(item, animate) {
@@ -144,13 +133,13 @@
     item.x = e.clientX - drag.ox + ITEM_PX / 2;
     item.y = e.clientY - drag.oy + ITEM_PX / 2;
     const cx = posX + CW / 2;
-    if (Math.abs(item.x - cx) < 200) {
+    if (Math.abs(item.x - cx) < 220) {
       face(item.x < cx ? -1 : 1);
       if (item.y < floorY() - 20) {
         if (state !== 'jump') go('jump', 650);
       } else if (state !== 'eat') {
         targetX = item.x - CW / 2;
-        if (state !== 'walk') go('walk');
+        if (state !== 'run') go('run');
       }
     }
   }
@@ -177,7 +166,7 @@
         }
       }, 300);
       targetX = item.x - CW / 2;
-      if (state !== 'walk') go('walk');
+      if (state !== 'run') go('run');
     }
   }
 
@@ -198,12 +187,14 @@
     lastTs = ts;
     const W = window.innerWidth;
 
-    if (state === 'walk') {
+    if (state === 'walk' || state === 'run') {
       if (targetX !== null) {
         const dx = targetX - posX;
+        const speed = state === 'run' ? 3.5 : 2.5;
         if (Math.abs(dx) < 4) { posX = targetX; targetX = null; checkEat(); }
-        else { face(dx > 0 ? 1 : -1); posX += dir * Math.min(Math.abs(dx), 2.5 * dt / 16); }
+        else { face(dx > 0 ? 1 : -1); posX += dir * Math.min(Math.abs(dx), speed * dt / 16); }
       } else {
+        if (state === 'run') go('walk');
         posX += dir * 0.9 * dt / 16;
         if (posX > W - CW) face(-1);
         if (posX < 4)      face(1);
