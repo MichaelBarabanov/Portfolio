@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow:
 
-Sitemap: https://michaelbarabanov.dev/sitemap.xml
+Sitemap: https://mbara.net/sitemap.xml
