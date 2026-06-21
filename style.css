@@ -550,7 +550,10 @@ footer a:hover { color: var(--accent); }
 .lang-sep { color: var(--border); }
 
 /* ── KEYFRAMES ── */
-@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+@keyframes blink     { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes cat-bob   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes cat-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+@keyframes cat-heart { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-45px) scale(1.4)} }
 
 /* ── MOBILE ── */
 @media (max-width: 680px) {
