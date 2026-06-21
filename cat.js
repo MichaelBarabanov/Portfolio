@@ -1,236 +1,231 @@
 (function () {
   if (!window.matchMedia('(pointer: fine)').matches) return;
 
-  /* ── Pixel art renderer ─────────────────────── */
-  const S = 5; // px per grid cell → 60×50 cat
-  const PAL = [null, '#C0C8D0', '#8090A0', '#1A202C', '#F9A8D4'];
-  // 0=transparent  1=body-gray  2=stripe/shadow  3=outline  4=pink
+  /* ── Canvas pixel renderer ─────────────────────
+     Uses a <canvas> directly → no img-src CSP needed  */
+  const SC = 4; // px per grid cell  →  64 × 52 cat
+  // Palette: 0=transp 1=orange 2=dark-brown 3=outline 4=belly/cream 5=pink 6=eye-white
+  const PAL = [null,'#D07028','#7A3C10','#1A0800','#F0D090','#FF88AA','#FFF8F0'];
 
-  function makeSVG(grid) {
-    const rows = grid.length, cols = grid[0].length;
-    let r = '';
-    for (let y = 0; y < rows; y++)
-      for (let x = 0; x < cols; x++) {
-        const c = PAL[grid[y][x]];
-        if (c) r += `<rect x="${x*S}" y="${y*S}" width="${S}" height="${S}" fill="${c}"/>`;
-      }
-    return `<svg width="${cols*S}" height="${rows*S}" viewBox="0 0 ${cols*S} ${rows*S}" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">${r}</svg>`;
-  }
+  /* ── Sprite grids (16 w × 13 h) ────────────────
+     Cat faces RIGHT. Tail on LEFT, head on RIGHT.     */
 
-  /* ── Sprite grids (12 × 10) ─────────────────── */
-  const W1 = [                                     // walk frame A
-    [0,0,3,0,0,0,0,0,3,0,0,0],                    // ear tips
-    [0,3,4,3,0,0,0,3,1,3,0,0],                    // ears
-    [3,1,1,1,3,3,3,1,1,1,3,0],                    // head top
-    [3,1,3,1,1,3,1,1,3,1,1,3],                    // eyes (col 2, 8) + outline
-    [3,1,1,4,1,1,1,1,1,1,1,3],                    // nose
-    [0,3,1,1,1,1,1,1,1,1,3,3],                    // body + tail start
-    [0,3,2,1,1,1,1,2,1,1,1,3],                    // body stripes
-    [0,3,1,1,1,1,1,1,1,3,0,0],                    // body bottom
-    [0,0,3,1,3,0,3,1,3,0,0,0],                    // legs A
-    [0,0,3,3,0,0,3,3,0,0,0,0],                    // paws
+  //                   0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+  const WA = [
+    /* r0  ear tips */ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0],
+    /* r1  ears     */ [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 0, 0],
+    /* r2  head top */ [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 5, 1, 5, 1, 3, 0],
+    /* r3  eyes     */ [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 1, 1, 3],
+    /* r4  muzzle   */ [3, 3, 0, 0, 0, 0, 0, 3, 1, 1, 1, 5, 1, 1, 1, 3],
+    /* r5  nose/chin*/ [3, 1, 3, 3, 3, 3, 3, 2, 1, 1, 3, 1, 1, 1, 1, 3],
+    /* r6  body+tail*/ [0, 3, 1, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 0],
+    /* r7  body     */ [0, 0, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0],
+    /* r8  belly    */ [0, 0, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0],
+    /* r9  legs A   */ [0, 0, 0, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0],
+    /* r10 shins    */ [0, 0, 0, 3, 1, 3, 3, 1, 3, 0, 0, 0, 0, 0, 0, 0],
+    /* r11 paws     */ [0, 0, 0, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0],
+    /* r12 empty    */ [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
-  const W2 = [                                     // walk frame B (legs offset)
-    [0,0,3,0,0,0,0,0,3,0,0,0],
-    [0,3,4,3,0,0,0,3,1,3,0,0],
-    [3,1,1,1,3,3,3,1,1,1,3,0],
-    [3,1,3,1,1,3,1,1,3,1,1,3],
-    [3,1,1,4,1,1,1,1,1,1,1,3],
-    [0,3,1,1,1,1,1,1,1,1,3,3],
-    [0,3,2,1,1,1,1,2,1,1,1,3],
-    [0,3,1,1,1,1,1,1,1,3,0,0],
-    [0,0,0,3,1,3,0,0,3,1,3,0],                    // legs B
-    [0,0,0,3,3,0,0,0,3,3,0,0],
+  const WB = [                                           // legs alternate
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 5, 1, 5, 1, 3, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 1, 1, 3],
+    [3, 3, 0, 0, 0, 0, 0, 3, 1, 1, 1, 5, 1, 1, 1, 3],
+    [3, 1, 3, 3, 3, 3, 3, 2, 1, 1, 3, 1, 1, 1, 1, 3],
+    [0, 3, 1, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 0],
+    [0, 0, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0],
+    [0, 0, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0],
+    [0, 0, 0, 0, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0], // shifted
+    [0, 0, 0, 0, 3, 1, 3, 3, 1, 3, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
-  const SIT = [                                    // sitting / idle
-    [0,0,3,0,0,0,0,0,3,0,0,0],
-    [0,3,4,3,0,0,0,3,1,3,0,0],
-    [3,1,1,1,3,3,3,1,1,1,3,0],
-    [3,1,3,3,1,1,1,1,3,3,1,3],                    // ^^ happy eyes (arc)
-    [3,1,1,4,1,1,1,1,1,1,1,3],
-    [0,3,1,1,1,1,1,1,1,3,0,0],
-    [0,3,1,1,1,1,1,1,1,1,3,3],
-    [0,3,1,1,1,1,1,1,1,1,1,3],
-    [0,3,3,3,3,3,3,3,3,3,3,0],                    // sitting paws
-    [0,0,0,0,0,0,0,0,0,0,0,0],
+  const ST = [                                           // sitting, ^^ eyes, paws flat
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 5, 1, 5, 1, 3, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 1, 3], // ^^ closed eyes
+    [0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 5, 1, 1, 1, 3],
+    [0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 3, 1, 1, 1, 3, 0],
+    [0, 0, 0, 0, 0, 3, 1, 1, 4, 4, 4, 4, 1, 1, 3, 0],
+    [0, 0, 0, 0, 3, 1, 1, 1, 4, 4, 4, 4, 1, 1, 3, 0],
+    [0, 0, 0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0],
+    [0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0], // flat paws
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0], // tail curl
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
-  const EAT = [                                    // eating / happy
-    [0,0,3,0,0,0,0,0,3,0,0,0],
-    [0,3,4,3,0,0,0,3,1,3,0,0],
-    [3,1,1,1,3,3,3,1,1,1,3,0],
-    [3,3,3,3,1,1,1,1,3,3,3,3],                    // ^_^ eyes
-    [3,1,1,4,1,1,1,1,1,1,1,3],
-    [3,1,3,4,4,3,3,4,4,3,1,3],                    // open mouth / tongue
-    [0,3,2,1,1,1,1,2,1,1,1,3],
-    [0,3,1,1,1,1,1,1,1,1,3,0],
-    [0,3,3,3,3,3,3,3,3,3,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0],
+  const ET = [                                           // eating: ^_^ eyes, open mouth
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 5, 1, 5, 1, 3, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3], // wide ^_^ eyes
+    [0, 0, 0, 0, 0, 0, 0, 3, 1, 1, 1, 5, 1, 1, 1, 3],
+    [0, 0, 0, 0, 0, 0, 3, 1, 1, 3, 5, 5, 3, 1, 1, 3], // open mouth + tongue
+    [0, 0, 0, 0, 0, 3, 1, 1, 4, 4, 4, 4, 1, 1, 3, 0],
+    [0, 0, 0, 0, 3, 1, 1, 1, 4, 4, 4, 4, 1, 1, 3, 0],
+    [0, 0, 0, 0, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0],
+    [0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
-  const JMP = [                                    // jumping / reaching up
-    [0,0,3,0,0,0,0,0,3,0,0,0],
-    [0,3,4,3,0,0,0,3,1,3,0,0],
-    [3,1,1,1,3,3,3,1,1,1,3,0],
-    [3,1,3,1,1,3,1,1,3,1,1,3],
-    [3,1,1,4,1,1,1,1,1,1,1,3],
-    [0,3,1,1,1,1,1,1,1,1,3,3],
-    [0,3,2,1,1,1,1,2,1,1,1,3],
-    [0,3,1,1,1,1,1,1,1,3,0,0],
-    [3,0,3,1,3,0,0,0,3,1,0,3],                    // legs spread (mid-air)
-    [3,3,0,3,3,0,0,0,3,3,0,3],
+  const JP = [                                           // jump: legs spread wide
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 5, 1, 5, 1, 3, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 3, 1, 3, 1, 3, 1, 1, 3],
+    [3, 3, 0, 0, 0, 0, 0, 3, 1, 1, 1, 5, 1, 1, 1, 3],
+    [3, 1, 3, 3, 3, 3, 3, 2, 1, 1, 3, 1, 1, 1, 1, 3],
+    [0, 3, 1, 4, 4, 4, 4, 4, 4, 4, 1, 1, 1, 1, 3, 0],
+    [0, 0, 3, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0],
+    [3, 0, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 0, 3], // legs wide
+    [3, 3, 0, 3, 3, 0, 0, 0, 0, 0, 3, 3, 0, 0, 3, 3],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
+  const GRIDS = { wa: WA, wb: WB, sit: ST, eat: ET, jump: JP };
 
-  const SVGS = { w1: makeSVG(W1), w2: makeSVG(W2), sit: makeSVG(SIT), eat: makeSVG(EAT), jump: makeSVG(JMP) };
+  /* ── Dimensions ──────────────────────────────── */
+  const GW = 16, GH = 13;
+  const CW = GW * SC;   // 64 px
+  const CH = GH * SC;   // 52 px
+  const ITEM_PX = 28;
+  const floorTop = () => window.innerHeight - CH;
 
-  /* ── Config ─────────────────────────────────── */
-  const CW = 12 * S; // 60
-  const CH = 10 * S; // 50
-  const FLOOR_TOP = () => window.innerHeight - CH; // cat top-edge y on screen
-
-  const ITEMS_DEF = [
-    { emoji: '🐟', label: 'Fisch' },
-    { emoji: '🍖', label: 'Leckerli' },
-    { emoji: '🐠', label: 'Tropenfisch' },
-    { emoji: '🧀', label: 'Käse' },
+  /* ── Foods ───────────────────────────────────── */
+  const FOODS = [
+    { e: '🐟', n: 'Fisch' },
+    { e: '🍖', n: 'Leckerli' },
+    { e: '🐠', n: 'Tropenfisch' },
+    { e: '🧀', n: 'Käse' },
   ];
-  const ITEM_SIZE = 28;
 
   /* ── State ───────────────────────────────────── */
   let posX = 120, dir = 1;
-  let state = 'walk', stateTimer = 0;
-  let walkFrame = 0, frameTimer = 0;
+  let state = 'walk', timer = 0;
+  let frame = 0, frameTick = 0;
   let targetX = null, lastTs = 0;
-  let jumpY = 0;
-  let catEl, svgWrap, heartWrap;
-  let activeItems = []; // {el, x, y, def, dragging}
-  let drag = null;      // {item, grabOffX, grabOffY}
+  let wrapEl, cv, ctx, heartWrap;
+  let items = [], drag = null;
 
-  /* ── Init ───────────────────────────────────── */
+  /* ── Init ────────────────────────────────────── */
   function init() {
-    catEl = document.createElement('div');
-    catEl.id = 'site-cat';
-    catEl.style.cssText = `position:fixed;bottom:0;left:120px;z-index:9999;cursor:pointer;user-select:none;width:${CW}px;height:${CH}px;`;
+    wrapEl = document.createElement('div');
+    wrapEl.id = 'site-cat';
+    wrapEl.style.cssText = `position:fixed;bottom:0;left:120px;z-index:9999;cursor:pointer;user-select:none;width:${CW}px;height:${CH}px;`;
 
-    svgWrap = document.createElement('div');
-    svgWrap.style.cssText = `width:${CW}px;height:${CH}px;`;
-    svgWrap.innerHTML = SVGS.w1;
-    catEl.appendChild(svgWrap);
+    // Canvas — no img-src CSP issue, pixel art drawn directly
+    cv = document.createElement('canvas');
+    cv.width = CW; cv.height = CH;
+    cv.style.cssText = `display:block;image-rendering:pixelated;`;
+    ctx = cv.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    wrapEl.appendChild(cv);
 
     heartWrap = document.createElement('div');
     heartWrap.style.cssText = `position:absolute;bottom:${CH}px;left:0;width:${CW}px;pointer-events:none;`;
-    catEl.appendChild(heartWrap);
+    wrapEl.appendChild(heartWrap);
 
-    document.body.appendChild(catEl);
+    document.body.appendChild(wrapEl);
 
     const tip = document.createElement('div');
     tip.id = 'cat-tip';
-    tip.style.cssText = `position:fixed;bottom:${CH+8}px;left:120px;font-family:monospace;font-size:11px;background:#161b22;color:#e6edf3;padding:4px 10px;border-radius:4px;border:1px solid #30363d;pointer-events:none;opacity:0;transition:opacity .2s;z-index:10000;white-space:nowrap;`;
+    tip.style.cssText = `position:fixed;bottom:${CH+8}px;font-family:monospace;font-size:11px;background:#161b22;color:#e6edf3;padding:4px 10px;border-radius:4px;border:1px solid #30363d;pointer-events:none;opacity:0;transition:opacity .2s;z-index:10000;white-space:nowrap;`;
     tip.textContent = '🐱 Items auf mich ziehen!';
     document.body.appendChild(tip);
 
-    catEl.addEventListener('mouseenter', () => { tip.style.opacity = '1'; positionTip(); });
-    catEl.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
-    catEl.addEventListener('click', () => { if (state === 'walk') { setState('sit', 2200); floaters(['💙']); } });
+    wrapEl.addEventListener('mouseenter', () => { tip.style.opacity = '1'; tip.style.left = posX + 'px'; });
+    wrapEl.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+    wrapEl.addEventListener('click', () => { if (state === 'walk') { go('sit', 2200); hearts(['💙']); } });
 
     document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup',   onUp);
+    document.addEventListener('mouseup', onUp);
 
-    spawnItem();
-    setTimeout(spawnItem, 1800);
-
+    draw();
+    spawnFood();
+    setTimeout(spawnFood, 1800);
     requestAnimationFrame(tick);
   }
 
-  /* ── Sprite ─────────────────────────────────── */
-  function setState(s, dur) {
-    state = s;
-    stateTimer = dur || 0;
-    drawSprite();
+  /* ── Draw sprite to canvas ───────────────────── */
+  function draw() {
+    const key = state === 'eat' ? 'eat' : state === 'sit' ? 'sit' : state === 'jump' ? 'jump' : frame ? 'wb' : 'wa';
+    const g = GRIDS[key];
+    ctx.clearRect(0, 0, CW, CH);
+    ctx.save();
+    if (dir === -1) { ctx.translate(CW, 0); ctx.scale(-1, 1); }
+    for (let y = 0; y < GH; y++)
+      for (let x = 0; x < GW; x++) {
+        const c = PAL[g[y][x]];
+        if (c) { ctx.fillStyle = c; ctx.fillRect(x*SC, y*SC, SC, SC); }
+      }
+    ctx.restore();
   }
 
-  function drawSprite() {
-    const key = state === 'eat' ? 'eat' : state === 'sit' ? 'sit' : state === 'jump' ? 'jump' : walkFrame ? 'w2' : 'w1';
-    svgWrap.innerHTML = SVGS[key];
-    const s = svgWrap.firstElementChild;
-    if (s) s.style.transform = dir === -1 ? 'scaleX(-1)' : '';
-  }
+  function face(d) { if (d !== dir) { dir = d; draw(); } }
+  function go(s, dur) { state = s; timer = dur || 0; draw(); }
 
-  function setDir(d) {
-    if (d !== dir) { dir = d; drawSprite(); }
-  }
-
-  /* ── Items ──────────────────────────────────── */
-  function spawnItem() {
-    const def = ITEMS_DEF[Math.floor(Math.random() * ITEMS_DEF.length)];
+  /* ── Food ────────────────────────────────────── */
+  function spawnFood() {
+    const f = FOODS[Math.floor(Math.random() * FOODS.length)];
     const margin = 80;
     const fx = margin + Math.random() * (window.innerWidth - margin * 2);
-    const fy = window.innerHeight - ITEM_SIZE - 10;
-
+    const fy = window.innerHeight - ITEM_PX - 10;
     const el = document.createElement('div');
-    el.textContent = def.emoji;
-    el.title = def.label + ' – ziehen zum Füttern!';
-    el.style.cssText = `position:fixed;left:${fx - ITEM_SIZE/2}px;top:${fy}px;font-size:${ITEM_SIZE}px;cursor:grab;z-index:9998;user-select:none;filter:drop-shadow(0 0 5px rgba(47,129,247,.5));animation:cat-float ${1.8+Math.random()*.7}s ease-in-out infinite;animation-delay:${(Math.random()*2).toFixed(2)}s;transition:filter .15s;`;
-
-    const item = { el, x: fx, y: fy + ITEM_SIZE/2, def, dragging: false };
-    activeItems.push(item);
+    el.textContent = f.e;
+    el.title = f.n + ' – ziehen zum Füttern!';
+    el.style.cssText = `position:fixed;left:${fx-ITEM_PX/2}px;top:${fy}px;font-size:${ITEM_PX}px;cursor:grab;z-index:9998;user-select:none;filter:drop-shadow(0 0 5px rgba(47,129,247,.5));animation:cat-float ${1.8+Math.random()*.7}s ease-in-out infinite;animation-delay:${(Math.random()*2).toFixed(2)}s;transition:filter .15s;`;
+    const item = { el, x: fx, y: fy + ITEM_PX/2, dragging: false };
+    items.push(item);
     document.body.appendChild(el);
-
     el.addEventListener('mousedown', e => { e.preventDefault(); startDrag(item, e); });
   }
 
-  function killItem(item, withEffect) {
-    const i = activeItems.indexOf(item);
+  function killFood(item, fx) {
+    const i = items.indexOf(item);
     if (i === -1) return;
-    activeItems.splice(i, 1);
-    if (withEffect) {
-      item.el.style.transition = 'opacity .25s, transform .25s';
-      item.el.style.opacity = '0';
-      item.el.style.transform = 'scale(0.1)';
+    items.splice(i, 1);
+    if (fx) {
+      item.el.style.transition = 'opacity .25s,transform .25s';
+      item.el.style.opacity = '0'; item.el.style.transform = 'scale(0.1)';
       setTimeout(() => item.el.remove(), 280);
-    } else {
-      item.el.remove();
-    }
+    } else item.el.remove();
   }
 
-  function eatItem(item) {
-    killItem(item, true);
-    setState('eat', 1600);
-    floaters(['❤️', '✨', '😻']);
-    setTimeout(spawnItem, 3000); // respawn only after eating + 3s
+  function eatFood(item) {
+    killFood(item, true);
+    go('eat', 1600);
+    hearts(['❤️', '✨', '😻']);
+    setTimeout(spawnFood, 3000);
   }
 
-  /* ── Drag & Drop ────────────────────────────── */
+  /* ── Drag & Drop ─────────────────────────────── */
   function startDrag(item, e) {
-    drag = { item, offX: e.clientX - (item.x - ITEM_SIZE/2), offY: e.clientY - item.y + ITEM_SIZE/2 };
+    drag = { item, ox: e.clientX - (item.x - ITEM_PX/2), oy: e.clientY - (item.y - ITEM_PX/2) };
     item.dragging = true;
-    item.el.style.cursor = 'grabbing';
-    item.el.style.animation = 'none';
-    item.el.style.zIndex = '10001';
-    item.el.style.filter = 'drop-shadow(0 0 10px rgba(47,129,247,.9))';
-    item.el.style.transition = '';
+    item.el.style.cursor = 'grabbing'; item.el.style.animation = 'none';
+    item.el.style.zIndex = '10001'; item.el.style.transition = '';
+    item.el.style.filter = 'drop-shadow(0 0 10px rgba(255,180,50,.9))';
   }
 
   function onMove(e) {
     if (!drag) return;
     const { item } = drag;
-    const mx = e.clientX, my = e.clientY;
-    item.el.style.left = (mx - drag.offX) + 'px';
-    item.el.style.top  = (my - drag.offY + ITEM_SIZE/2) + 'px';
-    item.x = mx - drag.offX + ITEM_SIZE/2;
-    item.y = my - drag.offY + ITEM_SIZE/2;
-
-    const catCX = posX + CW / 2;
-    const dx = Math.abs(item.x - catCX);
-    const itemAboveCat = item.y < FLOOR_TOP() - 20; // item is above the cat's floor line
-
-    if (dx < 180) {
-      if (itemAboveCat && state !== 'eat') {
-        // Item is above — try to jump
-        if (state !== 'jump') setState('jump', 700);
-        setDir(item.x < catCX ? -1 : 1);
-      } else if (!itemAboveCat && (state === 'walk' || state === 'sit' || state === 'jump')) {
-        // Item is at floor level — chase it
-        targetX = item.x - CW / 2;
-        if (state !== 'walk') setState('walk');
+    item.el.style.left = (e.clientX - drag.ox) + 'px';
+    item.el.style.top  = (e.clientY - drag.oy) + 'px';
+    item.x = e.clientX - drag.ox + ITEM_PX/2;
+    item.y = e.clientY - drag.oy + ITEM_PX/2;
+    const catCX = posX + CW/2;
+    if (Math.abs(item.x - catCX) < 190) {
+      face(item.x < catCX ? -1 : 1);
+      if (item.y < floorTop() - 15) {
+        if (state !== 'jump') go('jump', 650);
+      } else if (state !== 'eat') {
+        targetX = item.x - CW/2;
+        if (state !== 'walk') go('walk');
       }
     }
   }
@@ -238,40 +233,26 @@
   function onUp(e) {
     if (!drag) return;
     const { item } = drag;
-    drag = null;
-    item.dragging = false;
-    item.el.style.cursor = 'grab';
-    item.el.style.zIndex = '9998';
+    drag = null; item.dragging = false;
+    item.el.style.cursor = 'grab'; item.el.style.zIndex = '9998';
     item.el.style.filter = 'drop-shadow(0 0 5px rgba(47,129,247,.5))';
-
-    const catCX = posX + CW / 2;
-    const catCY = FLOOR_TOP() + CH / 2;
-    const dist  = Math.hypot(item.x - catCX, item.y - catCY);
-
-    if (dist < 65) {
-      // Dropped directly onto cat
-      eatItem(item);
+    if (Math.hypot(item.x - (posX+CW/2), item.y - (floorTop()+CH/2)) < 70) {
+      eatFood(item);
     } else {
-      // Settle item on the floor at drop x
-      const floorTop = window.innerHeight - ITEM_SIZE - 10;
+      const newTop = window.innerHeight - ITEM_PX - 10;
       item.el.style.transition = 'top .28s ease-in';
-      item.el.style.top  = floorTop + 'px';
-      item.el.style.left = (item.x - ITEM_SIZE/2) + 'px';
-      item.y = floorTop + ITEM_SIZE / 2;
+      item.el.style.top = newTop + 'px';
+      item.y = newTop + ITEM_PX/2;
       setTimeout(() => {
-        if (!item.dragging) {
-          item.el.style.transition = '';
-          item.el.style.animation = `cat-float ${1.8+Math.random()*.7}s ease-in-out infinite`;
-        }
+        if (!item.dragging) { item.el.style.transition = ''; item.el.style.animation = `cat-float ${1.8+Math.random()*.7}s ease-in-out infinite`; }
       }, 300);
-      // Cat chases the dropped item
-      targetX = item.x - CW / 2;
-      if (state !== 'walk') setState('walk');
+      targetX = item.x - CW/2;
+      if (state !== 'walk') go('walk');
     }
   }
 
-  /* ── Hearts ─────────────────────────────────── */
-  function floaters(arr) {
+  /* ── Hearts ──────────────────────────────────── */
+  function hearts(arr) {
     arr.forEach((ch, i) => {
       const s = document.createElement('span');
       s.textContent = ch;
@@ -281,74 +262,50 @@
     });
   }
 
-  function positionTip() {
-    const tip = document.getElementById('cat-tip');
-    if (tip) tip.style.left = posX + 'px';
-  }
-
-  /* ── Main loop ──────────────────────────────── */
+  /* ── Main loop ───────────────────────────────── */
   function tick(ts) {
     const dt = Math.min(ts - lastTs, 50);
     lastTs = ts;
     const W = window.innerWidth;
 
-    // Walk frame toggle
-    frameTimer += dt;
-    if (frameTimer > 180 && (state === 'walk')) {
-      frameTimer = 0;
-      walkFrame = 1 - walkFrame;
-      drawSprite();
+    frameTick += dt;
+    if (frameTick > 160 && state === 'walk') {
+      frameTick = 0; frame = 1 - frame; draw();
+      wrapEl.style.marginBottom = frame ? '3px' : '0';
     }
 
     if (state === 'walk') {
       if (targetX !== null) {
         const dx = targetX - posX;
-        if (Math.abs(dx) < 4) {
-          posX = targetX;
-          targetX = null;
-          checkEatProximity();
-        } else {
-          setDir(dx > 0 ? 1 : -1);
-          posX += dir * Math.min(Math.abs(dx), 2.2 * dt / 16);
-        }
+        if (Math.abs(dx) < 4) { posX = targetX; targetX = null; checkEat(); }
+        else { face(dx > 0 ? 1 : -1); posX += dir * Math.min(Math.abs(dx), 2.5 * dt/16); }
       } else {
-        posX += dir * 0.9 * dt / 16;
-        if (posX > W - CW) setDir(-1);
-        if (posX < 4)      setDir(1);
-        if (Math.random() < 0.00018) setState('sit', 2200 + Math.random() * 2800);
+        posX += dir * 0.95 * dt/16;
+        if (posX > W - CW) face(-1);
+        if (posX < 4)      face(1);
+        if (Math.random() < 0.00016) go('sit', 2500 + Math.random()*2500);
       }
     } else if (state === 'jump') {
-      // Bounce animation: use a sine wave on stateTimer
-      const progress = 1 - stateTimer / 700;
-      jumpY = Math.sin(progress * Math.PI) * 18;
-      catEl.style.transform = `translateY(${-jumpY}px)`;
-      stateTimer -= dt;
-      if (stateTimer <= 0) {
-        catEl.style.transform = '';
-        jumpY = 0;
-        setState('walk');
-      }
-    } else if (state === 'eat' || state === 'sit') {
-      stateTimer -= dt;
-      if (stateTimer <= 0) setState('walk');
+      wrapEl.style.marginBottom = (Math.sin((1 - timer/650) * Math.PI) * 20) + 'px';
+      timer -= dt;
+      if (timer <= 0) { wrapEl.style.marginBottom = '0'; go('walk'); }
+    } else {
+      timer -= dt;
+      if (timer <= 0) { wrapEl.style.marginBottom = '0'; go('walk'); }
     }
 
-    catEl.style.left = posX + 'px';
-    positionTip();
-
+    wrapEl.style.left = posX + 'px';
+    const tip = document.getElementById('cat-tip');
+    if (tip && tip.style.opacity !== '0') tip.style.left = posX + 'px';
     requestAnimationFrame(tick);
   }
 
-  function checkEatProximity() {
-    const catCX = posX + CW / 2;
-    const close = activeItems.find(i => !i.dragging && Math.abs(i.x - catCX) < 55);
-    if (close) eatItem(close);
+  function checkEat() {
+    const cx = posX + CW/2;
+    const near = items.find(i => !i.dragging && Math.abs(i.x - cx) < 56);
+    if (near) eatFood(near);
   }
 
-  /* ── Boot ───────────────────────────────────── */
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
