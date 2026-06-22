@@ -1,6 +1,7 @@
 (function () {
   if (!window.matchMedia('(pointer: fine)').matches) return;
 
+  const CAT_NAME = 'Miso';
   const CW = 68, CH = 68;
   const BASE = 'cat_animation/';
   const SRCS = {
@@ -14,7 +15,7 @@
   /* ── Pixel-art food definitions (8×8 grid, scale 4 → 32×32 px) ── */
   const IW = 32, IH = 32;
   const PIXEL_FOODS = [
-    { // fish (blue-silver, tail on left, eye on right)
+    { // fish (blue-silver)
       w:8, h:8, s:4,
       c:['#5b9bc4','#89cff0','#0d1b2a'],
       p:[
@@ -28,7 +29,7 @@
         [0,0,0,0,0,0,0,0],
       ]
     },
-    { // cheese wedge (yellow, triangle with holes)
+    { // cheese wedge
       w:8, h:8, s:4,
       c:['#f5c842','#c4a030','#b8920a'],
       p:[
@@ -42,7 +43,7 @@
         [0,0,0,0,0,0,0,0],
       ]
     },
-    { // drumstick / meat on bone
+    { // drumstick / meat
       w:8, h:8, s:4,
       c:['#5a3010','#d4704a','#e8e0d8'],
       p:[
@@ -56,7 +57,7 @@
         [0,0,0,0,1,3,3,0],
       ]
     },
-    { // tropical fish (orange, white stripe, clownfish-ish)
+    { // tropical fish (orange, white stripe)
       w:8, h:8, s:4,
       c:['#c85a10','#e8803a','#0d1b2a','#f0f0f0'],
       p:[
@@ -99,6 +100,7 @@
   let posX = 120, dir = 1;
   let state = 'walk', timer = 0;
   let targetX = null, lastTs = 0;
+  let paused = false;
   let wrapEl, imgEl, heartWrap;
   let items = [], drag = null;
 
@@ -114,6 +116,15 @@
 
   function face(d) { if (d !== dir) { dir = d; draw(); } }
   function go(s, dur) { state = s; timer = dur || 0; draw(); }
+
+  /* ── Toggle ── */
+  function toggle(show) {
+    paused = !show;
+    wrapEl.style.display = show ? '' : 'none';
+    items.forEach(i => { i.el.style.display = show ? '' : 'none'; });
+    const tip = document.getElementById('cat-tip');
+    if (tip) tip.style.display = show ? '' : 'none';
+  }
 
   /* ── Init ── */
   function init() {
@@ -137,7 +148,7 @@
     const tip = document.createElement('div');
     tip.id = 'cat-tip';
     tip.style.cssText = `position:fixed;bottom:${CH+8}px;font-family:monospace;font-size:11px;background:#161b22;color:#e6edf3;padding:4px 10px;border-radius:4px;border:1px solid #30363d;pointer-events:none;opacity:0;transition:opacity .2s;z-index:10000;white-space:nowrap;`;
-    tip.textContent = '🐱 Items auf mich ziehen!';
+    tip.textContent = `drag food items onto ${CAT_NAME}!`;
     document.body.appendChild(tip);
 
     wrapEl.addEventListener('mouseenter', () => { tip.style.opacity = '1'; tip.style.left = posX + 'px'; });
@@ -146,6 +157,44 @@
 
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseup', onUp);
+
+    /* ── Toggle button ── */
+    let active = true;
+    const btnWrap = document.createElement('div');
+    btnWrap.style.cssText = `position:fixed;bottom:${CH+20}px;right:24px;z-index:9997;display:flex;flex-direction:column;align-items:flex-end;gap:5px;`;
+
+    const btn = document.createElement('button');
+    btn.style.cssText =
+      `font-family:'Cascadia Code','Fira Code',monospace;font-size:12px;` +
+      `background:transparent;color:#e6edf3;` +
+      `border:1px solid #30363d;border-radius:6px;` +
+      `padding:7px 14px;cursor:pointer;` +
+      `transition:border-color .2s,color .2s,opacity .2s;` +
+      `white-space:nowrap;`;
+    btn.textContent = `🐱 play with ${CAT_NAME}`;
+
+    const info = document.createElement('span');
+    info.style.cssText = `font-family:'Cascadia Code','Fira Code',monospace;font-size:10px;color:#484f58;letter-spacing:.5px;`;
+    info.textContent = '✦ still in progress';
+
+    btn.addEventListener('mouseenter', () => {
+      if (active) btn.style.borderColor = '#2f81f7';
+      else        btn.style.borderColor = '#484f58';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.borderColor = active ? '#30363d' : '#21262d';
+    });
+    btn.addEventListener('click', () => {
+      active = !active;
+      toggle(active);
+      btn.style.opacity  = active ? '1'       : '0.45';
+      btn.style.color    = active ? '#e6edf3' : '#484f58';
+      btn.style.borderColor = active ? '#30363d' : '#21262d';
+    });
+
+    btnWrap.appendChild(btn);
+    btnWrap.appendChild(info);
+    document.body.appendChild(btnWrap);
 
     draw();
     spawnFood();
@@ -173,6 +222,9 @@
     const item = { el, x: fx, y: fy + IH / 2, dragging: false };
     items.push(item);
     document.body.appendChild(el);
+
+    if (paused) el.style.display = 'none';
+
     el.addEventListener('mousedown', ev => { ev.preventDefault(); startDrag(item, ev); });
   }
 
@@ -262,29 +314,34 @@
   function tick(ts) {
     const dt = Math.min(ts - lastTs, 50);
     lastTs = ts;
-    const W = window.innerWidth;
 
-    if (state === 'walk' || state === 'run') {
-      if (targetX !== null) {
-        const dx = targetX - posX;
-        const speed = state === 'run' ? 3.5 : 2.5;
-        if (Math.abs(dx) < 4) { posX = targetX; targetX = null; checkEat(); }
-        else { face(dx > 0 ? 1 : -1); posX += dir * Math.min(Math.abs(dx), speed * dt / 16); }
+    if (!paused) {
+      const W = window.innerWidth;
+
+      if (state === 'walk' || state === 'run') {
+        if (targetX !== null) {
+          const dx = targetX - posX;
+          const speed = state === 'run' ? 3.5 : 2.5;
+          if (Math.abs(dx) < 4) { posX = targetX; targetX = null; checkEat(); }
+          else { face(dx > 0 ? 1 : -1); posX += dir * Math.min(Math.abs(dx), speed * dt / 16); }
+        } else {
+          if (state === 'run') go('walk');
+          posX += dir * 0.9 * dt / 16;
+          if (posX > W - CW) face(-1);
+          if (posX < 4)      face(1);
+          if (Math.random() < 0.00016) go('sit', 2500 + Math.random() * 2500);
+        }
       } else {
-        if (state === 'run') go('walk');
-        posX += dir * 0.9 * dt / 16;
-        if (posX > W - CW) face(-1);
-        if (posX < 4)      face(1);
-        if (Math.random() < 0.00016) go('sit', 2500 + Math.random() * 2500);
+        timer -= dt;
+        if (timer <= 0) go('walk');
       }
-    } else {
-      timer -= dt;
-      if (timer <= 0) go('walk');
+
+      wrapEl.style.left = posX + 'px';
+      const tip = document.getElementById('cat-tip');
+      if (tip && tip.style.opacity !== '0') tip.style.left = posX + 'px';
     }
 
-    wrapEl.style.left = posX + 'px';
-    const tip = document.getElementById('cat-tip');
-    if (tip && tip.style.opacity !== '0') tip.style.left = posX + 'px';
+    lastTs = ts;
     requestAnimationFrame(tick);
   }
 
