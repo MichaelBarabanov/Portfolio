@@ -223,11 +223,23 @@ section { padding: 92px 0; }
 .stat-label { font-size: 12px; color: var(--muted); font-family: monospace; }
 
 /* ── STACK ── */
+.stack-group { margin-bottom: 32px; }
+.stack-group:last-child { margin-bottom: 0; }
+.stack-group-label {
+  display: block; margin-bottom: 14px;
+  font-family: 'Cascadia Code','Fira Code',monospace;
+  font-size: 11px; letter-spacing: 1.5px; text-transform: lowercase;
+  color: var(--accent);
+}
+.stack-group-label--dim { color: var(--muted); }
+
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
   gap: 14px;
 }
+.tech-grid--skills .tech-item { opacity: 0.65; }
+.tech-grid--skills .tech-item:hover { opacity: 1; }
 .tech-item {
   display: flex; flex-direction: column; align-items: center; gap: 10px;
   padding: 20px 10px;
