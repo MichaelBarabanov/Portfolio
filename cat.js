@@ -161,6 +161,7 @@
     /* ── Toggle button ── */
     let active = false;
     const btnWrap = document.createElement('div');
+    btnWrap.className = 'cat-toggle-wrap';
     btnWrap.style.cssText = `position:fixed;bottom:${CH+20}px;right:24px;z-index:9997;display:flex;flex-direction:column;align-items:flex-end;gap:5px;`;
 
     const btn = document.createElement('button');
