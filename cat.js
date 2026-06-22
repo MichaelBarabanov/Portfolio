@@ -100,7 +100,7 @@
   let posX = 120, dir = 1;
   let state = 'walk', timer = 0;
   let targetX = null, lastTs = 0;
-  let paused = false;
+  let paused = true;
   let wrapEl, imgEl, heartWrap;
   let items = [], drag = null;
 
@@ -130,7 +130,7 @@
   function init() {
     wrapEl = document.createElement('div');
     wrapEl.id = 'site-cat';
-    wrapEl.style.cssText = `position:fixed;bottom:0;left:${posX}px;z-index:9999;cursor:pointer;user-select:none;width:${CW}px;height:${CH}px;`;
+    wrapEl.style.cssText = `position:fixed;bottom:0;left:${posX}px;z-index:9999;cursor:pointer;user-select:none;width:${CW}px;height:${CH}px;display:none;`;
 
     imgEl = document.createElement('img');
     imgEl.src = SRCS.walk_r;
@@ -159,7 +159,7 @@
     document.addEventListener('mouseup', onUp);
 
     /* ── Toggle button ── */
-    let active = true;
+    let active = false;
     const btnWrap = document.createElement('div');
     btnWrap.style.cssText = `position:fixed;bottom:${CH+20}px;right:24px;z-index:9997;display:flex;flex-direction:column;align-items:flex-end;gap:5px;`;
 
@@ -170,16 +170,18 @@
       `border:1px solid #30363d;border-radius:6px;` +
       `padding:7px 14px;cursor:pointer;` +
       `transition:border-color .2s,color .2s,opacity .2s;` +
-      `white-space:nowrap;`;
+      `white-space:nowrap;opacity:0.45;`;
     btn.textContent = `🐱 play with ${CAT_NAME}`;
 
     const info = document.createElement('span');
     info.style.cssText = `font-family:'Cascadia Code','Fira Code',monospace;font-size:10px;color:#484f58;letter-spacing:.5px;`;
     info.textContent = '✦ still in progress';
 
+    btn.style.color       = '#484f58';
+    btn.style.borderColor = '#21262d';
+
     btn.addEventListener('mouseenter', () => {
-      if (active) btn.style.borderColor = '#2f81f7';
-      else        btn.style.borderColor = '#484f58';
+      btn.style.borderColor = active ? '#2f81f7' : '#484f58';
     });
     btn.addEventListener('mouseleave', () => {
       btn.style.borderColor = active ? '#30363d' : '#21262d';
