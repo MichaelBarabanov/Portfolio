@@ -554,6 +554,8 @@ footer a:hover { color: var(--accent); }
 @keyframes cat-float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
 @keyframes cat-heart    { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-45px) scale(1.4)} }
 
+@media (max-width: 768px) { .cat-toggle-wrap { display: none !important; } }
+
 /* ── MOBILE ── */
 @media (max-width: 680px) {
   .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: rgba(13,17,23,.97); border-bottom: 1px solid var(--border); padding: 8px 0; }
