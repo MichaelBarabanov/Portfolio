@@ -683,21 +683,42 @@ footer a:hover { color: var(--accent); }
 
 /* ── MOBILE ── */
 @media (max-width: 680px) {
+  /* Nav */
   .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: rgba(13,17,23,.97); border-bottom: 1px solid var(--border); padding: 8px 0; }
   .nav-links.open { display: flex; }
   .nav-links li a { padding: 12px 24px; border-radius: 0; font-size: 15px; }
   .nav-toggle { display: flex; }
 
-  .about-grid { grid-template-columns: 1fr; }
-  .about-stats { flex-direction: row; flex-wrap: wrap; }
-  .stat { flex: 1; min-width: 100px; }
+  /* Hero */
+  .hero-ctas { flex-direction: column; gap: 10px; max-width: 260px; }
+  .hero-ctas .btn { justify-content: center; }
+  .hero-scroll { display: none; }
 
+  /* About */
+  .about-grid { grid-template-columns: 1fr; }
+  .about-text { font-size: 15px; line-height: 1.75; }
+  .about-stats { flex-direction: row; flex-wrap: wrap; }
+  .stat { flex: 1; min-width: 90px; }
+
+  /* Stack */
   .tech-grid { grid-template-columns: repeat(auto-fill, minmax(76px,1fr)); }
+
+  /* Timeline */
   .cards, .plugin-cards { grid-template-columns: 1fr; }
   .timeline { padding-left: 24px; }
   .timeline-dot { left: -24px; }
+  .timeline-future::before { left: -24px; }
   .timeline-entry:hover { transform: none; }
+  #erfahrung::after { height: 70px; }
 
+  /* Plugins header */
+  .plugins-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+  /* Contact */
+  .contact-btn { flex: 1 1 auto; justify-content: center; }
+  .contact-btn-cv { flex: 1 1 100%; justify-content: center; }
+
+  /* General */
   .glitch { font-size: 26px; }
   section { padding: 64px 0; }
   #hero { padding: 80px 20px 64px; }
