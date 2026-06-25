@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const CV_DE = 'mailto:michael.bara2005@gmail.com?subject=Lebenslauf%20Anfrage&body=Hallo%20Michael%2C%0A%0Aich%20bin%20auf%20dein%20Portfolio%20aufmerksam%20geworden%20und%20w%C3%BCrde%20gerne%20deinen%20Lebenslauf%20erhalten.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A%5BDein%20Name%5D';
-  const CV_EN = 'mailto:michael.bara2005@gmail.com?subject=CV%20Request&body=Hi%20Michael%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20your%20CV.%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D';
+  const CV_DE = 'mailto:m.barabanov@mbara.net?subject=Lebenslauf%20Anfrage&body=Hallo%20Michael%2C%0A%0Aich%20bin%20auf%20dein%20Portfolio%20aufmerksam%20geworden%20und%20w%C3%BCrde%20gerne%20deinen%20Lebenslauf%20erhalten.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A%5BDein%20Name%5D';
+  const CV_EN = 'mailto:m.barabanov@mbara.net?subject=CV%20Request&body=Hi%20Michael%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20request%20your%20CV.%0A%0ABest%20regards%2C%0A%5BYour%20Name%5D';
 
   const T = {
     de: {
@@ -32,6 +32,7 @@
       'stat.plugins':         'SW6 Plugins',
       'card.priceReq.desc':   'Shopware 6 Plugin: Versteckt Preise und ersetzt den Warenkorb-Button durch ein Kontaktformular. Perfekt für B2B-Shops.',
       'card.comingSoon.desc': 'Shopware 6 Plugin: Coming-Soon-Modus mit Countdown-Timer und E-Mail-Benachrichtigung vor dem Shop-Launch.',
+      'card.aiDesc.desc':     'Shopware 6 Plugin: AI-gestützter Produktbeschreibungs-Generator direkt im Admin. Unterstützt Claude (Anthropic) und ChatGPT (OpenAI), zwei Sprachen und drei Schreibstile.',
       'card.finanz.desc':     'Persönliches Finanzanalyse-Tool: Einnahmen, Ausgaben und Kategorien – übersichtlich visualisiert im Browser.',
       'plugins.sub':          'Professionelle Shopware 6 Plugins – entwickelt, getestet, produktionsreif.',
       'plugin.pr.desc':       'Preise auf Anfrage für B2B-Shops. Versteckt Preise und ersetzt den Warenkorb-Button durch ein individuelles Kontaktformular.',
@@ -42,6 +43,11 @@
       'plugin.cs.f1':         '✓ Konfigurierbarer Countdown-Timer',
       'plugin.cs.f2':         '✓ E-Mail-Benachrichtigung bei Launch',
       'plugin.cs.f3':         '✓ Kompatibel mit Shopware 6.4+',
+      'plugin.ai.desc':       'Generiert überzeugende Produktbeschreibungen direkt im Admin – powered by Claude (Anthropic) oder ChatGPT (OpenAI).',
+      'plugin.ai.f1':         '✓ Claude & OpenAI unterstützt',
+      'plugin.ai.f2':         '✓ Deutsch & Englisch',
+      'plugin.ai.f3':         '✓ Professionell / Casual / SEO-optimiert',
+      'plugin.ai.f4':         '✓ Kompatibel mit Shopware 6.7+',
       'contrib.sub':          'GitHub Contributions – letztes Jahr',
       'term.hint':            'Tippe <code>help</code> für alle Commands — probier\'s aus.',
       'contact.sub':          'Projektanfrage, Freelance-Job oder einfach reden?',
@@ -100,12 +106,12 @@
       ],
       'term.contact': [
         '@@h@@Kontakt:',
-        '  E-Mail    → @@mailto:michael.bara2005@gmail.com@@michael.bara2005@gmail.com',
+        '  E-Mail    → @@mailto:m.barabanov@mbara.net@@m.barabanov@mbara.net',
         '  GitHub    → @@link:https://github.com/MichaelBarabanov@@github.com/MichaelBarabanov',
         '  LinkedIn  → @@link:https://linkedin.com/in/michael-barabanov-103265357@@linkedin.com/in/michael-barabanov-...',
       ],
       'term.hire.title':    '@@h@@Freelance-Anfrage',
-      'term.hire.prompt':   'E-Mail an michael.bara2005@gmail.com öffnen?',
+      'term.hire.prompt':   'E-Mail an m.barabanov@mbara.net öffnen?',
       'term.hire.yn':       'Tippe @@h@@y@@ (ja) oder @@h@@n@@ (nein)',
       'term.hire.yes':      '@@g@@Öffne E-Mail-Client...',
       'term.hire.no':       'Ok, kein Stress. Du weißt wo ich bin. 👋',
@@ -147,6 +153,7 @@
       'stat.plugins':         'SW6 Plugins',
       'card.priceReq.desc':   'Shopware 6 Plugin: Hides prices and replaces the cart button with a contact form. Perfect for B2B shops.',
       'card.comingSoon.desc': 'Shopware 6 Plugin: Coming-Soon mode with countdown timer and email notification before the shop launch.',
+      'card.aiDesc.desc':     'Shopware 6 Plugin: AI-powered product description generator directly in the admin. Supports Claude (Anthropic) and ChatGPT (OpenAI), two languages and three writing styles.',
       'card.finanz.desc':     'Personal finance analysis tool: income, expenses and categories – clearly visualized in the browser.',
       'plugins.sub':          'Professional Shopware 6 Plugins – developed, tested, production-ready.',
       'plugin.pr.desc':       'Price on request for B2B shops. Hides prices and replaces the cart button with a custom contact form.',
@@ -157,6 +164,11 @@
       'plugin.cs.f1':         '✓ Configurable countdown timer',
       'plugin.cs.f2':         '✓ Email notification on launch',
       'plugin.cs.f3':         '✓ Compatible with Shopware 6.4+',
+      'plugin.ai.desc':       'Generates compelling product descriptions directly in the admin – powered by Claude (Anthropic) or ChatGPT (OpenAI).',
+      'plugin.ai.f1':         '✓ Claude & OpenAI supported',
+      'plugin.ai.f2':         '✓ German & English',
+      'plugin.ai.f3':         '✓ Professional / Casual / SEO-optimised',
+      'plugin.ai.f4':         '✓ Compatible with Shopware 6.7+',
       'contrib.sub':          'GitHub Contributions – last year',
       'term.hint':            'Type <code>help</code> for all commands — give it a try.',
       'contact.sub':          'Project inquiry, freelance job or just a chat?',
@@ -215,12 +227,12 @@
       ],
       'term.contact': [
         '@@h@@Contact:',
-        '  Email     → @@mailto:michael.bara2005@gmail.com@@michael.bara2005@gmail.com',
+        '  Email     → @@mailto:m.barabanov@mbara.net@@m.barabanov@mbara.net',
         '  GitHub    → @@link:https://github.com/MichaelBarabanov@@github.com/MichaelBarabanov',
         '  LinkedIn  → @@link:https://linkedin.com/in/michael-barabanov-103265357@@linkedin.com/in/michael-barabanov-...',
       ],
       'term.hire.title':    '@@h@@Freelance Inquiry',
-      'term.hire.prompt':   'Open email to michael.bara2005@gmail.com?',
+      'term.hire.prompt':   'Open email to m.barabanov@mbara.net?',
       'term.hire.yn':       'Type @@h@@y@@ (yes) or @@h@@n@@ (no)',
       'term.hire.yes':      '@@g@@Opening email client...',
       'term.hire.no':       'No worries. You know where to find me. 👋',
