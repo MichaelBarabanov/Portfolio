@@ -201,7 +201,7 @@
       if (['y','yes','ja','j'].includes(val.toLowerCase())) {
         appendLines([t('term.hire.yes')]);
         setTimeout(() => {
-          window.location.href = 'mailto:michael.bara2005@gmail.com?subject=Freelance%20Anfrage';
+          window.location.href = 'mailto:m.barabanov@mbara.net?subject=Freelance%20Anfrage';
         }, 450);
       } else {
         appendLines([t('term.hire.no')]);
