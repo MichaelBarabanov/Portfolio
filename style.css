@@ -414,8 +414,8 @@ section { padding: 92px 0; }
 
 .plugin-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 .plugin-card {
   background: var(--surface); border: 1px solid var(--sw);
@@ -436,6 +436,18 @@ section { padding: 92px 0; }
   border: 1px solid var(--sw); color: var(--sw);
   border-radius: 4px; background: rgba(24,158,255,.1);
 }
+
+/* ── PROJECT CARD CATEGORY BADGES ── */
+.card-cat {
+  width: fit-content;
+  font-family: 'Cascadia Code','Fira Code',monospace;
+  font-size: 10px; padding: 2px 7px;
+  border-radius: 3px; letter-spacing: .4px;
+  margin-bottom: 2px;
+}
+.card-cat--sw  { border: 1px solid var(--sw);    color: var(--sw);    background: rgba(24,158,255,.07); }
+.card-cat--ai  { border: 1px solid #a855f7;      color: #a855f7;      background: rgba(168,85,247,.07); }
+.card-cat--tool{ border: 1px solid var(--border); color: var(--muted); background: transparent; }
 .plugin-name { font-size: 18px; font-weight: 700; color: var(--text); }
 .plugin-desc { color: var(--muted); font-size: 14px; line-height: 1.6; }
 .plugin-features { list-style: none; display: flex; flex-direction: column; gap: 6px; }
@@ -704,7 +716,9 @@ footer a:hover { color: var(--accent); }
   .tech-grid { grid-template-columns: repeat(auto-fill, minmax(76px,1fr)); }
 
   /* Timeline */
-  .cards, .plugin-cards { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
+  .plugin-cards { grid-template-columns: 1fr; }
+  .plugin-name { font-size: 16px; }
   .timeline { padding-left: 24px; }
   .timeline-dot { left: -24px; }
   .timeline-future::before { left: -24px; }
