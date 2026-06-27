@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cat-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "4321", "cat"],
+      "port": 4321
+    }
+  ]
+}

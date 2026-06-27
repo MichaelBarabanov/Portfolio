@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hire Michael Barabanov – Shopware 6 Developer & Freelancer</title>
+<meta name="description" content="Shopware 6 Freelancer aus Koblenz. Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen, API-Integrationen. Sofort verfügbar für Agenturen und Shop-Betreiber.">
+<meta name="keywords" content="Shopware 6 Freelancer, PHP Developer, Plugin-Entwicklung, Shopware Agentur, Koblenz, Backend Developer">
+<meta name="author" content="Michael Barabanov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mbara.net/hire">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mbara.net/hire">
+<meta property="og:title" content="Hire Michael Barabanov – Shopware 6 Developer">
+<meta property="og:description" content="Shopware 6 Freelancer aus Koblenz. Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen. Sofort verfügbar.">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:locale" content="de_DE">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hire Michael Barabanov – Shopware 6 Developer">
+<meta name="twitter:description" content="Shopware 6 Freelancer aus Koblenz. Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen. Sofort verfügbar.">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --border: #222222;
+    --accent: #00ff88;
+    --accent2: #0088ff;
+    --text: #e8e8e8;
+    --muted: #666666;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(10,10,10,0.95);
+    border-color: var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    padding: 8px 16px;
+    background: var(--accent);
+    color: #000 !important;
+    font-weight: 700;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: #fff !important; color: #000 !important; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--text);
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 61px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 24px;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 99;
+    backdrop-filter: blur(12px);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0,255,136,0.08);
+    border: 1px solid rgba(0,255,136,0.2);
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+    width: fit-content;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+  .avail-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero h1 {
+    font-family: var(--mono);
+    font-size: clamp(40px, 7vw, 88px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero h1 .line-accent { color: var(--accent); }
+  .hero h1 .line-dim { color: var(--muted); font-weight: 300; }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-primary:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,255,136,0.3); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    gap: 48px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .stats-bar::-webkit-scrollbar { display: none; }
+  .stat-item { display: flex; flex-direction: column; gap: 4px; white-space: nowrap; }
+  .stat-value { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); }
+  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  .section-wrap { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+  .section-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+  h2 { font-family: var(--mono); font-size: clamp(26px, 4vw, 46px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
+  .section-lead { font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 52px; }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--bg);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { background: var(--bg2); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
+  .service-title { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* PLUGINS */
+  .plugins-list { display: flex; flex-direction: column; gap: 2px; }
+  .plugin-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: start;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .plugin-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,255,136,0.02) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .plugin-card:hover { border-color: rgba(0,255,136,0.3); transform: translateX(4px); }
+  .plugin-card:hover::after { opacity: 1; }
+  .plugin-badge { display: inline-flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .badge-sw6 { background: rgba(0,136,255,0.1); color: var(--accent2); border: 1px solid rgba(0,136,255,0.2); }
+  .badge-ai { background: rgba(0,255,136,0.1); color: var(--accent); border: 1px solid rgba(0,255,136,0.2); }
+  .badge-php { background: rgba(150,100,255,0.1); color: #9664ff; border: 1px solid rgba(150,100,255,0.2); }
+  .plugin-name { font-family: var(--mono); font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+  .plugin-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
+  .plugin-features { display: flex; flex-wrap: wrap; gap: 8px; }
+  .plugin-feature { font-family: var(--mono); font-size: 11px; color: var(--muted); background: var(--bg3); padding: 4px 10px; border: 1px solid var(--border); }
+  .plugin-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    align-self: start;
+    flex-shrink: 0;
+  }
+  .plugin-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* AI FOCUS */
+  .ai-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 52px; }
+  .ai-tag { font-family: var(--mono); font-size: 11px; padding: 6px 14px; border: 1px solid rgba(0,255,136,0.3); color: var(--accent); background: rgba(0,255,136,0.05); }
+
+  /* STACK */
+  .stack-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .stack-item { background: var(--bg2); padding: 18px 14px; text-align: center; transition: background 0.2s; }
+  .stack-item:hover { background: var(--bg3); }
+  .stack-name { font-family: var(--mono); font-size: 12px; font-weight: 500; margin-bottom: 4px; }
+  .stack-sub { font-size: 10px; color: var(--muted); }
+
+  /* WHY ME */
+  .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .reason-card { padding: 28px; border: 1px solid var(--border); transition: border-color 0.3s; }
+  .reason-card:hover { border-color: rgba(0,255,136,0.2); }
+  .reason-num { font-family: var(--mono); font-size: 42px; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 14px; transition: color 0.3s; }
+  .reason-card:hover .reason-num { color: var(--accent); }
+  .reason-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .reason-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,255,136,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 { margin: 0 auto 20px; max-width: 560px; }
+  .cta-section p { color: var(--muted); font-size: 16px; margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+  .contact-details { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+  .contact-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .contact-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .contact-value { font-family: var(--mono); font-size: 13px; color: var(--text); text-decoration: none; transition: color 0.2s; }
+  .contact-value:hover { color: var(--accent); }
+
+  /* FOOTER */
+  footer { padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+  footer span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  footer a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--accent); }
+
+  /* CURSOR */
+  .cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--accent); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.4); } 50% { box-shadow: 0 0 0 6px rgba(0,255,136,0); } }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+  .reveal-delay-6 { transition-delay: 0.6s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    .hero { padding: 90px 20px 60px; }
+    .hero h1 { font-size: clamp(36px, 10vw, 56px); line-height: 1.05; }
+    .hero-sub { font-size: 15px; }
+    .hero-scroll { display: none; }
+
+    .stats-bar { padding: 20px; gap: 28px; }
+    .stat-value { font-size: 22px; }
+
+    .section-wrap { padding: 56px 20px; }
+
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card { padding: 24px; }
+
+    .plugin-card { grid-template-columns: 1fr; padding: 24px; }
+    .plugin-card:hover { transform: none; }
+    .plugin-link { align-self: auto; width: fit-content; }
+
+    .ai-tags { gap: 8px; }
+
+    .stack-grid { grid-template-columns: repeat(3, 1fr); }
+    .stack-item { padding: 14px 10px; }
+
+    .reasons-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .reason-card { padding: 20px; }
+    .reason-num { font-size: 32px; }
+
+    .cta-section { padding: 56px 20px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .contact-details { gap: 24px; }
+
+    footer { padding: 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
+
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    .reasons-grid { grid-template-columns: 1fr; }
+    .stack-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="https://mbara.net" class="nav-logo">$ mb_</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#plugins">Plugins</a>
+    <a href="#stack">Stack</a>
+    <a href="#contact" class="nav-cta">Anfragen →</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#plugins" onclick="closeMobile()">Plugins</a>
+  <a href="#stack" onclick="closeMobile()">Stack</a>
+  <a href="#contact" onclick="closeMobile()">Anfragen →</a>
+  <a href="https://mbara.net">← Portfolio</a>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hero-grid" id="heroGrid"></div>
+  <div class="hero-glow"></div>
+
+  <div class="availability">
+    <span class="avail-dot"></span>
+    VERFÜGBAR FÜR PROJEKTE
+  </div>
+
+  <div class="hero-tag">// michael barabanov · shopware developer · koblenz</div>
+
+  <h1>
+    <span class="line-dim">Du brauchst</span><br>
+    <span class="line-accent">Shopware.</span><br>
+    <span>Ich liefere.</span><span class="cursor"></span>
+  </h1>
+
+  <p class="hero-sub">
+    Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen, API-Integrationen –
+    ich kenne Shopware 6 von innen. Kein Aufwärmen, kein Einarbeiten.
+    Direkt produktiv.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">Jetzt anfragen →</a>
+    <a href="#plugins" class="btn-secondary">Meine Plugins ↓</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-value">30+</span><span class="stat-label">Shops live gebracht</span></div>
+  <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">Open Source Plugins</span></div>
+  <div class="stat-item"><span class="stat-value">90%</span><span class="stat-label">Schadtraffic reduziert</span></div>
+  <div class="stat-item"><span class="stat-value">~20%</span><span class="stat-label">Mehr organischer Traffic</span></div>
+  <div class="stat-item"><span class="stat-value">Sofort</span><span class="stat-label">Verfügbar</span></div>
+</div>
+
+<!-- SERVICES -->
+<div class="section-wrap" id="services">
+  <div class="section-tag reveal">// was ich mache</div>
+  <h2 class="reveal">Kein Generalist.<br>Shopware-Spezialist.</h2>
+  <p class="section-lead reveal">
+    Ich arbeite ausschließlich im PHP & E-Commerce-Umfeld.
+    Du bekommst jemanden der das System kennt – nicht jemanden
+    der sich erst reinfinden muss.
+  </p>
+
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">[ 01 ] PLUGIN-DEV</div>
+      <div class="service-title">Plugin-Entwicklung</div>
+      <div class="service-desc">Custom Shopware 6 Plugins nach deinen Anforderungen. Von einfachen Erweiterungen bis zu komplexen Integrationen – sauber strukturiert, dokumentiert, produktionsreif.</div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">[ 02 ] API</div>
+      <div class="service-title">Schnittstellen & APIs</div>
+      <div class="service-desc">ERP-Anbindungen, Drittsystem-Integrationen, REST APIs. Ich habe JTL 5 und externe Systeme in laufende Shops integriert – ohne Betriebsunterbrechung.</div>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon">[ 03 ] SUPPORT</div>
+      <div class="service-title">Bugfixing & Support</div>
+      <div class="service-desc">Dein Team ist ausgelastet, ein Fehler blockiert alles? Ich spring rein, analysiere und liefere. Keine langen Übergabe-Sessions nötig – ich kenne die Architektur.</div>
+    </div>
+    <div class="service-card reveal reveal-delay-4">
+      <div class="service-icon">[ 04 ] WARTUNG</div>
+      <div class="service-title">Shop-Wartung & Updates</div>
+      <div class="service-desc">Shopware-Updates die schief gehen können, gehen schief – wenn niemand sie begleitet. Ich übernehme Versionsmigrationen, halte Plugins kompatibel und sorge für einen stabilen Betrieb. Kein Ausfall, kein Stress.</div>
+    </div>
+    <div class="service-card reveal reveal-delay-5">
+      <div class="service-icon">[ 05 ] FRONTEND</div>
+      <div class="service-title">Theme & Storefront</div>
+      <div class="service-desc">Dein Shop sieht nicht so aus wie du willst? Template-Anpassungen, individuelle Storefront-Komponenten, Twig & CSS – pixelgenau umgesetzt, ohne dass künftige Updates alles zerschießen.</div>
+    </div>
+    <div class="service-card reveal reveal-delay-6">
+      <div class="service-icon">[ 06 ] PERFORMANCE</div>
+      <div class="service-title">Performance & SEO</div>
+      <div class="service-desc">Lighthouse-Audits, Ladezeit-Optimierung, technische SEO. Shops die ich betreut habe haben durchschnittlich ~20% mehr organischen Traffic gewonnen.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PLUGINS -->
+<div class="section-wrap" id="plugins" style="padding-top: 0;">
+  <div class="section-tag reveal">// open source plugins</div>
+  <h2 class="reveal">Gebaut. Getestet.<br>Produktionsreif.</h2>
+  <p class="section-lead reveal">
+    Drei eigene Plugins im Shopware 6 Ökosystem – kein Demo-Code,
+    echte Lösungen die ich gebaut habe weil sie gebraucht wurden.
+  </p>
+
+  <div class="plugins-list">
+    <div class="plugin-card reveal">
+      <div>
+        <div class="plugin-badge">
+          <span class="badge badge-sw6">SW6</span>
+          <span class="badge badge-ai">AI</span>
+          <span class="badge badge-php">PHP</span>
+        </div>
+        <div class="plugin-name">AI Product Description</div>
+        <div class="plugin-desc">
+          AI-gestützter Produktbeschreibungs-Generator direkt im Shopware Admin.
+          Unterstützt Claude (Anthropic) und ChatGPT (OpenAI) mit eigenem API Key –
+          serverseitig verarbeitet, kein Datenleck. Zwei Sprachen, drei Schreibstile.
+        </div>
+        <div class="plugin-features">
+          <span class="plugin-feature">Claude & OpenAI</span>
+          <span class="plugin-feature">DE / EN</span>
+          <span class="plugin-feature">Professionell / Casual / SEO</span>
+          <span class="plugin-feature">SW 6.7+</span>
+          <span class="plugin-feature">Server-side API</span>
+        </div>
+      </div>
+      <a href="https://github.com/MichaelBarabanov/AiProductDescription" class="plugin-link" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+
+    <div class="plugin-card reveal">
+      <div>
+        <div class="plugin-badge">
+          <span class="badge badge-sw6">SW6</span>
+          <span class="badge badge-php">PHP</span>
+        </div>
+        <div class="plugin-name">Price On Request</div>
+        <div class="plugin-desc">
+          Preise ausblenden und durch ein konfigurierbares Angebotsanfrage-Formular ersetzen.
+          Perfekt für B2B-Shops mit individueller Preisgestaltung.
+          E-Mail-Benachrichtigung und Sales-Channel-Steuerung inklusive.
+        </div>
+        <div class="plugin-features">
+          <span class="plugin-feature">B2B-fokussiert</span>
+          <span class="plugin-feature">Custom Formular</span>
+          <span class="plugin-feature">E-Mail-Benachrichtigung</span>
+          <span class="plugin-feature">Sales-Channel-Steuerung</span>
+        </div>
+      </div>
+      <a href="https://github.com/MichaelBarabanov/shopware-price-on-request" class="plugin-link" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+
+    <div class="plugin-card reveal">
+      <div>
+        <div class="plugin-badge">
+          <span class="badge badge-sw6">SW6</span>
+          <span class="badge badge-php">PHP</span>
+        </div>
+        <div class="plugin-name">Coming Soon</div>
+        <div class="plugin-desc">
+          Konfigurierbarer Coming-Soon und Maintenance Mode mit IP-Whitelisting,
+          Countdown-Freigabe und SEO-konformen HTTP-Headern (503, Retry-After, Noindex).
+          Sales-Channel-gesteuert.
+        </div>
+        <div class="plugin-features">
+          <span class="plugin-feature">IP-Whitelisting</span>
+          <span class="plugin-feature">Countdown</span>
+          <span class="plugin-feature">503 SEO-konform</span>
+          <span class="plugin-feature">Sales-Channel</span>
+        </div>
+      </div>
+      <a href="https://github.com/MichaelBarabanov/shopware-coming-soon" class="plugin-link" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+  </div>
+</div>
+
+<!-- STACK + AI FOCUS -->
+<div class="stack-section">
+  <div class="section-wrap">
+    <div class="section-tag reveal">// ausrichtung</div>
+    <h2 class="reveal">Shopware trifft KI –<br>mein nächster Fokus.</h2>
+    <p class="section-lead reveal">
+      Ich entwickle aktiv AI-gestützte Shopware-Plugins. Produktbeschreibungen
+      per KI sind erst der Anfang – automatisierte Kategorisierung, smarte Suche,
+      personalisierte Inhalte folgen. Wer jetzt AI-Plugins im Shopware-Store anbietet, ist früh dran.
+    </p>
+    <div class="ai-tags reveal">
+      <span class="ai-tag">OpenAI API</span>
+      <span class="ai-tag">Anthropic API (Claude)</span>
+      <span class="ai-tag">AI-Plugin-Entwicklung</span>
+      <span class="ai-tag">Shopware 6 Integration</span>
+    </div>
+
+    <div class="section-tag reveal" id="stack">// tech stack</div>
+    <h2 class="reveal">Was ich mitbringe.</h2>
+    <p class="section-lead reveal">Kein Baukastensystem. Ich kenne diese Tools aus echten Projekten, nicht aus Tutorials.</p>
+    <div class="stack-grid reveal">
+      <div class="stack-item"><div class="stack-name">PHP</div><div class="stack-sub">Primär · OOP</div></div>
+      <div class="stack-item"><div class="stack-name">Shopware 6</div><div class="stack-sub">Plugin · Admin</div></div>
+      <div class="stack-item"><div class="stack-name">JTL 5</div><div class="stack-sub">Shop · Wawi</div></div>
+      <div class="stack-item"><div class="stack-name">MySQL</div><div class="stack-sub">Datenbanken</div></div>
+      <div class="stack-item"><div class="stack-name">REST API</div><div class="stack-sub">Integration</div></div>
+      <div class="stack-item"><div class="stack-name">JavaScript</div><div class="stack-sub">Frontend · Vue</div></div>
+      <div class="stack-item"><div class="stack-name">Twig</div><div class="stack-sub">Templates</div></div>
+      <div class="stack-item"><div class="stack-name">Git</div><div class="stack-sub">Versionskontrolle</div></div>
+      <div class="stack-item"><div class="stack-name">Linux</div><div class="stack-sub">SSH · CLI</div></div>
+      <div class="stack-item"><div class="stack-name">Docker</div><div class="stack-sub">ddev · Container</div></div>
+      <div class="stack-item"><div class="stack-name">OpenAI API</div><div class="stack-sub">Integration</div></div>
+      <div class="stack-item"><div class="stack-name">Anthropic API</div><div class="stack-sub">Integration</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY ME -->
+<div class="section-wrap">
+  <div class="section-tag reveal">// warum ich</div>
+  <h2 class="reveal">Was mich<br>von anderen unterscheidet.</h2>
+  <div class="reasons-grid">
+    <div class="reason-card reveal reveal-delay-1">
+      <div class="reason-num">01</div>
+      <div class="reason-title">Kein Einarbeiten nötig</div>
+      <div class="reason-desc">Ich komme aus dem Agenturumfeld. Ich weiß wie Shopware-Projekte laufen, wo Probleme entstehen und wie man sie schnell löst.</div>
+    </div>
+    <div class="reason-card reveal reveal-delay-2">
+      <div class="reason-num">02</div>
+      <div class="reason-title">Ich liefere, nicht ich rede</div>
+      <div class="reason-desc">30+ Shops live gebracht. Drei eigene Open Source Plugins. Code den man sehen kann – kein CV-Filler.</div>
+    </div>
+    <div class="reason-card reveal reveal-delay-3">
+      <div class="reason-num">03</div>
+      <div class="reason-title">Flexibel verfügbar</div>
+      <div class="reason-desc">Overflow, kurzfristige Aufgaben, längere Projekte. Ich passe mich deinem Bedarf an, nicht umgekehrt.</div>
+    </div>
+    <div class="reason-card reveal reveal-delay-4">
+      <div class="reason-num">04</div>
+      <div class="reason-title">Sauberer Code</div>
+      <div class="reason-desc">Keine Quick-Fixes die in zwei Monaten wieder kaputt gehen. Wartbarer, dokumentierter Code der bleibt.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <div class="section-tag" style="margin-bottom: 20px;">// kontakt</div>
+  <h2>Bereit wenn du es bist.</h2>
+  <p>Kurze Mail reicht. Sag mir was du brauchst – ich melde mich innerhalb von 24 Stunden.</p>
+  <div class="cta-buttons">
+    <a href="mailto:m.barabanov@mbara.net" class="btn-primary">m.barabanov@mbara.net →</a>
+    <a href="https://malt.me/profile/michaelbarabanov" class="btn-secondary" target="_blank" rel="noopener">Malt Profil</a>
+    <a href="https://github.com/MichaelBarabanov" class="btn-secondary" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="contact-details">
+    <div class="contact-item">
+      <span class="contact-label">Standort</span>
+      <span class="contact-value">Koblenz, Deutschland</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Stundensatz</span>
+      <span class="contact-value">Auf Anfrage</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Verfügbarkeit</span>
+      <span class="contact-value">Sofort verfügbar</span>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">LinkedIn</span>
+      <a href="https://linkedin.com/in/michael-barabanov-103265357" class="contact-value" target="_blank" rel="noopener">michael-barabanov</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Michael Barabanov</span>
+  <span style="font-family: var(--mono); font-size: 11px;">
+    <span style="color: var(--accent);">●</span> Verfügbar für Projekte
+  </span>
+  <a href="https://mbara.net">← Zurück zum Portfolio</a>
+</footer>
+
+<script>
+  // NAV SCROLL
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // SMOOTH ANCHOR
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // PARALLAX (only desktop)
+  if (window.innerWidth > 768) {
+    const heroGrid = document.getElementById('heroGrid');
+    window.addEventListener('scroll', () => {
+      heroGrid.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+    }, { passive: true });
+  }
+</script>
+</body>
+</html>
