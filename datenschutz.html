@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datenschutzerklärung – Michael Barabanov</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://mbara.net/datenschutz">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; frame-ancestors 'none'; base-uri 'self';" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<style>
+  :root {
+    --bg:     #0a0a0a;
+    --bg2:    #111111;
+    --bg3:    #1a1a1a;
+    --border: #222222;
+    --accent: #00ff88;
+    --text:   #e8e8e8;
+    --muted:  #666666;
+    --mono:   'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    --sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.95);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 14px; color: var(--accent); text-decoration: none; letter-spacing: 0.05em; }
+  .nav-back { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
+  .nav-back:hover { color: var(--text); }
+
+  .page-wrap { max-width: 760px; margin: 0 auto; padding: 120px 40px 80px; }
+
+  .page-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
+
+  h1 { font-family: var(--mono); font-size: clamp(28px, 5vw, 46px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; line-height: 1.1; }
+
+  .page-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 48px; }
+
+  .legal-block { border: 1px solid var(--border); padding: 32px; margin-bottom: 2px; background: var(--bg2); }
+  .legal-block:last-of-type { margin-bottom: 48px; }
+
+  .legal-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px; }
+
+  .legal-block h3 { font-size: 14px; font-weight: 600; color: var(--text); margin: 20px 0 8px; font-family: var(--mono); }
+  .legal-block h3:first-of-type { margin-top: 0; }
+
+  .legal-block p { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 10px; }
+  .legal-block p:last-child { margin-bottom: 0; }
+
+  .legal-block a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+  .legal-block a:hover { opacity: 0.75; }
+
+  .legal-block address { font-style: normal; font-size: 14px; color: var(--muted); line-height: 1.8; }
+
+  .legal-block ul { margin: 8px 0 10px 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .legal-block ul li { font-size: 14px; color: var(--muted); line-height: 1.6; padding-left: 16px; position: relative; }
+  .legal-block ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 10px; top: 3px; }
+
+  footer { padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
+  footer span { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  footer a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--accent); }
+  .footer-links { display: flex; gap: 20px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .page-wrap { padding: 90px 20px 60px; }
+    .legal-block { padding: 24px; }
+    footer { padding: 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://mbara.net" class="nav-logo">$ mb_</a>
+  <a href="https://mbara.net" class="nav-back">← Portfolio</a>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-tag">// legal</div>
+  <h1>Datenschutzerklärung</h1>
+  <p class="page-meta">Stand: Juni 2026</p>
+
+  <div class="legal-block">
+    <div class="legal-label">1. Verantwortlicher</div>
+    <address>
+      Michael Barabanov<br>
+      Schweriner Straße 2<br>
+      56075 Koblenz<br>
+      Deutschland<br><br>
+      E-Mail: <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>
+    </address>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">2. Grundsätze der Datenverarbeitung</div>
+    <p>Diese Website verarbeitet personenbezogene Daten nur, soweit dies zur Bereitstellung der Website oder zur Bearbeitung von Anfragen erforderlich ist. Es werden keine Tracking-Tools, keine Analyse-Dienste und keine Werbe-Cookies eingesetzt.</p>
+    <p>Rechtsgrundlage der Verarbeitung ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung/Vertragserfüllung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigte Interessen).</p>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">3. Server-Logfiles</div>
+    <p>Der Hostingbetreiber erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser automatisch übermittelt. Dies umfasst:</p>
+    <ul>
+      <li>Browsertyp und Browserversion</li>
+      <li>Verwendetes Betriebssystem</li>
+      <li>Referrer-URL</li>
+      <li>IP-Adresse des anfragenden Rechners (anonymisiert)</li>
+      <li>Uhrzeit der Serveranfrage</li>
+    </ul>
+    <p>Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen Datenquellen zusammengeführt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Die Speicherdauer beträgt maximal 7 Tage.</p>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">4. Kontaktformular</div>
+    <p>Wenn Sie das Kontaktformular auf dieser Website nutzen, werden die eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet.</p>
+
+    <h3>Formsubmit.co</h3>
+    <p>Die Übermittlung der Formulardaten erfolgt über den Dienst <strong>Formsubmit.co</strong> (Anbieter: Formsubmit, LLC). Die eingegebenen Daten werden über die Server von Formsubmit weitergeleitet und anschließend per E-Mail an uns zugestellt. Formsubmit speichert die Daten nicht dauerhaft; die Weiterleitung erfolgt unmittelbar.</p>
+    <p>Weitere Informationen zum Datenschutz bei Formsubmit finden Sie unter: <a href="https://formsubmit.co/privacy" target="_blank" rel="noopener noreferrer">formsubmit.co/privacy</a></p>
+    <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung). Ihre Daten werden nicht an Dritte weitergegeben und ausschließlich zur Bearbeitung Ihrer Anfrage verwendet.</p>
+
+    <h3>Direkter E-Mail-Kontakt</h3>
+    <p>Alternativ können Sie uns direkt per E-Mail kontaktieren. In diesem Fall werden die übermittelten Daten (E-Mail-Adresse, Nachrichteninhalt) gespeichert, um Ihre Anfrage zu bearbeiten. Eine Weitergabe an Dritte erfolgt nicht. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.</p>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">5. Externe Links</div>
+    <p>Diese Website enthält Links zu externen Plattformen (GitHub, LinkedIn, Malt). Beim Klick auf diese Links gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Wir haben keinen Einfluss auf die Datenverarbeitung durch diese Drittanbieter.</p>
+    <ul>
+      <li>GitHub: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a></li>
+      <li>LinkedIn: <a href="https://de.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">LinkedIn Datenschutzrichtlinie</a></li>
+      <li>Malt: <a href="https://www.malt.de/privacy" target="_blank" rel="noopener noreferrer">Malt Datenschutz</a></li>
+    </ul>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">6. Cookies</div>
+    <p>Diese Website setzt keine Cookies ein. Es werden keinerlei Tracking- oder Analyse-Cookies verwendet. Eine Einwilligung ist daher nicht erforderlich.</p>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">7. Ihre Rechte als betroffene Person</div>
+    <p>Ihnen stehen gemäß DSGVO folgende Rechte zu:</p>
+    <ul>
+      <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO): Sie können Auskunft über die zu Ihrer Person gespeicherten Daten verlangen.</li>
+      <li><strong>Berichtigungsrecht</strong> (Art. 16 DSGVO): Sie können die Berichtigung unrichtiger Daten verlangen.</li>
+      <li><strong>Löschungsrecht</strong> (Art. 17 DSGVO): Sie können die Löschung Ihrer Daten verlangen, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</li>
+      <li><strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO): Sie können die Einschränkung der Verarbeitung verlangen.</li>
+      <li><strong>Datenübertragbarkeit</strong> (Art. 20 DSGVO): Sie können Ihre Daten in einem maschinenlesbaren Format erhalten.</li>
+      <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO): Sie können der Verarbeitung Ihrer Daten widersprechen.</li>
+    </ul>
+    <p>Zur Ausübung Ihrer Rechte wenden Sie sich an: <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a></p>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">8. Beschwerderecht bei der Aufsichtsbehörde</div>
+    <p>Sie haben das Recht, sich bei der zuständigen Datenschutz-Aufsichtsbehörde zu beschweren:</p>
+    <address>
+      Landesbeauftragte für den Datenschutz und die Informationsfreiheit Rheinland-Pfalz (LfDI RLP)<br>
+      Hintere Bleiche 34<br>
+      55116 Mainz<br><br>
+      Website: <a href="https://www.datenschutz.rlp.de" target="_blank" rel="noopener noreferrer">www.datenschutz.rlp.de</a>
+    </address>
+  </div>
+
+  <div class="legal-block">
+    <div class="legal-label">9. Aktualität dieser Erklärung</div>
+    <p>Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen, um sie an geänderte Rechtslagen oder Änderungen des Dienstes anzupassen. Es gilt jeweils die aktuell auf dieser Seite veröffentlichte Fassung.</p>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 Michael Barabanov</span>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="https://mbara.net">← Portfolio</a>
+  </div>
+</footer>
+
+</body>
+</html>
