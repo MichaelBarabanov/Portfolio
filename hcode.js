@@ -2,76 +2,71 @@
   var el = document.getElementById('hcode-output');
   if (!el) return;
 
-  var code = [
-    '<?php declare(strict_types=1);',
-    '',
-    'namespace Mbara\\Plugin\\Subscriber;',
-    '',
-    'use Shopware\\Core\\Content\\Product\\ProductEvents;',
-    'use Shopware\\Core\\Framework\\DataAbstractionLayer',
-    '    \\Event\\EntityWrittenEvent;',
-    'use Symfony\\Component\\EventDispatcher',
-    '    \\EventSubscriberInterface;',
-    '',
-    'class AiProductSubscriber implements EventSubscriberInterface',
-    '{',
-    '    public function __construct(',
-    '        private readonly AiDescriptionService $aiService',
-    '    ) {}',
-    '',
-    '    public static function getSubscribedEvents(): array',
-    '    {',
-    '        return [',
-    '            ProductEvents::PRODUCT_WRITTEN_EVENT',
-    "                => 'onProductWritten',",
-    '        ];',
-    '    }',
-    '',
-    '    public function onProductWritten(',
-    '        EntityWrittenEvent $event',
-    '    ): void {',
-    '        foreach ($event->getWriteResults() as $result) {',
-    '            $this->aiService->generateDescription(',
-    '                $result->getPrimaryKey()',
-    '            );',
-    '        }',
-    '    }',
-    '}'
-  ].join('\n');
+  var HASH_COLOR = '#e3b341';
+  var TYPE_COLORS = { feat: '#00ff88', fix: '#ff6b6b', perf: '#ffd93d', chore: '#666666' };
 
-  function esc(s) {
-    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  var entries = [
+    { hash: 'a3f8c2d', type: 'feat',  msg: '30+ Shopware shops live gebracht' },
+    { hash: 'b2e1f9a', type: 'fix',   msg: 'bot-traffic -90% via Cloudflare rules' },
+    { hash: 'c4d7e3b', type: 'feat',  msg: 'AI description plugin v1.0 released' },
+    { hash: 'e7f2a1b', type: 'perf',  msg: 'SEO-Audit → +22% organic traffic' },
+    { hash: 'f9d3c8a', type: 'feat',  msg: 'JTL 5 ↔ Shopware 6 REST API bridge' },
+    { hash: '91c2e7d', type: 'fix',   msg: 'SW 6.7 migration – zero downtime' },
+    { hash: '3b8d2f1', type: 'feat',  msg: 'Coming Soon plugin + IP-whitelist' },
+    { hash: '7a1c9e4', type: 'perf',  msg: 'Lighthouse 95+ nach Performance-Audit' },
+  ];
+
+  var command = 'git log --oneline';
+  var phase = 0; // 0=typing command, 1=showing entries, 2=idle
+  var cmdPos = 0;
+  var entryIdx = 0;
+  var html = '';
+
+  function prompt() {
+    return '<span style="color:#00ff88">$</span> ';
   }
 
-  function highlight(txt) {
-    var s = esc(txt);
-    s = s.replace(/(\/\/[^\n]*)/g, '<span class="hc-cm">$1</span>');
-    s = s.replace(/('(?:[^'\\]|\\.)*')/g, '<span class="hc-str">$1</span>');
-    s = s.replace(/(&lt;\?php)/g, '<span class="hc-tag">$1</span>');
-    s = s.replace(/\b(declare|namespace|use|class|implements|public|protected|private|static|readonly|function|return|array|string|int|void|bool|foreach|new|self|null|true|false|as)\b/g,
-      '<span class="hc-kw">$1</span>');
-    s = s.replace(/(\$[a-zA-Z_]\w*)/g, '<span class="hc-var">$1</span>');
-    s = s.replace(/\b([A-Z][a-zA-Z0-9]+)\b/g, '<span class="hc-cls">$1</span>');
-    s = s.replace(/\b(\d+)\b/g, '<span class="hc-nm">$1</span>');
-    return s;
+  function renderEntry(e) {
+    var tc = TYPE_COLORS[e.type] || '#e8e8e8';
+    return '<span style="color:' + HASH_COLOR + '">' + e.hash + '</span>  ' +
+           '<span style="color:' + tc + '">' + e.type + ':</span> ' +
+           '<span style="color:#e8e8e8">' + e.msg + '</span>';
   }
-
-  var pos = 0;
 
   function tick() {
-    if (pos > code.length) {
-      setTimeout(function () {
-        pos = 0;
-        el.innerHTML = '';
-        tick();
-      }, 5000);
-      return;
+    if (phase === 0) {
+      var display = prompt() +
+        '<span style="color:#e8e8e8">' + command.slice(0, cmdPos) + '</span>' +
+        '<span class="hc-cursor"> </span>';
+      el.innerHTML = display;
+      if (cmdPos < command.length) {
+        cmdPos++;
+        setTimeout(tick, Math.random() * 55 + 28);
+      } else {
+        phase = 1;
+        html = prompt() + '<span style="color:#e8e8e8">' + command + '</span>\n\n';
+        el.innerHTML = html;
+        setTimeout(tick, 380);
+      }
+    } else if (phase === 1) {
+      if (entryIdx < entries.length) {
+        html += renderEntry(entries[entryIdx]) + '\n';
+        el.innerHTML = html;
+        entryIdx++;
+        setTimeout(tick, 95 + Math.random() * 70);
+      } else {
+        phase = 2;
+        html += '\n' + prompt() + '<span class="hc-cursor"> </span>';
+        el.innerHTML = html;
+        setTimeout(reset, 5000);
+      }
     }
-    el.innerHTML = highlight(code.slice(0, pos)) + '<span class="hc-cursor"> </span>';
-    pos++;
-    var ch = code[pos - 1];
-    var delay = ch === '\n' ? 55 : Math.random() * 22 + 8;
-    setTimeout(tick, delay);
+  }
+
+  function reset() {
+    phase = 0; cmdPos = 0; entryIdx = 0; html = '';
+    el.innerHTML = '';
+    setTimeout(tick, 500);
   }
 
   setTimeout(tick, 900);
