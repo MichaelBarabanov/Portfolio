@@ -248,45 +248,5 @@
 
   document.getElementById('terminal')?.addEventListener('click', () => input.focus());
 
-  // ── Custom cursor (mouse devices only) ──
-  if (window.matchMedia('(pointer: fine)').matches) {
-    const dot  = document.createElement('div');
-    dot.className = 'cur';
-    const ring = document.createElement('div');
-    ring.className = 'cur-ring';
-    document.body.append(dot, ring);
-
-    let mx = -100, my = -100, rx = -100, ry = -100;
-    const DOT_OFF  = 4;   // half of 8px dot
-    const RING_OFF = 15;  // half of 30px ring
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.transform = `translate(${mx - DOT_OFF}px,${my - DOT_OFF}px)`;
-    }, { passive: true });
-
-    document.addEventListener('mouseleave', () => {
-      dot.classList.add('hidden'); ring.classList.add('hidden');
-    });
-    document.addEventListener('mouseenter', () => {
-      dot.classList.remove('hidden'); ring.classList.remove('hidden');
-    });
-
-    // Hover grow effect on interactive elements
-    const sel = 'a,button,.tech-item,.card,.plugin-card';
-    document.querySelectorAll(sel).forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-
-    // Ring follows with smooth lag via RAF
-    (function animRing() {
-      rx += (mx - rx) * 0.13;
-      ry += (my - ry) * 0.13;
-      const off = ring.classList.contains('hover') ? 23 : RING_OFF;
-      ring.style.transform = `translate(${rx - off}px,${ry - off}px)`;
-      requestAnimationFrame(animRing);
-    })();
-  }
 
 })();
