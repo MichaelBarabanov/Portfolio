@@ -702,8 +702,10 @@ footer a:hover { color: var(--accent); }
   .nav-toggle { display: flex; }
 
   /* Hero */
-  .hero-ctas { flex-direction: column; gap: 10px; max-width: 260px; }
-  .hero-ctas .btn { justify-content: center; }
+  #hero { text-align: center; }
+  .hero-badges { justify-content: center; }
+  .hero-ctas { flex-direction: column; gap: 10px; max-width: 260px; align-items: center; margin: 0 auto; }
+  .hero-ctas .btn { justify-content: center; width: 100%; }
   .hero-scroll { display: none; }
 
   /* About */
