@@ -66,6 +66,13 @@ body {
 .nav-links a:hover { color: var(--text); background: var(--surface); }
 .nav-plugins { color: var(--sw) !important; border: 1px solid rgba(0,255,136,.3); }
 .nav-plugins:hover { background: rgba(0,255,136,.08) !important; }
+.nav-demo { display: flex !important; align-items: center; gap: 5px; color: var(--muted) !important; }
+.nav-wip {
+  font-size: 10px; padding: 1px 5px;
+  border: 1px solid #e3b341; color: #e3b341;
+  border-radius: 3px; line-height: 1.4;
+  font-family: monospace;
+}
 
 .nav-toggle {
   display: none; flex-direction: column; gap: 5px;
