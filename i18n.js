@@ -71,7 +71,6 @@
       // terminal strings
       'term.whoami': [
         '@@h@@Michael Barabanov',
-        '  Alter      → 20',
         '  Standort   → Koblenz, Deutschland',
         '  Rolle      → Backend &amp; Fullstack Developer',
         '  Ausbildung → Fachinformatiker Anwendungsentwicklung',
@@ -130,7 +129,7 @@
       'badge.avail':          '● Available for Hire',
       'cta.work':             'View Work',
       'cta.hire':             'Hire Me',
-      'about.text':           'I\'m Michael – Backend Developer from Koblenz, Germany, 20 years old, and I build things that work.<br><br>PHP, Shopware 6, REST APIs – that\'s my daily work. Not as a hobby, but productively: 30+ e-commerce shops launched live, bot attacks mitigated, custom plugins built that are running in production today.<br><br>I don\'t think in tasks – I think in solutions. Maintainable code, scalable architecture, no half-finished results. What I start, I finish.<br><br>On the side I\'m building my own plugin portfolio for the Shopware Store – because good software shouldn\'t only be built for employers, but for yourself too.<br><br>Open to new challenges, freelance projects, and everything in between.',
+      'about.text':           'I\'m Michael – Backend Developer from Koblenz, Germany, and I build things that work.<br><br>PHP, Shopware 6, REST APIs – that\'s my daily work. Not as a hobby, but productively: 30+ e-commerce shops launched live, bot attacks mitigated, custom plugins built that are running in production today.<br><br>I don\'t think in tasks – I think in solutions. Maintainable code, scalable architecture, no half-finished results. What I start, I finish.<br><br>On the side I\'m building my own plugin portfolio for the Shopware Store – because good software shouldn\'t only be built for employers, but for yourself too.<br><br>Open to new challenges, freelance projects, and everything in between.',
       'stack.primary':        'core',
       'stack.skills':         'also know',
       'exp.title':            'experience',
@@ -192,7 +191,6 @@
       // terminal strings
       'term.whoami': [
         '@@h@@Michael Barabanov',
-        '  Age        → 20',
         '  Location   → Koblenz, Germany',
         '  Role       → Backend &amp; Fullstack Developer',
         '  Training   → IT Specialist for Application Development',
