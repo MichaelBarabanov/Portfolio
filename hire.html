@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -14,7 +14,6 @@
 <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mbara.net/hire">
 <meta property="og:title" content="Hire Michael Barabanov – Shopware 6 Developer">
@@ -22,7 +21,6 @@
 <meta property="og:image" content="https://mbara.net/og-image.png">
 <meta property="og:locale" content="de_DE">
 
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hire Michael Barabanov – Shopware 6 Developer">
 <meta name="twitter:description" content="Shopware 6 Freelancer aus Koblenz. Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen. Sofort verfügbar.">
@@ -532,6 +530,21 @@
     .stack-grid { grid-template-columns: repeat(2, 1fr); }
     .hero h1 { font-size: 36px; }
   }
+  .refs-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;
+  }
+  .ref-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent); border-radius: 6px;
+    padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .ref-quote {
+    color: var(--muted); font-size: 14px; line-height: 1.65; font-style: italic;
+  }
+  .ref-source {
+    font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: .3px;
+  }
+  @media (max-width: 680px) { .refs-grid { grid-template-columns: 1fr; } }
 </style>
 <script type="application/ld+json">
 {
@@ -560,7 +573,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="navbar">
   <a href="https://mbara.net" class="nav-logo">$ mb_</a>
   <div class="nav-links">
@@ -584,7 +596,6 @@
   <a href="https://mbara.net">← Portfolio</a>
 </div>
 
-<!-- HERO -->
 <div class="hero" id="hero">
   <div class="hero-grid" id="heroGrid"></div>
   <div class="hero-glow"></div>
@@ -619,16 +630,14 @@
   </div>
 </div>
 
-<!-- STATS -->
 <div class="stats-bar">
   <div class="stat-item"><span class="stat-value">30+</span><span class="stat-label">Shops live gebracht</span></div>
   <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">Open Source Plugins</span></div>
   <div class="stat-item"><span class="stat-value">90%</span><span class="stat-label">Schadtraffic reduziert</span></div>
-  <div class="stat-item"><span class="stat-value">~20%</span><span class="stat-label">Mehr organischer Traffic</span></div>
+  <div class="stat-item"><span class="stat-value">+22%</span><span class="stat-label">Mehr organischer Traffic</span></div>
   <div class="stat-item"><span class="stat-value">Sofort</span><span class="stat-label">Verfügbar</span></div>
 </div>
 
-<!-- SERVICES -->
 <div class="section-wrap" id="services">
   <div class="section-tag reveal">// was ich mache</div>
   <h2 class="reveal">Kein Generalist.<br>Shopware-Spezialist.</h2>
@@ -667,12 +676,11 @@
     <div class="service-card reveal reveal-delay-6">
       <div class="service-icon">[ 06 ] PERFORMANCE</div>
       <div class="service-title">Performance & SEO</div>
-      <div class="service-desc">Lighthouse-Audits, Ladezeit-Optimierung, technische SEO. Shops die ich betreut habe haben durchschnittlich ~20% mehr organischen Traffic gewonnen.</div>
+      <div class="service-desc">Lighthouse-Audits, Ladezeit-Optimierung, technische SEO. Shops die ich betreut habe haben durchschnittlich +22% mehr organischen Traffic gewonnen.</div>
     </div>
   </div>
 </div>
 
-<!-- PLUGINS -->
 <div class="section-wrap" id="plugins" style="padding-top: 0;">
   <div class="section-tag reveal">// open source plugins</div>
   <h2 class="reveal">Gebaut. Getestet.<br>Produktionsreif.</h2>
@@ -752,7 +760,6 @@
   </div>
 </div>
 
-<!-- STACK + AI FOCUS -->
 <div class="stack-section">
   <div class="section-wrap">
     <div class="section-tag reveal">// ausrichtung</div>
@@ -789,7 +796,21 @@
   </div>
 </div>
 
-<!-- WHY ME -->
+<div class="section-wrap">
+  <div class="section-tag reveal">// referenzen</div>
+  <h2 class="reveal">Was andere sagen.</h2>
+  <div class="refs-grid">
+    <div class="ref-card reveal">
+      <p class="ref-quote">"Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien. Es ist ein deutliches Anliegen zu erkennen den Betrieb in positiver Weise weiterzuentwickeln."</p>
+      <span class="ref-source">Bundesarchiv · Koblenz, 2025</span>
+    </div>
+    <div class="ref-card reveal">
+      <p class="ref-quote">"Seine Zuverlässigkeit, sein Einsatz und seine Bereitschaft, Neues zu lernen, waren von großem Wert. Wir können ihn für zukünftige Aufgaben in diesem Bereich empfehlen."</p>
+      <span class="ref-source">TC Unterhaltungselektronik AG · 2023</span>
+    </div>
+  </div>
+</div>
+
 <div class="section-wrap">
   <div class="section-tag reveal">// warum ich</div>
   <h2 class="reveal">Was mich<br>von anderen unterscheidet.</h2>
@@ -817,7 +838,6 @@
   </div>
 </div>
 
-<!-- CTA -->
 <div class="cta-section" id="contact">
   <div class="section-tag" style="margin-bottom: 20px;">// kontakt</div>
   <h2>Bereit wenn du es bist.</h2>
@@ -848,7 +868,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <span>© 2026 Michael Barabanov</span>
   <span style="font-family: var(--mono); font-size: 11px;">
