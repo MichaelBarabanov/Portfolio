@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bot-Traffic in Shopware 6 mit Cloudflare eliminieren</title>
+  <meta name="description" content="Praxisguide: Cloudflare WAF Rules, Rate Limiting und Bot-Fight-Mode richtig konfigurieren um Bot-Traffic zu blockieren ohne echte Kunden zu treffen." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00ff88; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--border); padding:20px 0; }
+    .container { max-width:720px; margin:0 auto; padding:0 24px; }
+    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
+    .logo span { color:var(--accent); }
+    article { padding:56px 0 80px; }
+    .tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; color:var(--accent); margin-bottom:12px; }
+    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; margin-bottom:16px; }
+    .meta { font-size:13px; color:var(--muted); margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+    h2 { font-size:20px; font-weight:600; margin:40px 0 12px; }
+    p { margin-bottom:18px; font-size:15px; color:#ccc; }
+    pre { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; overflow-x:auto; margin:24px 0; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; line-height:1.6; color:#ccc; }
+    code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
+    ul, ol { padding-left:20px; margin-bottom:18px; }
+    li { font-size:15px; color:#ccc; margin-bottom:6px; }
+    .tip { background:var(--surface2); border-left:3px solid var(--accent); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .warn { background:var(--surface2); border-left:3px solid #e3b341; border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .back { display:inline-block; margin-top:48px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
+    .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><a href="index.html" style="color:var(--muted)"><span>//</span> shopware-dev.blog</a></div>
+    </div>
+  </header>
+  <article>
+    <div class="container">
+      <div class="tag">// security</div>
+      <h1>Bot-Traffic in Shopware 6 mit Cloudflare eliminieren</h1>
+      <div class="meta">2026-05-28 &middot; 6 min Lesezeit</div>
+
+      <p>Aggressiver Bot-Traffic ist fur Shopware-Shops ein echtes Problem: Scraper laden Produktkataloge, Credential-Stuffing-Bots probieren gestohlene Passworter durch, und simple Crawler generieren Last ohne irgendeinen Mehrwert. Cloudflare bietet mehrere Schutzschichten die sich gut kombinieren lassen.</p>
+
+      <h2>1. Bot Fight Mode aktivieren</h2>
+      <p>Der einfachste erste Schritt: Im Cloudflare-Dashboard unter <strong>Security &rarr; Bots</strong> den <em>Bot Fight Mode</em> einschalten. Er blockiert bekannte Bad Bots anhand von Cloudflares globaler Threat Intelligence ohne dass man selbst Regeln schreiben muss.</p>
+      <div class="tip">Free-Plan: Bot Fight Mode. Pro-Plan und hoher: Super Bot Fight Mode mit feinerer Kontrolle uber automatisierte und verifizierte Bots.</div>
+
+      <h2>2. WAF-Regel fur den Shopware-Admin</h2>
+      <p>Das Shopware-Admin-Panel unter <code>/admin</code> sollte nur aus bekannten IP-Ranges erreichbar sein. Mit einer Cloudflare WAF Custom Rule:</p>
+      <pre>(http.request.uri.path contains "/admin") and
+(not ip.src in {203.0.113.10 203.0.113.20})</pre>
+      <p>Aktion: <strong>Block</strong>. Damit ist das Admin-Panel fur alle IPs gesperrt, die nicht explizit erlaubt sind.</p>
+      <div class="warn">IP-Allowlist regelmaszig aktualisieren, z.B. wenn das Buro oder VPN-IP wechselt -- sonst sperrt man sich selbst aus.</div>
+
+      <h2>3. Rate Limiting fur Login und Checkout</h2>
+      <p>Credential-Stuffing-Angriffe treffen typischerweise <code>/account/login</code> und <code>/checkout/confirm</code> mit hunderten Anfragen pro Minute. Cloudflare Rate Limiting (ab Pro) begrenzt das:</p>
+      <pre>Matching criteria:
+  URI Path: /account/login
+  Method: POST
+
+Rate: 5 requests per 1 minute per IP
+Action: Block for 10 minutes</pre>
+      <p>Dasselbe fur <code>/checkout/confirm</code> mit etwas groszerem Limit (z.B. 10/min) da echte Nutzer gelegentlich mehrfach bestatigen.</p>
+
+      <h2>4. Turnstile statt Google reCAPTCHA</h2>
+      <p>Shopware nutzt standardmaszig kein CAPTCHA. Wer es einbauen will, sollte <strong>Cloudflare Turnstile</strong> statt reCAPTCHA verwenden -- Turnstile sendet keine Daten an Google, ist DSGVO-freundlicher und unsichtbar fur den Nutzer.</p>
+      <p>Integration in ein Shopware-Plugin: Turnstile-Script im Storefront-Template einbinden, Token im POST-Body mitschicken, serverseitig via Cloudflare API verifizieren:</p>
+      <pre>POST https://challenges.cloudflare.com/turnstile/v0/siteverify
+{
+  "secret": "DEIN_SECRET_KEY",
+  "response": "$TOKEN_AUS_DEM_FORMULAR",
+  "remoteip": "$KUNDE_IP"
+}</pre>
+      <p>Bei <code>"success": true</code> in der Antwort die Aktion durchfuhren, sonst ablehnen.</p>
+
+      <h2>5. Bekannte Scraper-User-Agents blocken</h2>
+      <p>Viele einfache Scraper verraten sich durch ihren User-Agent. Eine WAF-Regel faugt die haufigsten:</p>
+      <pre>(http.user_agent contains "python-requests") or
+(http.user_agent contains "Go-http-client") or
+(http.user_agent contains "scrapy") or
+(http.user_agent contains "curl") or
+(http.user_agent eq "")</pre>
+      <p>Aktion: <strong>Challenge</strong> (nicht Block), damit legitime Monitoring-Tools nicht versehentlich blockiert werden.</p>
+
+      <h2>6. Ergebnisse messen</h2>
+      <p>Im Cloudflare-Dashboard unter <strong>Analytics &rarr; Security</strong> sieht man exakt, wie viele Anfragen welche Regel getriggert hat. Nach einer Woche ist gut abzulesen ob das Rate-Limit zu restriktiv ist oder Scraper weiterhin durchkommen.</p>
+      <p>Typische Ergebnisse nach einer vollstandigen Konfiguration: 80-95 % des Bot-Traffics werden geblockt, Serverauslastung und Bandbreite sinken spurbar, und das MySQL Slow Query Log wird deutlich dunner.</p>
+
+      <h2>Fazit</h2>
+      <p>Die Kombination aus Bot Fight Mode, Admin-IP-Allowlist und Rate Limiting auf Login/Checkout deckt die meisten Angriffsvektoren ab. Der Aufwand fur die initiale Konfiguration liegt bei unter einer Stunde; danach lauft der Schutz wartungsarm im Hintergrund.</p>
+
+      <a class="back" href="index.html">← alle Artikel</a>
+    </div>
+  </article>
+  <footer>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+  </footer>
+</body>
+</html>

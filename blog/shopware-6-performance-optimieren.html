@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopware 6 Performance optimieren: Caching, Elasticsearch & HTTP/2</title>
+  <meta name="description" content="Wie man einen Shopware-6-Shop durch HTTP-Caching, Elasticsearch und optimierte Datenbankabfragen auf unter 1 s TTFB bringt. Praktische Anleitung mit Konfigurationsbeispielen." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00ff88; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--border); padding:20px 0; }
+    .container { max-width:720px; margin:0 auto; padding:0 24px; }
+    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
+    .logo span { color:var(--accent); }
+    article { padding:56px 0 80px; }
+    .tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; color:var(--accent); margin-bottom:12px; }
+    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; margin-bottom:16px; }
+    .meta { font-size:13px; color:var(--muted); margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+    h2 { font-size:20px; font-weight:600; margin:40px 0 12px; }
+    p { margin-bottom:18px; font-size:15px; color:#ccc; }
+    pre { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; overflow-x:auto; margin:24px 0; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; line-height:1.6; color:#ccc; }
+    code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
+    ul, ol { padding-left:20px; margin-bottom:18px; }
+    li { font-size:15px; color:#ccc; margin-bottom:6px; }
+    .tip { background:var(--surface2); border-left:3px solid var(--accent); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .back { display:inline-block; margin-top:48px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
+    .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><a href="index.html" style="color:var(--muted)"><span>//</span> shopware-dev.blog</a></div>
+    </div>
+  </header>
+  <article>
+    <div class="container">
+      <div class="tag">// performance</div>
+      <h1>Shopware 6 Performance optimieren: Caching, Elasticsearch &amp; HTTP/2</h1>
+      <div class="meta">2026-06-20 &middot; 8 min Lesezeit</div>
+
+      <p>Ein langsamer Shopware-Shop kostet Conversions. Google bewertet Core Web Vitals als Rankingfaktor, und jede zusatzliche Sekunde Ladezeit senkt die Conversion Rate messbar. Dieser Artikel zeigt, wo die gunstigsten Hebel sitzen.</p>
+
+      <h2>1. HTTP-Cache aktivieren und verstehen</h2>
+      <p>Shopware 6 bringt einen eingebauten HTTP-Cache mit, der in vielen Installationen einfach ausgeschaltet ist oder falsch konfiguriert wurde. Er liegt in <code>config/packages/shopware.yaml</code>:</p>
+      <pre>shopware:
+  http_cache:
+    enabled: true
+    default_ttl: 7200
+    stale_while_revalidate: 300
+    stale_if_error: 86400</pre>
+      <p>Der <code>stale-while-revalidate</code>-Header sorgt dafur, dass der Cache im Hintergrund erneuert wird, wahrend der Nutzer sofort eine (etwas veraltete) Antwort bekommt. Das eliminiert Cache-Miss-Spitzen.</p>
+      <div class="tip">Wichtig: Der HTTP-Cache funktioniert nur fur nicht-eingeloggte Nutzer ohne aktiven Warenkorb. Fur eingeloggte Sessions greift er nicht.</div>
+
+      <h2>2. Elasticsearch / OpenSearch einbinden</h2>
+      <p>Ab einer Produktanzahl von ca. 2.000 wird die MySQL-Volltextsuche zum Flaschenhals. Elasticsearch (oder OpenSearch) ubernimmt dann Produktlisting und Suche:</p>
+      <pre>OPENSEARCH_URL=http://localhost:9200
+SHOPWARE_ES_ENABLED=1
+SHOPWARE_ES_INDEXING_ENABLED=1
+SHOPWARE_ES_INDEX_PREFIX=sw</pre>
+      <p>Nach dem Setzen der Umgebungsvariablen den initialen Index aufbauen:</p>
+      <pre>bin/console es:index
+bin/console es:create-alias</pre>
+      <p>Danach liegt die gesamte Produktsuche auf Elasticsearch -- MySQL entlastet, Antwortzeiten fur Suchanfragen sinken von oft 800 ms auf unter 50 ms.</p>
+
+      <h2>3. Datenbankabfragen profilieren</h2>
+      <p>Slow Queries sind der haufigste Grund fur hohe TTFB. Mit dem Symfony Profiler (nur im Dev-Modus) sieht man exakt, welche Abfragen wie lange dauern:</p>
+      <pre>APP_ENV=dev
+APP_DEBUG=true</pre>
+      <p>Im Produktionsbetrieb hilft das MySQL Slow Query Log:</p>
+      <pre>slow_query_log = ON
+slow_query_log_file = /var/log/mysql/slow.log
+long_query_time = 0.5</pre>
+      <p>Typische Kandidaten: fehlende Indizes auf <code>product.product_number</code>, <code>order.order_number</code>, oder N+1-Probleme in Custom Plugins durch ungecachte Repository-Calls in Loops.</p>
+
+      <h2>4. Assets mit HTTP/2 und Kompression ausliefern</h2>
+      <p>HTTP/2 Multiplexing und Brotli-Kompression lassen sich auf Nginx-Ebene aktivieren:</p>
+      <pre>server {
+    listen 443 ssl http2;
+    brotli on;
+    brotli_comp_level 6;
+    brotli_types text/css application/javascript image/svg+xml;
+
+    gzip on;
+    gzip_vary on;
+    gzip_types text/css application/javascript;
+}</pre>
+
+      <h2>5. Theme kompilieren und Assets minimieren</h2>
+      <p>In der Produktion immer das Theme mit aktiviertem Minifier bauen:</p>
+      <pre>bin/console theme:compile --active-only
+bin/console assets:install</pre>
+      <p>Das reduziert JS- und CSS-Dateigro&szlig;en typischerweise um 30-50 %.</p>
+
+      <h2>Fazit</h2>
+      <p>Die gunstigsten Gewinne kommen in dieser Reihenfolge: HTTP-Cache korrekt konfigurieren, Theme minifiziert deployen, dann Elasticsearch fur gro&szlig;ere Kataloge. Datenbankoptimierungen lohnen sich besonders bei wachsenden Shops mit vielen Bestellungen.</p>
+
+      <a class="back" href="index.html">← alle Artikel</a>
+    </div>
+  </article>
+  <footer>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+  </footer>
+</body>
+</html>
