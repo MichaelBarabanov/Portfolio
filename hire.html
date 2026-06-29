@@ -525,6 +525,9 @@
     .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
   }
 
+  .lo { color: var(--muted); }
+  .lo.active { color: var(--accent); }
+
   @media (max-width: 480px) {
     .reasons-grid { grid-template-columns: 1fr; }
     .stack-grid { grid-template-columns: repeat(2, 1fr); }
@@ -580,7 +583,12 @@
     <a href="#plugins">Plugins</a>
     <a href="#stack">Stack</a>
     <a href="demo.html" style="display:flex;align-items:center;gap:5px;">Demo <span style="font-size:10px;padding:1px 5px;border:1px solid #e3b341;color:#e3b341;border-radius:3px;font-family:monospace;">wip</span></a>
-    <a href="#contact" class="nav-cta">Anfragen →</a>
+    <button id="lang-btn" aria-label="Sprache wechseln" style="font-family:var(--mono);font-size:12px;background:none;border:none;cursor:pointer;letter-spacing:.05em;display:flex;align-items:center;gap:4px;padding:0;">
+      <span class="lo" id="lang-de" style="transition:color .2s;color:var(--muted);">DE</span>
+      <span style="color:var(--border);">/</span>
+      <span class="lo" id="lang-en" style="transition:color .2s;color:var(--muted);">EN</span>
+    </button>
+    <a href="#contact" class="nav-cta" data-i18n="hire.nav.cta">Anfragen →</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
     <span></span><span></span><span></span>
@@ -592,8 +600,9 @@
   <a href="#plugins" onclick="closeMobile()">Plugins</a>
   <a href="#stack" onclick="closeMobile()">Stack</a>
   <a href="demo.html" onclick="closeMobile()">Demo (wip)</a>
-  <a href="#contact" onclick="closeMobile()">Anfragen →</a>
+  <a href="#contact" onclick="closeMobile()" data-i18n="hire.nav.cta">Anfragen →</a>
   <a href="https://mbara.net">← Portfolio</a>
+  <button onclick="document.getElementById('lang-btn').click();closeMobile();" style="font-family:var(--mono);font-size:14px;background:none;border:none;cursor:pointer;color:var(--muted);text-align:left;padding:0;">DE / EN</button>
 </div>
 
 <div class="hero" id="hero">
@@ -602,26 +611,26 @@
 
   <div class="availability">
     <span class="avail-dot"></span>
-    VERFÜGBAR FÜR PROJEKTE
+    <span data-i18n="hire.avail">VERFÜGBAR FÜR PROJEKTE</span>
   </div>
 
   <div class="hero-tag">// michael barabanov · shopware developer · koblenz</div>
 
   <h1>
-    <span class="line-dim">Du brauchst</span><br>
+    <span class="line-dim" data-i18n="hire.hero.h1.pre">Du brauchst</span><br>
     <span class="line-accent">Shopware.</span><br>
-    <span>Ich liefere.</span><span class="cursor"></span>
+    <span data-i18n="hire.hero.h1.post">Ich liefere.</span><span class="cursor"></span>
   </h1>
 
-  <p class="hero-sub">
+  <p class="hero-sub" data-i18n="hire.hero.sub">
     Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen, API-Integrationen –
     ich kenne Shopware 6 von innen. Kein Aufwärmen, kein Einarbeiten.
     Direkt produktiv.
   </p>
 
   <div class="hero-cta">
-    <a href="#contact" class="btn-primary">Jetzt anfragen →</a>
-    <a href="#plugins" class="btn-secondary">Meine Plugins ↓</a>
+    <a href="#contact" class="btn-primary" data-i18n="hire.cta.contact">Jetzt anfragen →</a>
+    <a href="#plugins" class="btn-secondary" data-i18n="hire.cta.plugins">Meine Plugins ↓</a>
   </div>
 
   <div class="hero-scroll">
@@ -631,17 +640,17 @@
 </div>
 
 <div class="stats-bar">
-  <div class="stat-item"><span class="stat-value">30+</span><span class="stat-label">Shops live gebracht</span></div>
-  <div class="stat-item"><span class="stat-value">3</span><span class="stat-label">Open Source Plugins</span></div>
-  <div class="stat-item"><span class="stat-value">90%</span><span class="stat-label">Schadtraffic reduziert</span></div>
-  <div class="stat-item"><span class="stat-value">+22%</span><span class="stat-label">Mehr organischer Traffic</span></div>
-  <div class="stat-item"><span class="stat-value">Sofort</span><span class="stat-label">Verfügbar</span></div>
+  <div class="stat-item"><span class="stat-value">30+</span><span class="stat-label" data-i18n="hire.stat.1">Shops live gebracht</span></div>
+  <div class="stat-item"><span class="stat-value">3</span><span class="stat-label" data-i18n="hire.stat.2">Open Source Plugins</span></div>
+  <div class="stat-item"><span class="stat-value">90%</span><span class="stat-label" data-i18n="hire.stat.3">Schadtraffic reduziert</span></div>
+  <div class="stat-item"><span class="stat-value">+22%</span><span class="stat-label" data-i18n="hire.stat.4">Mehr organischer Traffic</span></div>
+  <div class="stat-item"><span class="stat-value" data-i18n="hire.stat.5.val">Sofort</span><span class="stat-label" data-i18n="hire.stat.5.label">Verfügbar</span></div>
 </div>
 
 <div class="section-wrap" id="services">
-  <div class="section-tag reveal">// was ich mache</div>
-  <h2 class="reveal">Kein Generalist.<br>Shopware-Spezialist.</h2>
-  <p class="section-lead reveal">
+  <div class="section-tag reveal" data-i18n="hire.s1.tag">// was ich mache</div>
+  <h2 class="reveal" data-i18n-html="hire.s1.h2">Kein Generalist.<br>Shopware-Spezialist.</h2>
+  <p class="section-lead reveal" data-i18n="hire.s1.lead">
     Ich arbeite ausschließlich im PHP & E-Commerce-Umfeld.
     Du bekommst jemanden der das System kennt – nicht jemanden
     der sich erst reinfinden muss.
@@ -650,41 +659,41 @@
   <div class="services-grid">
     <div class="service-card reveal reveal-delay-1">
       <div class="service-icon">[ 01 ] PLUGIN-DEV</div>
-      <div class="service-title">Plugin-Entwicklung</div>
-      <div class="service-desc">Custom Shopware 6 Plugins nach deinen Anforderungen. Von einfachen Erweiterungen bis zu komplexen Integrationen – sauber strukturiert, dokumentiert, produktionsreif.</div>
+      <div class="service-title" data-i18n="hire.svc.1.title">Plugin-Entwicklung</div>
+      <div class="service-desc" data-i18n="hire.svc.1.desc">Custom Shopware 6 Plugins nach deinen Anforderungen. Von einfachen Erweiterungen bis zu komplexen Integrationen – sauber strukturiert, dokumentiert, produktionsreif.</div>
     </div>
     <div class="service-card reveal reveal-delay-2">
       <div class="service-icon">[ 02 ] API</div>
-      <div class="service-title">Schnittstellen & APIs</div>
-      <div class="service-desc">ERP-Anbindungen, Drittsystem-Integrationen, REST APIs. Ich habe JTL 5 und externe Systeme in laufende Shops integriert – ohne Betriebsunterbrechung.</div>
+      <div class="service-title" data-i18n="hire.svc.2.title">Schnittstellen & APIs</div>
+      <div class="service-desc" data-i18n="hire.svc.2.desc">ERP-Anbindungen, Drittsystem-Integrationen, REST APIs. Ich habe JTL 5 und externe Systeme in laufende Shops integriert – ohne Betriebsunterbrechung.</div>
     </div>
     <div class="service-card reveal reveal-delay-3">
       <div class="service-icon">[ 03 ] SUPPORT</div>
-      <div class="service-title">Bugfixing & Support</div>
-      <div class="service-desc">Dein Team ist ausgelastet, ein Fehler blockiert alles? Ich spring rein, analysiere und liefere. Keine langen Übergabe-Sessions nötig – ich kenne die Architektur.</div>
+      <div class="service-title" data-i18n="hire.svc.3.title">Bugfixing & Support</div>
+      <div class="service-desc" data-i18n="hire.svc.3.desc">Dein Team ist ausgelastet, ein Fehler blockiert alles? Ich spring rein, analysiere und liefere. Keine langen Übergabe-Sessions nötig – ich kenne die Architektur.</div>
     </div>
     <div class="service-card reveal reveal-delay-4">
       <div class="service-icon">[ 04 ] WARTUNG</div>
-      <div class="service-title">Shop-Wartung & Updates</div>
-      <div class="service-desc">Shopware-Updates die schief gehen können, gehen schief – wenn niemand sie begleitet. Ich übernehme Versionsmigrationen, halte Plugins kompatibel und sorge für einen stabilen Betrieb. Kein Ausfall, kein Stress.</div>
+      <div class="service-title" data-i18n="hire.svc.4.title">Shop-Wartung & Updates</div>
+      <div class="service-desc" data-i18n="hire.svc.4.desc">Shopware-Updates die schief gehen können, gehen schief – wenn niemand sie begleitet. Ich übernehme Versionsmigrationen, halte Plugins kompatibel und sorge für einen stabilen Betrieb. Kein Ausfall, kein Stress.</div>
     </div>
     <div class="service-card reveal reveal-delay-5">
       <div class="service-icon">[ 05 ] FRONTEND</div>
-      <div class="service-title">Theme & Storefront</div>
-      <div class="service-desc">Dein Shop sieht nicht so aus wie du willst? Template-Anpassungen, individuelle Storefront-Komponenten, Twig & CSS – pixelgenau umgesetzt, ohne dass künftige Updates alles zerschießen.</div>
+      <div class="service-title" data-i18n="hire.svc.5.title">Theme & Storefront</div>
+      <div class="service-desc" data-i18n="hire.svc.5.desc">Dein Shop sieht nicht so aus wie du willst? Template-Anpassungen, individuelle Storefront-Komponenten, Twig & CSS – pixelgenau umgesetzt, ohne dass künftige Updates alles zerschießen.</div>
     </div>
     <div class="service-card reveal reveal-delay-6">
       <div class="service-icon">[ 06 ] PERFORMANCE</div>
-      <div class="service-title">Performance & SEO</div>
-      <div class="service-desc">Lighthouse-Audits, Ladezeit-Optimierung, technische SEO. Shops die ich betreut habe haben durchschnittlich +22% mehr organischen Traffic gewonnen.</div>
+      <div class="service-title" data-i18n="hire.svc.6.title">Performance & SEO</div>
+      <div class="service-desc" data-i18n="hire.svc.6.desc">Lighthouse-Audits, Ladezeit-Optimierung, technische SEO. Shops die ich betreut habe haben durchschnittlich +22% mehr organischen Traffic gewonnen.</div>
     </div>
   </div>
 </div>
 
 <div class="section-wrap" id="plugins" style="padding-top: 0;">
-  <div class="section-tag reveal">// open source plugins</div>
-  <h2 class="reveal">Gebaut. Getestet.<br>Produktionsreif.</h2>
-  <p class="section-lead reveal">
+  <div class="section-tag reveal" data-i18n="hire.p.tag">// open source plugins</div>
+  <h2 class="reveal" data-i18n-html="hire.p.h2">Gebaut. Getestet.<br>Produktionsreif.</h2>
+  <p class="section-lead reveal" data-i18n="hire.p.lead">
     Drei eigene Plugins im Shopware 6 Ökosystem – kein Demo-Code,
     echte Lösungen die ich gebaut habe weil sie gebraucht wurden.
   </p>
@@ -698,7 +707,7 @@
           <span class="badge badge-php">PHP</span>
         </div>
         <div class="plugin-name">AI Product Description</div>
-        <div class="plugin-desc">
+        <div class="plugin-desc" data-i18n="hire.plugin.ai.desc">
           AI-gestützter Produktbeschreibungs-Generator direkt im Shopware Admin.
           Unterstützt Claude (Anthropic) und ChatGPT (OpenAI) mit eigenem API Key –
           serverseitig verarbeitet, kein Datenleck. Zwei Sprachen, drei Schreibstile.
@@ -721,7 +730,7 @@
           <span class="badge badge-php">PHP</span>
         </div>
         <div class="plugin-name">Price On Request</div>
-        <div class="plugin-desc">
+        <div class="plugin-desc" data-i18n="hire.plugin.pr.desc">
           Preise ausblenden und durch ein konfigurierbares Angebotsanfrage-Formular ersetzen.
           Perfekt für B2B-Shops mit individueller Preisgestaltung.
           E-Mail-Benachrichtigung und Sales-Channel-Steuerung inklusive.
@@ -743,7 +752,7 @@
           <span class="badge badge-php">PHP</span>
         </div>
         <div class="plugin-name">Coming Soon</div>
-        <div class="plugin-desc">
+        <div class="plugin-desc" data-i18n="hire.plugin.cs.desc">
           Konfigurierbarer Coming-Soon und Maintenance Mode mit IP-Whitelisting,
           Countdown-Freigabe und SEO-konformen HTTP-Headern (503, Retry-After, Noindex).
           Sales-Channel-gesteuert.
@@ -762,9 +771,9 @@
 
 <div class="stack-section">
   <div class="section-wrap">
-    <div class="section-tag reveal">// ausrichtung</div>
-    <h2 class="reveal">Shopware trifft KI –<br>mein nächster Fokus.</h2>
-    <p class="section-lead reveal">
+    <div class="section-tag reveal" data-i18n="hire.ai.tag">// ausrichtung</div>
+    <h2 class="reveal" data-i18n-html="hire.ai.h2">Shopware trifft KI –<br>mein nächster Fokus.</h2>
+    <p class="section-lead reveal" data-i18n="hire.ai.lead">
       Ich entwickle aktiv AI-gestützte Shopware-Plugins. Produktbeschreibungen
       per KI sind erst der Anfang – automatisierte Kategorisierung, smarte Suche,
       personalisierte Inhalte folgen. Wer jetzt AI-Plugins im Shopware-Store anbietet, ist früh dran.
@@ -777,8 +786,8 @@
     </div>
 
     <div class="section-tag reveal" id="stack">// tech stack</div>
-    <h2 class="reveal">Was ich mitbringe.</h2>
-    <p class="section-lead reveal">Kein Baukastensystem. Ich kenne diese Tools aus echten Projekten, nicht aus Tutorials.</p>
+    <h2 class="reveal" data-i18n="hire.stack.h2">Was ich mitbringe.</h2>
+    <p class="section-lead reveal" data-i18n="hire.stack.lead">Kein Baukastensystem. Ich kenne diese Tools aus echten Projekten, nicht aus Tutorials.</p>
     <div class="stack-grid reveal">
       <div class="stack-item"><div class="stack-name">PHP</div><div class="stack-sub">Primär · OOP</div></div>
       <div class="stack-item"><div class="stack-name">Shopware 6</div><div class="stack-sub">Plugin · Admin</div></div>
@@ -797,8 +806,8 @@
 </div>
 
 <div class="section-wrap">
-  <div class="section-tag reveal">// referenzen</div>
-  <h2 class="reveal">Was andere sagen.</h2>
+  <div class="section-tag reveal" data-i18n="hire.ref.tag">// referenzen</div>
+  <h2 class="reveal" data-i18n="hire.ref.h2">Was andere sagen.</h2>
   <div class="refs-grid">
     <div class="ref-card reveal">
       <p class="ref-quote">"Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien. Es ist ein deutliches Anliegen zu erkennen den Betrieb in positiver Weise weiterzuentwickeln."</p>
@@ -812,36 +821,36 @@
 </div>
 
 <div class="section-wrap">
-  <div class="section-tag reveal">// warum ich</div>
-  <h2 class="reveal">Was mich<br>von anderen unterscheidet.</h2>
+  <div class="section-tag reveal" data-i18n="hire.why.tag">// warum ich</div>
+  <h2 class="reveal" data-i18n-html="hire.why.h2">Was mich<br>von anderen unterscheidet.</h2>
   <div class="reasons-grid">
     <div class="reason-card reveal reveal-delay-1">
       <div class="reason-num">01</div>
-      <div class="reason-title">Kein Einarbeiten nötig</div>
-      <div class="reason-desc">Ich komme aus dem Agenturumfeld. Ich weiß wie Shopware-Projekte laufen, wo Probleme entstehen und wie man sie schnell löst.</div>
+      <div class="reason-title" data-i18n="hire.why.1.title">Kein Einarbeiten nötig</div>
+      <div class="reason-desc" data-i18n="hire.why.1.desc">Ich komme aus dem Agenturumfeld. Ich weiß wie Shopware-Projekte laufen, wo Probleme entstehen und wie man sie schnell löst.</div>
     </div>
     <div class="reason-card reveal reveal-delay-2">
       <div class="reason-num">02</div>
-      <div class="reason-title">Ich liefere, nicht ich rede</div>
-      <div class="reason-desc">30+ Shops live gebracht. Drei eigene Open Source Plugins. Code den man sehen kann – kein CV-Filler.</div>
+      <div class="reason-title" data-i18n="hire.why.2.title">Ich liefere, nicht ich rede</div>
+      <div class="reason-desc" data-i18n="hire.why.2.desc">30+ Shops live gebracht. Drei eigene Open Source Plugins. Code den man sehen kann – kein CV-Filler.</div>
     </div>
     <div class="reason-card reveal reveal-delay-3">
       <div class="reason-num">03</div>
-      <div class="reason-title">Flexibel verfügbar</div>
-      <div class="reason-desc">Overflow, kurzfristige Aufgaben, längere Projekte. Ich passe mich deinem Bedarf an, nicht umgekehrt.</div>
+      <div class="reason-title" data-i18n="hire.why.3.title">Flexibel verfügbar</div>
+      <div class="reason-desc" data-i18n="hire.why.3.desc">Overflow, kurzfristige Aufgaben, längere Projekte. Ich passe mich deinem Bedarf an, nicht umgekehrt.</div>
     </div>
     <div class="reason-card reveal reveal-delay-4">
       <div class="reason-num">04</div>
-      <div class="reason-title">Sauberer Code</div>
-      <div class="reason-desc">Keine Quick-Fixes die in zwei Monaten wieder kaputt gehen. Wartbarer, dokumentierter Code der bleibt.</div>
+      <div class="reason-title" data-i18n="hire.why.4.title">Sauberer Code</div>
+      <div class="reason-desc" data-i18n="hire.why.4.desc">Keine Quick-Fixes die in zwei Monaten wieder kaputt gehen. Wartbarer, dokumentierter Code der bleibt.</div>
     </div>
   </div>
 </div>
 
 <div class="cta-section" id="contact">
-  <div class="section-tag" style="margin-bottom: 20px;">// kontakt</div>
-  <h2>Bereit wenn du es bist.</h2>
-  <p>Kurze Mail reicht. Sag mir was du brauchst – ich melde mich innerhalb von 24 Stunden.</p>
+  <div class="section-tag" style="margin-bottom: 20px;" data-i18n="hire.cta.tag">// kontakt</div>
+  <h2 data-i18n="hire.cta.h2">Bereit wenn du es bist.</h2>
+  <p data-i18n="hire.cta.p">Kurze Mail reicht. Sag mir was du brauchst – ich melde mich innerhalb von 24 Stunden.</p>
   <div class="cta-buttons">
     <a href="mailto:m.barabanov@mbara.net" class="btn-primary">m.barabanov@mbara.net →</a>
     <a href="https://malt.me/profile/michaelbarabanov" class="btn-secondary" target="_blank" rel="noopener">Malt Profil</a>
@@ -850,16 +859,16 @@
   </div>
   <div class="contact-details">
     <div class="contact-item">
-      <span class="contact-label">Standort</span>
-      <span class="contact-value">Koblenz, Deutschland</span>
+      <span class="contact-label" data-i18n="hire.contact.loc.label">Standort</span>
+      <span class="contact-value" data-i18n="hire.contact.loc.val">Koblenz, Deutschland</span>
     </div>
     <div class="contact-item">
-      <span class="contact-label">Stundensatz</span>
-      <span class="contact-value">Auf Anfrage</span>
+      <span class="contact-label" data-i18n="hire.contact.rate.label">Stundensatz</span>
+      <span class="contact-value" data-i18n="hire.contact.rate.val">Auf Anfrage</span>
     </div>
     <div class="contact-item">
-      <span class="contact-label">Verfügbarkeit</span>
-      <span class="contact-value">Sofort verfügbar</span>
+      <span class="contact-label" data-i18n="hire.contact.av.label">Verfügbarkeit</span>
+      <span class="contact-value" data-i18n="hire.contact.av.val">Sofort verfügbar</span>
     </div>
     <div class="contact-item">
       <span class="contact-label">LinkedIn</span>
@@ -870,9 +879,7 @@
 
 <footer>
   <span>© 2026 Michael Barabanov</span>
-  <span style="font-family: var(--mono); font-size: 11px;">
-    <span style="color: var(--accent);">●</span> Verfügbar für Projekte
-  </span>
+  <span style="font-family: var(--mono); font-size: 11px;" data-i18n="hire.footer.avail">● Verfügbar für Projekte</span>
   <div style="display: flex; gap: 20px; flex-wrap: wrap;">
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
@@ -880,6 +887,7 @@
   </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script>
   // NAV SCROLL
   const nav = document.getElementById('navbar');
