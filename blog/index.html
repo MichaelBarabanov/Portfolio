@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopware Dev Blog – Tipps, Tutorials & Best Practices</title>
+  <meta name="description" content="Technische Artikel rund um Shopware 6 Entwicklung, Plugin-Entwicklung, Performance und PHP Best Practices." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00ff88; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.6; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--border); padding:20px 0; }
+    .container { max-width:760px; margin:0 auto; padding:0 24px; }
+    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
+    .logo span { color:var(--accent); }
+    main { padding:60px 0; }
+    h1 { font-size:clamp(22px,4vw,32px); font-weight:700; margin-bottom:8px; }
+    .subtitle { color:var(--muted); font-size:15px; margin-bottom:48px; }
+    .posts { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+    .post { background:var(--surface); padding:24px 28px; border-bottom:1px solid var(--border); transition:background .15s; }
+    .post:last-child { border-bottom:none; }
+    .post:hover { background:var(--surface2); }
+    .post-tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:11px; color:var(--accent); margin-bottom:8px; }
+    .post h2 { font-size:18px; font-weight:600; margin-bottom:6px; }
+    .post h2 a { color:var(--text); }
+    .post h2 a:hover { color:var(--accent); text-decoration:none; }
+    .post-meta { font-size:13px; color:var(--muted); margin-bottom:10px; }
+    .post p { font-size:14px; color:var(--muted); line-height:1.65; }
+    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><span>//</span> shopware-dev.blog</div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <h1>Shopware Dev Blog</h1>
+      <p class="subtitle">Technische Artikel zu Shopware 6, Plugin-Entwicklung und PHP.</p>
+      <div class="posts">
+        <div class="post">
+          <div class="post-tag">// performance</div>
+          <h2><a href="shopware-6-performance-optimieren.html">Shopware 6 Performance optimieren: Caching, Elasticsearch & HTTP/2</a></h2>
+          <div class="post-meta">2026-06-20 &middot; 8 min</div>
+          <p>Wie man einen Shopware-6-Shop durch richtig konfiguriertes HTTP-Caching, Elasticsearch-Integration und optimierte Datenbankabfragen auf unter 1&nbsp;s TTFB bringt.</p>
+        </div>
+        <div class="post">
+          <div class="post-tag">// plugin-entwicklung</div>
+          <h2><a href="shopware-6-plugin-entwickeln.html">Shopware 6 Plugin entwickeln: Schritt-fur-Schritt von Null zum ersten Release</a></h2>
+          <div class="post-meta">2026-06-10 &middot; 12 min</div>
+          <p>Ein vollstandiges Tutorial: Plugin-Grundstruktur, Dependency Injection, Events & Subscriber, Admin-UI mit Vue.js und automatisches Deployment via GitHub Actions.</p>
+        </div>
+        <div class="post">
+          <div class="post-tag">// security</div>
+          <h2><a href="shopware-6-bot-schutz-cloudflare.html">Bot-Traffic in Shopware 6 mit Cloudflare eliminieren</a></h2>
+          <div class="post-meta">2026-05-28 &middot; 6 min</div>
+          <p>Praxisguide: Wie Cloudflare WAF Rules, Rate Limiting und Bot-Fight-Mode zusammenspielen um bosen Bot-Traffic zu blockieren ohne echte Kunden zu treffen.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+  </footer>
+</body>
+</html>
