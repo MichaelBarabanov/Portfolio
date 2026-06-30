@@ -293,14 +293,45 @@ body::before {
 }
 
 /* ── SECTIONS ── */
-section { padding: 92px 0; }
-#about   { background: var(--surface); }
-#stack   { background: var(--bg); }
+section { padding: 92px 0; position: relative; }
+#about    { background: var(--surface); }
+#stack    { background: var(--bg); }
 #projekte { background: var(--surface); }
-#plugins { background: var(--bg); }
-#contrib { background: var(--surface); }
+#plugins  { background: var(--bg); }
+#contrib  { background: var(--surface); }
 #terminal { background: var(--bg); }
-#kontakt { background: var(--surface); }
+#kontakt  { background: var(--surface); }
+
+/* section bleed: fade top edge into bg */
+#about::before, #projekte::before, #contrib::before, #kontakt::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(to bottom, var(--bg), transparent);
+  pointer-events: none; z-index: 1;
+}
+#stack::before, #plugins::before, #terminal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(to bottom, var(--surface), transparent);
+  pointer-events: none; z-index: 1;
+}
+/* section bleed: fade bottom edge out */
+#about::after, #projekte::after, #contrib::after, #kontakt::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(to top, var(--bg), transparent);
+  pointer-events: none; z-index: 1;
+}
+#stack::after, #plugins::after, #terminal::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(to top, var(--surface), transparent);
+  pointer-events: none; z-index: 1;
+}
 
 .section-title {
   font-family: 'Cascadia Code','Fira Code',monospace;
@@ -309,8 +340,10 @@ section { padding: 92px 0; }
 }
 
 /* ── SCROLL REVEAL ── */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal       { opacity: 0; transform: translateY(28px);  transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
+.reveal-left  { opacity: 0; transform: translateX(-64px); transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
+.reveal-right { opacity: 0; transform: translateX(64px);  transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translate(0); }
 
 /* ── ABOUT ── */
 .about-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: start; }
@@ -527,9 +560,13 @@ section { padding: 92px 0; }
 .card {
   background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
   padding: 20px; display: flex; flex-direction: column; gap: 12px;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  transition: border-color .35s ease, transform .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s ease;
 }
-.card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,.35); }
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.5), 0 0 0 1px rgba(0,232,122,.15), 0 0 32px rgba(0,232,122,.08);
+}
 .card-header { display: flex; align-items: center; gap: 8px; }
 .repo-icon { color: var(--muted); flex-shrink: 0; }
 .card-title { color: var(--accent); font-weight: 600; font-size: 15px; text-decoration: none; }
@@ -562,13 +599,17 @@ section { padding: 92px 0; }
   border-radius: 8px; padding: 24px;
   display: flex; flex-direction: column; gap: 14px;
   position: relative; overflow: hidden;
-  transition: transform .2s, box-shadow .2s;
+  transition: transform .35s cubic-bezier(0.16,1,0.3,1), box-shadow .35s ease, border-color .35s ease;
 }
 .plugin-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--accent), transparent);
 }
-.plugin-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,232,122,.12); }
+.plugin-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 56px rgba(0,0,0,.5), 0 0 40px rgba(0,232,122,.12);
+}
 
 .plugin-badge {
   width: fit-content; font-family: 'Cascadia Code','Fira Code',monospace;

@@ -36,14 +36,14 @@
       if (!entry.isIntersecting) return;
       entry.target.classList.add('visible');
       let delay = 0;
-      entry.target.parentElement.querySelectorAll('.reveal:not(.visible)').forEach(sib => {
-        delay += 90;
+      entry.target.parentElement.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)').forEach(sib => {
+        delay += 100;
         setTimeout(() => sib.classList.add('visible'), delay);
       });
       revObs.unobserve(entry.target);
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revObs.observe(el));
 
   // ── Stat counters ──
   const statObs = new IntersectionObserver((entries) => {
