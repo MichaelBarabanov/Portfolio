@@ -293,41 +293,23 @@ body::before {
 }
 
 /* ── SECTIONS ── */
-section { padding: 92px 0; position: relative; }
-#about    { background: var(--surface); }
-#stack    { background: var(--bg); }
-#projekte { background: var(--surface); }
-#plugins  { background: var(--bg); }
-#contrib  { background: var(--surface); }
-#terminal { background: var(--bg); }
-#kontakt  { background: var(--surface); }
+section { padding: 80px 0; position: relative; background: var(--bg); }
 
-/* section bleed: fade top/bottom edges — z-index:-1 keeps them behind content */
-#about::before, #projekte::before, #contrib::before, #kontakt::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 100px;
-  background: linear-gradient(to bottom, var(--bg), transparent);
-  pointer-events: none; z-index: 0;
+/* alternating sections get a subtle inner glow to visually separate them */
+#about, #projekte, #contrib, #kontakt {
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, #141414 0%, var(--bg) 100%);
 }
-#stack::before, #plugins::before, #terminal::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 100px;
-  background: linear-gradient(to bottom, var(--surface), transparent);
-  pointer-events: none; z-index: 0;
+
+/* accent glow line between sections */
+section + section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,232,122,0.25), transparent);
+  pointer-events: none;
 }
-#about::after, #projekte::after, #contrib::after, #kontakt::after {
-  content: ''; position: absolute;
-  bottom: 0; left: 0; right: 0; height: 100px;
-  background: linear-gradient(to top, var(--bg), transparent);
-  pointer-events: none; z-index: 0;
-}
-#stack::after, #plugins::after, #terminal::after {
-  content: ''; position: absolute;
-  bottom: 0; left: 0; right: 0; height: 100px;
-  background: linear-gradient(to top, var(--surface), transparent);
-  pointer-events: none; z-index: 0;
-}
-/* container sits above gradient overlays */
+
 section > .container { position: relative; z-index: 1; }
 
 .section-title {
