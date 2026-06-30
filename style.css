@@ -302,36 +302,33 @@ section { padding: 92px 0; position: relative; }
 #terminal { background: var(--bg); }
 #kontakt  { background: var(--surface); }
 
-/* section bleed: fade top edge into bg */
+/* section bleed: fade top/bottom edges — z-index:-1 keeps them behind content */
 #about::before, #projekte::before, #contrib::before, #kontakt::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 80px;
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 100px;
   background: linear-gradient(to bottom, var(--bg), transparent);
-  pointer-events: none; z-index: 1;
+  pointer-events: none; z-index: 0;
 }
 #stack::before, #plugins::before, #terminal::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 80px;
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 100px;
   background: linear-gradient(to bottom, var(--surface), transparent);
-  pointer-events: none; z-index: 1;
+  pointer-events: none; z-index: 0;
 }
-/* section bleed: fade bottom edge out */
 #about::after, #projekte::after, #contrib::after, #kontakt::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0; height: 80px;
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 100px;
   background: linear-gradient(to top, var(--bg), transparent);
-  pointer-events: none; z-index: 1;
+  pointer-events: none; z-index: 0;
 }
 #stack::after, #plugins::after, #terminal::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0; height: 80px;
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 100px;
   background: linear-gradient(to top, var(--surface), transparent);
-  pointer-events: none; z-index: 1;
+  pointer-events: none; z-index: 0;
 }
+/* container sits above gradient overlays */
+section > .container { position: relative; z-index: 1; }
 
 .section-title {
   font-family: 'Cascadia Code','Fira Code',monospace;
@@ -340,9 +337,9 @@ section { padding: 92px 0; position: relative; }
 }
 
 /* ── SCROLL REVEAL ── */
-.reveal       { opacity: 0; transform: translateY(28px);  transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
-.reveal-left  { opacity: 0; transform: translateX(-64px); transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
-.reveal-right { opacity: 0; transform: translateX(64px);  transition: opacity .7s cubic-bezier(0.16,1,0.3,1), transform .7s cubic-bezier(0.16,1,0.3,1); }
+.reveal       { opacity: 0; transform: translateY(40px);   transition: opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1); }
+.reveal-left  { opacity: 0; transform: translateX(-120px); transition: opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1); }
+.reveal-right { opacity: 0; transform: translateX(120px);  transition: opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1); }
 .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translate(0); }
 
 /* ── ABOUT ── */
