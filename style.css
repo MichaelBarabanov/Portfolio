@@ -671,17 +671,15 @@ section { padding: 92px 0; }
 }
 
 /* ── CV BUTTON ── */
-:root { --gold: #e3b341; }
-
 .contact-btn-cv {
-  border-color: var(--gold);
-  color: var(--gold);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .contact-btn-cv:hover {
-  border-color: var(--gold) !important;
-  color: var(--gold) !important;
-  background: rgba(227,179,65,.07) !important;
-  box-shadow: 0 0 18px rgba(227,179,65,.22) !important;
+  border-color: var(--accent-h) !important;
+  color: var(--accent-h) !important;
+  background: rgba(0,255,136,.06) !important;
+  box-shadow: 0 0 18px var(--glow) !important;
 }
 .contact-btn:not(.contact-btn-cv):hover {
   border-color: var(--accent);
@@ -690,21 +688,22 @@ section { padding: 92px 0; }
   box-shadow: 0 0 18px var(--glow);
 }
 
-/* ── CONTACT FORM ── */
-.form-divider {
-  display: flex; align-items: center; gap: 16px;
-  margin: 44px 0 32px; color: var(--muted);
-  font-size: 13px; font-family: 'Cascadia Code','Fira Code',monospace;
-  max-width: 640px;
+/* ── CONTACT GRID ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
 }
-.form-divider::before, .form-divider::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 36px; }
 }
 
+/* ── CONTACT FORM ── */
 .contact-form {
-  max-width: 640px;
   display: flex; flex-direction: column; gap: 20px;
 }
+.contact-form button[type="submit"] { align-self: flex-start; }
 
 .form-row {
   display: grid;
@@ -747,8 +746,9 @@ section { padding: 92px 0; }
 }
 
 /* ── FOOTER ── */
-footer { padding: 28px 0; border-top: 1px solid var(--border); }
-footer p { color: var(--muted); font-size: 13px; font-family: monospace; }
+footer { padding: 24px 0; border-top: 1px solid var(--border); }
+footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+footer p, footer span { color: var(--muted); font-size: 12px; font-family: monospace; }
 footer a { color: var(--muted); text-decoration: none; }
 footer a:hover { color: var(--accent); }
 
