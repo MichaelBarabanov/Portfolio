@@ -43,7 +43,15 @@
       revObs.unobserve(entry.target);
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('section').forEach(s => revObs.observe(s));
+
+  document.querySelectorAll('section').forEach(s => {
+    // Sections already fully above viewport (scroll restoration) — show immediately
+    if (s.getBoundingClientRect().bottom < 0) {
+      s.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => el.classList.add('visible'));
+    } else {
+      revObs.observe(s);
+    }
+  });
 
   // ── Stat counters ──
   const statObs = new IntersectionObserver((entries) => {
