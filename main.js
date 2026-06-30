@@ -30,20 +30,20 @@
   }
   startTypewriter();
 
-  // ── Scroll reveal ──
+  // ── Scroll reveal — observe sections, stagger children ──
   const revObs = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add('visible');
       let delay = 0;
-      entry.target.parentElement.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)').forEach(sib => {
-        delay += 100;
-        setTimeout(() => sib.classList.add('visible'), delay);
+      entry.target.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+        if (el.classList.contains('visible')) return;
+        delay += 130;
+        setTimeout(() => el.classList.add('visible'), delay);
       });
       revObs.unobserve(entry.target);
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revObs.observe(el));
+  }, { threshold: 0.08 });
+  document.querySelectorAll('section').forEach(s => revObs.observe(s));
 
   // ── Stat counters ──
   const statObs = new IntersectionObserver((entries) => {
