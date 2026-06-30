@@ -799,10 +799,29 @@ section > .container { position: relative; z-index: 1; }
 
 /* ── FOOTER ── */
 footer { padding: 24px 0; border-top: 1px solid var(--border); }
-footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+footer .container { display: flex; flex-direction: column; gap: 12px; }
 footer p, footer span { color: var(--muted); font-size: 12px; font-family: monospace; }
 footer a { color: var(--muted); text-decoration: none; }
 footer a:hover { color: var(--accent); }
+.footer-privacy {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 11px; color: var(--accent); opacity: 0.6;
+  letter-spacing: 0.04em;
+  justify-content: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.fp-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  flex-shrink: 0;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+}
 
 /* Custom cursor removed — caused RAF lag with concurrent animations */
 
