@@ -293,7 +293,7 @@ body::before {
 }
 
 /* ── SECTIONS ── */
-section { padding: 80px 0; position: relative; background: var(--bg); overflow: hidden; }
+section { padding: 80px 0; position: relative; background: var(--bg); }
 
 /* alternating sections get a subtle inner glow to visually separate them */
 #about, #projekte, #contrib, #kontakt {
