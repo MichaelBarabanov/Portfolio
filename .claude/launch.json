@@ -6,6 +6,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "-p", "4321", "cat"],
       "port": 4321
+    },
+    {
+      "name": "portfolio-preview",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "4322", "."],
+      "port": 4322
     }
   ]
 }

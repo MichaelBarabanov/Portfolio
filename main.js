@@ -53,6 +53,57 @@
     }
   });
 
+  // ── Card spotlight (cursor-tracking glow) — pointer devices only ──
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.card, .plugin-card, .vk-card-expanded').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        card.style.setProperty('--spot-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+  }
+
+  // ── Tracing beam along the experience timeline ──
+  const timelineEl = document.querySelector('.timeline');
+  const beamEl      = document.getElementById('timeline-beam');
+  if (timelineEl && beamEl) {
+    let ticking = false;
+    const updateBeam = () => {
+      const rect      = timelineEl.getBoundingClientRect();
+      const trackH    = Math.max(0, rect.height - 20); // matches top:10 / bottom:10 inset
+      const startLine = window.innerHeight * 0.8;
+      const progress  = Math.min(1, Math.max(0, (startLine - rect.top) / rect.height));
+      beamEl.style.height = (progress * trackH) + 'px';
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(updateBeam); ticking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', updateBeam);
+    updateBeam();
+  }
+
+  // ── Visitenkarte overlay (blob trigger) ──
+  const vkTrigger  = document.getElementById('vk-trigger');
+  const vkOverlay  = document.getElementById('vk-overlay');
+  const vkBackdrop = document.getElementById('vk-backdrop');
+  if (vkTrigger && vkOverlay) {
+    const openVk = () => {
+      vkOverlay.classList.add('open');
+      vkOverlay.setAttribute('aria-hidden', 'false');
+    };
+    const closeVk = () => {
+      vkOverlay.classList.remove('open');
+      vkOverlay.setAttribute('aria-hidden', 'true');
+    };
+    vkTrigger.addEventListener('click', openVk);
+    vkBackdrop?.addEventListener('click', closeVk);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && vkOverlay.classList.contains('open')) closeVk();
+    });
+  }
+
   // ── Stat counters ──
   const statObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
