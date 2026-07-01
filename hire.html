@@ -44,6 +44,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
+  html { overflow-x: hidden; }
+
   body {
     background: var(--bg);
     color: var(--text);
@@ -418,7 +420,7 @@
 
   /* WHY ME */
   .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-  .reason-card { padding: 28px; border: 1px solid var(--border); transition: border-color 0.3s; }
+  .reason-card { padding: 28px; border: 1px solid var(--border); transition: border-color 0.3s; position: relative; overflow: hidden; }
   .reason-card:hover { border-color: rgba(0,255,136,0.2); }
   .reason-num { font-family: var(--mono); font-size: 42px; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 14px; transition: color 0.3s; }
   .reason-card:hover .reason-num { color: var(--accent); }
@@ -549,6 +551,190 @@
     font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: .3px;
   }
   @media (max-width: 680px) { .refs-grid { grid-template-columns: 1fr; } }
+
+  /* ── SPOTLIGHT (cursor-tracking glow) ── */
+  .service-card, .plugin-card, .reason-card, .vk-card-expanded {
+    --spot-x: 50%; --spot-y: 50%;
+  }
+  .service-card::after, .plugin-card::after, .reason-card::after, .vk-card-expanded::after {
+    content: '';
+    position: absolute; inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(420px circle at var(--spot-x) var(--spot-y), rgba(0,232,122,.10), transparent 60%);
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
+  }
+  .service-card:hover::after, .plugin-card:hover::after, .reason-card:hover::after, .vk-card-expanded:hover::after {
+    opacity: 1;
+  }
+
+  /* ── VISITENKARTE BLOB TRIGGER ── */
+  .cta-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+  .vk-blob {
+    position: absolute;
+    top: 40px; right: -130px;
+    width: 68px; height: 68px;
+    border: none; background: none; cursor: pointer;
+    padding: 0; z-index: 5;
+    filter: drop-shadow(0 0 22px rgba(0,232,122,.5)) drop-shadow(0 0 44px rgba(0,232,122,.25));
+    transition: filter .3s ease;
+  }
+  .vk-blob::before {
+    content: '';
+    position: absolute; inset: -22px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,232,122,.35), transparent 70%);
+    animation: vk-halo 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .vk-blob:hover { filter: drop-shadow(0 0 32px rgba(0,232,122,.7)) drop-shadow(0 0 60px rgba(0,232,122,.4)); }
+  .vk-blob-core {
+    display: block; width: 100%; height: 100%;
+    background: radial-gradient(circle at 35% 32%, rgba(180,255,220,1), rgba(0,232,122,.6) 45%, rgba(0,232,122,.1) 75%);
+    animation: vk-float 5s ease-in-out infinite, vk-morph 7s ease-in-out infinite, vk-pulse 2.4s ease-in-out infinite;
+    transition: transform .3s cubic-bezier(0.16,1,0.3,1);
+  }
+  .vk-blob:hover .vk-blob-core { transform: scale(1.15); }
+  .vk-blob:active .vk-blob-core { transform: scale(.92); }
+  @keyframes vk-float {
+    0%, 100% { transform: translate(0, 0); }
+    50%      { transform: translate(4px, -12px); }
+  }
+  @keyframes vk-morph {
+    0%, 100% { border-radius: 42% 58% 60% 40% / 45% 40% 60% 55%; }
+    33%      { border-radius: 58% 42% 45% 55% / 55% 60% 40% 45%; }
+    66%      { border-radius: 50% 50% 38% 62% / 40% 55% 45% 60%; }
+  }
+  @keyframes vk-pulse {
+    0%, 100% { filter: brightness(1); }
+    50%      { filter: brightness(1.25); }
+  }
+  @keyframes vk-halo {
+    0%, 100% { opacity: .5; transform: scale(1); }
+    50%      { opacity: .9; transform: scale(1.2); }
+  }
+  @media (max-width: 1200px) and (min-width: 769px) {
+    .vk-blob { right: 8px; top: 8px; width: 50px; height: 50px; }
+  }
+  @media (max-width: 768px) {
+    .vk-blob { display: none; }
+  }
+
+  /* ── VISITENKARTE OVERLAY ── */
+  .vk-overlay {
+    position: fixed; inset: 0; z-index: 300;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility 0s linear .3s;
+  }
+  .vk-overlay.open {
+    opacity: 1; visibility: visible;
+    transition: opacity .3s ease, visibility 0s linear 0s;
+  }
+  .vk-overlay-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(3px);
+  }
+  .vk-card-expanded {
+    position: relative;
+    width: calc(100% - 48px); max-width: 380px;
+    background:
+      linear-gradient(155deg, rgba(0,232,122,.05), transparent 40%),
+      linear-gradient(145deg, #14181a, #0d0f10);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+    display: flex; flex-direction: column; gap: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.55), 0 0 1px rgba(0,232,122,.4);
+    transform: scale(.85); transition: transform .3s cubic-bezier(0.16,1,0.3,1);
+    text-align: left;
+  }
+  .vk-overlay.open .vk-card-expanded { transform: scale(1); }
+  .vk-chip {
+    position: absolute; top: 20px; right: 22px;
+    width: 24px; height: 17px; border-radius: 3px;
+    background: linear-gradient(135deg, rgba(0,232,122,.5), rgba(0,232,122,.12));
+    border: 1px solid rgba(0,232,122,.4);
+  }
+  .vk-chip::before, .vk-chip::after {
+    content: ''; position: absolute; left: 4px; right: 4px; height: 1px;
+    background: rgba(0,0,0,.35);
+  }
+  .vk-chip::before { top: 5px; }
+  .vk-chip::after  { top: 10px; }
+  .vk-top { display: flex; align-items: center; gap: 16px; }
+  .vk-avatar {
+    width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+    object-fit: cover; object-position: center 15%;
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 14px rgba(0,232,122,.25);
+  }
+  .vk-info { display: flex; flex-direction: column; gap: 3px; text-align: left; min-width: 0; }
+  .vk-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  }
+  .vk-bottom {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .vk-contact { display: flex; flex-direction: column; gap: 4px; }
+  .vk-corner {
+    position: absolute; width: 10px; height: 10px;
+    border: 1px solid var(--accent); opacity: .4;
+  }
+  .vk-corner-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .vk-corner-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+  .vk-label {
+    font-family: var(--mono);
+    font-size: 10px; color: var(--accent); letter-spacing: .1em;
+    text-transform: uppercase; opacity: .7;
+  }
+  .vk-name { font-weight: 700; font-size: 16px; color: var(--text); font-family: var(--sans); }
+  .vk-role { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+  .vk-loc {
+    font-size: 11.5px; color: var(--muted);
+    font-family: var(--mono);
+  }
+  .vk-mail, .vk-domain {
+    font-size: 11.5px;
+    font-family: var(--mono);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .vk-mail { color: var(--accent); }
+  .vk-mail:hover { color: #1fffa0; text-decoration: underline; }
+  .vk-domain { color: var(--muted); }
+  .vk-domain:hover { color: var(--accent); }
+  .vk-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+  .vk-tags span {
+    font-family: var(--mono); font-size: 10px;
+    color: var(--accent); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2px 8px;
+  }
+  @media (max-width: 420px) {
+    .vk-bottom { flex-direction: column; align-items: flex-start; }
+    .vk-tags { justify-content: flex-start; }
+  }
+  @media (min-width: 769px) {
+    .vk-card-expanded { max-width: 460px; padding: 32px 36px; gap: 20px; }
+    .vk-top { gap: 20px; }
+    .vk-avatar { width: 84px; height: 84px; }
+    .vk-label { font-size: 11px; }
+    .vk-name { font-size: 21px; }
+    .vk-role { font-size: 14.5px; }
+    .vk-loc { font-size: 13px; }
+    .vk-mail, .vk-domain { font-size: 13px; }
+    .vk-contact { gap: 5px; }
+    .vk-tags span { font-size: 11.5px; padding: 3px 10px; }
+    .vk-chip { top: 26px; right: 28px; width: 28px; height: 19px; }
+  }
+  @media (max-width: 768px) {
+    .vk-overlay { display: none; }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -849,31 +1035,64 @@
 </div>
 
 <div class="cta-section" id="contact">
-  <div class="section-tag" style="margin-bottom: 20px;" data-i18n="hire.cta.tag">// kontakt</div>
-  <h2 data-i18n="hire.cta.h2">Bereit wenn du es bist.</h2>
-  <p data-i18n="hire.cta.p">Kurze Mail reicht. Sag mir was du brauchst – ich melde mich innerhalb von 24 Stunden.</p>
-  <div class="cta-buttons">
-    <a href="mailto:m.barabanov@mbara.net" class="btn-primary">m.barabanov@mbara.net →</a>
-    <a href="https://malt.me/profile/michaelbarabanov" class="btn-secondary" target="_blank" rel="noopener">Malt Profil</a>
-    <a href="https://github.com/MichaelBarabanov" class="btn-secondary" target="_blank" rel="noopener">GitHub</a>
-    <a href="demo.html" class="btn-secondary" style="border-color:#e3b341;color:#e3b341;">Live Demos <span style="font-size:10px;opacity:.7;">(wip)</span></a>
+  <div class="cta-inner">
+    <button type="button" class="vk-blob" id="vk-trigger" aria-label="Visitenkarte anzeigen">
+      <span class="vk-blob-core"></span>
+    </button>
+    <div class="section-tag" style="margin-bottom: 20px;" data-i18n="hire.cta.tag">// kontakt</div>
+    <h2 data-i18n="hire.cta.h2">Bereit wenn du es bist.</h2>
+    <p data-i18n="hire.cta.p">Kurze Mail reicht. Sag mir was du brauchst – ich melde mich innerhalb von 24 Stunden.</p>
+    <div class="cta-buttons">
+      <a href="mailto:m.barabanov@mbara.net" class="btn-primary">m.barabanov@mbara.net →</a>
+      <a href="https://malt.me/profile/michaelbarabanov" class="btn-secondary" target="_blank" rel="noopener">Malt Profil</a>
+      <a href="https://github.com/MichaelBarabanov" class="btn-secondary" target="_blank" rel="noopener">GitHub</a>
+      <a href="demo.html" class="btn-secondary" style="border-color:#e3b341;color:#e3b341;">Live Demos <span style="font-size:10px;opacity:.7;">(wip)</span></a>
+    </div>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-label" data-i18n="hire.contact.loc.label">Standort</span>
+        <span class="contact-value" data-i18n="hire.contact.loc.val">Koblenz, Deutschland</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label" data-i18n="hire.contact.rate.label">Stundensatz</span>
+        <span class="contact-value" data-i18n="hire.contact.rate.val">Auf Anfrage</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label" data-i18n="hire.contact.av.label">Verfügbarkeit</span>
+        <span class="contact-value" data-i18n="hire.contact.av.val">Sofort verfügbar</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">LinkedIn</span>
+        <a href="https://linkedin.com/in/michael-barabanov-103265357" class="contact-value" target="_blank" rel="noopener">michael-barabanov</a>
+      </div>
+    </div>
   </div>
-  <div class="contact-details">
-    <div class="contact-item">
-      <span class="contact-label" data-i18n="hire.contact.loc.label">Standort</span>
-      <span class="contact-value" data-i18n="hire.contact.loc.val">Koblenz, Deutschland</span>
+</div>
+
+<div class="vk-overlay" id="vk-overlay" aria-hidden="true">
+  <div class="vk-overlay-backdrop" id="vk-backdrop"></div>
+  <div class="vk-card-expanded" role="dialog" aria-modal="true" aria-label="Visitenkarte">
+    <div class="vk-corner vk-corner-tl"></div>
+    <div class="vk-corner vk-corner-br"></div>
+    <div class="vk-chip"></div>
+    <div class="vk-top">
+      <img class="vk-avatar" src="img/michael.jpg" alt="Michael Barabanov" width="64" height="64">
+      <div class="vk-info">
+        <div class="vk-label">// vcard</div>
+        <div class="vk-name">Michael Barabanov</div>
+        <div class="vk-role">Backend &amp; Fullstack Developer</div>
+      </div>
     </div>
-    <div class="contact-item">
-      <span class="contact-label" data-i18n="hire.contact.rate.label">Stundensatz</span>
-      <span class="contact-value" data-i18n="hire.contact.rate.val">Auf Anfrage</span>
-    </div>
-    <div class="contact-item">
-      <span class="contact-label" data-i18n="hire.contact.av.label">Verfügbarkeit</span>
-      <span class="contact-value" data-i18n="hire.contact.av.val">Sofort verfügbar</span>
-    </div>
-    <div class="contact-item">
-      <span class="contact-label">LinkedIn</span>
-      <a href="https://linkedin.com/in/michael-barabanov-103265357" class="contact-value" target="_blank" rel="noopener">michael-barabanov</a>
+    <div class="vk-divider"></div>
+    <div class="vk-bottom">
+      <div class="vk-contact">
+        <div class="vk-loc">Koblenz, Deutschland</div>
+        <a class="vk-mail" href="mailto:M.Barabanov@mbara.net">M.Barabanov@mbara.net</a>
+        <a class="vk-domain" href="https://mbara.net" target="_blank" rel="noopener noreferrer">mbara.net</a>
+      </div>
+      <div class="vk-tags">
+        <span>PHP</span><span>Shopware 6</span><span>MySQL</span>
+      </div>
     </div>
   </div>
 </div>
@@ -933,6 +1152,37 @@
     window.addEventListener('scroll', () => {
       heroGrid.style.transform = `translateY(${window.scrollY * 0.25}px)`;
     }, { passive: true });
+  }
+
+  // CARD SPOTLIGHT (cursor-tracking glow) — pointer devices only
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    document.querySelectorAll('.service-card, .plugin-card, .reason-card, .vk-card-expanded').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--spot-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        card.style.setProperty('--spot-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    });
+  }
+
+  // VISITENKARTE OVERLAY (blob trigger)
+  const vkTrigger  = document.getElementById('vk-trigger');
+  const vkOverlay  = document.getElementById('vk-overlay');
+  const vkBackdrop = document.getElementById('vk-backdrop');
+  if (vkTrigger && vkOverlay) {
+    const openVk = () => {
+      vkOverlay.classList.add('open');
+      vkOverlay.setAttribute('aria-hidden', 'false');
+    };
+    const closeVk = () => {
+      vkOverlay.classList.remove('open');
+      vkOverlay.setAttribute('aria-hidden', 'true');
+    };
+    vkTrigger.addEventListener('click', openVk);
+    vkBackdrop?.addEventListener('click', closeVk);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && vkOverlay.classList.contains('open')) closeVk();
+    });
   }
 </script>
 </body>
