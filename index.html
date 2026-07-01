@@ -197,6 +197,7 @@ Offen für neue Herausforderungen, Freelance-Projekte und alles dazwischen.
   <div class="container">
     <h2 class="section-title reveal-left">// <span data-i18n="exp.title">erfahrung</span></h2>
     <div class="timeline">
+      <div class="timeline-beam" id="timeline-beam"></div>
 
       <div class="timeline-entry reveal">
         <div class="timeline-dot"></div>
@@ -433,6 +434,9 @@ Offen für neue Herausforderungen, Freelance-Projekte und alles dazwischen.
 
 <section id="kontakt">
   <div class="container">
+    <button type="button" class="vk-blob" id="vk-trigger" aria-label="Visitenkarte anzeigen">
+      <span class="vk-blob-core"></span>
+    </button>
     <div class="contact-grid">
     <div>
     <h2 class="section-title reveal-left">// kontakt</h2>
@@ -498,6 +502,34 @@ Offen für neue Herausforderungen, Freelance-Projekte und alles dazwischen.
       <button type="submit" class="btn btn-primary" data-i18n="form.submit">Senden →</button>
     </form>
     </div>
+    </div>
+  </div>
+
+  <div class="vk-overlay" id="vk-overlay" aria-hidden="true">
+    <div class="vk-overlay-backdrop" id="vk-backdrop"></div>
+    <div class="vk-card-expanded" role="dialog" aria-modal="true" aria-label="Visitenkarte">
+      <div class="vk-corner vk-corner-tl"></div>
+      <div class="vk-corner vk-corner-br"></div>
+      <div class="vk-chip"></div>
+      <div class="vk-top">
+        <img class="vk-avatar" src="img/michael.jpg" alt="Michael Barabanov" width="64" height="64">
+        <div class="vk-info">
+          <div class="vk-label">// vcard</div>
+          <div class="vk-name">Michael Barabanov</div>
+          <div class="vk-role" data-i18n="vk.role">Backend &amp; Fullstack Developer</div>
+        </div>
+      </div>
+      <div class="vk-divider"></div>
+      <div class="vk-bottom">
+        <div class="vk-contact">
+          <div class="vk-loc">Koblenz, Deutschland</div>
+          <a class="vk-mail" href="mailto:M.Barabanov@mbara.net">M.Barabanov@mbara.net</a>
+          <a class="vk-domain" href="https://mbara.net" target="_blank" rel="noopener noreferrer">mbara.net</a>
+        </div>
+        <div class="vk-tags">
+          <span>PHP</span><span>Shopware 6</span><span>MySQL</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
