@@ -528,7 +528,7 @@
     .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
   }
 
-  .lo { color: var(--muted); }
+  .lo { color: #8f8f8f; }
   .lo.active { color: var(--accent); }
 
   @media (max-width: 480px) {
@@ -771,9 +771,9 @@
     <a href="#stack">Stack</a>
     <a href="demo.html" style="display:flex;align-items:center;gap:5px;">Demo <span style="font-size:10px;padding:1px 5px;border:1px solid #e3b341;color:#e3b341;border-radius:3px;font-family:monospace;">wip</span></a>
     <button id="lang-btn" aria-label="Sprache wechseln" style="font-family:var(--mono);font-size:12px;background:none;border:none;cursor:pointer;letter-spacing:.05em;display:flex;align-items:center;gap:4px;padding:0;">
-      <span class="lo" id="lang-de" style="transition:color .2s;color:var(--muted);">DE</span>
+      <span class="lo" id="lang-de" style="transition:color .2s;color:#8f8f8f;">DE</span>
       <span style="color:var(--border);">/</span>
-      <span class="lo" id="lang-en" style="transition:color .2s;color:var(--muted);">EN</span>
+      <span class="lo" id="lang-en" style="transition:color .2s;color:#8f8f8f;">EN</span>
     </button>
     <a href="#contact" class="nav-cta" data-i18n="hire.nav.cta">Anfragen →</a>
   </div>
@@ -792,6 +792,7 @@
   <button onclick="document.getElementById('lang-btn').click();closeMobile();" style="font-family:var(--mono);font-size:14px;background:none;border:none;cursor:pointer;color:var(--muted);text-align:left;padding:0;">DE / EN</button>
 </div>
 
+<main>
 <div class="hero" id="hero">
   <div class="hero-grid" id="heroGrid"></div>
   <div class="hero-glow"></div>
@@ -907,7 +908,7 @@
           <span class="plugin-feature">Server-side API</span>
         </div>
       </div>
-      <a href="https://github.com/MichaelBarabanov/AiProductDescription" class="plugin-link" target="_blank" rel="noopener">GitHub →</a>
+      <a href="https://github.com/MichaelBarabanov/AiProductDescription" class="plugin-link" target="_blank" rel="noopener" aria-label="GitHub: AI Product Description">GitHub →</a>
     </div>
 
     <div class="plugin-card reveal">
@@ -929,7 +930,7 @@
           <span class="plugin-feature">Sales-Channel-Steuerung</span>
         </div>
       </div>
-      <a href="https://github.com/MichaelBarabanov/shopware-price-on-request" class="plugin-link" target="_blank" rel="noopener">GitHub →</a>
+      <a href="https://github.com/MichaelBarabanov/shopware-price-on-request" class="plugin-link" target="_blank" rel="noopener" aria-label="GitHub: Price On Request">GitHub →</a>
     </div>
 
     <div class="plugin-card reveal">
@@ -951,7 +952,7 @@
           <span class="plugin-feature">Sales-Channel</span>
         </div>
       </div>
-      <a href="https://github.com/MichaelBarabanov/shopware-coming-soon" class="plugin-link" target="_blank" rel="noopener">GitHub →</a>
+      <a href="https://github.com/MichaelBarabanov/shopware-coming-soon" class="plugin-link" target="_blank" rel="noopener" aria-label="GitHub: Coming Soon">GitHub →</a>
     </div>
   </div>
 </div>
@@ -1096,6 +1097,7 @@
     </div>
   </div>
 </div>
+</main>
 
 <footer>
   <span>© 2026 Michael Barabanov</span>

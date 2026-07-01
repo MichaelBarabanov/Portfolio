@@ -1041,7 +1041,7 @@ footer a:hover { color: var(--accent); }
 }
 .lang-btn:hover { border-color: var(--accent); }
 .lo {
-  color: var(--muted); transition: color .15s;
+  color: #8f8f8f; transition: color .15s;
   padding: 0 1px;
 }
 .lo.active { color: var(--accent); font-weight: 700; }
