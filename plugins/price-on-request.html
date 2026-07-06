@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>PriceOnRequest – Shopware 6 Plugin – Michael Barabanov</title>
+  <meta name="description" content="PriceOnRequest: Preise pro Sales Channel ausblenden und den Warenkorb-Button durch ein Anfrageformular ersetzen – für Shopware 6 B2B-Shops." />
+  <link rel="canonical" href="https://mbara.net/plugins/price-on-request" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://mbara.net/plugins/price-on-request" />
+  <meta property="og:title"       content="PriceOnRequest – Shopware 6 Plugin" />
+  <meta property="og:description" content="Preise pro Sales Channel ausblenden und den Warenkorb-Button durch ein Anfrageformular ersetzen – für B2B-Shops." />
+  <meta property="og:image"       content="https://mbara.net/og-image.png" />
+  <meta property="og:locale"      content="de_DE" />
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00ff88">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
+  <link rel="stylesheet" href="../style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PriceOnRequest",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Shopware 6.1+",
+    "url": "https://mbara.net/plugins/price-on-request",
+    "codeRepository": "https://github.com/MichaelBarabanov/shopware-price-on-request",
+    "author": { "@type": "Person", "name": "Michael Barabanov" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">portfolio</a></li>
+      <li><a href="../hire.html">hire</a></li>
+      <li><a href="../blog/">blog</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
+      <span class="lo active" id="lang-de">DE</span>
+      <span class="lang-sep">/</span>
+      <span class="lo" id="lang-en">EN</span>
+    </button>
+  </div>
+</nav>
+
+<main>
+<section class="product-hero">
+  <div class="container">
+    <div class="product-crumb reveal-left"><a href="../demo.html" data-i18n="pdp.back">← alle plugins</a></div>
+
+    <div class="product-badges reveal-left">
+      <span class="product-badge product-badge--sw">Shopware 6.1+</span>
+      <span class="product-badge product-badge--php">PHP 8.1+</span>
+      <span class="product-badge product-badge--tool">MIT License</span>
+    </div>
+
+    <h1 class="product-h1 reveal-left">PriceOnRequest</h1>
+    <p class="product-pitch reveal-left" data-i18n="pr.pitch">„Preis auf Anfrage" für Shopware 6 – blendet Preise pro Sales Channel aus und ersetzt den Warenkorb-Button durch ein Kontaktformular. Ideal für B2B-Shops ohne öffentliche Preisliste.</p>
+
+    <div class="product-ctas reveal-left">
+      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/shopware-price-on-request" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.gallery">// screenshots</div>
+    <div class="gallery reveal">
+      <a href="../img/plugins/price-on-request-storefront-listing.png" target="_blank" rel="noopener noreferrer">
+        <img src="../img/plugins/price-on-request-storefront-listing.png" alt="PriceOnRequest Storefront-Produktliste" loading="lazy" data-i18n-alt="pr.gallery.3" />
+      </a>
+      <a href="../img/plugins/price-on-request-storefront-modal.png" target="_blank" rel="noopener noreferrer">
+        <img src="../img/plugins/price-on-request-storefront-modal.png" alt="PriceOnRequest Anfrageformular" loading="lazy" data-i18n-alt="pr.gallery.4" />
+      </a>
+      <a href="../img/plugins/price-on-request-admin-general.png" target="_blank" rel="noopener noreferrer">
+        <img src="../img/plugins/price-on-request-admin-general.png" alt="PriceOnRequest Admin-Konfiguration" loading="lazy" data-i18n-alt="pr.gallery.1" />
+      </a>
+      <a href="../img/plugins/price-on-request-admin-spam.png" target="_blank" rel="noopener noreferrer">
+        <img src="../img/plugins/price-on-request-admin-spam.png" alt="PriceOnRequest Spam-Schutz-Konfiguration" loading="lazy" data-i18n-alt="pr.gallery.2" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.features">// features</div>
+    <h2 class="section-title reveal-left" data-i18n="pdp.h2.features">Was es kann.</h2>
+    <ul class="plugin-features reveal" style="margin-top:20px; gap:14px; max-width:760px;">
+      <li data-i18n="pr.f1">Preis pro Sales Channel ausblenden – andere Channels bleiben unberührt</li>
+      <li data-i18n="pr.f2">Konfigurierbarer Button-Text statt „In den Warenkorb"</li>
+      <li data-i18n="pr.f3">Anfrageformular als Modal direkt auf der Produktseite</li>
+      <li data-i18n="pr.f4">E-Mail-Benachrichtigung an einen konfigurierbaren Empfänger</li>
+      <li data-i18n="pr.f5">Spam-Schutz mit Limit für Anfragen pro Stunde</li>
+      <li data-i18n="pr.f6">Nur für ausgewählte Produkte oder für den gesamten Sales Channel aktivierbar</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.config">// konfiguration</div>
+    <h2 class="section-title reveal-left" data-i18n="pdp.h2.config">Konfiguration.</h2>
+    <table class="spec-table reveal">
+      <thead>
+        <tr>
+          <th data-i18n="pdp.spec.setting">Einstellung</th>
+          <th data-i18n="pdp.spec.default">Standard</th>
+          <th data-i18n="pdp.spec.desc">Beschreibung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Sales channel</td><td>empty</td><td data-i18n="pr.cfg.d1">Sales Channel, auf dem die Preise ausgeblendet werden</td></tr>
+        <tr><td>Recipient email</td><td>empty</td><td data-i18n="pr.cfg.d2">E-Mail-Adresse, an die neue Anfragen gehen</td></tr>
+        <tr><td>Button label</td><td>"Preis anfragen"</td><td data-i18n="pr.cfg.d3">Text auf dem Button, der den Warenkorb-Button ersetzt</td></tr>
+        <tr><td>Mode</td><td>all products</td><td data-i18n="pr.cfg.d4">Nur ausgewählte Produkte oder der gesamte Sales Channel</td></tr>
+        <tr><td>Max requests/hour</td><td>5</td><td data-i18n="pr.cfg.d5">Maximale Anzahl Anfragen pro Stunde gegen Spam</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section style="padding-bottom:32px;">
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.install">// installation</div>
+    <h2 class="section-title reveal-left" data-i18n="pdp.h2.install">Installation.</h2>
+    <p class="demo-sub reveal" data-i18n="pr.install.lead" style="margin-bottom:20px;">Plugin nach custom/plugins/ kopieren, installieren und den Empfänger konfigurieren:</p>
+    <div class="iterm reveal">
+      <div class="iterm-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="iterm-title">michael@shop:~</span>
+      </div>
+      <div class="iterm-output">
+        <div class="iterm-row"><span class="ip">$ </span><span>cp -r shopware-price-on-request custom/plugins/MichaPriceOnRequest</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:refresh</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:install --activate MichaPriceOnRequest</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>bin/console cache:clear</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:96px;">
+  <div class="container">
+    <div class="product-ctas">
+      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/shopware-price-on-request" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
+      <a class="btn btn-outline" href="../demo.html" data-i18n="pdp.back">← alle plugins</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-privacy" data-i18n="footer.privacy">
+      <span class="fp-dot"></span>
+      // keine cookies · kein tracking · deine daten gehören dir
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
+      <span><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a> · <a href="../blog/">Blog</a> · <a href="../hire.html">Hire Me</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../i18n.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>

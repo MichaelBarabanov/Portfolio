@@ -47,21 +47,8 @@
     .filter-tab:hover { border-color: var(--accent); color: var(--text); }
     .filter-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(0,232,122,.08); }
 
-    #demo-grid { padding-top: 32px; }
+    #demo-grid { padding-top: 32px; padding-bottom: 96px; }
     .card[hidden] { display: none; }
-
-    .proof-section { padding: 64px 0 96px; }
-    .proof-lead { color: var(--muted); font-size: 15px; max-width: 640px; line-height: 1.7; margin: 16px 0 32px; }
-    .proof-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
-    .proof-stat {
-      font-family: 'Cascadia Code','Fira Code',monospace; font-size: 12px;
-      padding: 6px 12px; border: 1px solid var(--sw); color: var(--sw);
-      border-radius: 20px; background: rgba(0,232,122,.06);
-    }
-    .proof-case { margin-bottom: 8px; font-family: 'Cascadia Code','Fira Code',monospace; font-size: 13px; color: var(--text); }
-    .proof-case .n { color: var(--accent); }
-    .proof-note { color: var(--muted); font-size: 13px; margin-top: 18px; line-height: 1.7; }
-    .proof-note strong { color: var(--text); }
   </style>
 </head>
 <body>
@@ -105,12 +92,15 @@
     <div class="cards" id="demo-cards">
 
       <article class="card reveal" data-cat="plugin">
+        <a class="card-thumb" href="plugins/botprotection.html">
+          <img src="img/plugins/botprotection-dashboard.png" alt="BotProtection Admin-Dashboard" loading="lazy" data-i18n-alt="bp.gallery.1" />
+        </a>
         <div class="card-cat card-cat--ai">SW6 Plugin · AI</div>
         <div class="card-header">
           <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
             <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
           </svg>
-          <a class="card-title" href="https://github.com/MichaelBarabanov/Shopware---BotProtection" target="_blank" rel="noopener noreferrer">BotProtection</a>
+          <a class="card-title" href="plugins/botprotection.html">BotProtection</a>
         </div>
         <p class="card-desc" data-i18n="card.botProtection.desc">Shopware 6 Plugin: Application-Layer-Schutz gegen Bots – Honeypot, Rate-Limiting und Time-Validation für Formulare. Admin-Dashboard mit optionaler KI-Bedrohungsanalyse (Claude).</p>
         <ul class="plugin-features" style="margin-top:4px;">
@@ -124,17 +114,20 @@
           <span class="lang">PHP</span>
           <span class="lang-dot" style="background:#a855f7;margin-left:6px"></span>
           <span class="lang">AI</span>
-          <a class="card-link" href="https://github.com/MichaelBarabanov/Shopware---BotProtection" target="_blank" rel="noopener noreferrer" aria-label="GitHub: BotProtection">GitHub →</a>
+          <a class="card-link" href="plugins/botprotection.html" data-i18n="demo.details" aria-label="Details: BotProtection">Details ansehen →</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="plugin">
+        <a class="card-thumb" href="plugins/ai-product-description.html">
+          <img src="img/plugins/ai-product-description-modal.png" alt="AiProductDescription Generierungs-Modal" loading="lazy" data-i18n-alt="ai.gallery.1" />
+        </a>
         <div class="card-cat card-cat--ai">SW6 Plugin · AI</div>
         <div class="card-header">
           <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
             <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
           </svg>
-          <a class="card-title" href="https://github.com/MichaelBarabanov/AiProductDescription" target="_blank" rel="noopener noreferrer">AiProductDescription</a>
+          <a class="card-title" href="plugins/ai-product-description.html">AiProductDescription</a>
         </div>
         <p class="card-desc" data-i18n="card.aiDesc.desc">Shopware 6 Plugin: AI-gestützter Produktbeschreibungs-Generator direkt im Admin. Unterstützt Claude (Anthropic) und ChatGPT (OpenAI), zwei Sprachen und drei Schreibstile.</p>
         <ul class="plugin-features" style="margin-top:4px;">
@@ -148,17 +141,20 @@
           <span class="lang">PHP</span>
           <span class="lang-dot" style="background:#a855f7;margin-left:6px"></span>
           <span class="lang">AI</span>
-          <a class="card-link" href="https://github.com/MichaelBarabanov/AiProductDescription" target="_blank" rel="noopener noreferrer" aria-label="GitHub: AiProductDescription">GitHub →</a>
+          <a class="card-link" href="plugins/ai-product-description.html" data-i18n="demo.details" aria-label="Details: AiProductDescription">Details ansehen →</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="plugin">
+        <a class="card-thumb" href="plugins/coming-soon.html">
+          <img src="img/plugins/coming-soon-page.png" alt="ComingSoon Storefront-Seite" loading="lazy" data-i18n-alt="cs.gallery.1" />
+        </a>
         <div class="card-cat card-cat--sw">SW6 Plugin</div>
         <div class="card-header">
           <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
             <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
           </svg>
-          <a class="card-title" href="https://github.com/MichaelBarabanov/shopware-coming-soon" target="_blank" rel="noopener noreferrer">ComingSoon</a>
+          <a class="card-title" href="plugins/coming-soon.html">ComingSoon</a>
         </div>
         <p class="card-desc" data-i18n="card.comingSoon.desc">Shopware 6 Plugin: Coming-Soon-Modus mit Countdown-Timer und E-Mail-Benachrichtigung vor dem Shop-Launch.</p>
         <ul class="plugin-features" style="margin-top:4px;">
@@ -170,17 +166,20 @@
         <div class="card-footer">
           <span class="lang-dot" style="background:#787CB5"></span>
           <span class="lang">PHP</span>
-          <a class="card-link" href="https://github.com/MichaelBarabanov/shopware-coming-soon" target="_blank" rel="noopener noreferrer" aria-label="GitHub: ComingSoon">GitHub →</a>
+          <a class="card-link" href="plugins/coming-soon.html" data-i18n="demo.details" aria-label="Details: ComingSoon">Details ansehen →</a>
         </div>
       </article>
 
       <article class="card reveal" data-cat="plugin">
+        <a class="card-thumb" href="plugins/price-on-request.html">
+          <img src="img/plugins/price-on-request-storefront-listing.png" alt="PriceOnRequest Storefront-Produktliste" loading="lazy" data-i18n-alt="pr.gallery.3" />
+        </a>
         <div class="card-cat card-cat--sw">SW6 Plugin</div>
         <div class="card-header">
           <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
             <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
           </svg>
-          <a class="card-title" href="https://github.com/MichaelBarabanov/shopware-price-on-request" target="_blank" rel="noopener noreferrer">PriceOnRequest</a>
+          <a class="card-title" href="plugins/price-on-request.html">PriceOnRequest</a>
         </div>
         <p class="card-desc" data-i18n="card.priceReq.desc">Shopware 6 Plugin: Versteckt Preise und ersetzt den Warenkorb-Button durch ein Kontaktformular. Perfekt für B2B-Shops.</p>
         <ul class="plugin-features" style="margin-top:4px;">
@@ -192,7 +191,7 @@
         <div class="card-footer">
           <span class="lang-dot" style="background:#787CB5"></span>
           <span class="lang">PHP</span>
-          <a class="card-link" href="https://github.com/MichaelBarabanov/shopware-price-on-request" target="_blank" rel="noopener noreferrer" aria-label="GitHub: PriceOnRequest">GitHub →</a>
+          <a class="card-link" href="plugins/price-on-request.html" data-i18n="demo.details" aria-label="Details: PriceOnRequest">Details ansehen →</a>
         </div>
       </article>
 
@@ -219,44 +218,6 @@
       </article>
 
     </div>
-  </div>
-</section>
-
-<section id="proof" class="proof-section">
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="demo.proof.tag">// verifiziert</div>
-    <h2 class="section-title reveal-left" data-i18n="demo.proof.h2">Nicht nur getestet – live geprüft.</h2>
-    <p class="proof-lead reveal" data-i18n="demo.proof.lead">BotProtection wurde end-to-end gegen eine laufende Shopware 6.7 Instanz getestet, nicht nur isoliert unit-getestet. Drei Angriffsszenarien wurden live ausgelöst und erschienen innerhalb von Sekunden im Admin-Dashboard.</p>
-
-    <div class="proof-stats reveal">
-      <span class="proof-stat">20 Tests · 126 Assertions</span>
-      <span class="proof-stat">PHPStan Level 8</span>
-      <span class="proof-stat">0 Errors</span>
-    </div>
-
-    <div class="iterm reveal">
-      <div class="iterm-bar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <span class="iterm-title">michael@shop:~</span>
-      </div>
-      <div class="iterm-output">
-        <div class="proof-case"><span class="n">1.</span> <span data-i18n="demo.proof.case1">Honeypot – verstecktes Feld gefüllt (Kontaktformular)</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>curl -X POST https://shop.example/form/contact -d "micha_bp_website=http://spam-bot.example" -d "email=bot@spam.example"</span></div>
-        <div class="ir"><div>[{"type":"danger","alert":"Your request could not be processed."}]</div></div>
-
-        <div class="proof-case" style="margin-top:18px;"><span class="n">2.</span> <span data-i18n="demo.proof.case2">Time-Validation – kein signiertes Token (Login)</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>curl -X POST https://shop.example/account/login -d "email=bot2@spam.example" -d "password=irrelevant123"</span></div>
-        <div class="ir"><div><span data-i18n="demo.proof.case2.result">status: 302  → redirect mit Flash-Message</span></div></div>
-
-        <div class="proof-case" style="margin-top:18px;"><span class="n">3.</span> <span data-i18n="demo.proof.case3">Rate-Limit – 6 Requests, Limit ist 5 (Newsletter)</span></div>
-        <div class="ir">
-          <div>Request 1–5: "type":"success"</div>
-          <div>Request 6:   "type":"danger"  ← <span data-i18n="demo.proof.case3.result">blockiert, Limit überschritten</span></div>
-        </div>
-      </div>
-    </div>
-
-    <p class="proof-note reveal" data-i18n-html="demo.proof.note">Alle drei Versuche erscheinen sofort unter <strong>Settings → Bot Protection</strong> – mit korrektem Grund, Zeitstempel und IP.</p>
   </div>
 </section>
 </main>

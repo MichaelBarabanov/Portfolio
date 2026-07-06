@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>ComingSoon – Shopware 6 Plugin – Michael Barabanov</title>
+  <meta name="description" content="ComingSoon: Coming-Soon-Modus für Shopware 6 mit Countdown, IP-Whitelist, geheimem Preview-Link und SEO-sicherem HTTP 503." />
+  <link rel="canonical" href="https://mbara.net/plugins/coming-soon" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://mbara.net/plugins/coming-soon" />
+  <meta property="og:title"       content="ComingSoon – Shopware 6 Plugin" />
+  <meta property="og:description" content="Coming-Soon-Modus für Shopware 6 mit Countdown, IP-Whitelist, geheimem Preview-Link und SEO-sicherem HTTP 503." />
+  <meta property="og:image"       content="https://mbara.net/og-image.png" />
+  <meta property="og:locale"      content="de_DE" />
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00ff88">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
+  <link rel="stylesheet" href="../style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ComingSoon",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Shopware 6.6-6.7",
+    "url": "https://mbara.net/plugins/coming-soon",
+    "codeRepository": "https://github.com/MichaelBarabanov/shopware-coming-soon",
+    "author": { "@type": "Person", "name": "Michael Barabanov" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html">portfolio</a></li>
+      <li><a href="../hire.html">hire</a></li>
+      <li><a href="../blog/">blog</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
+      <span class="lo active" id="lang-de">DE</span>
+      <span class="lang-sep">/</span>
+      <span class="lo" id="lang-en">EN</span>
+    </button>
+  </div>
+</nav>
+
+<main>
+<section class="product-hero">
+  <div class="container">
+    <div class="product-crumb reveal-left"><a href="../demo.html" data-i18n="pdp.back">← alle plugins</a></div>
+
+    <div class="product-badges reveal-left">
+      <span class="product-badge product-badge--sw">Shopware 6.6.x / 6.7.x</span>
+      <span class="product-badge product-badge--php">PHP 8.2+</span>
+      <span class="product-badge product-badge--tool">MIT License</span>
+    </div>
+
+    <h1 class="product-h1 reveal-left">ComingSoon</h1>
+    <p class="product-pitch reveal-left" data-i18n="cs.pitch">Coming-Soon-Modus für Shopware 6 – pro Sales Channel oder einzelne URLs, mit Countdown, geheimem Preview-Link und sauberem SEO-Verhalten (HTTP 503 statt 200).</p>
+
+    <div class="product-ctas reveal-left">
+      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/shopware-coming-soon" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.gallery">// screenshots</div>
+    <div class="gallery reveal">
+      <a href="../img/plugins/coming-soon-page.png" target="_blank" rel="noopener noreferrer">
+        <img src="../img/plugins/coming-soon-page.png" alt="ComingSoon Storefront-Seite" loading="lazy" data-i18n-alt="cs.gallery.1" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.features">// features</div>
+    <h2 class="section-title reveal-left" data-i18n="pdp.h2.features">Was es kann.</h2>
+    <ul class="plugin-features reveal" style="margin-top:20px; gap:14px; max-width:760px;">
+      <li data-i18n="cs.f1">Pro Sales Channel aktivierbar oder auf einzelne URLs mit Wildcard begrenzt</li>
+      <li data-i18n="cs.f2">Vollständig konfigurierbares Design – Farben, Logo, Text</li>
+      <li data-i18n="cs.f3">Countdown mit automatischer Freischaltung zum Zieldatum</li>
+      <li data-i18n="cs.f4">IP-Whitelist und geheimer Preview-Link (?michaPreview=TOKEN) mit 7-Tage-Cookie</li>
+      <li data-i18n="cs.f5">SEO-sicher: HTTP 503 + Retry-After-Header + Noindex, kein Content-Leak an Suchmaschinen</li>
+      <li data-i18n="cs.f6">Kein Build-Schritt nötig, cache-aware für Reverse-Proxies</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.config">// konfiguration</div>
+    <h2 class="section-title reveal-left" data-i18n="pdp.h2.config">Konfiguration.</h2>
+    <table class="spec-table reveal">
+      <thead>
+        <tr>
+          <th data-i18n="pdp.spec.setting">Einstellung</th>
+          <th data-i18n="pdp.spec.default">Standard</th>
+          <th data-i18n="pdp.spec.desc">Beschreibung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Coming soon active</td><td>off</td><td data-i18n="cs.cfg.d1">Coming-Soon-Modus für diesen Sales Channel aktivieren</td></tr>
+        <tr><td>Excluded URLs</td><td>empty</td><td data-i18n="cs.cfg.d2">Kommagetrennte URL-Pfade mit optionalem Wildcard (*), die ausgenommen werden</td></tr>
+        <tr><td>Launch date</td><td>empty</td><td data-i18n="cs.cfg.d3">Zieldatum für die automatische Freischaltung</td></tr>
+        <tr><td>IP whitelist</td><td>empty</td><td data-i18n="cs.cfg.d4">Kommagetrennte IP-Adressen, die die Seite normal sehen</td></tr>
+        <tr><td>Preview token</td><td>empty</td><td data-i18n="cs.cfg.d5">Geheimer Token für den Vorschau-Link, setzt ein 7-Tage-Cookie</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.install">// installation</div>
+    <h2 class="section-title reveal-left" data-i18n="pdp.h2.install">Installation.</h2>
+    <p class="demo-sub reveal" data-i18n="cs.install.lead" style="margin-bottom:20px;">Plugin nach custom/plugins/ kopieren, dann installieren und aktivieren:</p>
+    <div class="iterm reveal">
+      <div class="iterm-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="iterm-title">michael@shop:~</span>
+      </div>
+      <div class="iterm-output">
+        <div class="iterm-row"><span class="ip">$ </span><span>cp -r shopware-coming-soon custom/plugins/MichaComingSoon</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:refresh</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:install --activate MichaComingSoon</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>bin/console cache:clear</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:32px;">
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="pdp.tag.faq">// häufige fragen</div>
+    <h2 class="section-title reveal-left" data-i18n="pdp.h2.faq" style="margin-bottom:20px;">Häufige Fragen.</h2>
+    <div class="reveal" style="max-width:720px;">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="cs.faq.q1">Warum HTTP 503 statt 200?</div>
+        <div class="faq-a" data-i18n="cs.faq.a1">200 signalisiert Suchmaschinen "diese Seite ist der echte, dauerhafte Inhalt" – das führt dazu, dass die Coming-Soon-Seite selbst indexiert wird. 503 mit Retry-After sagt Crawlern "komm später wieder", ohne den echten Content preiszugeben oder das Ranking zu gefährden.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="cs.faq.q2">Was ist mit Reverse-Proxy- oder HTTP-Caches?</div>
+        <div class="faq-a" data-i18n="cs.faq.a2">Die Antwort wird mit Headern ausgeliefert, die ein Zwischenspeichern der 503-Seite verhindern, damit nach der Freischaltung sofort der echte Shop ausgeliefert wird und nicht noch eine gecachte Coming-Soon-Seite.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="cs.faq.q3">Funktioniert das Admin-Backend weiterhin normal?</div>
+        <div class="faq-a" data-i18n="cs.faq.a3">Ja – der Coming-Soon-Modus greift ausschließlich im Storefront. Das Admin bleibt uneingeschränkt erreichbar, damit während der Vorbereitungsphase normal weitergearbeitet werden kann.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:96px;">
+  <div class="container">
+    <div class="product-ctas">
+      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/shopware-coming-soon" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
+      <a class="btn btn-outline" href="../demo.html" data-i18n="pdp.back">← alle plugins</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-privacy" data-i18n="footer.privacy">
+      <span class="fp-dot"></span>
+      // keine cookies · kein tracking · deine daten gehören dir
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
+      <span><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a> · <a href="../blog/">Blog</a> · <a href="../hire.html">Hire Me</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="../i18n.js"></script>
+<script src="../main.js"></script>
+</body>
+</html>
