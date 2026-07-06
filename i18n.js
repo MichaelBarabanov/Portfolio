@@ -62,6 +62,7 @@
       'term.hint':            'Tippe <code>help</code> für alle Commands — probier\'s aus.',
       'contact.sub':          'Projektanfrage, Freelance-Job oder einfach reden?',
       'footer.copy':          '© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener">github.com/MichaelBarabanov</a>',
+      'footer.privacy':       '<span class="fp-dot"></span> // keine cookies · kein tracking · deine daten gehören dir',
 
       // Demo/Showcase page
       'demo.tag':             '// showcase',
@@ -415,6 +416,7 @@
       'term.hint':            'Type <code>help</code> for all commands — give it a try.',
       'contact.sub':          'Project inquiry, freelance job or just a chat?',
       'footer.copy':          '© 2026 Michael Barabanov · Koblenz, Germany · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener">github.com/MichaelBarabanov</a>',
+      'footer.privacy':       '<span class="fp-dot"></span> // no cookies · no tracking · your data is yours',
 
       // Demo/Showcase page
       'demo.tag':             '// showcase',
