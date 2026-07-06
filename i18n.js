@@ -96,8 +96,10 @@
       'demo.proof.lead':      'BotProtection wurde end-to-end gegen eine laufende Shopware 6.7 Instanz getestet, nicht nur isoliert unit-getestet. Drei Angriffsszenarien wurden live ausgelöst und erschienen innerhalb von Sekunden im Admin-Dashboard.',
       'demo.proof.case1':     'Honeypot – verstecktes Feld gefüllt (Kontaktformular)',
       'demo.proof.case2':     'Time-Validation – kein signiertes Token (Login)',
+      'demo.proof.case2.result': 'status: 302  → redirect mit Flash-Message',
       'demo.proof.case3':     'Rate-Limit – 6 Requests, Limit ist 5 (Newsletter)',
-      'demo.proof.note':      'Alle drei Versuche erscheinen sofort unter Settings → Bot Protection – mit korrektem Grund, Zeitstempel und IP.',
+      'demo.proof.case3.result': 'blockiert, Limit überschritten',
+      'demo.proof.note':      'Alle drei Versuche erscheinen sofort unter <strong>Settings → Bot Protection</strong> – mit korrektem Grund, Zeitstempel und IP.',
 
       // CV button
       'cv.btn':               'Lebenslauf anfordern',
@@ -327,8 +329,10 @@
       'demo.proof.lead':      'BotProtection was tested end-to-end against a running Shopware 6.7 instance, not just unit tested in isolation. Three attack scenarios were triggered live and confirmed to appear in the admin dashboard within seconds.',
       'demo.proof.case1':     'Honeypot – hidden field filled (contact form)',
       'demo.proof.case2':     'Time validation – no signed token (login)',
+      'demo.proof.case2.result': 'status: 302  → redirect with flash message',
       'demo.proof.case3':     'Rate limit – 6 requests, limit is 5 (newsletter)',
-      'demo.proof.note':      'All three attempts show up immediately under Settings → Bot Protection – with the correct reason, timestamp and IP.',
+      'demo.proof.case3.result': 'blocked, limit exceeded',
+      'demo.proof.note':      'All three attempts show up immediately under <strong>Settings → Bot Protection</strong> – with the correct reason, timestamp and IP.',
 
       // CV button
       'cv.btn':               'Request CV',

@@ -246,17 +246,17 @@
 
         <div class="proof-case" style="margin-top:18px;"><span class="n">2.</span> <span data-i18n="demo.proof.case2">Time-Validation – kein signiertes Token (Login)</span></div>
         <div class="iterm-row"><span class="ip">$ </span><span>curl -X POST https://shop.example/account/login -d "email=bot2@spam.example" -d "password=irrelevant123"</span></div>
-        <div class="ir"><div>status: 302  → redirect mit Flash-Message</div></div>
+        <div class="ir"><div><span data-i18n="demo.proof.case2.result">status: 302  → redirect mit Flash-Message</span></div></div>
 
         <div class="proof-case" style="margin-top:18px;"><span class="n">3.</span> <span data-i18n="demo.proof.case3">Rate-Limit – 6 Requests, Limit ist 5 (Newsletter)</span></div>
         <div class="ir">
           <div>Request 1–5: "type":"success"</div>
-          <div>Request 6:   "type":"danger"  ← blockiert, Limit überschritten</div>
+          <div>Request 6:   "type":"danger"  ← <span data-i18n="demo.proof.case3.result">blockiert, Limit überschritten</span></div>
         </div>
       </div>
     </div>
 
-    <p class="proof-note reveal" data-i18n="demo.proof.note">Alle drei Versuche erscheinen sofort unter <strong>Settings → Bot Protection</strong> – mit korrektem Grund, Zeitstempel und IP.</p>
+    <p class="proof-note reveal" data-i18n-html="demo.proof.note">Alle drei Versuche erscheinen sofort unter <strong>Settings → Bot Protection</strong> – mit korrektem Grund, Zeitstempel und IP.</p>
   </div>
 </section>
 </main>
