@@ -3,204 +3,278 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Demo – Michael Barabanov</title>
-  <meta name="description" content="Live-Demos der Shopware 6 Plugins von Michael Barabanov – coming soon." />
-  <meta name="robots" content="noindex, nofollow" />
+
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>Plugins & Projekte – Michael Barabanov</title>
+  <meta name="description" content="Vier veröffentlichte Shopware 6 Plugins und eigene Software-Projekte von Michael Barabanov – mit Features, Tech-Stack und Links zum Quellcode." />
+  <link rel="canonical" href="https://mbara.net/demo" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://mbara.net/demo" />
+  <meta property="og:title"       content="Plugins & Projekte – Michael Barabanov" />
+  <meta property="og:description" content="Shopware 6 Plugins und Software-Projekte – Features, Tech-Stack, Quellcode." />
+  <meta property="og:image"       content="https://mbara.net/og-image.png" />
+  <meta property="og:locale"      content="de_DE" />
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00ff88">
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
+  <link rel="stylesheet" href="style.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    .page-tag {
+      font-family: 'Cascadia Code','Fira Code',monospace;
+      font-size: 11px; color: var(--accent); letter-spacing: .15em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .demo-hero { padding: 140px 0 40px; }
+    .demo-sub { color: var(--muted); font-size: 16px; max-width: 620px; margin-top: 12px; }
 
-    :root {
-      --bg: #0a0a0a; --surface: #111111; --surface2: #1a1a1a;
-      --border: #222222; --text: #e8e8e8; --muted: #666666;
-      --accent: #00ff88; --glow: rgba(0,255,136,0.2);
+    .filter-tabs { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
+    .filter-tab {
+      font-family: 'Cascadia Code','Fira Code',monospace;
+      font-size: 13px; padding: 8px 18px;
+      border: 1px solid var(--border); border-radius: 20px;
+      background: transparent; color: var(--muted);
+      cursor: pointer; transition: border-color .2s, color .2s, background .2s;
     }
+    .filter-tab:hover { border-color: var(--accent); color: var(--text); }
+    .filter-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(0,232,122,.08); }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 32px 24px;
-    }
+    #demo-grid { padding-top: 32px; }
+    .card[hidden] { display: none; }
 
-    .bg-grid {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(0,255,136,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,136,.03) 1px, transparent 1px);
-      background-size: 52px 52px;
+    .proof-section { padding: 64px 0 96px; }
+    .proof-lead { color: var(--muted); font-size: 15px; max-width: 640px; line-height: 1.7; margin: 16px 0 32px; }
+    .proof-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+    .proof-stat {
+      font-family: 'Cascadia Code','Fira Code',monospace; font-size: 12px;
+      padding: 6px 12px; border: 1px solid var(--sw); color: var(--sw);
+      border-radius: 20px; background: rgba(0,232,122,.06);
     }
-
-    .card {
-      position: relative; z-index: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      max-width: 680px;
-      width: 100%;
-      box-shadow: 0 0 60px rgba(0,255,136,.05), 0 24px 64px rgba(0,0,0,.6);
-    }
-    .card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-    }
-
-    .bar {
-      display: flex; align-items: center; gap: 7px;
-      padding: 12px 18px;
-      background: var(--surface2);
-      border-bottom: 1px solid var(--border);
-    }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .dot.r { background: #ff5f57; }
-    .dot.y { background: #febc2e; }
-    .dot.g { background: #28c840; }
-    .bar-title { margin-left: 8px; font-size: 13px; color: var(--muted); }
-
-    .body { padding: 36px 40px 40px; }
-
-    .prompt { color: var(--accent); font-size: 13px; margin-bottom: 28px; }
-
-    h1 {
-      font-size: clamp(26px, 6vw, 46px);
-      font-weight: 900;
-      color: var(--text);
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    h1 span { color: var(--accent); }
-
-    .sub {
-      font-size: 14px; color: var(--muted);
-      margin-bottom: 36px; line-height: 1.6;
-    }
-
-    .status-line {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--accent);
-      border-radius: 6px;
-      padding: 12px 16px;
-      font-size: 13px; color: var(--muted);
-      margin-bottom: 32px;
-    }
-    .pulse {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 1; box-shadow: 0 0 0 0 var(--glow); }
-      50%      { opacity: .5; box-shadow: 0 0 0 6px transparent; }
-    }
-
-    .coming-list {
-      list-style: none;
-      display: flex; flex-direction: column; gap: 10px;
-      margin-bottom: 36px;
-    }
-    .coming-list li {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 14px; color: var(--muted);
-      padding: 10px 14px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-    }
-    .coming-list li .tag {
-      font-size: 11px; padding: 2px 8px;
-      border: 1px solid var(--border);
-      border-radius: 4px; color: var(--muted);
-      flex-shrink: 0;
-    }
-    .coming-list li .name { flex: 1; }
-    .coming-list li .wip {
-      font-size: 11px; color: #e3b341;
-      border: 1px solid #e3b341;
-      border-radius: 4px; padding: 2px 8px;
-      flex-shrink: 0;
-    }
-
-    .back {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--muted); font-size: 13px;
-      text-decoration: none;
-      transition: color .15s;
-    }
-    .back:hover { color: var(--accent); }
-
-    @media (max-width: 480px) {
-      .body { padding: 24px 20px 28px; }
-      h1 { font-size: 26px; }
-    }
+    .proof-case { margin-bottom: 8px; font-family: 'Cascadia Code','Fira Code',monospace; font-size: 13px; color: var(--text); }
+    .proof-case .n { color: var(--accent); }
+    .proof-note { color: var(--muted); font-size: 13px; margin-top: 18px; line-height: 1.7; }
+    .proof-note strong { color: var(--text); }
   </style>
 </head>
 <body>
-  <div class="bg-grid" aria-hidden="true"></div>
 
-  <div class="card">
-    <div class="bar">
-      <span class="dot r"></span>
-      <span class="dot y"></span>
-      <span class="dot g"></span>
-      <span class="bar-title">demo.mbara.net</span>
-    </div>
-    <div class="body">
-      <div class="prompt">&gt;_ ls demos/</div>
-      <h1>Live <span>Demos</span></h1>
-      <p class="sub">Interaktive Demos meiner Shopware 6 Plugins und Projekte.<br>Gerade noch im Aufbau – aber es kommt.</p>
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">portfolio</a></li>
+      <li><a href="hire.html">hire</a></li>
+      <li><a href="blog/">blog</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
+      <span class="lo active" id="lang-de">DE</span>
+      <span class="lang-sep">/</span>
+      <span class="lo" id="lang-en">EN</span>
+    </button>
+  </div>
+</nav>
 
-      <div class="status-line">
-        <span class="pulse"></span>
-        <span>Status: <strong style="color:var(--text)">work in progress</strong> &nbsp;—&nbsp; Demos werden gerade vorbereitet</span>
-      </div>
+<main>
+<section id="demo-hero" class="demo-hero">
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="demo.tag">// showcase</div>
+    <h1 class="section-title reveal-left" style="font-size:clamp(32px,5vw,52px)" data-i18n="demo.h1">Plugins &amp; Projekte.</h1>
+    <p class="demo-sub reveal-left" data-i18n="demo.sub">Vier veröffentlichte Shopware 6 Plugins und eigene Software-Projekte – jeder Code ist echt, jeder Link führt zum Repository.</p>
 
-      <ul class="coming-list">
-        <li>
-          <span class="tag">SW6</span>
-          <span class="name">PriceOnRequest Plugin</span>
-          <span class="wip">building...</span>
-        </li>
-        <li>
-          <span class="tag">SW6</span>
-          <span class="name">ComingSoon Plugin</span>
-          <span class="wip">building...</span>
-        </li>
-        <li>
-          <span class="tag">SW6 · AI</span>
-          <span class="name">AiProductDescription Plugin</span>
-          <span class="wip">building...</span>
-        </li>
-        <li>
-          <span class="tag">API</span>
-          <span class="name">JTL ↔ Shopware 6 REST Bridge</span>
-          <span class="wip">building...</span>
-        </li>
-      </ul>
-
-      <a class="back" href="index.html">← zurück zum Portfolio</a>
+    <div class="filter-tabs reveal-left" id="filter-tabs">
+      <button type="button" class="filter-tab active" data-filter="all" data-i18n="demo.filter.all">alle</button>
+      <button type="button" class="filter-tab" data-filter="plugin" data-i18n="demo.filter.plugins">plugins</button>
+      <button type="button" class="filter-tab" data-filter="software" data-i18n="demo.filter.software">software</button>
     </div>
   </div>
+</section>
 
-  <script>
-    (function() {
-      var prompt = document.querySelector('.prompt');
-      var commands = ['ls demos/', 'cat status.txt', 'git log --oneline', 'ls demos/'];
-      var ci = 0;
-      setInterval(function() {
-        ci = (ci + 1) % commands.length;
-        prompt.textContent = '>_ ' + commands[ci];
-      }, 3000);
-    })();
-  </script>
+<section id="demo-grid">
+  <div class="container">
+    <div class="cards" id="demo-cards">
+
+      <article class="card reveal" data-cat="plugin">
+        <div class="card-cat card-cat--ai">SW6 Plugin · AI</div>
+        <div class="card-header">
+          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
+          </svg>
+          <a class="card-title" href="https://github.com/MichaelBarabanov/Shopware---BotProtection" target="_blank" rel="noopener noreferrer">BotProtection</a>
+        </div>
+        <p class="card-desc" data-i18n="card.botProtection.desc">Shopware 6 Plugin: Application-Layer-Schutz gegen Bots – Honeypot, Rate-Limiting und Time-Validation für Formulare. Admin-Dashboard mit optionaler KI-Bedrohungsanalyse (Claude).</p>
+        <ul class="plugin-features" style="margin-top:4px;">
+          <li data-i18n="demo.card.bp.f1">✓ Honeypot, Rate-Limiting &amp; Time-Validation</li>
+          <li data-i18n="demo.card.bp.f2">✓ Admin-Dashboard mit 14-Tage-Statistik</li>
+          <li data-i18n="demo.card.bp.f3">✓ Optionale KI-Bedrohungsanalyse (Claude)</li>
+          <li data-i18n="demo.card.bp.f4">✓ DSGVO-konformes Logging mit Auto-Löschung</li>
+        </ul>
+        <div class="card-footer">
+          <span class="lang-dot" style="background:#787CB5"></span>
+          <span class="lang">PHP</span>
+          <span class="lang-dot" style="background:#a855f7;margin-left:6px"></span>
+          <span class="lang">AI</span>
+          <a class="card-link" href="https://github.com/MichaelBarabanov/Shopware---BotProtection" target="_blank" rel="noopener noreferrer" aria-label="GitHub: BotProtection">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="plugin">
+        <div class="card-cat card-cat--ai">SW6 Plugin · AI</div>
+        <div class="card-header">
+          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
+          </svg>
+          <a class="card-title" href="https://github.com/MichaelBarabanov/AiProductDescription" target="_blank" rel="noopener noreferrer">AiProductDescription</a>
+        </div>
+        <p class="card-desc" data-i18n="card.aiDesc.desc">Shopware 6 Plugin: AI-gestützter Produktbeschreibungs-Generator direkt im Admin. Unterstützt Claude (Anthropic) und ChatGPT (OpenAI), zwei Sprachen und drei Schreibstile.</p>
+        <ul class="plugin-features" style="margin-top:4px;">
+          <li data-i18n="demo.card.ai.f1">✓ Claude &amp; ChatGPT wählbar</li>
+          <li data-i18n="demo.card.ai.f2">✓ Deutsch &amp; Englisch</li>
+          <li data-i18n="demo.card.ai.f3">✓ Drei Schreibstile: Professionell, Casual, SEO</li>
+          <li data-i18n="demo.card.ai.f4">✓ API-Calls serverseitig – Keys verlassen nie den Server</li>
+        </ul>
+        <div class="card-footer">
+          <span class="lang-dot" style="background:#787CB5"></span>
+          <span class="lang">PHP</span>
+          <span class="lang-dot" style="background:#a855f7;margin-left:6px"></span>
+          <span class="lang">AI</span>
+          <a class="card-link" href="https://github.com/MichaelBarabanov/AiProductDescription" target="_blank" rel="noopener noreferrer" aria-label="GitHub: AiProductDescription">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="plugin">
+        <div class="card-cat card-cat--sw">SW6 Plugin</div>
+        <div class="card-header">
+          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
+          </svg>
+          <a class="card-title" href="https://github.com/MichaelBarabanov/shopware-coming-soon" target="_blank" rel="noopener noreferrer">ComingSoon</a>
+        </div>
+        <p class="card-desc" data-i18n="card.comingSoon.desc">Shopware 6 Plugin: Coming-Soon-Modus mit Countdown-Timer und E-Mail-Benachrichtigung vor dem Shop-Launch.</p>
+        <ul class="plugin-features" style="margin-top:4px;">
+          <li data-i18n="demo.card.cs.f1">✓ Pro Sales Channel oder einzelne URLs</li>
+          <li data-i18n="demo.card.cs.f2">✓ IP-Whitelist &amp; geheimer Preview-Link</li>
+          <li data-i18n="demo.card.cs.f3">✓ SEO-sicher: HTTP 503 + Retry-After + Noindex</li>
+          <li data-i18n="demo.card.cs.f4">✓ Countdown mit automatischer Freischaltung</li>
+        </ul>
+        <div class="card-footer">
+          <span class="lang-dot" style="background:#787CB5"></span>
+          <span class="lang">PHP</span>
+          <a class="card-link" href="https://github.com/MichaelBarabanov/shopware-coming-soon" target="_blank" rel="noopener noreferrer" aria-label="GitHub: ComingSoon">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="plugin">
+        <div class="card-cat card-cat--sw">SW6 Plugin</div>
+        <div class="card-header">
+          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
+          </svg>
+          <a class="card-title" href="https://github.com/MichaelBarabanov/shopware-price-on-request" target="_blank" rel="noopener noreferrer">PriceOnRequest</a>
+        </div>
+        <p class="card-desc" data-i18n="card.priceReq.desc">Shopware 6 Plugin: Versteckt Preise und ersetzt den Warenkorb-Button durch ein Kontaktformular. Perfekt für B2B-Shops.</p>
+        <ul class="plugin-features" style="margin-top:4px;">
+          <li data-i18n="demo.card.pr.f1">✓ Preis pro Sales Channel ausblenden</li>
+          <li data-i18n="demo.card.pr.f2">✓ Konfigurierbarer Button-Text</li>
+          <li data-i18n="demo.card.pr.f3">✓ Anfrageformular als Modal</li>
+          <li data-i18n="demo.card.pr.f4">✓ E-Mail-Benachrichtigung an konfigurierbaren Empfänger</li>
+        </ul>
+        <div class="card-footer">
+          <span class="lang-dot" style="background:#787CB5"></span>
+          <span class="lang">PHP</span>
+          <a class="card-link" href="https://github.com/MichaelBarabanov/shopware-price-on-request" target="_blank" rel="noopener noreferrer" aria-label="GitHub: PriceOnRequest">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="card reveal" data-cat="software">
+        <div class="card-cat card-cat--tool">Software</div>
+        <div class="card-header">
+          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
+          </svg>
+          <a class="card-title" href="https://github.com/MichaelBarabanov/finanz-dashboard" target="_blank" rel="noopener noreferrer">Finanz Dashboard</a>
+        </div>
+        <p class="card-desc" data-i18n="demo.card.fd.desc">Privates, lokales Finanz-Dashboard mit Laravel 11, Livewire 3 und SQLite. Konten, Buchungen, PDF-Kontoauszug-Import mit Salden-Prüfsumme, lernende Kategorisierungs-Regeln, Schulden- &amp; Ratentracking.</p>
+        <ul class="plugin-features" style="margin-top:4px;">
+          <li data-i18n="demo.card.fd.f1">✓ PDF-Import mit Dedup &amp; Prüfsumme</li>
+          <li data-i18n="demo.card.fd.f2">✓ Lernende Regel-Engine für Kategorisierung</li>
+          <li data-i18n="demo.card.fd.f3">✓ Schulden- &amp; Ratenplan-Tracking</li>
+          <li data-i18n="demo.card.fd.f4">✓ Läuft komplett lokal über Docker</li>
+        </ul>
+        <div class="card-footer">
+          <span class="lang-dot" style="background:#4F5AF5"></span>
+          <span class="lang">Laravel</span>
+          <a class="card-link" href="https://github.com/MichaelBarabanov/finanz-dashboard" target="_blank" rel="noopener noreferrer" aria-label="GitHub: Finanz Dashboard">GitHub →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="proof" class="proof-section">
+  <div class="container">
+    <div class="page-tag reveal-left" data-i18n="demo.proof.tag">// verifiziert</div>
+    <h2 class="section-title reveal-left" data-i18n="demo.proof.h2">Nicht nur getestet – live geprüft.</h2>
+    <p class="proof-lead reveal" data-i18n="demo.proof.lead">BotProtection wurde end-to-end gegen eine laufende Shopware 6.7 Instanz getestet, nicht nur isoliert unit-getestet. Drei Angriffsszenarien wurden live ausgelöst und erschienen innerhalb von Sekunden im Admin-Dashboard.</p>
+
+    <div class="proof-stats reveal">
+      <span class="proof-stat">20 Tests · 126 Assertions</span>
+      <span class="proof-stat">PHPStan Level 8</span>
+      <span class="proof-stat">0 Errors</span>
+    </div>
+
+    <div class="iterm reveal">
+      <div class="iterm-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="iterm-title">michael@shop:~</span>
+      </div>
+      <div class="iterm-output">
+        <div class="proof-case"><span class="n">1.</span> <span data-i18n="demo.proof.case1">Honeypot – verstecktes Feld gefüllt (Kontaktformular)</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>curl -X POST https://shop.example/form/contact -d "micha_bp_website=http://spam-bot.example" -d "email=bot@spam.example"</span></div>
+        <div class="ir"><div>[{"type":"danger","alert":"Your request could not be processed."}]</div></div>
+
+        <div class="proof-case" style="margin-top:18px;"><span class="n">2.</span> <span data-i18n="demo.proof.case2">Time-Validation – kein signiertes Token (Login)</span></div>
+        <div class="iterm-row"><span class="ip">$ </span><span>curl -X POST https://shop.example/account/login -d "email=bot2@spam.example" -d "password=irrelevant123"</span></div>
+        <div class="ir"><div>status: 302  → redirect mit Flash-Message</div></div>
+
+        <div class="proof-case" style="margin-top:18px;"><span class="n">3.</span> <span data-i18n="demo.proof.case3">Rate-Limit – 6 Requests, Limit ist 5 (Newsletter)</span></div>
+        <div class="ir">
+          <div>Request 1–5: "type":"success"</div>
+          <div>Request 6:   "type":"danger"  ← blockiert, Limit überschritten</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="proof-note reveal" data-i18n="demo.proof.note">Alle drei Versuche erscheinen sofort unter <strong>Settings → Bot Protection</strong> – mit korrektem Grund, Zeitstempel und IP.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-privacy" data-i18n="footer.privacy">
+      <span class="fp-dot"></span>
+      // keine cookies · kein tracking · deine daten gehören dir
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
+      <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="blog/">Blog</a> · <a href="hire.html">Hire Me</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="main.js"></script>
 </body>
 </html>

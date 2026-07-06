@@ -17,7 +17,7 @@
 
   // ── Typewriter (one-time, no loop) ──
   const twEl = document.getElementById('typewriter');
-  const TW_TEXT = 'Backend & Fullstack Developer';
+  const TW_TEXT = 'E-Commerce Engineer & Shopware 6 Spezialist';
   function startTypewriter() {
     if (!twEl) return;
     twEl.textContent = '';
@@ -101,6 +101,22 @@
     vkBackdrop?.addEventListener('click', closeVk);
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && vkOverlay.classList.contains('open')) closeVk();
+    });
+  }
+
+  // ── Demo page: filter tabs ──
+  const filterTabs  = document.querySelectorAll('.filter-tab');
+  const filterCards = document.querySelectorAll('#demo-cards .card');
+  if (filterTabs.length && filterCards.length) {
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter = tab.dataset.filter;
+        filterCards.forEach(card => {
+          card.hidden = !(filter === 'all' || card.dataset.cat === filter);
+        });
+      });
     });
   }
 
