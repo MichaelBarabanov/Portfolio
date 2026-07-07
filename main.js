@@ -139,60 +139,80 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
 
-  // ── Contribution graph ──
-  const grid     = document.getElementById('contrib-grid');
-  const monthsEl = document.getElementById('contrib-months');
-  if (grid && monthsEl) {
-    const WEEKS  = 52;
-    const CELL   = 15;
-    const MONTHS = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  // ── Live GitHub activity feed (real data, no fabricated stats) ──
+  const activityOut = document.getElementById('activity-output');
+  if (activityOut) {
+    const GH_USER = 'MichaelBarabanov';
 
-    let seed = 0xdeadbeef;
-    const rand = () => {
-      seed ^= seed << 13; seed ^= seed >> 17; seed ^= seed << 5;
-      return Math.abs(seed) / 0x7fffffff;
-    };
-
-    const today     = new Date();
-    const startDate = new Date(today);
-    startDate.setDate(today.getDate() - WEEKS * 7);
-
-    for (let w = 0; w < WEEKS; w++) {
-      const weekEl = document.createElement('div');
-      weekEl.className = 'contrib-week';
-      for (let d = 0; d < 7; d++) {
-        const r  = rand();
-        const base = (d >= 1 && d <= 5) ? 0.55 : 0.22;
-        let level = 0;
-        if      (r > 1 - base * 0.14) level = 4;
-        else if (r > 1 - base * 0.28) level = 3;
-        else if (r > 1 - base * 0.50) level = 2;
-        else if (r > 1 - base * 0.78) level = 1;
-
-        const cell     = document.createElement('div');
-        cell.className = 'contrib-cell';
-        cell.setAttribute('data-level', level);
-        const cellDate = new Date(startDate);
-        cellDate.setDate(startDate.getDate() + w * 7 + d);
-        cell.title = `${cellDate.toLocaleDateString('de-DE')} – ${level} Contributions`;
-        weekEl.appendChild(cell);
+    function relTime(iso, isEN) {
+      const diffMin = Math.max(1, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+      const units = isEN
+        ? [[60,'min'],[24,'h'],[30,'d'],[12,'mo']]
+        : [[60,'Min'],[24,'Std'],[30,'Tg'],[12,'Mon']];
+      let val = diffMin, unit = units[0][1];
+      if (diffMin >= 60) {
+        val = Math.round(diffMin / 60); unit = units[1][1];
+        if (val >= 24) { val = Math.round(val / 24); unit = units[2][1];
+          if (val >= 30) { val = Math.round(val / 30); unit = units[3][1]; }
+        }
       }
-      grid.appendChild(weekEl);
+      return isEN ? `${val}${unit} ago` : `vor ${val} ${unit}`;
     }
 
-    let lastMonth = -1;
-    for (let w = 0; w < WEEKS; w++) {
-      const d = new Date(startDate);
-      d.setDate(startDate.getDate() + w * 7);
-      const m = d.getMonth();
-      if (m !== lastMonth) {
-        const span   = document.createElement('span');
-        span.textContent = MONTHS[m];
-        span.style.left  = (w * CELL) + 'px';
-        monthsEl.appendChild(span);
-        lastMonth = m;
-      }
+    function shortRepo(fullName) {
+      return fullName.startsWith(GH_USER + '/') ? fullName.slice(GH_USER.length + 1) : fullName;
     }
+
+    function formatEvent(ev, isEN) {
+      const repo = shortRepo(ev.repo.name);
+      const when = relTime(ev.created_at, isEN);
+      let text;
+      switch (ev.type) {
+        case 'PushEvent': {
+          const n = ev.payload.commits?.length || ev.payload.size || 1;
+          text = isEN ? `pushed ${n} commit${n === 1 ? '' : 's'} to ${repo}` : `${n} Commit${n === 1 ? '' : 's'} gepusht nach ${repo}`;
+          break;
+        }
+        case 'CreateEvent':
+          text = ev.payload.ref_type === 'repository'
+            ? (isEN ? `created repository ${repo}` : `Repository ${repo} erstellt`)
+            : (isEN ? `created ${ev.payload.ref_type} ${ev.payload.ref || ''} in ${repo}` : `${ev.payload.ref_type} ${ev.payload.ref || ''} in ${repo} erstellt`);
+          break;
+        case 'PullRequestEvent':
+          text = isEN ? `${ev.payload.action} pull request in ${repo}` : `Pull Request in ${repo} ${ev.payload.action === 'opened' ? 'geöffnet' : ev.payload.action}`;
+          break;
+        case 'IssuesEvent':
+          text = isEN ? `${ev.payload.action} issue in ${repo}` : `Issue in ${repo} ${ev.payload.action === 'opened' ? 'geöffnet' : ev.payload.action}`;
+          break;
+        case 'WatchEvent':
+          text = isEN ? `starred ${repo}` : `${repo} favorisiert`;
+          break;
+        case 'ForkEvent':
+          text = isEN ? `forked ${repo}` : `${repo} geforkt`;
+          break;
+        case 'ReleaseEvent':
+          text = isEN ? `published a release in ${repo}` : `Release in ${repo} veröffentlicht`;
+          break;
+        default:
+          text = `${ev.type.replace(/Event$/, '')} → ${repo}`;
+      }
+      return `@@y@@${when}@@  ${text}`;
+    }
+
+    fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=6`)
+      .then(res => { if (!res.ok) throw new Error('bad response'); return res.json(); })
+      .then(events => {
+        const isEN = window.i18n?.lang() === 'en';
+        const lines = events.slice(0, 6).map(ev => formatEvent(ev, isEN));
+        activityOut.innerHTML = activityOut.querySelector('.iterm-row').outerHTML +
+          lines.map(l => `<div class="ir">${window.i18n?.rl(l) || l}</div>`).join('');
+      })
+      .catch(() => {
+        const errKey = 'activity.error';
+        const msg = window.i18n?.t(errKey) || 'GitHub unreachable.';
+        const loadingEl = document.getElementById('activity-loading');
+        if (loadingEl) loadingEl.innerHTML = window.i18n?.rl(msg) || msg;
+      });
   }
 
   // ── Interactive Terminal ──
@@ -256,7 +276,16 @@
     projects:   () => tArr('term.projects'),
     plugins:    () => tArr('term.plugins'),
     contact:    () => tArr('term.contact'),
-    'git log':  () => tArr('term.gitlog'),
+    'git log':  async () => {
+      try {
+        const res = await fetch('https://api.github.com/repos/MichaelBarabanov/Portfolio/commits?per_page=6');
+        if (!res.ok) throw new Error('bad response');
+        const commits = await res.json();
+        return commits.map(c => `@@y@@commit ${c.sha.slice(0, 7)}@@  ${esc(c.commit.message.split('\n')[0])}`);
+      } catch (e) {
+        return [t('term.gitlog.error')];
+      }
+    },
     ls:         () => ['hero/  about/  stack/  projekte/  plugins/  contrib/  terminal/  kontakt/'],
     date:       () => [new Date().toLocaleString(window.i18n?.lang() === 'en' ? 'en-GB' : 'de-DE')],
     'sudo rm -rf /': () => ['@@e@@Permission denied. Nice try.', '( bitte nicht nochmal )'],
@@ -314,7 +343,13 @@
       const fn = CMDS[val.toLowerCase()];
       appendCommand(val);
       if (fn) {
-        appendLines(fn());
+        const result = fn();
+        if (result && typeof result.then === 'function') {
+          if (val.toLowerCase() === 'git log') appendLines([t('term.gitlog.loading')]);
+          result.then(lines => appendLines(lines));
+        } else {
+          appendLines(result);
+        }
       } else {
         appendLines([t('term.notfound', { cmd: esc(val) })]);
       }

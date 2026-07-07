@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta http-equiv="Content-Security-Policy"
-        content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self';" />
+        content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src https://api.github.com; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self';" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
 
@@ -324,18 +324,17 @@ Offen für neue Herausforderungen, Freelance-Projekte und alles dazwischen.
 <section id="contrib">
   <div class="container">
     <h2 class="section-title reveal-left">// aktivität</h2>
-    <p class="contrib-sub reveal" data-i18n="contrib.sub">GitHub Contributions – letztes Jahr</p>
+    <p class="contrib-sub reveal" data-i18n="contrib.sub">Live von GitHub – letzte öffentliche Aktivität</p>
     <div class="contrib-wrap reveal">
-      <div class="contrib-months" id="contrib-months"></div>
-      <div class="contrib-grid" id="contrib-grid"></div>
-      <div class="contrib-legend">
-        <span>Weniger</span>
-        <span class="lc" data-level="0"></span>
-        <span class="lc" data-level="1"></span>
-        <span class="lc" data-level="2"></span>
-        <span class="lc" data-level="3"></span>
-        <span class="lc" data-level="4"></span>
-        <span>Mehr</span>
+      <div class="iterm">
+        <div class="iterm-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="iterm-title">michael@github:~</span>
+        </div>
+        <div class="iterm-output" id="activity-output">
+          <div class="iterm-row"><span class="ip">$ </span><span>gh api users/MichaelBarabanov/events/public --jq '.[0:6]'</span></div>
+          <div class="ir" id="activity-loading" data-i18n="activity.loading">Lade…</div>
+        </div>
       </div>
     </div>
   </div>

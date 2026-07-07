@@ -58,7 +58,9 @@
       'plugin.bp.f2':         '✓ Admin-Dashboard mit 14-Tage-Statistik',
       'plugin.bp.f3':         '✓ Optionale KI-Bedrohungsanalyse (Claude)',
       'plugin.bp.f4':         '✓ Kompatibel mit Shopware 6.7+',
-      'contrib.sub':          'GitHub Contributions – letztes Jahr',
+      'contrib.sub':          'Live von GitHub – letzte öffentliche Aktivität',
+      'activity.loading':     'Lade…',
+      'activity.error':       'GitHub gerade nicht erreichbar – Verlauf direkt auf @@link:https://github.com/MichaelBarabanov@@github.com/MichaelBarabanov@@',
       'term.hint':            'Tippe <code>help</code> für alle Commands — probier\'s aus.',
       'contact.sub':          'Projektanfrage, Freelance-Job oder einfach reden?',
       'footer.copy':          '© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener">github.com/MichaelBarabanov</a>',
@@ -292,14 +294,8 @@
       'term.hire.yes':      '@@g@@Öffne E-Mail-Client...',
       'term.hire.no':       'Ok, kein Stress. Du weißt wo ich bin.',
       'term.notfound':      '@@e@@command not found: {cmd}  —  tippe @@h@@help@@ für alle Commands',
-      'term.gitlog': [
-        '@@y@@commit a3f92c1  feat: launch portfolio v2',
-        '@@y@@commit 8b2c31d  feat: interaktives terminal',
-        '@@y@@commit 4e9a012  feat: contribution graph &amp; scroll reveal',
-        '@@y@@commit c3a901f  feat: shopware plugin sektion',
-        '@@y@@commit 1d7f88b  feat: glitch hero animation',
-        '@@y@@commit 0f4d2b7  init: projekt setup',
-      ],
+      'term.gitlog.loading':  'Lade echten Commit-Verlauf von GitHub…',
+      'term.gitlog.error':    '@@e@@GitHub gerade nicht erreichbar. Verlauf direkt hier: @@link:https://github.com/MichaelBarabanov/Portfolio/commits/main@@github.com/MichaelBarabanov/Portfolio@@',
 
       // hire.html
       'hire.avail':             'VERFÜGBAR FÜR PROJEKTE',
@@ -420,7 +416,9 @@
       'plugin.bp.f2':         '✓ Admin dashboard with 14-day statistics',
       'plugin.bp.f3':         '✓ Optional AI threat analysis (Claude)',
       'plugin.bp.f4':         '✓ Compatible with Shopware 6.7+',
-      'contrib.sub':          'GitHub Contributions – last year',
+      'contrib.sub':          'Live from GitHub – recent public activity',
+      'activity.loading':     'Loading…',
+      'activity.error':       'GitHub unreachable right now – see the history directly on @@link:https://github.com/MichaelBarabanov@@github.com/MichaelBarabanov@@',
       'term.hint':            'Type <code>help</code> for all commands — give it a try.',
       'contact.sub':          'Project inquiry, freelance job or just a chat?',
       'footer.copy':          '© 2026 Michael Barabanov · Koblenz, Germany · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener">github.com/MichaelBarabanov</a>',
@@ -654,14 +652,8 @@
       'term.hire.yes':      '@@g@@Opening email client...',
       'term.hire.no':       'No worries. You know where to find me.',
       'term.notfound':      '@@e@@command not found: {cmd}  —  type @@h@@help@@ for all commands',
-      'term.gitlog': [
-        '@@y@@commit a3f92c1  feat: launch portfolio v2',
-        '@@y@@commit 8b2c31d  feat: interactive terminal',
-        '@@y@@commit 4e9a012  feat: contribution graph &amp; scroll reveal',
-        '@@y@@commit c3a901f  feat: shopware plugin section',
-        '@@y@@commit 1d7f88b  feat: glitch hero animation',
-        '@@y@@commit 0f4d2b7  init: project setup',
-      ],
+      'term.gitlog.loading':  'Loading real commit history from GitHub…',
+      'term.gitlog.error':    '@@e@@GitHub unreachable right now. History directly here: @@link:https://github.com/MichaelBarabanov/Portfolio/commits/main@@github.com/MichaelBarabanov/Portfolio@@',
 
       // hire.html
       'hire.avail':             'AVAILABLE FOR PROJECTS',
@@ -736,6 +728,7 @@
       .replace(/@@h@@/g,  '<span class="ih">')
       .replace(/@@g@@/g,  '<span class="is">')
       .replace(/@@e@@/g,  '<span class="ie">')
+      .replace(/@@y@@([^@]*)@@/g, '<span style="color:#e3b341">$1</span>')
       .replace(/@@y@@/g,  '<span style="color:#e3b341">')
       .replace(/@@link:(.+?)@@(.*?)@@/g,   '<a href="$1" target="_blank" style="color:var(--accent)">$2</a>')
       .replace(/@@mailto:(.+?)@@(.*?)@@/g, '<a href="mailto:$1" style="color:var(--accent)">$2</a>');
