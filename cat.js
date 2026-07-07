@@ -3,7 +3,8 @@
 
   const CAT_NAME = 'Miso';
   const CW = 68, CH = 68;
-  const BASE = 'cat_animation/';
+  const scriptSrc = document.currentScript && document.currentScript.src;
+  const BASE = scriptSrc ? scriptSrc.replace(/cat\.js.*$/, '') + 'cat_animation/' : 'cat_animation/';
   const SRCS = {
     walk_r: BASE + 'Walking_Right.gif',
     walk_l: BASE + 'Walking_Left.gif',
