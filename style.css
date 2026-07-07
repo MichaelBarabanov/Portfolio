@@ -296,7 +296,7 @@ body::before {
 section { padding: 80px 0; position: relative; background: var(--bg); }
 
 /* alternating sections get a subtle inner glow to visually separate them */
-#about, #projekte, #contrib, #kontakt {
+#about, #kontakt {
   background: radial-gradient(ellipse 80% 60% at 50% 50%, #141414 0%, var(--bg) 100%);
 }
 
@@ -661,10 +661,6 @@ section > .container { position: relative; z-index: 1; }
   transition: background .2s, box-shadow .2s;
 }
 .plugin-btn:hover { background: rgba(0,232,122,.2); box-shadow: 0 0 14px rgba(0,232,122,.3); }
-
-/* ── ACTIVITY FEED ── */
-.contrib-sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
-.contrib-wrap { overflow-x: auto; }
 
 /* ── INTERACTIVE TERMINAL ── */
 .term-hint { color: var(--muted); font-size: 14px; margin-bottom: 20px; font-family: monospace; }
