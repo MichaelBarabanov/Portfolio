@@ -29,12 +29,27 @@
     code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
     ul, ol { padding-left:20px; margin-bottom:18px; }
     li { font-size:15px; color:#ccc; margin-bottom:6px; }
+    table { width:100%; border-collapse:collapse; margin:24px 0; font-size:14px; }
+    th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--border); }
+    th { color:var(--accent); font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
+    td { color:#ccc; }
     .tip { background:var(--surface2); border-left:3px solid var(--accent); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
     .warn { background:var(--surface2); border-left:3px solid #e3b341; border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
     .back { display:inline-block; margin-top:48px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
     .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
     footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mbara.net/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://mbara.net/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Generative Engine Optimization (GEO)", "item": "https://mbara.net/blog/generative-engine-optimization-geo.html" }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header>
@@ -52,6 +67,19 @@
 
       <h2>1. Warum klassisches SEO nicht mehr reicht</h2>
       <p>Ein LLM crawlt eine Seite, extrahiert Fakten und formuliert daraus eine Antwort in eigenen Worten. Es zitiert selten die komplette Seite, sondern einzelne, klar formulierte Aussagen. Seiten mit vager Marketing-Sprache und ohne Struktur liefern schlicht schlechteres Rohmaterial fur diese Zusammenfassung als Seiten mit klaren Fakten, Zahlen und sauberer Struktur.</p>
+
+      <table>
+        <thead>
+          <tr><th>Aspekt</th><th>Klassisches SEO</th><th>GEO</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ziel</td><td>Hohes Ranking in Suchergebnissen</td><td>Zitiert/paraphrasiert in KI-Antworten werden</td></tr>
+          <tr><td>Signal</td><td>Backlinks, Keyword-Dichte</td><td>Klare Fakten, saubere Struktur, Schema.org</td></tr>
+          <tr><td>Format</td><td>Lange Fliesstexte</td><td>Kurze, abgeschlossene Absatze und Listen</td></tr>
+          <tr><td>Maschinenlesbarkeit</td><td>Optional</td><td>llms.txt, JSON-LD, FAQPage</td></tr>
+          <tr><td>Erfolgsmessung</td><td>Rankings, Klicks</td><td>Erwahnungen in KI-Antworten (noch schwer messbar)</td></tr>
+        </tbody>
+      </table>
 
       <h2>2. llms.txt: eine strukturierte Landkarte fur LLMs</h2>
       <p>Die Community-Konvention <a href="https://llmstxt.org" target="_blank" rel="noopener">llms.txt</a> liegt im Root der Domain (<code>/llms.txt</code>) und listet in Markdown die wichtigsten Seiten mit einer Ein-Satz-Beschreibung. Kein offizieller Standard, aber von immer mehr Tools respektiert, die Kontext fur ein LLM aufbereiten wollen:</p>
