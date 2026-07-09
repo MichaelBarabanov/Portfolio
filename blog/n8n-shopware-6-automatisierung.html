@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
+  <title>n8n + Shopware 6: Bestellprozesse und Lagerbestände automatisieren</title>
+  <meta name="description" content="Praxisguide: Shopware 6 API-Zugriff für n8n einrichten und Workflows für Bestellbenachrichtigungen und Lagerbestandsabgleich bauen." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00e87a; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--border); padding:20px 0; }
+    .container { max-width:720px; margin:0 auto; padding:0 24px; }
+    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
+    .logo span { color:var(--accent); }
+    article { padding:56px 0 80px; }
+    .tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; color:var(--accent); margin-bottom:12px; }
+    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; margin-bottom:16px; }
+    .meta { font-size:13px; color:var(--muted); margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+    h2 { font-size:20px; font-weight:600; margin:40px 0 12px; }
+    p { margin-bottom:18px; font-size:15px; color:#ccc; }
+    pre { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; overflow-x:auto; margin:24px 0; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; line-height:1.6; color:#ccc; }
+    code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
+    ul, ol { padding-left:20px; margin-bottom:18px; }
+    li { font-size:15px; color:#ccc; margin-bottom:6px; }
+    .tip { background:var(--surface2); border-left:3px solid var(--accent); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .warn { background:var(--surface2); border-left:3px solid #e3b341; border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .back { display:inline-block; margin-top:48px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
+    .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><a href="index.html" style="color:var(--muted)"><span>//</span> shopware-dev.blog</a></div>
+    </div>
+  </header>
+  <article>
+    <div class="container">
+      <div class="tag">// automatisierung</div>
+      <h1>n8n + Shopware 6: Bestellprozesse und Lagerbestände automatisieren</h1>
+      <div class="meta">2026-07-08 &middot; 8 min Lesezeit</div>
+
+      <p>Shopware 6 bringt eine vollstandige REST-API mit, die sich ohne Plugin-Entwicklung direkt mit n8n verbinden lasst. Fur wiederkehrende Aufgaben wie Bestellbenachrichtigungen, Lagerbestandsabgleich mit einem externen System oder automatisches Erstellen von Support-Tickets ist das oft schneller umgesetzt als ein eigenes Plugin.</p>
+
+      <h2>1. API-Zugriff einrichten</h2>
+      <p>Im Shopware-Admin unter <strong>Einstellungen &rarr; System &rarr; Integrationen</strong> einen neuen Integration-Client anlegen. Das liefert eine <code>client_id</code> und ein <code>client_secret</code> fur OAuth2 Client-Credentials-Flow -- kein Nutzer-Login notig, ideal fur Server-zu-Server-Kommunikation:</p>
+      <pre>POST https://shop.example/api/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "client_credentials",
+  "client_id": "SWIAXXXX",
+  "client_secret": "DEIN_SECRET"
+}</pre>
+      <p>Die Antwort enthalt ein <code>access_token</code>, gultig typischerweise 10 Minuten. In n8n bildet man das am saubersten mit einem HTTP-Request-Node plus einem vorgeschalteten "Get Token"-Node ab, dessen Ergebnis in nachfolgenden Requests als Bearer-Token wiederverwendet wird.</p>
+      <div class="tip">n8n hat seit Version 1.x generische OAuth2-Credential-Unterstutzung -- damit erneuert n8n das Token automatisch, ohne dass man selbst einen Refresh-Mechanismus bauen muss.</div>
+
+      <h2>2. Workflow: Benachrichtigung bei neuer Bestellung</h2>
+      <p>Statt die API zu pollen, ist ein Webhook effizienter. Shopware kann Business Events wie <code>checkout.order.placed</code> per Webhook an eine n8n-Webhook-URL senden (einrichtbar unter <strong>Einstellungen &rarr; Webhooks</strong>):</p>
+      <pre>Webhook-URL: https://n8n.example.com/webhook/order-placed
+Event: checkout.order.placed</pre>
+      <p>Der n8n-Workflow dahinter: Webhook-Trigger &rarr; Bestelldaten aus dem Payload extrahieren &rarr; Nachricht an Slack/Teams senden oder eine E-Mail-Benachrichtigung auslosen. Ublicherweise unter 10 Minuten Bauzeit fur die Grundversion.</p>
+
+      <h2>3. Workflow: Lagerbestand mit externem System abgleichen</h2>
+      <p>Fur einen zeitgesteuerten Abgleich (z.B. alle 15 Minuten) eignet sich ein Schedule-Trigger statt eines Webhooks:</p>
+      <pre>Schedule-Trigger (alle 15 Min)
+  → HTTP Request: GET /api/product?limit=500
+  → Function-Node: Bestande mit externem System vergleichen
+  → HTTP Request: PATCH /api/product/{id} (bei Abweichung)</pre>
+      <p>Bei grosseren Katalogen lohnt sich Pagination uber <code>page</code> und <code>limit</code> Parameter der Shopware-API, damit ein einzelner Durchlauf nicht zu grosze Antworten auf einmal verarbeiten muss.</p>
+
+      <h2>4. Fehlerbehandlung nicht vergessen</h2>
+      <p>API-Calls schlagen gelegentlich fehl -- abgelaufenes Token, Timeout, Rate Limit. In n8n lasst sich pro Node ein "Continue On Fail" aktivieren, kombiniert mit einem nachgelagerten Error-Workflow, der bei wiederholtem Fehlschlag eine Benachrichtigung auslost statt den ganzen Workflow stumm abzubrechen.</p>
+      <div class="warn">Ohne Fehlerbehandlung merkt man einen fehlgeschlagenen Lagerbestandsabgleich oft erst, wenn bereits Bestellungen fur ausverkaufte Artikel reinkommen.</div>
+
+      <h2>5. Self-hosted vs. n8n Cloud</h2>
+      <p>Fur Shops mit sensiblen Daten spricht viel fur eine selbst gehostete n8n-Instanz (z.B. per Docker neben dem Shop), da Bestell- und Kundendaten dann den eigenen Server nicht verlassen. n8n Cloud ist im Gegenzug schneller startklar und entfallt Wartungsaufwand fur Updates.</p>
+
+      <h2>Fazit</h2>
+      <p>Die Kombination aus Shopwares offener REST-API und n8n als visuellem Workflow-Tool deckt viele Automatisierungsaufgaben ab, fur die sich ein eigenes Plugin nicht lohnt. Fur komplexere Logik oder Performance-kritische Prozesse bleibt ein Plugin trotzdem die robustere Wahl.</p>
+
+      <a class="back" href="index.html">← alle Artikel</a>
+    </div>
+  </article>
+  <footer>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+  </footer>
+</body>
+</html>

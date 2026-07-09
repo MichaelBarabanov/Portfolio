@@ -1,0 +1,36 @@
+# Michael Barabanov
+
+> E-Commerce Engineer & Shopware 6 Spezialist aus Koblenz, Deutschland. Entwickelt Shopware 6 und JTL-Shop 5 Plugins, API-Integrationen und Backend-Lösungen für E-Commerce. Vier veröffentlichte Open-Source-Plugins, verfügbar für Freelance-Projekte.
+
+## Portfolio
+
+- [Portfolio](https://mbara.net/): Übersicht über Erfahrung, Tech-Stack und Projekte
+- [Hire Me](https://mbara.net/hire): Freelance-Verfügbarkeit, Leistungen, Referenzen, Kontakt
+- [Plugins & Projekte](https://mbara.net/demo): Shopware-6-Plugin-Showcase mit Screenshots
+- [FAQ](https://mbara.net/faq): Häufige Fragen zu Freelance-Projekten und Zusammenarbeit
+
+## Plugins
+
+- [BotProtection](https://mbara.net/plugins/botprotection): Application-Layer-Schutz gegen Bots für Shopware 6 – Honeypot, Rate-Limiting, Time-Validation, optionale KI-Bedrohungsanalyse
+- [AiProductDescription](https://mbara.net/plugins/ai-product-description): KI-gestützte Produktbeschreibungen im Shopware-Admin, Claude und ChatGPT wählbar
+- [ComingSoon](https://mbara.net/plugins/coming-soon): Coming-Soon-Modus für Shopware 6 mit Countdown, IP-Whitelist und SEO-sicherem HTTP 503
+- [PriceOnRequest](https://mbara.net/plugins/price-on-request): Preis auf Anfrage für B2B-Shops, ersetzt den Warenkorb-Button durch ein Anfrageformular
+
+## Blog
+
+- [Generative Engine Optimization (GEO)](https://mbara.net/blog/generative-engine-optimization-geo.html): llms.txt, strukturierte Daten und FAQ-Schema für KI-Suchmaschinen
+- [n8n + Shopware 6](https://mbara.net/blog/n8n-shopware-6-automatisierung.html): Bestellprozesse und Lagerbestände automatisieren
+- [Shopware 6 Performance optimieren](https://mbara.net/blog/shopware-6-performance-optimieren.html): Caching, Elasticsearch, HTTP/2
+- [Shopware 6 Plugin entwickeln](https://mbara.net/blog/shopware-6-plugin-entwickeln.html): Schritt-für-Schritt-Tutorial
+- [Bot-Schutz mit Cloudflare](https://mbara.net/blog/shopware-6-bot-schutz-cloudflare.html): WAF Rules, Rate Limiting, Bot-Fight-Mode
+
+## Contact
+
+- GitHub: https://github.com/MichaelBarabanov
+- LinkedIn: https://linkedin.com/in/michael-barabanov-103265357
+- Email: m.barabanov@mbara.net
+
+## Optional
+
+- [Impressum](https://mbara.net/impressum): Rechtliche Anbieterkennzeichnung
+- [Datenschutz](https://mbara.net/datenschutz): Datenschutzerklärung

@@ -1,0 +1,15 @@
+# ai.txt for mbara.net
+# No single ratified standard exists for this file yet; this follows the
+# common permissive convention (allow crawling, training, indexing, citation).
+# Structured content index for LLMs: https://mbara.net/llms.txt
+
+User-agent: *
+Training: allow
+Indexing: allow
+Citation: allow
+Crawling: allow
+
+Contact: m.barabanov@mbara.net
+Preferred-attribution: Michael Barabanov (https://mbara.net)
+Content-index: https://mbara.net/llms.txt
+Sitemap: https://mbara.net/sitemap.xml

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
+  <title>Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</title>
+  <meta name="description" content="Praxisguide: llms.txt, strukturierte Daten und FAQ-Schema richtig einsetzen, damit Shopware-Shops von ChatGPT, Perplexity und Google AI Overviews zitiert werden." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00e87a; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--border); padding:20px 0; }
+    .container { max-width:720px; margin:0 auto; padding:0 24px; }
+    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
+    .logo span { color:var(--accent); }
+    article { padding:56px 0 80px; }
+    .tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; color:var(--accent); margin-bottom:12px; }
+    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; margin-bottom:16px; }
+    .meta { font-size:13px; color:var(--muted); margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+    h2 { font-size:20px; font-weight:600; margin:40px 0 12px; }
+    p { margin-bottom:18px; font-size:15px; color:#ccc; }
+    pre { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; overflow-x:auto; margin:24px 0; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; line-height:1.6; color:#ccc; }
+    code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
+    ul, ol { padding-left:20px; margin-bottom:18px; }
+    li { font-size:15px; color:#ccc; margin-bottom:6px; }
+    .tip { background:var(--surface2); border-left:3px solid var(--accent); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .warn { background:var(--surface2); border-left:3px solid #e3b341; border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .back { display:inline-block; margin-top:48px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
+    .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><a href="index.html" style="color:var(--muted)"><span>//</span> shopware-dev.blog</a></div>
+    </div>
+  </header>
+  <article>
+    <div class="container">
+      <div class="tag">// geo</div>
+      <h1>Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</h1>
+      <div class="meta">2026-07-08 &middot; 7 min Lesezeit</div>
+
+      <p>Immer mehr Kaufentscheidungen starten nicht mehr mit einer Google-Suche, sondern mit einer Frage an ChatGPT, Perplexity oder Google AI Overviews. Diese Systeme lesen keine Rankings, sie lesen Inhalte und fassen sie zusammen. Klassisches SEO (Backlinks, Keyword-Dichte) hilft dabei nur bedingt. Generative Engine Optimization (GEO) ist die Anpassung an dieses neue Verhalten.</p>
+
+      <h2>1. Warum klassisches SEO nicht mehr reicht</h2>
+      <p>Ein LLM crawlt eine Seite, extrahiert Fakten und formuliert daraus eine Antwort in eigenen Worten. Es zitiert selten die komplette Seite, sondern einzelne, klar formulierte Aussagen. Seiten mit vager Marketing-Sprache und ohne Struktur liefern schlicht schlechteres Rohmaterial fur diese Zusammenfassung als Seiten mit klaren Fakten, Zahlen und sauberer Struktur.</p>
+
+      <h2>2. llms.txt: eine strukturierte Landkarte fur LLMs</h2>
+      <p>Die Community-Konvention <a href="https://llmstxt.org" target="_blank" rel="noopener">llms.txt</a> liegt im Root der Domain (<code>/llms.txt</code>) und listet in Markdown die wichtigsten Seiten mit einer Ein-Satz-Beschreibung. Kein offizieller Standard, aber von immer mehr Tools respektiert, die Kontext fur ein LLM aufbereiten wollen:</p>
+      <pre># Firmenname
+
+&gt; Ein-Satz-Zusammenfassung was die Seite/das Unternehmen macht.
+
+## Seiten
+
+- [Leistungen](https://example.com/leistungen): Kurze Beschreibung
+- [Kontakt](https://example.com/kontakt): Kurze Beschreibung</pre>
+      <div class="tip">llms.txt ersetzt keine sitemap.xml -- sitemap.xml ist fur klassische Crawler zum Indexieren, llms.txt ist eine kuratierte Zusammenfassung fur Sprachmodelle.</div>
+
+      <h2>3. Strukturierte Daten konsequent einsetzen</h2>
+      <p>Schema.org JSON-LD ist der zuverlassigste Weg, Fakten maschinenlesbar zu machen. Fur ein Software-Produkt zum Beispiel <code>SoftwareApplication</code>, fur eine Firma <code>Organization</code> oder <code>Person</code>, fur Frage-Antwort-Inhalte <code>FAQPage</code>:</p>
+      <pre>{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Frage im Klartext?",
+    "acceptedAnswer": { "@type": "Answer", "text": "Klare, faktenbasierte Antwort." }
+  }]
+}</pre>
+      <p>Wichtig: Der sichtbare Seiteninhalt muss zur Struktur passen. Schema-Markup ohne passenden sichtbaren Text wird von Suchmaschinen als Spam-Signal gewertet und hilft bei LLMs ohnehin nicht, da diese primar den gerenderten Text lesen.</p>
+
+      <h2>4. FAQ-Content mit klaren Frage-Antwort-Paaren</h2>
+      <p>LLMs lieben Frage-Antwort-Struktur, weil sie exakt dem Format entspricht, in dem sie selbst antworten. Eine eigene FAQ-Seite mit echten, haufig gestellten Fragen und kurzen, prazisen Antworten ist eine der wirkungsvollsten GEO-Masznahmen uberhaupt -- und zahlt gleichzeitig auf klassisches SEO ein (Rich Snippets in Google).</p>
+
+      <h2>5. Fakten statt Marketing-Sprache</h2>
+      <p>"Innovative Losungen fur maximalen Erfolg" liefert einem LLM keine zitierfahige Information. "Kompatibel mit Shopware 6.7, PHPStan Level 8, 20 Tests" schon. Konkrete, uberprufbare Aussagen werden bevorzugt zitiert, weil sie als Fakt statt als Meinung behandelt werden konnen.</p>
+
+      <h2>6. robots.txt fur KI-Crawler offen halten</h2>
+      <p>Ein einfacher, aber oft ubersehener Punkt: Wenn <code>robots.txt</code> Bots wie <code>GPTBot</code>, <code>ClaudeBot</code> oder <code>PerplexityBot</code> pauschal blockt, taucht die Seite in den jeweiligen Antworten schlicht nicht auf. Ein permissiver Eintrag reicht meist aus:</p>
+      <pre>User-agent: *
+Allow: /</pre>
+
+      <h2>Fazit</h2>
+      <p>GEO ist kein Ersatz fur SEO, sondern eine Erganzung: klare Fakten, saubere Struktur, schema.org-Markup und eine llms.txt als kuratierte Ubersicht. Der Aufwand ist uberschaubar, der Effekt wachst mit der Verbreitung von KI-gestutzter Suche weiter.</p>
+
+      <a class="back" href="index.html">← alle Artikel</a>
+    </div>
+  </article>
+  <footer>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+  </footer>
+</body>
+</html>
