@@ -379,6 +379,7 @@
       'hire.contact.av.label':  'Verfügbarkeit',
       'hire.contact.av.val':    'Sofort verfügbar',
       'hire.footer.avail':      '● Verfügbar für Projekte',
+      'hire.footer.ustg':       'Als Kleinunternehmer nach §19 UStG berechne ich keine Umsatzsteuer - genannte Preise sind Endpreise.',
     },
 
     en: {
@@ -756,6 +757,7 @@
       'hire.contact.av.label':  'Availability',
       'hire.contact.av.val':    'Immediately available',
       'hire.footer.avail':      '● Available for projects',
+      'hire.footer.ustg':       'As a small business under §19 UStG (German small business regulation), I do not charge VAT - quoted prices are final.',
     },
   };
 

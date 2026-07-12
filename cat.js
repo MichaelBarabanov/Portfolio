@@ -175,10 +175,6 @@
       `white-space:nowrap;opacity:0.45;`;
     btn.textContent = `🐱 play with ${CAT_NAME}`;
 
-    const info = document.createElement('span');
-    info.style.cssText = `font-family:'Cascadia Code','Fira Code',monospace;font-size:10px;color:#484f58;letter-spacing:.5px;`;
-    info.textContent = '✦ still in progress';
-
     btn.style.color       = '#484f58';
     btn.style.borderColor = '#21262d';
 
@@ -197,7 +193,6 @@
     });
 
     btnWrap.appendChild(btn);
-    btnWrap.appendChild(info);
     document.body.appendChild(btnWrap);
 
     draw();
