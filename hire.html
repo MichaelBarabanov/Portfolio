@@ -432,7 +432,7 @@
   .package-card.featured { border-color: rgba(0,136,255,0.4); background: rgba(0,136,255,0.06); }
   .package-name { font-family: var(--mono); font-weight: 700; font-size: 15px; margin-bottom: 6px; }
   .package-card.featured .package-name { color: var(--accent2); }
-  .package-price { font-family: var(--mono); font-weight: 800; font-size: 25px; margin-bottom: 10px; }
+  .package-price { font-family: var(--mono); font-weight: 700; font-size: 14px; letter-spacing: 0.02em; color: var(--text); margin-bottom: 12px; }
   .package-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
   .package-upsell { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-bottom: 6px; }
   .package-legal { font-family: var(--mono); font-size: 11px; color: #4a4a4a; margin-bottom: 12px; }
@@ -667,8 +667,8 @@
   "areaServed": { "@type": "Country", "name": "Deutschland" },
   "url": "https://mbara.net/hire#blue",
   "offers": [
-    { "@type": "Offer", "name": "Audit", "price": "199", "priceCurrency": "EUR", "url": "https://mbara.net/hire#blue" },
-    { "@type": "Offer", "name": "Audit+", "price": "299", "priceCurrency": "EUR", "url": "https://mbara.net/hire#blue" }
+    { "@type": "Offer", "name": "Audit", "availability": "https://schema.org/InStock", "url": "https://mbara.net/hire#blue" },
+    { "@type": "Offer", "name": "Audit+", "availability": "https://schema.org/InStock", "url": "https://mbara.net/hire#blue" }
   ]
 }
 </script>
@@ -907,11 +907,11 @@
       <ol class="timeline">
         <li>
           <span class="timeline-num">1</span>
-          <div><div class="timeline-title" data-i18n="hire.blue.next.1.title">Anfrage</div><div class="timeline-desc" data-i18n="hire.blue.next.1.desc">Du schickst deine Shop-URL, ich bestätige den Auftrag und schicke eine Rechnung.</div></div>
+          <div><div class="timeline-title" data-i18n="hire.blue.next.1.title">Anfrage</div><div class="timeline-desc" data-i18n="hire.blue.next.1.desc">Du schickst deine Shop-URL, ich melde mich mit einem Angebot.</div></div>
         </li>
         <li>
           <span class="timeline-num">2</span>
-          <div><div class="timeline-title" data-i18n="hire.blue.next.2.title">Zahlung</div><div class="timeline-desc" data-i18n="hire.blue.next.2.desc">Vorkasse: nach Zahlungseingang startet die Analyse.</div></div>
+          <div><div class="timeline-title" data-i18n="hire.blue.next.2.title">Zahlung</div><div class="timeline-desc" data-i18n="hire.blue.next.2.desc">Nach deiner Zusage kommt die Rechnung, nach Zahlungseingang startet die Analyse.</div></div>
         </li>
         <li>
           <span class="timeline-num">3</span>
@@ -931,7 +931,7 @@
       <div class="packages-row">
         <div class="package-card glow-hover">
           <div class="package-name" data-i18n="hire.blue.pkg1.name">Audit</div>
-          <div class="package-price">199 €</div>
+          <div class="package-price" data-i18n="hire.blue.pkg.price">Preis auf Anfrage</div>
           <ul class="package-features">
             <li data-i18n="hire.blue.pkg1.f1">Vollständiger Prüfbericht als PDF</li>
             <li data-i18n="hire.blue.pkg1.f2">Top-Maßnahmen priorisiert nach Aufwand und Wirkung</li>
@@ -940,7 +940,7 @@
         </div>
         <div class="package-card featured glow-hover">
           <div class="package-name" data-i18n="hire.blue.pkg2.name">Audit+</div>
-          <div class="package-price">299 €</div>
+          <div class="package-price" data-i18n="hire.blue.pkg.price">Preis auf Anfrage</div>
           <ul class="package-features">
             <li data-i18n="hire.blue.pkg2.f1">Alles aus dem Audit-Paket</li>
             <li data-i18n="hire.blue.pkg2.f2">30-minütige Besprechung des Reports per Videocall</li>
@@ -951,15 +951,15 @@
 
       <div class="path-block-label" data-i18n="hire.blue.upsell.label">DANACH: UMSETZUNG</div>
       <div class="upsell-block">
-        <p class="upsell-text" data-i18n="hire.blue.upsell.text">Auf Wunsch setze ich die Maßnahmen aus dem Report direkt um. Individuelles Angebot auf Basis der Ergebnisse, typische Projekte liegen zwischen 500 und 2.000 €.</p>
-        <p class="upsell-callout" data-i18n="hire.blue.upsell.callout">Bei Beauftragung einer Umsetzung (ab 500 €) innerhalb von 14 Tagen nach Report-Lieferung wird der Audit-Preis vollständig angerechnet.</p>
+        <p class="upsell-text" data-i18n="hire.blue.upsell.text">Auf Wunsch setze ich die Maßnahmen aus dem Report direkt um. Individuelles Angebot auf Basis der Ergebnisse.</p>
+        <p class="upsell-callout" data-i18n="hire.blue.upsell.callout">Bei Beauftragung einer Umsetzung innerhalb von 14 Tagen nach Report-Lieferung wird der Audit-Preis vollständig angerechnet.</p>
       </div>
 
       <ul class="legal-list">
-        <li data-i18n="hire.blue.legal.1">Angebot richtet sich an Unternehmen. Endpreise, gemäß §19 UStG wird keine Umsatzsteuer ausgewiesen.</li>
+        <li data-i18n="hire.blue.legal.1">Angebot richtet sich an Unternehmen. Gemäß §19 UStG wird keine Umsatzsteuer ausgewiesen.</li>
         <li data-i18n="hire.blue.legal.2">Ein Audit gilt für einen Shop (eine Domain), Stand zum Prüfzeitpunkt.</li>
         <li data-i18n="hire.blue.legal.3">Nicht enthalten: Umsetzung der Maßnahmen, laufende Überwachung, Keyword- und Content-Strategie.</li>
-        <li data-i18n="hire.blue.legal.4">Ablauf: Anfrage mit Shop-URL, Rechnung per E-Mail, Analyse startet nach Zahlungseingang.</li>
+        <li data-i18n="hire.blue.legal.4">Ablauf: Anfrage mit Shop-URL, Angebot und Rechnung per E-Mail, Analyse startet nach Zahlungseingang.</li>
         <li data-i18n="hire.blue.legal.5">Audit+: Termin findet innerhalb von 14 Tagen nach Report-Lieferung statt.</li>
       </ul>
 
@@ -1047,7 +1047,7 @@
   <div style="display: flex; flex-direction: column; gap: 4px;">
     <span>© 2026 Michael Barabanov</span>
     <span style="font-family: var(--mono); font-size: 11px;" data-i18n="hire.footer.avail">● Nebenberuflich verfügbar</span>
-    <span style="font-family: var(--mono); font-size: 11px; color: var(--muted);" data-i18n="hire.footer.ustg">Als Kleinunternehmer nach §19 UStG berechne ich keine Umsatzsteuer - genannte Preise sind Endpreise.</span>
+    <span style="font-family: var(--mono); font-size: 11px; color: var(--muted);" data-i18n="hire.footer.ustg">Als Kleinunternehmer nach §19 UStG berechne ich keine Umsatzsteuer.</span>
   </div>
   <div style="display: flex; gap: 20px; flex-wrap: wrap;">
     <a href="impressum.html">Impressum</a>
