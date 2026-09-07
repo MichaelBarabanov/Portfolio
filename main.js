@@ -30,7 +30,7 @@
   }
   startTypewriter();
 
-  // ── Scroll reveal — observe sections, stagger children ──
+  // ── Scroll reveal, observe sections, stagger children ──
   const revObs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
@@ -45,7 +45,7 @@
   }, { threshold: 0.08 });
 
   document.querySelectorAll('section').forEach(s => {
-    // Sections already fully above viewport (scroll restoration) — show immediately
+    // Sections already fully above viewport (scroll restoration), show immediately
     if (s.getBoundingClientRect().bottom < 0) {
       s.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => el.classList.add('visible'));
     } else {
@@ -53,7 +53,7 @@
     }
   });
 
-  // ── Card spotlight (cursor-tracking glow) — pointer devices only ──
+  // ── Card spotlight (cursor-tracking glow), pointer devices only ──
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     document.querySelectorAll('.card, .plugin-card, .vk-card-expanded').forEach(card => {
       card.addEventListener('mousemove', (e) => {

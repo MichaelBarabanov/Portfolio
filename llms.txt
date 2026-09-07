@@ -1,6 +1,6 @@
 # Michael Barabanov
 
-> E-Commerce Engineer & Shopware 6 Spezialist aus Koblenz, Deutschland. Entwickelt Shopware 6 und JTL-Shop 5 Plugins, API-Integrationen und Backend-Lösungen für E-Commerce. Vier veröffentlichte Open-Source-Plugins, verfügbar für Freelance-Projekte.
+> E-Commerce Engineer & Shopware 6 Spezialist aus Koblenz, Deutschland. Hauptberuflich Digital Process & Solutions Engineer in der Logistik (Python, Django, Prozessautomatisierung), nebenberuflich Shopware 6 und JTL-Shop 5 Plugins, API-Integrationen und Backend-Lösungen für E-Commerce. Vier veröffentlichte Open-Source-Plugins, Kapazität für Freelance-Projekte rund 10 Stunden pro Woche.
 
 ## Portfolio
 
@@ -11,7 +11,7 @@
 
 ## Plugins
 
-- [BotProtection](https://mbara.net/plugins/botprotection): Application-Layer-Schutz gegen Bots für Shopware 6 – Honeypot, Rate-Limiting, Time-Validation, optionale KI-Bedrohungsanalyse
+- [BotProtection](https://mbara.net/plugins/botprotection): Application-Layer-Schutz gegen Bots für Shopware 6, Honeypot, Rate-Limiting, Time-Validation, optionale KI-Bedrohungsanalyse
 - [AiProductDescription](https://mbara.net/plugins/ai-product-description): KI-gestützte Produktbeschreibungen im Shopware-Admin, Claude und ChatGPT wählbar
 - [ComingSoon](https://mbara.net/plugins/coming-soon): Coming-Soon-Modus für Shopware 6 mit Countdown, IP-Whitelist und SEO-sicherem HTTP 503
 - [PriceOnRequest](https://mbara.net/plugins/price-on-request): Preis auf Anfrage für B2B-Shops, ersetzt den Warenkorb-Button durch ein Anfrageformular

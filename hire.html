@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hire Michael Barabanov – E-Commerce Engineer & Shopware 6 Spezialist</title>
-<meta name="description" content="E-Commerce Engineer aus Koblenz. Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen, API-Integrationen für Shopware 6. Sofort verfügbar für Agenturen und Shop-Betreiber.">
-<meta name="keywords" content="E-Commerce Engineer, Shopware 6 Freelancer, PHP Developer, Plugin-Entwicklung, Shopware Agentur, Koblenz">
+<title>Hire Michael Barabanov | Shopware/JTL Entwicklung & SEO/GEO Audit</title>
+<meta name="description" content="E-Commerce Engineer aus Koblenz. Shopware-6- und JTL-Entwicklung, KI-Integrationen und Schnittstellen, oder ein SEO/GEO-Audit für die Sichtbarkeit deines Shops in Google und KI-Suchen.">
+<meta name="keywords" content="E-Commerce Engineer, Shopware 6 Freelancer, PHP Developer, Plugin-Entwicklung, SEO Audit, GEO Audit, Koblenz">
 <meta name="author" content="Michael Barabanov">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://mbara.net/hire">
@@ -16,14 +16,14 @@
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mbara.net/hire">
-<meta property="og:title" content="Hire Michael Barabanov – E-Commerce Engineer & Shopware 6 Spezialist">
-<meta property="og:description" content="E-Commerce Engineer aus Koblenz. Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen für Shopware 6. Sofort verfügbar.">
+<meta property="og:title" content="Hire Michael Barabanov | Shopware/JTL Entwicklung & SEO/GEO Audit">
+<meta property="og:description" content="Shopware-6- und JTL-Entwicklung, KI-Integrationen und Schnittstellen, oder ein SEO/GEO-Audit für die Sichtbarkeit deines Shops in Google und KI-Suchen.">
 <meta property="og:image" content="https://mbara.net/og-image.png">
 <meta property="og:locale" content="de_DE">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hire Michael Barabanov – E-Commerce Engineer & Shopware 6 Spezialist">
-<meta name="twitter:description" content="E-Commerce Engineer aus Koblenz. Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen für Shopware 6. Sofort verfügbar.">
+<meta name="twitter:title" content="Hire Michael Barabanov | Shopware/JTL Entwicklung & SEO/GEO Audit">
+<meta name="twitter:description" content="Shopware-6- und JTL-Entwicklung, KI-Integrationen und Schnittstellen, oder ein SEO/GEO-Audit für die Sichtbarkeit deines Shops in Google und KI-Suchen.">
 <meta name="twitter:image" content="https://mbara.net/og-image.png">
 
 <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
@@ -35,6 +35,7 @@
     --border: #222222;
     --accent: #00e87a;
     --accent2: #0088ff;
+    --red: #f85149;
     --text: #e8e8e8;
     --muted: #666666;
     --mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
@@ -42,9 +43,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  html { overflow-x: hidden; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--bg);
@@ -149,15 +148,15 @@
   }
   .mobile-menu a:hover { color: var(--accent); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
+  /* LEAD */
+  .lead-section {
+    min-height: 46vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 120px 40px 80px;
+    padding: 140px 40px 56px;
     position: relative;
     overflow: hidden;
   }
@@ -170,15 +169,6 @@
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
   }
-  .hero-glow {
-    position: absolute;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%);
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
   .availability {
     display: inline-flex;
     align-items: center;
@@ -190,10 +180,10 @@
     font-size: 11px;
     color: var(--accent);
     letter-spacing: 0.08em;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     width: fit-content;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.1s forwards;
+    position: relative;
+    z-index: 1;
   }
   .avail-dot {
     width: 6px; height: 6px;
@@ -202,256 +192,311 @@
     animation: pulse 2s infinite;
     flex-shrink: 0;
   }
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero h1 {
-    font-family: var(--mono);
-    font-size: clamp(40px, 7vw, 88px);
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero h1 .line-accent { color: var(--accent); }
-  .hero h1 .line-dim { color: var(--muted); font-weight: 300; }
-  .hero-sub {
-    font-size: 16px;
-    color: var(--muted);
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-  .hero-cta {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
-  .hero-scroll {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    opacity: 0;
-    animation: fadeIn 1s 1.5s forwards;
-  }
-  .scroll-line {
-    width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scrollPulse 2s infinite;
-  }
-
-  /* BUTTONS */
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    background: var(--accent);
-    color: #000;
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-  }
-  .btn-primary:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,255,136,0.3); }
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 13px;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-  /* STATS */
-  .stats-bar {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 24px 40px;
-    display: flex;
-    gap: 48px;
-    justify-content: center;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .stats-bar::-webkit-scrollbar { display: none; }
-  .stat-item { display: flex; flex-direction: column; gap: 4px; white-space: nowrap; }
-  .stat-value { font-family: var(--mono); font-size: 28px; font-weight: 700; color: var(--accent); }
-  .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-
-  /* SECTIONS */
-  .section-wrap { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
-  .section-tag { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
-  h2 { font-family: var(--mono); font-size: clamp(26px, 4vw, 46px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.02em; }
-  .section-lead { font-size: 16px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 52px; }
-
-  /* SERVICES */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .service-card {
-    background: var(--bg);
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .service-card:hover { background: var(--bg2); }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-icon { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 14px; }
-  .service-title { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
-  .service-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
-
-  /* PLUGINS */
-  .plugins-list { display: flex; flex-direction: column; gap: 2px; }
-  .plugin-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    padding: 32px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 24px;
-    align-items: start;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .plugin-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,255,136,0.02) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-  .plugin-card:hover { border-color: rgba(0,255,136,0.3); transform: translateX(4px); }
-  .plugin-card:hover::after { opacity: 1; }
-  .plugin-badge { display: inline-flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-  .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; letter-spacing: 0.08em; text-transform: uppercase; }
-  .badge-sw6 { background: rgba(0,136,255,0.1); color: var(--accent2); border: 1px solid rgba(0,136,255,0.2); }
-  .badge-ai { background: rgba(0,255,136,0.1); color: var(--accent); border: 1px solid rgba(0,255,136,0.2); }
-  .badge-php { background: rgba(150,100,255,0.1); color: #9664ff; border: 1px solid rgba(150,100,255,0.2); }
-  .plugin-name { font-family: var(--mono); font-size: 19px; font-weight: 700; margin-bottom: 8px; }
-  .plugin-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 16px; }
-  .plugin-features { display: flex; flex-wrap: wrap; gap: 8px; }
-  .plugin-feature { font-family: var(--mono); font-size: 11px; color: var(--muted); background: var(--bg3); padding: 4px 10px; border: 1px solid var(--border); }
-  .plugin-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 10px 20px;
-    border: 1px solid var(--border);
-    color: var(--muted);
+  .lead-tag {
     font-family: var(--mono);
     font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .lead-tag .cursor { display: inline-block; width: 2px; height: 0.9em; background: var(--accent); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
+  .lead-section h1 {
+    font-family: var(--mono);
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .lead-sub {
+    font-size: 15.5px;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* MATRIX FX, subtle, confined to lead section only, purely decorative */
+  .fx-layer { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; opacity: 0.5; }
+  .fx-col {
+    position: absolute;
+    top: -40%;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--accent);
+    opacity: 0.16;
+    white-space: pre;
+    animation: fx-fall linear infinite;
+  }
+  @keyframes fx-fall {
+    from { transform: translateY(0); }
+    to   { transform: translateY(140%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fx-layer { display: none; }
+  }
+
+  /* PATHS SECTION, both offers fully open, no interaction states */
+  .paths-section { border-top: 1px solid var(--border); position: relative; }
+  .paths-glow {
+    position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(900px 520px at 12% 0%, rgba(248,81,73,0.13), transparent 60%),
+      radial-gradient(900px 520px at 88% 0%, rgba(0,136,255,0.13), transparent 60%);
+  }
+
+  .paths { display: flex; align-items: stretch; position: relative; z-index: 1; }
+  .path { flex: 1 1 50%; padding: 48px 40px 56px; min-width: 0; transition: opacity 0.3s ease, filter 0.3s ease; }
+  .path-red { border-right: 1px solid var(--border); }
+
+  /* Hover highlight: default both full, hovering one side dims the other */
+  @media (hover: hover) and (pointer: fine) {
+    .paths:hover .path:not(:hover) {
+      opacity: 0.55;
+      filter: grayscale(0.5);
+    }
+  }
+
+  .path-header { margin-bottom: 28px; }
+  .path-tag { font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; display: block; margin-bottom: 14px; }
+  .path-red .path-tag { color: var(--red); }
+  .path-blue .path-tag { color: var(--accent2); }
+  .path-header h2 { font-family: var(--mono); font-size: clamp(22px, 2.6vw, 29px); font-weight: 700; line-height: 1.25; color: var(--text); margin-bottom: 12px; }
+  .path-preview { font-size: 15px; line-height: 1.65; color: var(--muted); max-width: 460px; }
+
+  .path-block-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.05em; margin-bottom: 14px; }
+  .path-red .path-block-label { color: var(--red); }
+  .path-blue .path-block-label { color: var(--accent2); }
+
+  .path-list { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 32px; }
+  .path-list li { display: flex; gap: 10px; font-size: 14.5px; color: #ccc; line-height: 1.5; }
+  .path-red .path-list li::before { content: '›'; color: var(--red); font-weight: 700; }
+  .path-blue .path-list li::before { content: '›'; color: var(--accent2); font-weight: 700; }
+
+  .proof-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .proof-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
     text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .proof-item:hover { border-color: var(--red); }
+  .proof-thumb {
+    width: 64px; height: 64px; flex-shrink: 0;
+    object-fit: cover; object-position: top center;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+  .proof-info { flex: 1; min-width: 0; }
+  .proof-name { font-family: var(--mono); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .proof-badges { display: flex; gap: 6px; margin-bottom: 6px; }
+  .proof-badges span { font-family: var(--mono); font-size: 10px; padding: 2px 7px; letter-spacing: 0.05em; }
+  .badge-sw6 { background: rgba(0,136,255,0.12); color: var(--accent2); }
+  .badge-ai  { background: rgba(0,255,136,0.12); color: var(--accent); }
+  .badge-php { background: rgba(150,100,255,0.12); color: #9664ff; }
+  .proof-metric { font-family: var(--mono); font-size: 11.5px; color: var(--muted); }
+  .proof-cta { font-family: var(--mono); font-size: 12px; color: var(--red); white-space: nowrap; }
+
+  /* Cursor-tracking hover glow, red on the left, blue on the right */
+  .glow-hover { position: relative; --spot-x: 50%; --spot-y: 50%; }
+  .glow-hover::after {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .glow-hover:hover::after,
+  .glow-hover:focus-visible::after { opacity: 1; }
+  .path-red .glow-hover::after {
+    background: radial-gradient(360px circle at var(--spot-x) var(--spot-y), rgba(248,81,73,0.16), transparent 60%);
+  }
+  .path-blue .glow-hover::after {
+    background: radial-gradient(360px circle at var(--spot-x) var(--spot-y), rgba(0,136,255,0.16), transparent 60%);
+  }
+
+  /* Timeline (Ablauf) */
+  .timeline { list-style: none; display: flex; flex-direction: column; gap: 4px; margin-bottom: 32px; }
+  .timeline li { display: flex; gap: 16px; padding: 10px 0; }
+  .timeline-num {
+    flex-shrink: 0;
+    width: 26px; height: 26px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 12px; font-weight: 700;
+  }
+  .path-blue .timeline-num { color: var(--accent2); border-color: rgba(0,136,255,0.4); }
+  .path-red .timeline-num { color: var(--red); border-color: rgba(248,81,73,0.4); }
+  .timeline-title { font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+  .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* Tech stack tags */
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .stack-tag { font-family: var(--mono); font-size: 11.5px; padding: 5px 12px; border: 1px solid var(--border); color: var(--muted); }
+
+  /* Warum ich */
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+  .why-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .why-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* Referenzen */
+  .ref-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 32px; }
+  .ref-card { border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 16px 18px; background: rgba(255,255,255,0.02); }
+  .ref-quote { font-size: 13.5px; color: #ccc; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
+  .ref-source { font-family: var(--mono); font-size: 11px; color: var(--red); }
+
+  /* Blue path: hook line + scope note */
+  .path-hook { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .scope-note { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 32px; }
+
+  /* Package feature list (inside package-card) */
+  .package-features { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+  .package-features li { display: flex; gap: 8px; font-size: 13px; color: #ccc; line-height: 1.5; }
+  .package-features li::before { content: '✓'; color: var(--accent2); font-weight: 700; flex-shrink: 0; }
+  .package-card.featured .package-features li::before { color: var(--accent2); }
+
+  /* Danach: Umsetzung */
+  .upsell-block { margin-bottom: 28px; }
+  .upsell-text { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+  .upsell-callout { font-size: 13px; color: var(--text); line-height: 1.6; padding: 12px 16px; border: 1px solid rgba(0,136,255,0.3); background: rgba(0,136,255,0.06); }
+
+  /* Kleingedrucktes (fine print list) */
+  .legal-list { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 28px; }
+  .legal-list li { font-family: var(--mono); font-size: 11px; color: #4a4a4a; line-height: 1.6; padding-left: 12px; position: relative; }
+  .legal-list li::before { content: '-'; position: absolute; left: 0; }
+
+  .path-github-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    margin-bottom: 30px;
+    text-decoration: none;
+  }
+  .path-github-link:hover { color: var(--text); border-color: var(--muted); }
+
+  .path-price-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .path-price-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 4px; }
+  .path-price-value { font-size: 15px; color: var(--text); }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px;
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    text-decoration: none; letter-spacing: 0.03em;
     white-space: nowrap;
     transition: all 0.2s;
-    align-self: start;
-    flex-shrink: 0;
+    border: none; cursor: pointer;
   }
-  .plugin-link:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-red  { background: var(--red);     color: #1a0605; }
+  .btn-blue { background: var(--accent2); color: #051220; }
+  .btn-red:hover, .btn-blue:hover { filter: brightness(1.15); transform: translateY(-2px); }
 
-  /* AI FOCUS */
-  .ai-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 52px; }
-  .ai-tag { font-family: var(--mono); font-size: 11px; padding: 6px 14px; border: 1px solid rgba(0,255,136,0.3); color: var(--accent); background: rgba(0,255,136,0.05); }
-
-  /* STACK */
-  .stack-section { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 1px;
-    background: var(--border);
+  /* Example report block */
+  .example-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 30px; }
+  .score-card, .report-placeholder {
+    flex: 1 1 220px;
     border: 1px solid var(--border);
-    margin-bottom: 0;
+    padding: 18px 20px;
   }
-  .stack-item { background: var(--bg2); padding: 18px 14px; text-align: center; transition: background 0.2s; }
-  .stack-item:hover { background: var(--bg3); }
-  .stack-name { font-family: var(--mono); font-size: 12px; font-weight: 500; margin-bottom: 4px; }
-  .stack-sub { font-size: 10px; color: var(--muted); }
+  .score-card-label { font-family: var(--mono); font-size: 10.5px; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.03em; }
+  .score-row { margin-bottom: 10px; }
+  .score-row:last-child { margin-bottom: 0; }
+  .score-row-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: #ccc; margin-bottom: 4px; }
+  .score-bar { height: 6px; background: rgba(255,255,255,0.08); }
+  .score-bar-fill { height: 100%; }
+  .report-placeholder {
+    display: flex; align-items: center; justify-content: center; min-height: 120px;
+    background: repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 8px, transparent 8px, transparent 16px);
+    text-align: center;
+  }
+  .report-placeholder span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.6; }
 
-  /* WHY ME */
-  .reasons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-  .reason-card { padding: 28px; border: 1px solid var(--border); transition: border-color 0.3s; position: relative; overflow: hidden; }
-  .reason-card:hover { border-color: rgba(0,255,136,0.2); }
-  .reason-num { font-family: var(--mono); font-size: 42px; font-weight: 700; color: var(--border); line-height: 1; margin-bottom: 14px; transition: color 0.3s; }
-  .reason-card:hover .reason-num { color: var(--accent); }
-  .reason-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-  .reason-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .packages-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; }
+  .package-card { flex: 1 1 220px; border: 1px solid var(--border); padding: 22px; }
+  .package-card.featured { border-color: rgba(0,136,255,0.4); background: rgba(0,136,255,0.06); }
+  .package-name { font-family: var(--mono); font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .package-card.featured .package-name { color: var(--accent2); }
+  .package-price { font-family: var(--mono); font-weight: 800; font-size: 25px; margin-bottom: 10px; }
+  .package-desc { font-size: 13.5px; color: var(--muted); line-height: 1.6; }
+  .package-upsell { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-bottom: 6px; }
+  .package-legal { font-family: var(--mono); font-size: 11px; color: #4a4a4a; margin-bottom: 12px; }
+  .package-scope-note { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; }
 
-  /* CTA */
+  /* Mini-FAQ (objection handling) */
+  .mini-faq { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+  .faq-q { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .faq-a { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  .audit-form { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 20px; border-top: 1px solid var(--border); }
+  .path-input {
+    flex: 1 1 220px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 13px 16px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+  .path-input:focus { outline: none; border-color: var(--accent2); }
+  .path-input::placeholder { color: var(--muted); }
+
+  /* CONTACT (path-agnostic, below both paths) */
   .cta-section {
     background: var(--bg2);
     border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 80px 40px;
+    padding: 72px 40px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
   .cta-section::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,255,136,0.05) 0%, transparent 70%);
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(0,232,122,0.05), transparent 70%);
     pointer-events: none;
   }
-  .cta-section h2 { margin: 0 auto 20px; max-width: 560px; }
-  .cta-section p { color: var(--muted); font-size: 16px; margin-bottom: 36px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7; }
-  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+  .cta-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+  .cta-section .section-tag { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 18px; }
+  .cta-section h2 { font-family: var(--mono); font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; margin: 0 auto 16px; max-width: 560px; }
+  .cta-section p { color: var(--muted); font-size: 15px; margin-bottom: 32px; max-width: 440px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 24px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono); font-size: 13px;
+    text-decoration: none; letter-spacing: 0.03em;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
   .contact-details { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
   .contact-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .contact-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
   .contact-value { font-family: var(--mono); font-size: 13px; color: var(--text); text-decoration: none; transition: color 0.2s; }
   .contact-value:hover { color: var(--accent); }
+  @media (max-width: 768px) {
+    .cta-section { padding: 52px 20px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    .cta-buttons .btn-primary, .cta-buttons .btn-secondary { width: 100%; justify-content: center; }
+    .contact-details { gap: 24px; }
+  }
 
   /* FOOTER */
   footer { padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); flex-wrap: wrap; gap: 12px; }
@@ -459,28 +504,11 @@
   footer a { font-family: var(--mono); font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
   footer a:hover { color: var(--accent); }
 
-  /* CURSOR */
-  .cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--accent); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
   @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.4); } 50% { box-shadow: 0 0 0 6px rgba(0,255,136,0); } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
-  .reveal-delay-5 { transition-delay: 0.5s; }
-  .reveal-delay-6 { transition-delay: 0.6s; }
-
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    .reveal { opacity: 1; transform: none; }
   }
 
   /* MOBILE */
@@ -489,96 +517,34 @@
     .nav-links { display: none; }
     .hamburger { display: flex; }
 
-    .hero { padding: 90px 20px 60px; text-align: center; }
-    .hero h1 { font-size: clamp(36px, 10vw, 56px); line-height: 1.05; }
-    .hero-sub { font-size: 15px; margin-left: auto; margin-right: auto; }
-    .hero-scroll { display: none; }
-    .availability { margin-left: auto; margin-right: auto; }
-    .hero-cta { justify-content: center; }
+    .lead-section { padding: 100px 20px 40px; min-height: auto; }
+    .lead-section h1 { font-size: clamp(26px, 8vw, 36px); }
 
-    .stats-bar { flex-direction: column; gap: 0; padding: 0; overflow-x: visible; }
-    .stat-item { flex-direction: row; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid var(--border); white-space: normal; }
-    .stat-item:last-child { border-bottom: none; }
-    .stat-value { font-size: 22px; min-width: 64px; }
+    .paths { flex-direction: column; }
+    .path { padding: 32px 20px; }
+    .path-red { border-right: none; border-bottom: 1px solid var(--border); }
 
-    .section-wrap { padding: 56px 20px; }
-
-    .services-grid { grid-template-columns: 1fr; }
-    .service-card { padding: 24px; }
-
-    .plugin-card { grid-template-columns: 1fr; padding: 24px; }
-    .plugin-card:hover { transform: none; }
-    .plugin-link { align-self: auto; width: fit-content; }
-
-    .ai-tags { gap: 8px; }
-
-    .stack-grid { grid-template-columns: repeat(3, 1fr); }
-    .stack-item { padding: 14px 10px; }
-
-    .reasons-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .reason-card { padding: 20px; }
-    .reason-num { font-size: 32px; }
-
-    .cta-section { padding: 56px 20px; }
-    .cta-buttons { flex-direction: column; align-items: center; }
-    .contact-details { gap: 24px; }
+    .example-row, .packages-row { flex-direction: column; }
+    .why-grid { grid-template-columns: 1fr; }
+    .path-price-row { flex-direction: column; align-items: flex-start; }
+    .btn-red, .btn-blue { width: 100%; justify-content: center; }
+    .audit-form { flex-direction: column; }
 
     footer { padding: 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
-
-    .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-  }
-
-  .lo { color: #8f8f8f; }
-  .lo.active { color: var(--accent); }
-
-  @media (max-width: 480px) {
-    .reasons-grid { grid-template-columns: 1fr; }
-    .stack-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero h1 { font-size: 36px; }
-  }
-  .refs-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;
-  }
-  .ref-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-left: 3px solid var(--accent); border-radius: 6px;
-    padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;
-  }
-  .ref-quote {
-    color: var(--muted); font-size: 14px; line-height: 1.65; font-style: italic;
-  }
-  .ref-source {
-    font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: .3px;
-  }
-  @media (max-width: 680px) { .refs-grid { grid-template-columns: 1fr; } }
-
-  /* ── SPOTLIGHT (cursor-tracking glow) ── */
-  .service-card, .plugin-card, .reason-card, .vk-card-expanded {
-    --spot-x: 50%; --spot-y: 50%;
-  }
-  .service-card::after, .plugin-card::after, .reason-card::after, .vk-card-expanded::after {
-    content: '';
-    position: absolute; inset: 0;
-    border-radius: inherit;
-    background: radial-gradient(420px circle at var(--spot-x) var(--spot-y), rgba(0,232,122,.10), transparent 60%);
-    opacity: 0;
-    transition: opacity .3s ease;
-    pointer-events: none;
-  }
-  .service-card:hover::after, .plugin-card:hover::after, .reason-card:hover::after, .vk-card-expanded:hover::after {
-    opacity: 1;
   }
 
   /* ── VISITENKARTE BLOB TRIGGER ── */
-  .cta-inner { max-width: 1100px; margin: 0 auto; position: relative; }
   .vk-blob {
     position: absolute;
-    top: 40px; right: -130px;
-    width: 68px; height: 68px;
+    top: 8px; right: 8px;
+    width: 56px; height: 56px;
     border: none; background: none; cursor: pointer;
-    padding: 0; z-index: 5;
+    padding: 0; z-index: 90;
     filter: drop-shadow(0 0 22px rgba(0,232,122,.5)) drop-shadow(0 0 44px rgba(0,232,122,.25));
     transition: filter .3s ease;
+  }
+  @media (min-width: 1160px) {
+    .vk-blob { top: 40px; right: -130px; width: 68px; height: 68px; }
   }
   .vk-blob::before {
     content: '';
@@ -597,29 +563,15 @@
   }
   .vk-blob:hover .vk-blob-core { transform: scale(1.15); }
   .vk-blob:active .vk-blob-core { transform: scale(.92); }
-  @keyframes vk-float {
-    0%, 100% { transform: translate(0, 0); }
-    50%      { transform: translate(4px, -12px); }
-  }
+  @keyframes vk-float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(4px, -12px); } }
   @keyframes vk-morph {
     0%, 100% { border-radius: 42% 58% 60% 40% / 45% 40% 60% 55%; }
     33%      { border-radius: 58% 42% 45% 55% / 55% 60% 40% 45%; }
     66%      { border-radius: 50% 50% 38% 62% / 40% 55% 45% 60%; }
   }
-  @keyframes vk-pulse {
-    0%, 100% { filter: brightness(1); }
-    50%      { filter: brightness(1.25); }
-  }
-  @keyframes vk-halo {
-    0%, 100% { opacity: .5; transform: scale(1); }
-    50%      { opacity: .9; transform: scale(1.2); }
-  }
-  @media (max-width: 1200px) and (min-width: 769px) {
-    .vk-blob { right: 8px; top: 8px; width: 50px; height: 50px; }
-  }
-  @media (max-width: 768px) {
-    .vk-blob { display: none; }
-  }
+  @keyframes vk-pulse { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.25); } }
+  @keyframes vk-halo { 0%, 100% { opacity: .5; transform: scale(1); } 50% { opacity: .9; transform: scale(1.2); } }
+  @media (max-width: 768px) { .vk-blob { display: none; } }
 
   /* ── VISITENKARTE OVERLAY ── */
   .vk-overlay {
@@ -628,21 +580,12 @@
     opacity: 0; visibility: hidden;
     transition: opacity .3s ease, visibility 0s linear .3s;
   }
-  .vk-overlay.open {
-    opacity: 1; visibility: visible;
-    transition: opacity .3s ease, visibility 0s linear 0s;
-  }
-  .vk-overlay-backdrop {
-    position: absolute; inset: 0;
-    background: rgba(0,0,0,.65);
-    backdrop-filter: blur(3px);
-  }
+  .vk-overlay.open { opacity: 1; visibility: visible; transition: opacity .3s ease, visibility 0s linear 0s; }
+  .vk-overlay-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.65); backdrop-filter: blur(3px); }
   .vk-card-expanded {
     position: relative;
     width: calc(100% - 48px); max-width: 380px;
-    background:
-      linear-gradient(155deg, rgba(0,232,122,.05), transparent 40%),
-      linear-gradient(145deg, #14181a, #0d0f10);
+    background: linear-gradient(155deg, rgba(0,232,122,.05), transparent 40%), linear-gradient(145deg, #14181a, #0d0f10);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 22px 24px;
@@ -659,10 +602,7 @@
     background: linear-gradient(135deg, rgba(0,232,122,.5), rgba(0,232,122,.12));
     border: 1px solid rgba(0,232,122,.4);
   }
-  .vk-chip::before, .vk-chip::after {
-    content: ''; position: absolute; left: 4px; right: 4px; height: 1px;
-    background: rgba(0,0,0,.35);
-  }
+  .vk-chip::before, .vk-chip::after { content: ''; position: absolute; left: 4px; right: 4px; height: 1px; background: rgba(0,0,0,.35); }
   .vk-chip::before { top: 5px; }
   .vk-chip::after  { top: 10px; }
   .vk-top { display: flex; align-items: center; gap: 16px; }
@@ -673,52 +613,24 @@
     box-shadow: 0 0 14px rgba(0,232,122,.25);
   }
   .vk-info { display: flex; flex-direction: column; gap: 3px; text-align: left; min-width: 0; }
-  .vk-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
-  }
-  .vk-bottom {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    flex-wrap: wrap; gap: 10px;
-  }
+  .vk-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent); }
+  .vk-bottom { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
   .vk-contact { display: flex; flex-direction: column; gap: 4px; }
-  .vk-corner {
-    position: absolute; width: 10px; height: 10px;
-    border: 1px solid var(--accent); opacity: .4;
-  }
+  .vk-corner { position: absolute; width: 10px; height: 10px; border: 1px solid var(--accent); opacity: .4; }
   .vk-corner-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
   .vk-corner-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
-  .vk-label {
-    font-family: var(--mono);
-    font-size: 10px; color: var(--accent); letter-spacing: .1em;
-    text-transform: uppercase; opacity: .7;
-  }
+  .vk-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
   .vk-name { font-weight: 700; font-size: 16px; color: var(--text); font-family: var(--sans); }
   .vk-role { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
-  .vk-loc {
-    font-size: 11.5px; color: var(--muted);
-    font-family: var(--mono);
-  }
-  .vk-mail, .vk-domain {
-    font-size: 11.5px;
-    font-family: var(--mono);
-    text-decoration: none;
-    transition: color .2s;
-  }
+  .vk-loc { font-size: 11.5px; color: var(--muted); font-family: var(--mono); }
+  .vk-mail, .vk-domain { font-size: 11.5px; font-family: var(--mono); text-decoration: none; transition: color .2s; }
   .vk-mail { color: var(--accent); }
   .vk-mail:hover { color: #1fffa0; text-decoration: underline; }
   .vk-domain { color: var(--muted); }
   .vk-domain:hover { color: var(--accent); }
   .vk-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
-  .vk-tags span {
-    font-family: var(--mono); font-size: 10px;
-    color: var(--accent); border: 1px solid var(--border);
-    border-radius: 20px; padding: 2px 8px;
-  }
-  @media (max-width: 420px) {
-    .vk-bottom { flex-direction: column; align-items: flex-start; }
-    .vk-tags { justify-content: flex-start; }
-  }
+  .vk-tags span { font-family: var(--mono); font-size: 10px; color: var(--accent); border: 1px solid var(--border); border-radius: 20px; padding: 2px 8px; }
+  @media (max-width: 420px) { .vk-bottom { flex-direction: column; align-items: flex-start; } .vk-tags { justify-content: flex-start; } }
   @media (min-width: 769px) {
     .vk-card-expanded { max-width: 460px; padding: 32px 36px; gap: 20px; }
     .vk-top { gap: 20px; }
@@ -732,32 +644,32 @@
     .vk-tags span { font-size: 11.5px; padding: 3px 10px; }
     .vk-chip { top: 26px; right: 28px; width: 28px; height: 19px; }
   }
-  @media (max-width: 768px) {
-    .vk-overlay { display: none; }
-  }
 </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "E-Commerce Engineering & Shopware 6 Freelance Entwicklung",
-  "description": "Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen, API-Integrationen für Shopware 6 – von einem E-Commerce Engineer. Sofort verfügbar für Agenturen und Shop-Betreiber.",
-  "provider": {
-    "@type": "Person",
-    "name": "Michael Barabanov",
-    "url": "https://mbara.net"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Deutschland"
-  },
-  "serviceType": ["Plugin-Entwicklung", "Shop-Wartung", "Schnittstellen-Entwicklung", "Frontend-Entwicklung", "Performance-Optimierung"],
-  "url": "https://mbara.net/hire",
-  "availableChannel": {
-    "@type": "ServiceChannel",
-    "serviceUrl": "https://mbara.net/hire",
-    "availableLanguage": ["de", "en"]
-  }
+  "name": "Shopware 6 & JTL Freelance Entwicklung",
+  "description": "Shopware-6-Plugin-Entwicklung, JTL-Wawi- und Shop-Betreuung, KI-Integrationen und Schnittstellen. Nebenberuflich verfügbar für Agenturen und Shop-Betreiber, rund 10 Stunden pro Woche.",
+  "provider": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net" },
+  "areaServed": { "@type": "Country", "name": "Deutschland" },
+  "serviceType": ["Plugin-Entwicklung", "JTL-Betreuung", "KI-Integration", "Schnittstellen-Entwicklung", "n8n-Automatisierung"],
+  "url": "https://mbara.net/hire#red"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "SEO & GEO Audit für Onlineshops",
+  "description": "Technik-, SEO- und GEO-Audit: wie sichtbar ist dein Shop in Google und in KI-Suchen wie ChatGPT und Perplexity? PDF-Report mit priorisierten Handlungsempfehlungen.",
+  "provider": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net" },
+  "areaServed": { "@type": "Country", "name": "Deutschland" },
+  "url": "https://mbara.net/hire#blue",
+  "offers": [
+    { "@type": "Offer", "name": "Audit", "price": "199", "priceCurrency": "EUR", "url": "https://mbara.net/hire#blue" },
+    { "@type": "Offer", "name": "Audit+", "price": "299", "priceCurrency": "EUR", "url": "https://mbara.net/hire#blue" }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -776,9 +688,8 @@
 <nav id="navbar">
   <a href="https://mbara.net" class="nav-logo">$ mb_</a>
   <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#plugins">Plugins</a>
-    <a href="#stack">Stack</a>
+    <a href="#red" data-i18n="hire.nav.red">Entwicklung</a>
+    <a href="#blue" data-i18n="hire.nav.blue">SEO & GEO Audit</a>
     <a href="demo.html">Demo Projekte</a>
     <button id="lang-btn" aria-label="Sprache wechseln" style="font-family:var(--mono);font-size:12px;background:none;border:none;cursor:pointer;letter-spacing:.05em;display:flex;align-items:center;gap:4px;padding:0;">
       <span class="lo" id="lang-de" style="transition:color .2s;color:#8f8f8f;">DE</span>
@@ -793,300 +704,298 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#services" onclick="closeMobile()">Services</a>
-  <a href="#plugins" onclick="closeMobile()">Plugins</a>
-  <a href="#stack" onclick="closeMobile()">Stack</a>
+  <a href="#red" onclick="closeMobile()" data-i18n="hire.nav.red">Entwicklung</a>
+  <a href="#blue" onclick="closeMobile()" data-i18n="hire.nav.blue">SEO & GEO Audit</a>
   <a href="demo.html" onclick="closeMobile()">Demo Projekte</a>
-  <a href="#contact" onclick="closeMobile()" data-i18n="hire.nav.cta">Anfragen →</a>
   <a href="https://mbara.net">← Portfolio</a>
   <button onclick="document.getElementById('lang-btn').click();closeMobile();" style="font-family:var(--mono);font-size:14px;background:none;border:none;cursor:pointer;color:var(--muted);text-align:left;padding:0;">DE / EN</button>
 </div>
 
 <main>
-<div class="hero" id="hero">
-  <div class="hero-grid" id="heroGrid"></div>
-  <div class="hero-glow"></div>
+
+<div class="lead-section">
+  <div class="fx-layer" id="fxLayer" aria-hidden="true"></div>
+  <div class="hero-grid"></div>
 
   <div class="availability">
     <span class="avail-dot"></span>
-    <span data-i18n="hire.avail">VERFÜGBAR FÜR PROJEKTE</span>
+    <span data-i18n="hire.avail">NEBENBERUFLICH · CA. 10 STD./WOCHE</span>
   </div>
 
-  <div class="hero-tag">// michael barabanov · e-commerce engineer · koblenz</div>
+  <div class="lead-tag">// michael barabanov · e-commerce engineer · koblenz<span class="cursor"></span></div>
 
-  <h1>
-    <span class="line-dim" data-i18n="hire.hero.h1.pre">Du brauchst</span><br>
-    <span class="line-accent">Shopware.</span><br>
-    <span data-i18n="hire.hero.h1.post">Ich liefere.</span><span class="cursor"></span>
-  </h1>
-
-  <p class="hero-sub" data-i18n="hire.hero.sub">
-    Plugin-Entwicklung, Shop-Wartung, Template-Anpassungen, API-Integrationen –
-    ich kenne Shopware 6 von innen. Kein Aufwärmen, kein Einarbeiten.
-    Direkt produktiv.
-  </p>
-
-  <div class="hero-cta">
-    <a href="#contact" class="btn-primary" data-i18n="hire.cta.contact">Jetzt anfragen →</a>
-    <a href="#plugins" class="btn-secondary" data-i18n="hire.cta.plugins">Meine Plugins ↓</a>
-  </div>
-
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    scroll
-  </div>
+  <h1 data-i18n="hire.lead.h1">Zwei Wege zu einem besseren Shop.</h1>
+  <p class="lead-sub" data-i18n="hire.lead.sub">Shopware- und JTL-Entwicklung oder ein SEO &amp; GEO Audit für mehr Sichtbarkeit, beide Angebote im Überblick, direkt hier unten.</p>
 </div>
 
-<div class="stats-bar">
-  <div class="stat-item"><span class="stat-value">30+</span><span class="stat-label" data-i18n="hire.stat.1">Shops live gebracht</span></div>
-  <div class="stat-item"><span class="stat-value">4</span><span class="stat-label" data-i18n="hire.stat.2">Open Source Plugins</span></div>
-  <div class="stat-item"><span class="stat-value">90%</span><span class="stat-label" data-i18n="hire.stat.3">Schadtraffic reduziert</span></div>
-  <div class="stat-item"><span class="stat-value">+22%</span><span class="stat-label" data-i18n="hire.stat.4">Mehr organischer Traffic</span></div>
-  <div class="stat-item"><span class="stat-value" data-i18n="hire.stat.5.val">Sofort</span><span class="stat-label" data-i18n="hire.stat.5.label">Verfügbar</span></div>
-</div>
+<section class="paths-section" aria-label="Angebote">
+  <div class="paths-glow" aria-hidden="true"></div>
+  <div class="paths">
 
-<div class="section-wrap" id="services">
-  <div class="section-tag reveal" data-i18n="hire.s1.tag">// was ich mache</div>
-  <h2 class="reveal" data-i18n-html="hire.s1.h2">Kein Generalist.<br>Shopware-Spezialist.</h2>
-  <p class="section-lead reveal" data-i18n="hire.s1.lead">
-    Ich arbeite ausschließlich im PHP & E-Commerce-Umfeld.
-    Du bekommst jemanden der das System kennt – nicht jemanden
-    der sich erst reinfinden muss.
-  </p>
+    <article class="path path-red" id="red">
+      <div class="path-header">
+        <span class="path-tag" data-i18n="hire.red.tag">// shopware &amp; jtl entwicklung</span>
+        <h2 data-i18n-html="hire.red.title">Shopware / JTL<br>Entwicklung</h2>
+        <p class="path-preview" data-i18n="hire.red.preview">Plugin-Entwicklung, KI-Integrationen und Schnittstellen für Shopware 6 und JTL. Für Shopbetreiber und Agenturen, die Entwicklungs-Power brauchen.</p>
+      </div>
 
-  <div class="services-grid">
-    <div class="service-card reveal reveal-delay-1">
-      <div class="service-icon">[ 01 ] PLUGIN-DEV</div>
-      <div class="service-title" data-i18n="hire.svc.1.title">Plugin-Entwicklung</div>
-      <div class="service-desc" data-i18n="hire.svc.1.desc">Custom Shopware 6 Plugins nach deinen Anforderungen. Von einfachen Erweiterungen bis zu komplexen Integrationen – sauber strukturiert, dokumentiert, produktionsreif.</div>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <div class="service-icon">[ 02 ] API</div>
-      <div class="service-title" data-i18n="hire.svc.2.title">Schnittstellen & APIs</div>
-      <div class="service-desc" data-i18n="hire.svc.2.desc">ERP-Anbindungen, Drittsystem-Integrationen, REST APIs. Ich habe JTL 5 und externe Systeme in laufende Shops integriert – ohne Betriebsunterbrechung.</div>
-    </div>
-    <div class="service-card reveal reveal-delay-3">
-      <div class="service-icon">[ 03 ] SUPPORT</div>
-      <div class="service-title" data-i18n="hire.svc.3.title">Bugfixing & Support</div>
-      <div class="service-desc" data-i18n="hire.svc.3.desc">Dein Team ist ausgelastet, ein Fehler blockiert alles? Ich spring rein, analysiere und liefere. Keine langen Übergabe-Sessions nötig – ich kenne die Architektur.</div>
-    </div>
-    <div class="service-card reveal reveal-delay-4">
-      <div class="service-icon">[ 04 ] WARTUNG</div>
-      <div class="service-title" data-i18n="hire.svc.4.title">Shop-Wartung & Updates</div>
-      <div class="service-desc" data-i18n="hire.svc.4.desc">Shopware-Updates die schief gehen können, gehen schief – wenn niemand sie begleitet. Ich übernehme Versionsmigrationen, halte Plugins kompatibel und sorge für einen stabilen Betrieb. Kein Ausfall, kein Stress.</div>
-    </div>
-    <div class="service-card reveal reveal-delay-5">
-      <div class="service-icon">[ 05 ] FRONTEND</div>
-      <div class="service-title" data-i18n="hire.svc.5.title">Theme & Storefront</div>
-      <div class="service-desc" data-i18n="hire.svc.5.desc">Dein Shop sieht nicht so aus wie du willst? Template-Anpassungen, individuelle Storefront-Komponenten, Twig & CSS – pixelgenau umgesetzt, ohne dass künftige Updates alles zerschießen.</div>
-    </div>
-    <div class="service-card reveal reveal-delay-6">
-      <div class="service-icon">[ 06 ] PERFORMANCE</div>
-      <div class="service-title" data-i18n="hire.svc.6.title">Performance & SEO</div>
-      <div class="service-desc" data-i18n="hire.svc.6.desc">Lighthouse-Audits, Ladezeit-Optimierung, technische SEO. Shops die ich betreut habe haben durchschnittlich +22% mehr organischen Traffic gewonnen.</div>
-    </div>
-  </div>
-</div>
+      <div class="path-block-label" data-i18n="hire.red.proof.label">BEWIESEN. NICHT BEHAUPTET.</div>
+      <div class="proof-list">
+        <a href="plugins/botprotection.html" class="proof-item glow-hover">
+          <img class="proof-thumb" src="img/plugins/botprotection-dashboard.png" alt="BotProtection Admin-Dashboard" loading="lazy">
+          <div class="proof-info">
+            <div class="proof-name">BotProtection</div>
+            <div class="proof-badges"><span class="badge-sw6">SW6</span><span class="badge-ai">AI</span><span class="badge-php">PHP</span></div>
+            <div class="proof-metric" data-i18n="hire.red.proof.bp.metric">90% Schadtraffic reduziert · PHPStan Level 8</div>
+          </div>
+          <span class="proof-cta" data-i18n="demo.details">Ansehen →</span>
+        </a>
+        <a href="plugins/ai-product-description.html" class="proof-item glow-hover">
+          <img class="proof-thumb" src="img/plugins/ai-product-description-modal.png" alt="AI Product Description im Shopware Admin" loading="lazy">
+          <div class="proof-info">
+            <div class="proof-name">AI Product Description</div>
+            <div class="proof-badges"><span class="badge-sw6">SW6</span><span class="badge-ai">AI</span><span class="badge-php">PHP</span></div>
+            <div class="proof-metric" data-i18n="hire.red.proof.ai.metric">Claude &amp; ChatGPT · 2 Sprachen, 3 Schreibstile</div>
+          </div>
+          <span class="proof-cta" data-i18n="demo.details">Ansehen →</span>
+        </a>
+        <a href="plugins/price-on-request.html" class="proof-item glow-hover">
+          <img class="proof-thumb" src="img/plugins/price-on-request-storefront-modal.png" alt="Price On Request Anfrageformular" loading="lazy">
+          <div class="proof-info">
+            <div class="proof-name">Price On Request</div>
+            <div class="proof-badges"><span class="badge-sw6">SW6</span><span class="badge-php">PHP</span></div>
+            <div class="proof-metric" data-i18n="hire.red.proof.pr.metric">Sales-Channel-Steuerung inklusive</div>
+          </div>
+          <span class="proof-cta" data-i18n="demo.details">Ansehen →</span>
+        </a>
+        <a href="plugins/coming-soon.html" class="proof-item glow-hover">
+          <img class="proof-thumb" src="img/plugins/coming-soon-page.png" alt="Coming Soon Seite mit Countdown" loading="lazy">
+          <div class="proof-info">
+            <div class="proof-name">Coming Soon</div>
+            <div class="proof-badges"><span class="badge-sw6">SW6</span><span class="badge-php">PHP</span></div>
+            <div class="proof-metric" data-i18n="hire.red.proof.cs.metric">503 SEO-konform · Countdown-Freigabe</div>
+          </div>
+          <span class="proof-cta" data-i18n="demo.details">Ansehen →</span>
+        </a>
+      </div>
+      <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener" class="path-github-link" data-i18n="hire.red.github">↗ Alle Plugins auf GitHub</a>
 
-<div class="section-wrap" id="plugins" style="padding-top: 0;">
-  <div class="section-tag reveal" data-i18n="hire.p.tag">// open source plugins</div>
-  <h2 class="reveal" data-i18n-html="hire.p.h2">Gebaut. Getestet.<br>Produktionsreif.</h2>
-  <p class="section-lead reveal" data-i18n="hire.p.lead">
-    Drei eigene Plugins im Shopware 6 Ökosystem – kein Demo-Code,
-    echte Lösungen die ich gebaut habe weil sie gebraucht wurden.
-  </p>
+      <div class="path-block-label" data-i18n="hire.red.services.label">LEISTUNGEN</div>
+      <ul class="path-list">
+        <li data-i18n="hire.red.svc.1">Shopware-6-Plugin-Entwicklung</li>
+        <li data-i18n="hire.red.svc.2">JTL-Wawi- und Shop-Betreuung</li>
+        <li data-i18n="hire.red.svc.3">KI-Integrationen (automatische Produkttexte, Anfrage-Automatisierung)</li>
+        <li data-i18n="hire.red.svc.4">Schnittstellen &amp; APIs</li>
+        <li data-i18n="hire.red.svc.5">n8n-Automatisierung</li>
+      </ul>
 
-  <div class="plugins-list">
-    <div class="plugin-card reveal">
-      <div>
-        <div class="plugin-badge">
-          <span class="badge badge-sw6">SW6</span>
-          <span class="badge badge-ai">AI</span>
-          <span class="badge badge-php">PHP</span>
+      <div class="path-block-label" data-i18n="hire.red.next.label">ABLAUF</div>
+      <ol class="timeline">
+        <li>
+          <span class="timeline-num">1</span>
+          <div><div class="timeline-title" data-i18n="hire.red.next.1.title">Anfrage</div><div class="timeline-desc" data-i18n="hire.red.next.1.desc">Kurze Mail oder Scoping-Call, wir klären Umfang und Zeitrahmen.</div></div>
+        </li>
+        <li>
+          <span class="timeline-num">2</span>
+          <div><div class="timeline-title" data-i18n="hire.red.next.2.title">Angebot</div><div class="timeline-desc" data-i18n="hire.red.next.2.desc">Projektpreis oder Tagessatz, schriftlich, vor Start.</div></div>
+        </li>
+        <li>
+          <span class="timeline-num">3</span>
+          <div><div class="timeline-title" data-i18n="hire.red.next.3.title">Umsetzung</div><div class="timeline-desc" data-i18n="hire.red.next.3.desc">Laufende Abstimmung mit Zwischenständen, kein Blackbox-Warten.</div></div>
+        </li>
+      </ol>
+
+      <div class="path-block-label" data-i18n="hire.red.stack.label">TECH STACK</div>
+      <div class="stack-tags">
+        <span class="stack-tag">PHP</span>
+        <span class="stack-tag">Shopware 6</span>
+        <span class="stack-tag">JTL 5</span>
+        <span class="stack-tag">MySQL</span>
+        <span class="stack-tag">REST API</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Twig</span>
+        <span class="stack-tag">Git</span>
+        <span class="stack-tag">Linux</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">OpenAI API</span>
+        <span class="stack-tag">Anthropic API</span>
+      </div>
+
+      <div class="path-block-label" data-i18n="hire.red.why.label">WARUM ICH</div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-title" data-i18n="hire.red.why.1.title">Kein Einarbeiten nötig</div>
+          <div class="why-desc" data-i18n="hire.red.why.1.desc">Agenturerfahrung. Ich weiß, wie Shopware-Projekte laufen und wo Probleme entstehen.</div>
         </div>
-        <div class="plugin-name">BotProtection</div>
-        <div class="plugin-desc" data-i18n="hire.plugin.bp.desc">
-          Application-Layer-Schutz gegen automatisierten Formular-Missbrauch – Honeypot, Rate-Limiting
-          und Time-Validation, ergänzend zu Netzwerkschutz wie Cloudflare. Admin-Dashboard mit
-          14-Tage-Statistik und optionaler KI-Bedrohungsanalyse (Claude).
+        <div class="why-item">
+          <div class="why-title" data-i18n="hire.red.why.2.title">Ich liefere, nicht ich rede</div>
+          <div class="why-desc" data-i18n="hire.red.why.2.desc">30+ Shops live gebracht. Vier eigene Open-Source-Plugins. Code, den man sehen kann.</div>
         </div>
-        <div class="plugin-features">
-          <span class="plugin-feature">Honeypot</span>
-          <span class="plugin-feature">Rate-Limiting</span>
-          <span class="plugin-feature">Time-Validation</span>
-          <span class="plugin-feature">KI-Bedrohungsanalyse</span>
-          <span class="plugin-feature">DSGVO-konform</span>
-          <span class="plugin-feature">SW 6.7+</span>
+        <div class="why-item">
+          <div class="why-title" data-i18n="hire.red.why.3.title">Flexibel verfügbar</div>
+          <div class="why-desc" data-i18n="hire.red.why.3.desc">Overflow, kurzfristige Aufgaben, längere Projekte, ich passe mich an.</div>
+        </div>
+        <div class="why-item">
+          <div class="why-title" data-i18n="hire.red.why.4.title">Sauberer Code</div>
+          <div class="why-desc" data-i18n="hire.red.why.4.desc">Keine Quick-Fixes, die in zwei Monaten wieder kaputtgehen.</div>
         </div>
       </div>
-      <a href="plugins/botprotection.html" class="plugin-link" data-i18n="demo.details" aria-label="Details: BotProtection">Details ansehen →</a>
-    </div>
 
-    <div class="plugin-card reveal">
-      <div>
-        <div class="plugin-badge">
-          <span class="badge badge-sw6">SW6</span>
-          <span class="badge badge-ai">AI</span>
-          <span class="badge badge-php">PHP</span>
+      <div class="path-block-label" data-i18n="hire.red.ref.label">REFERENZEN</div>
+      <div class="ref-list">
+        <div class="ref-card">
+          <p class="ref-quote">„Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien. Es ist ein deutliches Anliegen zu erkennen, den Betrieb in positiver Weise weiterzuentwickeln.“</p>
+          <span class="ref-source">Bundesarchiv · Koblenz, 2025</span>
         </div>
-        <div class="plugin-name">AI Product Description</div>
-        <div class="plugin-desc" data-i18n="hire.plugin.ai.desc">
-          AI-gestützter Produktbeschreibungs-Generator direkt im Shopware Admin.
-          Unterstützt Claude (Anthropic) und ChatGPT (OpenAI) mit eigenem API Key –
-          serverseitig verarbeitet, kein Datenleck. Zwei Sprachen, drei Schreibstile.
-        </div>
-        <div class="plugin-features">
-          <span class="plugin-feature">Claude & OpenAI</span>
-          <span class="plugin-feature">DE / EN</span>
-          <span class="plugin-feature">Professionell / Casual / SEO</span>
-          <span class="plugin-feature">SW 6.7+</span>
-          <span class="plugin-feature">Server-side API</span>
+        <div class="ref-card">
+          <p class="ref-quote">„Seine Zuverlässigkeit, sein Einsatz und seine Bereitschaft, Neues zu lernen, waren von großem Wert. Wir können ihn für zukünftige Aufgaben in diesem Bereich empfehlen.“</p>
+          <span class="ref-source">TC Unterhaltungselektronik AG · 2023</span>
         </div>
       </div>
-      <a href="plugins/ai-product-description.html" class="plugin-link" data-i18n="demo.details" aria-label="Details: AI Product Description">Details ansehen →</a>
-    </div>
 
-    <div class="plugin-card reveal">
-      <div>
-        <div class="plugin-badge">
-          <span class="badge badge-sw6">SW6</span>
-          <span class="badge badge-php">PHP</span>
+      <div class="path-price-row">
+        <div>
+          <div class="path-price-label" data-i18n="hire.red.price.label">PREIS</div>
+          <div class="path-price-value" data-i18n="hire.red.price.value">Projektpreis auf Anfrage · Tagessatz</div>
         </div>
-        <div class="plugin-name">Price On Request</div>
-        <div class="plugin-desc" data-i18n="hire.plugin.pr.desc">
-          Preise ausblenden und durch ein konfigurierbares Angebotsanfrage-Formular ersetzen.
-          Perfekt für B2B-Shops mit individueller Preisgestaltung.
-          E-Mail-Benachrichtigung und Sales-Channel-Steuerung inklusive.
+        <a href="mailto:m.barabanov@mbara.net?subject=Projektanfrage%20Shopware%2FJTL" class="btn-primary btn-red glow-hover" data-i18n="hire.red.cta">Projekt anfragen →</a>
+      </div>
+    </article>
+
+    <article class="path path-blue" id="blue">
+      <div class="path-header">
+        <span class="path-tag" data-i18n="hire.blue.tag">// seo &amp; geo audit</span>
+        <h2 data-i18n="hire.blue.title">SEO &amp; GEO Audit</h2>
+        <p class="path-hook" data-i18n="hire.blue.hook">Sichtbar in Google. Sichtbar in KI-Suchen.</p>
+        <p class="path-preview" data-i18n="hire.blue.preview">Immer mehr Kaufentscheidungen starten nicht mehr bei Google, sondern bei ChatGPT und Perplexity. Der Audit zeigt, wie sichtbar dein Shop in beiden Welten ist und welche Maßnahmen den größten Hebel haben.</p>
+      </div>
+
+      <div class="path-block-label" data-i18n="hire.blue.example.label">BEISPIEL-REPORT (ANONYMISIERT)</div>
+      <div class="example-row">
+        <div class="score-card glow-hover">
+          <div class="score-card-label" data-i18n="hire.blue.example.score.label">Score-Übersicht (beispielhaft)</div>
+          <div class="score-row">
+            <div class="score-row-top"><span data-i18n="hire.blue.example.score.technik">Technik</span><span>78</span></div>
+            <div class="score-bar"><div class="score-bar-fill" style="width:78%;background:var(--accent2);"></div></div>
+          </div>
+          <div class="score-row">
+            <div class="score-row-top"><span>SEO</span><span>61</span></div>
+            <div class="score-bar"><div class="score-bar-fill" style="width:61%;background:var(--accent);"></div></div>
+          </div>
+          <div class="score-row">
+            <div class="score-row-top"><span>GEO</span><span>34</span></div>
+            <div class="score-bar"><div class="score-bar-fill" style="width:34%;background:#e3b341;"></div></div>
+          </div>
         </div>
-        <div class="plugin-features">
-          <span class="plugin-feature">B2B-fokussiert</span>
-          <span class="plugin-feature">Custom Formular</span>
-          <span class="plugin-feature">E-Mail-Benachrichtigung</span>
-          <span class="plugin-feature">Sales-Channel-Steuerung</span>
+        <!-- Beispiel-Report-Auszug: sobald Asset vorliegt, hier ersetzen durch:
+             <img src="img/audit-report-example.jpg" alt="Anonymisierter Auszug eines SEO/GEO-Audit-Reports" loading="lazy" style="width:100%;height:auto;display:block;"> -->
+        <div class="report-placeholder">
+          <span data-i18n="hire.blue.example.placeholder">Beispiel-Auszug folgt in Kürze</span>
         </div>
       </div>
-      <a href="plugins/price-on-request.html" class="plugin-link" data-i18n="demo.details" aria-label="Details: Price On Request">Details ansehen →</a>
-    </div>
 
-    <div class="plugin-card reveal">
-      <div>
-        <div class="plugin-badge">
-          <span class="badge badge-sw6">SW6</span>
-          <span class="badge badge-php">PHP</span>
+      <div class="path-block-label" data-i18n="hire.blue.scope.label">WAS GEPRÜFT WIRD</div>
+      <ul class="path-list">
+        <li><strong data-i18n="hire.blue.scope.1.term">Technik:</strong> <span data-i18n="hire.blue.scope.1.desc">Ladezeit (PageSpeed, Core Web Vitals), robots.txt, Sitemap, Indexierbarkeit</span></li>
+        <li><strong data-i18n="hire.blue.scope.2.term">SEO:</strong> <span data-i18n="hire.blue.scope.2.desc">Meta-Daten, Seitenstruktur, strukturierte Daten (Schema.org)</span></li>
+        <li><strong data-i18n="hire.blue.scope.3.term">GEO:</strong> <span data-i18n="hire.blue.scope.3.desc">Sichtbarkeit deines Shops in KI-Antworten, Maschinenlesbarkeit deiner Inhalte</span></li>
+        <li><strong data-i18n="hire.blue.scope.4.term">Ergebnis:</strong> <span data-i18n="hire.blue.scope.4.desc">Priorisierte Handlungsempfehlungen, sortiert nach Aufwand und Wirkung</span></li>
+      </ul>
+      <p class="scope-note" data-i18n="hire.blue.pages.note">Geprüft werden die Startseite plus bis zu 10 repräsentative Seiten (Kategorie, Produkt, Checkout), damit die Empfehlungen konkret statt generisch sind.</p>
+
+      <div class="path-block-label" data-i18n="hire.blue.next.label">ABLAUF</div>
+      <ol class="timeline">
+        <li>
+          <span class="timeline-num">1</span>
+          <div><div class="timeline-title" data-i18n="hire.blue.next.1.title">Anfrage</div><div class="timeline-desc" data-i18n="hire.blue.next.1.desc">Du schickst deine Shop-URL, ich bestätige den Auftrag und schicke eine Rechnung.</div></div>
+        </li>
+        <li>
+          <span class="timeline-num">2</span>
+          <div><div class="timeline-title" data-i18n="hire.blue.next.2.title">Zahlung</div><div class="timeline-desc" data-i18n="hire.blue.next.2.desc">Vorkasse: nach Zahlungseingang startet die Analyse.</div></div>
+        </li>
+        <li>
+          <span class="timeline-num">3</span>
+          <div><div class="timeline-title" data-i18n="hire.blue.next.3.title">Analyse</div><div class="timeline-desc" data-i18n="hire.blue.next.3.desc">Technik-, SEO- und GEO-Check laufen im Hintergrund.</div></div>
+        </li>
+        <li>
+          <span class="timeline-num">4</span>
+          <div><div class="timeline-title" data-i18n="hire.blue.next.4.title">Report</div><div class="timeline-desc" data-i18n="hire.blue.next.4.desc">PDF mit priorisierten Empfehlungen, innerhalb von 3 bis 5 Werktagen.</div></div>
+        </li>
+        <li>
+          <span class="timeline-num">5</span>
+          <div><div class="timeline-title" data-i18n="hire.blue.next.5.title">Optional: Umsetzung</div><div class="timeline-desc" data-i18n="hire.blue.next.5.desc">Auf Wunsch setze ich die Empfehlungen direkt um.</div></div>
+        </li>
+      </ol>
+
+      <div class="path-block-label" data-i18n="hire.blue.packages.label">PAKETE</div>
+      <div class="packages-row">
+        <div class="package-card glow-hover">
+          <div class="package-name" data-i18n="hire.blue.pkg1.name">Audit</div>
+          <div class="package-price">199 €</div>
+          <ul class="package-features">
+            <li data-i18n="hire.blue.pkg1.f1">Vollständiger Prüfbericht als PDF</li>
+            <li data-i18n="hire.blue.pkg1.f2">Top-Maßnahmen priorisiert nach Aufwand und Wirkung</li>
+            <li data-i18n="hire.blue.pkg1.f3">Lieferung in 3 bis 5 Werktagen</li>
+          </ul>
         </div>
-        <div class="plugin-name">Coming Soon</div>
-        <div class="plugin-desc" data-i18n="hire.plugin.cs.desc">
-          Konfigurierbarer Coming-Soon und Maintenance Mode mit IP-Whitelisting,
-          Countdown-Freigabe und SEO-konformen HTTP-Headern (503, Retry-After, Noindex).
-          Sales-Channel-gesteuert.
-        </div>
-        <div class="plugin-features">
-          <span class="plugin-feature">IP-Whitelisting</span>
-          <span class="plugin-feature">Countdown</span>
-          <span class="plugin-feature">503 SEO-konform</span>
-          <span class="plugin-feature">Sales-Channel</span>
+        <div class="package-card featured glow-hover">
+          <div class="package-name" data-i18n="hire.blue.pkg2.name">Audit+</div>
+          <div class="package-price">299 €</div>
+          <ul class="package-features">
+            <li data-i18n="hire.blue.pkg2.f1">Alles aus dem Audit-Paket</li>
+            <li data-i18n="hire.blue.pkg2.f2">30-minütige Besprechung des Reports per Videocall</li>
+            <li data-i18n="hire.blue.pkg2.f3">Klare Antworten auf deine Rückfragen, bevor du Geld in Maßnahmen steckst</li>
+          </ul>
         </div>
       </div>
-      <a href="plugins/coming-soon.html" class="plugin-link" data-i18n="demo.details" aria-label="Details: Coming Soon">Details ansehen →</a>
-    </div>
-  </div>
-</div>
 
-<div class="stack-section">
-  <div class="section-wrap">
-    <div class="section-tag reveal" data-i18n="hire.ai.tag">// ausrichtung</div>
-    <h2 class="reveal" data-i18n-html="hire.ai.h2">Shopware trifft KI –<br>mein nächster Fokus.</h2>
-    <p class="section-lead reveal" data-i18n="hire.ai.lead">
-      Ich entwickle aktiv AI-gestützte Shopware-Plugins. Produktbeschreibungen
-      per KI sind erst der Anfang – automatisierte Kategorisierung, smarte Suche,
-      personalisierte Inhalte folgen. Wer jetzt AI-Plugins im Shopware-Store anbietet, ist früh dran.
-    </p>
-    <div class="ai-tags reveal">
-      <span class="ai-tag">OpenAI API</span>
-      <span class="ai-tag">Anthropic API (Claude)</span>
-      <span class="ai-tag">AI-Plugin-Entwicklung</span>
-      <span class="ai-tag">Shopware 6 Integration</span>
-    </div>
-  </div>
-</div>
+      <div class="path-block-label" data-i18n="hire.blue.upsell.label">DANACH: UMSETZUNG</div>
+      <div class="upsell-block">
+        <p class="upsell-text" data-i18n="hire.blue.upsell.text">Auf Wunsch setze ich die Maßnahmen aus dem Report direkt um. Individuelles Angebot auf Basis der Ergebnisse, typische Projekte liegen zwischen 500 und 2.000 €.</p>
+        <p class="upsell-callout" data-i18n="hire.blue.upsell.callout">Bei Beauftragung einer Umsetzung (ab 500 €) innerhalb von 14 Tagen nach Report-Lieferung wird der Audit-Preis vollständig angerechnet.</p>
+      </div>
 
-<div class="section-wrap">
-  <div class="section-tag reveal" data-i18n="hire.ref.tag">// referenzen</div>
-  <h2 class="reveal" data-i18n="hire.ref.h2">Was andere sagen.</h2>
-  <div class="refs-grid">
-    <div class="ref-card reveal">
-      <p class="ref-quote">"Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien. Es ist ein deutliches Anliegen zu erkennen den Betrieb in positiver Weise weiterzuentwickeln."</p>
-      <span class="ref-source">Bundesarchiv · Koblenz, 2025</span>
-    </div>
-    <div class="ref-card reveal">
-      <p class="ref-quote">"Seine Zuverlässigkeit, sein Einsatz und seine Bereitschaft, Neues zu lernen, waren von großem Wert. Wir können ihn für zukünftige Aufgaben in diesem Bereich empfehlen."</p>
-      <span class="ref-source">TC Unterhaltungselektronik AG · 2023</span>
-    </div>
-  </div>
-</div>
+      <ul class="legal-list">
+        <li data-i18n="hire.blue.legal.1">Angebot richtet sich an Unternehmen. Endpreise, gemäß §19 UStG wird keine Umsatzsteuer ausgewiesen.</li>
+        <li data-i18n="hire.blue.legal.2">Ein Audit gilt für einen Shop (eine Domain), Stand zum Prüfzeitpunkt.</li>
+        <li data-i18n="hire.blue.legal.3">Nicht enthalten: Umsetzung der Maßnahmen, laufende Überwachung, Keyword- und Content-Strategie.</li>
+        <li data-i18n="hire.blue.legal.4">Ablauf: Anfrage mit Shop-URL, Rechnung per E-Mail, Analyse startet nach Zahlungseingang.</li>
+        <li data-i18n="hire.blue.legal.5">Audit+: Termin findet innerhalb von 14 Tagen nach Report-Lieferung statt.</li>
+      </ul>
 
-<div class="section-wrap">
-  <div class="section-tag reveal" data-i18n="hire.why.tag">// warum ich</div>
-  <h2 class="reveal" data-i18n-html="hire.why.h2">Was mich<br>von anderen unterscheidet.</h2>
-  <div class="reasons-grid">
-    <div class="reason-card reveal reveal-delay-1">
-      <div class="reason-num">01</div>
-      <div class="reason-title" data-i18n="hire.why.1.title">Kein Einarbeiten nötig</div>
-      <div class="reason-desc" data-i18n="hire.why.1.desc">Ich komme aus dem Agenturumfeld. Ich weiß wie Shopware-Projekte laufen, wo Probleme entstehen und wie man sie schnell löst.</div>
-    </div>
-    <div class="reason-card reveal reveal-delay-2">
-      <div class="reason-num">02</div>
-      <div class="reason-title" data-i18n="hire.why.2.title">Ich liefere, nicht ich rede</div>
-      <div class="reason-desc" data-i18n="hire.why.2.desc">30+ Shops live gebracht. Vier eigene Open Source Plugins. Code den man sehen kann – kein CV-Filler.</div>
-    </div>
-    <div class="reason-card reveal reveal-delay-3">
-      <div class="reason-num">03</div>
-      <div class="reason-title" data-i18n="hire.why.3.title">Flexibel verfügbar</div>
-      <div class="reason-desc" data-i18n="hire.why.3.desc">Overflow, kurzfristige Aufgaben, längere Projekte. Ich passe mich deinem Bedarf an, nicht umgekehrt.</div>
-    </div>
-    <div class="reason-card reveal reveal-delay-4">
-      <div class="reason-num">04</div>
-      <div class="reason-title" data-i18n="hire.why.4.title">Sauberer Code</div>
-      <div class="reason-desc" data-i18n="hire.why.4.desc">Keine Quick-Fixes die in zwei Monaten wieder kaputt gehen. Wartbarer, dokumentierter Code der bleibt.</div>
-    </div>
-  </div>
-</div>
+      <div class="path-block-label" data-i18n="hire.blue.faq.label">HÄUFIGE FRAGEN</div>
+      <div class="mini-faq">
+        <div class="faq-item">
+          <div class="faq-q" data-i18n="hire.blue.faq.1.q">Was brauche ich von dir?</div>
+          <div class="faq-a" data-i18n="hire.blue.faq.1.a">Nur deine Shop-URL. Den Rest übernehme ich.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" data-i18n="hire.blue.faq.2.q">Funktioniert das auch ohne Shopware?</div>
+          <div class="faq-a" data-i18n="hire.blue.faq.2.a">Ja. Der Audit funktioniert für jeden Onlineshop, unabhängig vom System.</div>
+        </div>
+      </div>
 
-<div class="stack-section">
-  <div class="section-wrap">
-    <div class="section-tag reveal" id="stack">// tech stack</div>
-    <h2 class="reveal" data-i18n="hire.stack.h2">Was ich mitbringe.</h2>
-    <p class="section-lead reveal" data-i18n="hire.stack.lead">Kein Baukastensystem. Ich kenne diese Tools aus echten Projekten, nicht aus Tutorials.</p>
-    <div class="stack-grid reveal">
-      <div class="stack-item"><div class="stack-name">PHP</div><div class="stack-sub">Primär · OOP</div></div>
-      <div class="stack-item"><div class="stack-name">Shopware 6</div><div class="stack-sub">Plugin · Admin</div></div>
-      <div class="stack-item"><div class="stack-name">JTL 5</div><div class="stack-sub">Shop · Wawi</div></div>
-      <div class="stack-item"><div class="stack-name">MySQL</div><div class="stack-sub">Datenbanken</div></div>
-      <div class="stack-item"><div class="stack-name">REST API</div><div class="stack-sub">Integration</div></div>
-      <div class="stack-item"><div class="stack-name">JavaScript</div><div class="stack-sub">Frontend · Vue</div></div>
-      <div class="stack-item"><div class="stack-name">Twig</div><div class="stack-sub">Templates</div></div>
-      <div class="stack-item"><div class="stack-name">Git</div><div class="stack-sub">Versionskontrolle</div></div>
-      <div class="stack-item"><div class="stack-name">Linux</div><div class="stack-sub">SSH · CLI</div></div>
-      <div class="stack-item"><div class="stack-name">Docker</div><div class="stack-sub">ddev · Container</div></div>
-      <div class="stack-item"><div class="stack-name">OpenAI API</div><div class="stack-sub">Integration</div></div>
-      <div class="stack-item"><div class="stack-name">Anthropic API</div><div class="stack-sub">Integration</div></div>
-    </div>
+      <div class="audit-form">
+        <input type="text" id="auditUrlInput" class="path-input" data-i18n-placeholder="hire.blue.input.placeholder" placeholder="deine-shop-url.de">
+        <a href="mailto:m.barabanov@mbara.net?subject=SEO%20%26%20GEO%20Audit%20Anfrage" id="auditCtaLink" class="btn-primary btn-blue glow-hover" data-i18n="hire.blue.cta">Audit anfragen →</a>
+      </div>
+    </article>
+
   </div>
-</div>
+</section>
 
 <div class="cta-section" id="contact">
   <div class="cta-inner">
     <button type="button" class="vk-blob" id="vk-trigger" aria-label="Visitenkarte anzeigen">
       <span class="vk-blob-core"></span>
     </button>
-    <div class="section-tag" style="margin-bottom: 20px;" data-i18n="hire.cta.tag">// kontakt</div>
-    <h2 data-i18n="hire.cta.h2">Bereit wenn du es bist.</h2>
-    <p data-i18n="hire.cta.p">Kurze Mail reicht. Sag mir was du brauchst – ich melde mich innerhalb von 24 Stunden.</p>
+    <div class="section-tag" data-i18n="hire.contact.tag">// kontakt</div>
+    <h2 data-i18n="hire.contact.h2">Egal welcher Pfad: schreib mir einfach.</h2>
+    <p data-i18n="hire.contact.p">Kurze Mail reicht. Sag mir was du brauchst, ich melde mich innerhalb von 48 Stunden.</p>
     <div class="cta-buttons">
-      <a href="mailto:m.barabanov@mbara.net" class="btn-primary">m.barabanov@mbara.net →</a>
+      <a href="mailto:m.barabanov@mbara.net" class="btn-primary" style="background:var(--accent);color:#000;">m.barabanov@mbara.net →</a>
       <a href="https://malt.me/profile/michaelbarabanov" class="btn-secondary" target="_blank" rel="noopener">Malt Profil</a>
       <a href="https://github.com/MichaelBarabanov" class="btn-secondary" target="_blank" rel="noopener">GitHub</a>
-      <a href="demo.html" class="btn-secondary">Plugins &amp; Projekte →</a>
     </div>
     <div class="contact-details">
       <div class="contact-item">
@@ -1094,12 +1003,8 @@
         <span class="contact-value" data-i18n="hire.contact.loc.val">Koblenz, Deutschland</span>
       </div>
       <div class="contact-item">
-        <span class="contact-label" data-i18n="hire.contact.rate.label">Stundensatz</span>
-        <span class="contact-value" data-i18n="hire.contact.rate.val">Auf Anfrage</span>
-      </div>
-      <div class="contact-item">
         <span class="contact-label" data-i18n="hire.contact.av.label">Verfügbarkeit</span>
-        <span class="contact-value" data-i18n="hire.contact.av.val">Sofort verfügbar</span>
+        <span class="contact-value" data-i18n="hire.contact.av.val">Nebenberuflich, ca. 10 Std./Woche</span>
       </div>
       <div class="contact-item">
         <span class="contact-label">LinkedIn</span>
@@ -1141,7 +1046,7 @@
 <footer>
   <div style="display: flex; flex-direction: column; gap: 4px;">
     <span>© 2026 Michael Barabanov</span>
-    <span style="font-family: var(--mono); font-size: 11px;" data-i18n="hire.footer.avail">● Verfügbar für Projekte</span>
+    <span style="font-family: var(--mono); font-size: 11px;" data-i18n="hire.footer.avail">● Nebenberuflich verfügbar</span>
     <span style="font-family: var(--mono); font-size: 11px; color: var(--muted);" data-i18n="hire.footer.ustg">Als Kleinunternehmer nach §19 UStG berechne ich keine Umsatzsteuer - genannte Preise sind Endpreise.</span>
   </div>
   <div style="display: flex; gap: 20px; flex-wrap: wrap;">
@@ -1174,15 +1079,6 @@
     mobileMenu.classList.remove('open');
   }
 
-  // REVEAL ON SCROLL
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  reveals.forEach(el => observer.observe(el));
-
   // SMOOTH ANCHOR
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
@@ -1192,24 +1088,50 @@
     });
   });
 
-  // PARALLAX (only desktop)
-  if (window.innerWidth > 768) {
-    const heroGrid = document.getElementById('heroGrid');
-    window.addEventListener('scroll', () => {
-      heroGrid.style.transform = `translateY(${window.scrollY * 0.25}px)`;
-    }, { passive: true });
-  }
+  // MATRIX FX (subtle, always on, purely decorative, respects prefers-reduced-motion)
+  (function () {
+    const layer = document.getElementById('fxLayer');
+    if (!layer) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const CHARS = '01アイウエオカキクケコ';
+    const COLS = 14;
+    for (let i = 0; i < COLS; i++) {
+      const col = document.createElement('div');
+      col.className = 'fx-col';
+      col.style.left = ((i / COLS) * 100 + (Math.random() * 4 - 2)) + '%';
+      col.style.animationDuration = (7 + Math.random() * 6) + 's';
+      col.style.animationDelay = (-Math.random() * 10) + 's';
+      let text = '';
+      for (let j = 0; j < 24; j++) text += CHARS[Math.floor(Math.random() * CHARS.length)] + '\n';
+      col.textContent = text;
+      layer.appendChild(col);
+    }
+  })();
 
-  // CARD SPOTLIGHT (cursor-tracking glow) — pointer devices only
+  // CURSOR-TRACKING HOVER GLOW, pointer devices only
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    document.querySelectorAll('.service-card, .plugin-card, .reason-card, .vk-card-expanded').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--spot-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
-        card.style.setProperty('--spot-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+    document.querySelectorAll('.glow-hover').forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        el.style.setProperty('--spot-x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        el.style.setProperty('--spot-y', ((e.clientY - rect.top) / rect.height * 100) + '%');
       });
     });
   }
+
+  // AUDIT CTA, append entered shop URL to the mailto body on click
+  (function () {
+    const input = document.getElementById('auditUrlInput');
+    const link = document.getElementById('auditCtaLink');
+    if (!input || !link) return;
+    link.addEventListener('click', () => {
+      const url = input.value.trim();
+      const subject = 'SEO & GEO Audit Anfrage';
+      let href = 'mailto:m.barabanov@mbara.net?subject=' + encodeURIComponent(subject);
+      if (url) href += '&body=' + encodeURIComponent('Shop-URL: ' + url);
+      link.href = href;
+    });
+  })();
 
   // VISITENKARTE OVERLAY (blob trigger)
   const vkTrigger  = document.getElementById('vk-trigger');
