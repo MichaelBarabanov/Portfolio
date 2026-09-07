@@ -353,6 +353,12 @@
   .ref-card { border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 16px 18px; background: rgba(255,255,255,0.02); }
   .ref-quote { font-size: 13.5px; color: #ccc; line-height: 1.6; font-style: italic; margin-bottom: 8px; }
   .ref-source { font-family: var(--mono); font-size: 11px; color: var(--red); }
+  .ref-card.featured { background: rgba(255,255,255,0.035); }
+  .ref-rating { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+  .ref-stars { color: #e3b341; font-size: 13px; letter-spacing: 2px; line-height: 1; }
+  .ref-rating-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.03em; }
+  .ref-rating-label a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+  .ref-rating-label a:hover { color: var(--text); }
 
   /* Blue path: hook line + scope note */
   .path-hook { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
@@ -843,6 +849,16 @@
 
       <div class="path-block-label" data-i18n="hire.red.ref.label">REFERENZEN</div>
       <div class="ref-list">
+        <div class="ref-card featured">
+          <div class="ref-rating">
+            <span class="ref-stars" aria-hidden="true">★★★★★</span>
+            <span class="ref-rating-label">5,0 von 5 · verifizierte Kundenbewertung auf Malt</span>
+          </div>
+          <p class="ref-quote">„Michael hat für uns das Update unserer JTL-Wawi von 1.11.8 auf 2.0.6 vorbereitet und durchgeführt, inklusive vorheriger Kompatibilitätsprüfung.</p>
+          <p class="ref-quote">Er hat das Update zuerst auf einer Kopie unserer Datenbank getestet, bevor er an unser Livesystem ging, und uns vorab eine verständliche Checkliste geschickt. Der Umstieg lief ohne Ausfall, am nächsten Morgen konnten wir normal weiterarbeiten.</p>
+          <p class="ref-quote">Besonders gefallen hat uns, dass er sich von selbst meldet, wenn ihm etwas auffällt, auch wenn es nicht zum Auftrag gehört. Technische Zusammenhänge erklärt er so, dass man sie ohne IT-Hintergrund versteht. Auch nach dem Projekt war er schnell erreichbar. Gerne wieder.“</p>
+          <span class="ref-source">Tour Made GmbH · JTL-Wawi Update, 09/2026</span>
+        </div>
         <div class="ref-card">
           <p class="ref-quote">„Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien. Es ist ein deutliches Anliegen zu erkennen, den Betrieb in positiver Weise weiterzuentwickeln.“</p>
           <span class="ref-source">Bundesarchiv · Koblenz, 2025</span>
