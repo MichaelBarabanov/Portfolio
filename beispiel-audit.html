@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beispielbericht: SEO- und GEO-Audit für einen Shopware-6-Shop | Michael Barabanov</title>
+  <meta name="description" content="Anonymisierter Beispielbericht eines technischen SEO- und GEO-Audits an einem echten Shopware-6-Shop. Alle Messwerte sind real erhoben, nur Name und Domain sind entfernt." />
+  <link rel="canonical" href="https://mbara.net/beispiel-audit" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Michael Barabanov" />
+  <meta property="og:title" content="Beispielbericht: SEO- und GEO-Audit für einen Shopware-6-Shop" />
+  <meta property="og:description" content="Anonymisierter Beispielbericht eines technischen SEO- und GEO-Audits. Alle Messwerte real erhoben." />
+  <meta property="og:url" content="https://mbara.net/beispiel-audit" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
+  <style>
+    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00e87a; --accent2:#0088ff; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    header { border-bottom:1px solid var(--border); padding:20px 0; }
+    .container { max-width:760px; margin:0 auto; padding:0 24px; }
+    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
+    .logo span { color:var(--accent); }
+    article { padding:56px 0 80px; }
+    .tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; color:var(--accent2); margin-bottom:12px; }
+    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; margin-bottom:16px; }
+    .meta { font-size:13px; color:var(--muted); margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+    h2 { font-size:20px; font-weight:600; margin:44px 0 12px; }
+    h3 { font-size:16px; font-weight:600; margin:28px 0 8px; color:var(--text); }
+    p { margin-bottom:18px; font-size:15px; color:#ccc; }
+    ul, ol { padding-left:20px; margin-bottom:18px; }
+    li { font-size:15px; color:#ccc; margin-bottom:6px; }
+    table { width:100%; border-collapse:collapse; margin:20px 0 26px; font-size:14px; }
+    th, td { border:1px solid var(--border); padding:9px 12px; text-align:left; color:#ccc; vertical-align:top; }
+    th { background:var(--surface); color:var(--text); font-weight:600; }
+    code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
+    .tip { background:var(--surface2); border-left:3px solid var(--accent2); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
+    .hinweis { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:18px 22px; margin:0 0 36px; font-size:14px; color:var(--muted); }
+    .cta { background:var(--surface2); border:1px solid rgba(0,136,255,0.3); border-radius:6px; padding:24px 26px; margin:48px 0 0; }
+    .cta h2 { margin-top:0; }
+    .btn { display:inline-block; margin-top:10px; font-family:'Cascadia Code','Fira Code',monospace; font-size:14px; background:var(--accent2); color:#fff; padding:11px 22px; border-radius:5px; }
+    .btn:hover { text-decoration:none; opacity:.9; }
+    .back { display:inline-block; margin-top:40px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
+    .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
+    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Beispielbericht: SEO- und GEO-Audit für einen Shopware-6-Shop",
+    "description": "Anonymisierter Beispielbericht eines technischen SEO- und GEO-Audits an einem echten Shopware-6-Shop.",
+    "datePublished": "2026-09-20",
+    "inLanguage": "de",
+    "author": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net" },
+    "publisher": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net" },
+    "mainEntityOfPage": "https://mbara.net/beispiel-audit"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mbara.net/" },
+      { "@type": "ListItem", "position": 2, "name": "Hire", "item": "https://mbara.net/hire" },
+      { "@type": "ListItem", "position": 3, "name": "Beispielbericht Audit", "item": "https://mbara.net/beispiel-audit" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><a href="index.html" style="color:var(--muted)"><span>$</span> mb_</a></div>
+    </div>
+  </header>
+
+  <article>
+    <div class="container">
+      <div class="tag">// beispielbericht</div>
+      <h1>SEO- und GEO-Audit: Beispielbericht</h1>
+      <div class="meta">Erhoben am 20.09.2026 &middot; Shopware 6 &middot; Erstmessung</div>
+
+      <div class="hinweis">
+        <strong>Anonymisierter Auszug eines echten Audits.</strong> Alle Messwerte wurden tatsächlich
+        erhoben, lediglich Shopname, Domain und Markennamen sind entfernt. Der Bericht zeigt Aufbau,
+        Tiefe und Sprache, in der Sie Ihren eigenen Bericht bekommen.<br><br>
+        Geprüfter Shop: Shopware 6, Fachhandel im gehobenen Preissegment, rund 4.300 Adressen in der
+        Sitemap. Erhoben per HTTP-Prüfung, gerendertem Browser-DOM, Quelltext und Suchabfragen.
+      </div>
+
+      <h2>Das Wichtigste zuerst</h2>
+      <p>Der Shop ist schnell. Die Seite ist nach 2,3 Sekunden fertig geladen, es gibt nur sechs
+      Fremddomains, die robots.txt schließt Filter- und Sortierseiten sauber aus, Open Graph und
+      Twitter Cards sind vollständig. Das ist mehr, als die meisten Shops dieser Größe vorweisen.</p>
+      <p>Drei Befunde kosten trotzdem messbar Sichtbarkeit.</p>
+      <p><strong>Erstens</strong> ist der Shop unter zwei Adressen vollständig erreichbar, mit und
+      ohne www, beide antworten mit Status 200 ohne Weiterleitung. Die Sitemap meldet beide Varianten
+      getrennt an Suchmaschinen. Das Canonical zeigt zwar auf die www-Variante, die Sitemap arbeitet
+      aber aktiv dagegen.</p>
+      <p><strong>Zweitens</strong> hat die Startseite keine einzige H1. Nicht zwei, wie es bei
+      Shop-Startseiten häufig vorkommt, sondern keine. Acht H2 und sechs H3 sind vorhanden, die
+      stärkste inhaltliche Überschrift fehlt.</p>
+      <p><strong>Drittens</strong>, und das ist der Punkt mit dem unmittelbarsten Effekt auf die
+      Klickrate: Der Shop trägt eine fünfstellige Zahl an Kundenbewertungen mit einem Schnitt von
+      4,99 im Organization-Markup. Dieses Markup verweist mit seiner <code>url</code> jedoch auf eine
+      andere Domain desselben Unternehmens. Die Bewertungen zahlen damit nicht auf den geprüften Shop
+      ein, und auf den Produktseiten fehlen sie vollständig.</p>
+
+      <h2>1. HTTP-Grundlagen</h2>
+      <table>
+        <thead><tr><th>Adresse</th><th>Status</th><th>Weiterleitung</th></tr></thead>
+        <tbody>
+          <tr><td>Domain ohne www</td><td>200</td><td>keine</td></tr>
+          <tr><td>Domain mit www</td><td>200</td><td>keine</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Befund:</strong> Der Shop ist doppelt erreichbar. Beide Varianten liefern denselben
+      Inhalt unter Status 200 aus. Das Canonical-Tag zeigt korrekt auf die www-Variante und fängt den
+      größten Teil des Problems ab.</p>
+      <p><strong>Verschärfend:</strong> Die Sitemap-Übersicht enthält zwei Einträge, einen für die
+      www-Variante und einen für die Variante ohne www, beide mit gleichem Zeitstempel. Der Shop
+      meldet Suchmaschinen also selbst beide Adressen zur Indexierung an, obwohl nur eine kanonisch
+      sein soll.</p>
+      <p><strong>Nebenbefund:</strong> Die Serverantwort nennt die genaue PHP-Version sowie die
+      Kennung der Hosting-Oberfläche. Das bringt keinen Vorteil und erleichtert das gezielte Suchen
+      nach bekannten Lücken. Abschalten ist eine Zeile in der Serverkonfiguration.</p>
+
+      <h2>2. robots.txt und Sitemap</h2>
+      <p>Die robots.txt ist überdurchschnittlich gepflegt. Ausgeschlossen sind Warenkorb, Konto,
+      Merkzettel, Registrierung, Anmeldung und interne Suche, dazu gezielt die Filter- und
+      Sortierparameter für Reihenfolge, Preis, Versand, Hersteller und Eigenschaften. Damit entsteht
+      kein Duplicate Content aus Filterkombinationen.</p>
+      <p><strong>Kein Suchdienst und kein KI-Dienst ist ausgesperrt.</strong> Weder GPTBot,
+      ClaudeBot, PerplexityBot, OAI-SearchBot noch Google-Extended sind blockiert. Das ist die
+      Voraussetzung dafür, in KI-Antworten überhaupt vorkommen zu können, und sie ist erfüllt.</p>
+      <p><strong>Befund:</strong> In der robots.txt fehlt die Zeile <code>Sitemap:</code>. Die
+      Sitemap existiert und ist erreichbar, über die robots.txt aber nicht auffindbar. Eine Zeile
+      Aufwand.</p>
+
+      <h2>3. Performance</h2>
+      <table>
+        <thead><tr><th>Kennzahl</th><th>Wert</th></tr></thead>
+        <tbody>
+          <tr><td>Anfragen</td><td>117</td></tr>
+          <tr><td>Summe der Dateigrößen</td><td>4.638 KB</td></tr>
+          <tr><td>davon Bilder als Bildelement</td><td>2.849 KB</td></tr>
+          <tr><td>davon Bilder aus CSS geladen</td><td>1.298 KB</td></tr>
+          <tr><td>davon Skripte</td><td>180 KB</td></tr>
+          <tr><td>Fremddomains</td><td>6</td></tr>
+          <tr><td>DOM fertig</td><td>1.824 ms</td></tr>
+          <tr><td>Seite fertig geladen</td><td>2.297 ms</td></tr>
+        </tbody>
+      </table>
+      <p>Die Ladezeiten sind gut. Das Gewicht ist es nicht: <strong>rund 4,1 MB der 4,6 MB sind
+      Bilder.</strong></p>
+
+      <h3>3.1 Bildgewicht</h3>
+      <p>Die sechs Kachelbilder der Startseite werden über CSS als Hintergrund geladen und tauchen
+      deshalb in keiner Bilderliste auf. Sie summieren sich auf 1.298 KB, das größte allein auf
+      444 KB. Dazu kommen drei Produktbilder mit 550, 419 und 409 KB. Ein einzelnes Produktbild mit
+      550 KB ist für eine Übersichtsseite sehr viel.</p>
+
+      <h3>3.2 Ausgeliefert gegen dargestellt</h3>
+      <table>
+        <thead><tr><th>Bild</th><th>geliefert</th><th>angezeigt</th><th>Faktor</th></tr></thead>
+        <tbody>
+          <tr><td>Produktbild Übersicht</td><td>1000 x 1000</td><td>378 x 378</td><td>2,6</td></tr>
+          <tr><td>Produktbild Übersicht</td><td>1000 x 1000</td><td>380 x 380</td><td>2,6</td></tr>
+          <tr><td>Logo</td><td>480 x 167</td><td>187 x 65</td><td>2,6</td></tr>
+        </tbody>
+      </table>
+      <p>Ein Faktor von 2 ist auf hochauflösenden Displays vertretbar, 2,6 liegt knapp darüber. Für
+      sich genommen kein schwerer Befund, in Kombination mit den absoluten Dateigrößen aber der
+      Hebel: Ein Bild, das mit 380 Pixeln dargestellt wird, braucht keine 550 KB.</p>
+
+      <h3>3.3 Kein modernes Bildformat im Einsatz</h3>
+      <p><strong>Von 63 Bildern der Startseite liegt kein einziges als WebP oder AVIF vor.</strong>
+      Alles wird als JPEG oder PNG ausgeliefert. Das ist die wirksamste Einzelmaßnahme in diesem
+      Bericht. Bei Fotos dieser Art sind mit WebP typischerweise 50 bis 70 Prozent der Bytes
+      einzusparen, ohne sichtbaren Qualitätsverlust. Auf die gemessenen 4,1 MB bezogen wären das grob
+      2 bis 2,8 MB weniger pro Seitenaufruf.</p>
+
+      <h3>3.4 Drittanbieter</h3>
+      <p>Nur sechs Fremddomains: ein Newsletter-Dienst über zwei Adressen, ein Bewertungssiegel über
+      zwei Adressen, ein Zahlungsanbieter, ein Content-Netzwerk. Kein Tag Manager, keine
+      Werbenetzwerke, kein Tracking-Wildwuchs. Das ist angenehm schlank und gehört ausdrücklich als
+      Pluspunkt vermerkt.</p>
+
+      <h2>4. Technisches SEO</h2>
+      <h3>4.1 Keine H1 auf der Startseite</h3>
+      <table>
+        <thead><tr><th>Ebene</th><th>Anzahl</th></tr></thead>
+        <tbody>
+          <tr><td>H1</td><td>0</td></tr>
+          <tr><td>H2</td><td>8</td></tr>
+          <tr><td>H3</td><td>6</td></tr>
+        </tbody>
+      </table>
+      <p>Für Suchmaschinen ist die H1 das stärkste inhaltliche Signal einer Seite. Auf der Startseite
+      fehlt sie vollständig. Auf Kategorie- und Produktseiten ist die Struktur dagegen korrekt, dort
+      gibt es jeweils genau eine H1. Lösung: Die bestehende Hauptüberschrift von H2 auf H1 umstellen.</p>
+
+      <h3>4.2 Kopfbereich: vollständig</h3>
+      <p>Title 55 Zeichen, Description 129 Zeichen, Canonical korrekt, <code>index, follow</code>,
+      Open Graph mit sechs Angaben vollständig, Twitter Cards mit fünf Angaben vollständig. Hier gibt
+      es nichts zu tun. Das ist seltener, als man denkt.</p>
+
+      <h2>5. Strukturierte Daten</h2>
+      <h3>5.1 Ausschließlich Microdata, kein JSON-LD</h3>
+      <p>Es existiert kein einziger JSON-LD-Block. Die Auszeichnung erfolgt vollständig über
+      Microdata im HTML, gemessen 204 Attribute auf der Startseite. Das ist gültig und wird von
+      Google gelesen, macht die Auszeichnung aber abhängig vom Template. Bei einem Theme-Update ist
+      dies die Stelle, an der Angaben unbemerkt verloren gehen.</p>
+
+      <h3>5.2 Produktseiten: vorbildlich gefüllt</h3>
+      <p>Vorhanden sind <code>name</code>, <code>sku</code>, <code>productID</code>,
+      <code>gtin13</code>, <code>mpn</code>, <code>description</code>, <code>price</code>,
+      <code>priceCurrency</code>, <code>availability</code>, dazu <code>BreadcrumbList</code> und
+      <code>Offer</code>. Dass sowohl GTIN als auch Herstellernummer gepflegt sind, ist die Ausnahme
+      und nicht die Regel. Zwei Felder sind leer ausgezeichnet: <code>brand</code> und
+      <code>image</code> tragen das Attribut, aber keinen Wert.</p>
+
+      <h3>5.3 Der wertvollste Befund: Bewertungen am falschen Ziel</h3>
+      <p>Das Organization-Markup der Startseite trägt eine fünfstellige Bewertungszahl mit einem
+      Schnitt von 4,99. Das Unternehmen betreibt mehrere Standorte und zwei Onlineshops. Die
+      gesammelten Bewertungen hängen an einem Organization-Block, dessen <code>url</code> auf den
+      jeweils anderen Shop verweist.</p>
+      <p>Praktische Folge in zwei Stufen:</p>
+      <ol>
+        <li>Die Bewertung ist als Unternehmensbewertung ausgezeichnet, nicht als Produktbewertung.
+        Sie kann damit in der Suche nicht als Sterne beim Produkt erscheinen. Auf den geprüften
+        Produktseiten ist kein <code>aggregateRating</code> vorhanden.</li>
+        <li>Die Zuordnung zeigt auf eine fremde Adresse. Selbst als Unternehmenssignal zahlt sie
+        damit nicht auf den geprüften Shop ein.</li>
+      </ol>
+      <p>Von allen Punkten in diesem Bericht hat dieser den unmittelbarsten Effekt auf die Klickrate
+      in der Suche. Eine fünfstellige Bewertungszahl mit einem Schnitt von 4,99 ist ein
+      außergewöhnlich starkes Signal, das derzeit im Suchergebnis nicht sichtbar wird.</p>
+
+      <h3>5.4 Fehlende Angaben</h3>
+      <table>
+        <thead><tr><th>Angabe</th><th>Wirkung</th></tr></thead>
+        <tbody>
+          <tr><td>WebSite mit SearchAction</td><td>keine Suchbox im Google-Ergebnis möglich</td></tr>
+          <tr><td>FAQPage</td><td>häufig zitierte Quelle für KI-Antworten</td></tr>
+          <tr><td>aggregateRating am Produkt</td><td>keine Sterne beim Produkt in der Suche</td></tr>
+          <tr><td>address, telephone, sameAs</td><td>Firma schlechter als Entität erkennbar</td></tr>
+        </tbody>
+      </table>
+
+      <h2>6. Sichtbarkeit in KI-Antworten</h2>
+      <p>Sprachmodelle wie ChatGPT oder Perplexity erfinden keine Kaufempfehlungen. Sie stützen sich
+      auf Test- und Vergleichsbeiträge, die im offenen Netz stehen. Entscheidend ist deshalb nicht,
+      wie der eigene Shop formuliert ist, sondern ob er in diesen Quellen auftaucht.</p>
+      <p><strong>Führende Quellen der Kategorie:</strong> sechs Vergleichs- und Testportale, darunter
+      ein großes Fachmagazin der Branche.<br>
+      <strong>Dort genannte Marken:</strong> fünf Hersteller aus dem Einsteiger- und
+      Mittelklassebereich.<br>
+      <strong>Ergebnis:</strong> Der Shop kommt in keiner dieser Quellen vor. Gefunden wurde er in
+      Bewertungsportalen, in einem Preisvergleich und in den Händlerverzeichnissen zweier Hersteller,
+      also ausschließlich in Verzeichniseinträgen, nicht in redaktionellen Beiträgen.</p>
+      <div class="tip">Der eigentliche Befund liegt tiefer: Die in den Vergleichsbeiträgen
+      behandelten Marken sind fast vollständig andere als die, die der Shop führt. Die Beiträge
+      decken das Einsteiger- und Mittelklassesegment ab, der Shop ist im gehobenen Fachsegment
+      positioniert. Eine Anfrage der Art "welches Gerät ist das beste" wird deshalb niemals zu diesem
+      Shop führen, unabhängig davon, wie gut die Website technisch ist.</div>
+      <p>Was daraus folgt: Ein Sichtbarkeits-Tool ändert daran nichts. Kein Werkzeug kann bewirken,
+      dass ein fremdes Portal über einen Shop schreibt. Der Hebel liegt bei Beiträgen, die das
+      passende Segment behandeln, und bei einem gefüllten Organization-Markup, damit die Firma
+      überhaupt als eigenständige Entität erkannt wird.</p>
+
+      <h2>7. Maßnahmen nach Priorität</h2>
+      <table>
+        <thead><tr><th>Prio</th><th>Maßnahme</th><th>Aufwand</th></tr></thead>
+        <tbody>
+          <tr><td>Hoch</td><td>Bilder als WebP ausliefern. Größter Einzelhebel, grob 2 bis 2,8 MB pro Seitenaufruf.</td><td>mittel</td></tr>
+          <tr><td>Hoch</td><td>Organization je Domain mit eigener url auszeichnen, Bewertungen korrekt zuordnen.</td><td>gering</td></tr>
+          <tr><td>Hoch</td><td>Dauerhafte Weiterleitung auf die www-Variante, zweiten Sitemap-Eintrag entfernen.</td><td>gering</td></tr>
+          <tr><td>Hoch</td><td>H1 auf der Startseite setzen.</td><td>gering</td></tr>
+          <tr><td>Mittel</td><td>Produktbilder in Anzeigegröße ausliefern statt 1000 x 1000.</td><td>mittel</td></tr>
+          <tr><td>Mittel</td><td>Kachelbilder verkleinern, das größte wiegt 444 KB.</td><td>gering</td></tr>
+          <tr><td>Mittel</td><td>Sitemap-Zeile in die robots.txt aufnehmen.</td><td>gering</td></tr>
+          <tr><td>Mittel</td><td>Nennung in Vergleichsbeiträgen des eigenen Preissegments betreiben.</td><td>laufend</td></tr>
+          <tr><td>Niedrig</td><td>brand und image im Produkt-Markup mit Werten füllen.</td><td>gering</td></tr>
+          <tr><td>Niedrig</td><td>WebSite-Schema mit SearchAction, FAQ-Inhalte als FAQPage auszeichnen.</td><td>gering</td></tr>
+          <tr><td>Niedrig</td><td>Serverkennung und PHP-Version nicht mehr ausliefern.</td><td>gering</td></tr>
+        </tbody>
+      </table>
+
+      <h2>8. Offene Fragen</h2>
+      <p>Diese Punkte sind von außen nicht feststellbar. Sie stehen bewusst nicht als Befund, sondern
+      als Fragen, deren Beantwortung das Bild vervollständigt.</p>
+      <ul>
+        <li>Läuft ein vollständiger Produktdatenfeed an Google Merchant Center und stimmt er mit den
+        Angaben auf der Produktseite überein? Für produktbezogene KI-Antworten ist der Feed eine
+        eigene Datenquelle neben der Website.</li>
+        <li>Ist die Erzeugung moderner Bildformate deaktiviert oder sind die Bilder nur nicht neu
+        erzeugt worden?</li>
+        <li>Welches Plugin erzeugt den Organization-Block mit der fremden Domain?</li>
+        <li>Werden Produktbewertungen erhoben, und wenn ja, warum erscheinen sie nicht im
+        Produkt-Markup?</li>
+        <li>Gibt es eine Einwilligungsverwaltung, und welche der sechs Fremddomains laden vor der
+        Einwilligung?</li>
+        <li>Tatsächliche Felddaten zu den Core Web Vitals aus der Search Console.</li>
+      </ul>
+
+      <h2>9. Wie gemessen wurde</h2>
+      <ul>
+        <li>HTTP-Prüfung beider Domainvarianten per direktem Aufruf ohne Browser.</li>
+        <li>Seitengewicht und Ressourcenliste aus der Resource Timing API des gerenderten Browsers
+        bei 1440 x 900.</li>
+        <li>Bildmaße aus dem Vergleich der gelieferten Pixelbreite zur tatsächlichen
+        Darstellungsbreite im Layout.</li>
+        <li>Strukturierte Daten aus dem gerenderten DOM und zusätzlich aus dem Rohquelltext, weil die
+        Auszeichnung als Microdata und nicht als JSON-LD vorliegt.</li>
+        <li>Sitemap vollständig heruntergeladen und ausgewertet.</li>
+        <li>KI-Sichtbarkeit über Suchabfragen nach den führenden Vergleichsquellen der Kategorie und
+        Abgleich der dort genannten Marken.</li>
+      </ul>
+      <p><strong>Einschränkungen, ausdrücklich benannt:</strong></p>
+      <ul>
+        <li>Es liegt kein PageSpeed-Punktwert vor. Die genannten Dateigrößen sind belastbar, die
+        Ladezeiten nur eingeschränkt, weil ohne gedrosselte Verbindung gemessen. Ein
+        Mittelklasse-Smartphone im Mobilfunknetz rechnet um ein Vielfaches langsamer.</li>
+        <li>Die angegebenen 4.638 KB sind die Summe der Dateigrößen, nicht die Zahl der tatsächlich
+        übertragenen Bytes. Bei Textdateien liegt die Übertragung durch Komprimierung darunter, bei
+        Bildern entspricht sie der Dateigröße.</li>
+        <li>Symbole im SVG-Format wurden aus der Betrachtung "geliefert gegen dargestellt"
+        herausgenommen. Bei Vektorgrafiken sagt das Pixelmaß nichts über die Dateigröße aus.</li>
+        <li>Geprüft wurden Startseite, eine Kategorieseite und eine Produktseite.</li>
+      </ul>
+
+      <div class="cta">
+        <h2>Einen solchen Bericht für Ihren Shop</h2>
+        <p>Ich messe Ihren Shop von außen, ohne Zugang zu Ihrem System. Sie schicken mir nur die
+        Adresse. Der Bericht kommt als PDF per Mail, Preis auf Anfrage.</p>
+        <a class="btn" href="hire.html#blue">Audit anfragen</a>
+      </div>
+
+      <a class="back" href="hire.html">← zurück zu den Leistungen</a>
+    </div>
+  </article>
+
+  <footer>
+    <div class="container">Michael Barabanov &middot; <a href="index.html" style="color:var(--muted)">mbara.net</a></div>
+  </footer>
+</body>
+</html>

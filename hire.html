@@ -432,6 +432,16 @@
     text-align: center;
   }
   .report-placeholder span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); line-height: 1.6; }
+  .report-link {
+    flex: 1 1 220px; border: 1px solid rgba(0,136,255,0.35); padding: 18px 20px;
+    display: flex; flex-direction: column; justify-content: center; gap: 8px;
+    min-height: 120px; background: rgba(0,136,255,0.05); text-decoration: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .report-link:hover { border-color: var(--accent2); background: rgba(0,136,255,0.1); }
+  .report-link-label { font-family: var(--mono); font-size: 10.5px; color: var(--accent2); letter-spacing: 0.03em; }
+  .report-link-text { font-size: 13px; color: #ccc; line-height: 1.55; }
+  .report-link-cta { font-family: var(--mono); font-size: 11.5px; color: var(--accent2); }
 
   .packages-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 10px; }
   .package-card { flex: 1 1 220px; border: 1px solid var(--border); padding: 22px; }
@@ -903,11 +913,11 @@
             <div class="score-bar"><div class="score-bar-fill" style="width:34%;background:#e3b341;"></div></div>
           </div>
         </div>
-        <!-- Beispiel-Report-Auszug: sobald Asset vorliegt, hier ersetzen durch:
-             <img src="img/audit-report-example.jpg" alt="Anonymisierter Auszug eines SEO/GEO-Audit-Reports" loading="lazy" style="width:100%;height:auto;display:block;"> -->
-        <div class="report-placeholder">
-          <span data-i18n="hire.blue.example.placeholder">Beispiel-Auszug folgt in Kürze</span>
-        </div>
+        <a class="report-link glow-hover" href="beispiel-audit.html">
+          <span class="report-link-label" data-i18n="hire.blue.example.link.label">VOLLSTÄNDIGER BEISPIELBERICHT</span>
+          <span class="report-link-text" data-i18n="hire.blue.example.link.text">Echter Shopware-6-Shop, anonymisiert, alle Messwerte real erhoben. Vom Seitengewicht über die strukturierten Daten bis zur Sichtbarkeit in KI-Antworten.</span>
+          <span class="report-link-cta" data-i18n="hire.blue.example.link.cta">Bericht ansehen →</span>
+        </a>
       </div>
 
       <div class="path-block-label" data-i18n="hire.blue.scope.label">WAS GEPRÜFT WIRD</div>
