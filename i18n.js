@@ -8,7 +8,7 @@
     de: {
       'badge.avail':          '● Freelance, nebenberuflich',
       'cta.work':             'Projekte ansehen',
-      'cta.hire':             'Kontakt aufnehmen',
+      'cta.hire':             'Leistungen ansehen',
       'about.text':           'Ich bin Michael, Fachinformatiker für Anwendungsentwicklung aus Koblenz. Ich baue Werkzeuge, die im Betrieb tatsächlich benutzt werden.<br><br>Hauptberuflich arbeite ich als Digital Process &amp; Solutions Engineer bei einem Logistikdienstleister in Mayen. Ich bin dort die einzige interne Stelle für Digitalisierung: logistische Prozesse analysieren, daraus interne Webanwendungen und Automatisierungen bauen, Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen betreuen. Technisch vor allem Python, Django, Docker und Linux.<br><br>Nebenberuflich läuft mbara.net, mein angemeldetes Kleingewerbe. Schwerpunkt sind Shopware 6 und JTL: Plugin-Entwicklung, Schnittstellen, SEO- und GEO-Audits. Vier eigene Plugins sind als Open Source veröffentlicht und laufen in produktiven Shops.<br><br>Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten Shops, Softwareentwicklung im Versicherungsumfeld an einem Vertriebstool mit über 10.000 Nutzern, Ausbildung im Bundesarchiv.<br><br>Kapazität für Freelance-Projekte: rund 10 Stunden pro Woche.',
       'stack.primary':        'primär',
       'stack.skills':         'kenntnisse',
@@ -443,7 +443,7 @@
     en: {
       'badge.avail':          '● Freelance, part-time',
       'cta.work':             'View Work',
-      'cta.hire':             'Hire Me',
+      'cta.hire':             'See services',
       'about.text':           'I\'m Michael, IT specialist for application development from Koblenz, Germany. I build tools that actually get used in day to day operations.<br><br>My main role is Digital Process &amp; Solutions Engineer at a logistics provider in Mayen. I am the only internal position for digitalisation there: analysing logistics processes, building internal web applications and automations from them, maintaining interfaces between customer, logistics and IT systems. Technically mostly Python, Django, Docker and Linux.<br><br>Alongside that I run mbara.net, my registered side business. The focus is Shopware 6 and JTL: plugin development, interfaces, SEO and GEO audits. Four of my plugins are published as open source and run in production shops.<br><br>Before that: backend and fullstack at an e-commerce agency with 30+ shops launched, software development in the insurance sector on a sales tool with more than 10,000 users, apprenticeship at the German Federal Archives.<br><br>Capacity for freelance projects: around 10 hours per week.',
 
       'stack.primary':        'core',

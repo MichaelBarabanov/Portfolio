@@ -79,6 +79,8 @@ body::before {
 .nav-links a:hover { color: var(--text); background: var(--surface); }
 .nav-plugins { color: var(--sw) !important; border: 1px solid rgba(0,232,122,.3); }
 .nav-plugins:hover { background: rgba(0,232,122,.08) !important; }
+.nav-hire { color: var(--accent2, #0088ff) !important; border: 1px solid rgba(0,136,255,.4); }
+.nav-hire:hover { background: rgba(0,136,255,.1) !important; }
 .nav-demo { display: flex !important; align-items: center; gap: 5px; color: var(--muted) !important; }
 .nav-wip {
   font-size: 10px; padding: 1px 5px;
