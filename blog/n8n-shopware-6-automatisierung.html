@@ -59,10 +59,10 @@
       <h1>n8n + Shopware 6: Bestellprozesse und Lagerbestände automatisieren</h1>
       <div class="meta">2026-07-08 &middot; 8 min Lesezeit</div>
 
-      <p>Shopware 6 bringt eine vollstandige REST-API mit, die sich ohne Plugin-Entwicklung direkt mit n8n verbinden lasst. Fur wiederkehrende Aufgaben wie Bestellbenachrichtigungen, Lagerbestandsabgleich mit einem externen System oder automatisches Erstellen von Support-Tickets ist das oft schneller umgesetzt als ein eigenes Plugin.</p>
+      <p>Shopware 6 bringt eine vollständige REST-API mit, die sich ohne Plugin-Entwicklung direkt mit n8n verbinden lässt. Für wiederkehrende Aufgaben wie Bestellbenachrichtigungen, Lagerbestandsabgleich mit einem externen System oder automatisches Erstellen von Support-Tickets ist das oft schneller umgesetzt als ein eigenes Plugin.</p>
 
       <h2>1. API-Zugriff einrichten</h2>
-      <p>Im Shopware-Admin unter <strong>Einstellungen &rarr; System &rarr; Integrationen</strong> einen neuen Integration-Client anlegen. Das liefert eine <code>client_id</code> und ein <code>client_secret</code> fur OAuth2 Client-Credentials-Flow -- kein Nutzer-Login notig, ideal fur Server-zu-Server-Kommunikation:</p>
+      <p>Im Shopware-Admin unter <strong>Einstellungen &rarr; System &rarr; Integrationen</strong> einen neuen Integration-Client anlegen. Das liefert eine <code>client_id</code> und ein <code>client_secret</code> für OAuth2 Client-Credentials-Flow -- kein Nutzer-Login nötig, ideal für Server-zu-Server-Kommunikation:</p>
       <pre>POST https://shop.example/api/oauth/token
 Content-Type: application/json
 
@@ -71,38 +71,38 @@ Content-Type: application/json
   "client_id": "SWIAXXXX",
   "client_secret": "DEIN_SECRET"
 }</pre>
-      <p>Die Antwort enthalt ein <code>access_token</code>, gultig typischerweise 10 Minuten. In n8n bildet man das am saubersten mit einem HTTP-Request-Node plus einem vorgeschalteten "Get Token"-Node ab, dessen Ergebnis in nachfolgenden Requests als Bearer-Token wiederverwendet wird.</p>
-      <div class="tip">n8n hat seit Version 1.x generische OAuth2-Credential-Unterstutzung -- damit erneuert n8n das Token automatisch, ohne dass man selbst einen Refresh-Mechanismus bauen muss.</div>
+      <p>Die Antwort enthält ein <code>access_token</code>, gültig typischerweise 10 Minuten. In n8n bildet man das am saubersten mit einem HTTP-Request-Node plus einem vorgeschalteten "Get Token"-Node ab, dessen Ergebnis in nachfolgenden Requests als Bearer-Token wiederverwendet wird.</p>
+      <div class="tip">n8n hat seit Version 1.x generische OAuth2-Credential-Unterstützung -- damit erneuert n8n das Token automatisch, ohne dass man selbst einen Refresh-Mechanismus bauen muss.</div>
 
       <h2>2. Workflow: Benachrichtigung bei neuer Bestellung</h2>
       <p>Statt die API zu pollen, ist ein Webhook effizienter. Shopware kann Business Events wie <code>checkout.order.placed</code> per Webhook an eine n8n-Webhook-URL senden (einrichtbar unter <strong>Einstellungen &rarr; Webhooks</strong>):</p>
       <pre>Webhook-URL: https://n8n.example.com/webhook/order-placed
 Event: checkout.order.placed</pre>
-      <p>Der n8n-Workflow dahinter: Webhook-Trigger &rarr; Bestelldaten aus dem Payload extrahieren &rarr; Nachricht an Slack/Teams senden oder eine E-Mail-Benachrichtigung auslosen. Ublicherweise unter 10 Minuten Bauzeit fur die Grundversion.</p>
+      <p>Der n8n-Workflow dahinter: Webhook-Trigger &rarr; Bestelldaten aus dem Payload extrahieren &rarr; Nachricht an Slack/Teams senden oder eine E-Mail-Benachrichtigung auslösen. Ublicherweise unter 10 Minuten Bauzeit für die Grundversion.</p>
 
       <h2>3. Workflow: Lagerbestand mit externem System abgleichen</h2>
-      <p>Fur einen zeitgesteuerten Abgleich (z.B. alle 15 Minuten) eignet sich ein Schedule-Trigger statt eines Webhooks:</p>
+      <p>Für einen zeitgesteuerten Abgleich (z.B. alle 15 Minuten) eignet sich ein Schedule-Trigger statt eines Webhooks:</p>
       <pre>Schedule-Trigger (alle 15 Min)
   → HTTP Request: GET /api/product?limit=500
   → Function-Node: Bestande mit externem System vergleichen
   → HTTP Request: PATCH /api/product/{id} (bei Abweichung)</pre>
-      <p>Bei grosseren Katalogen lohnt sich Pagination uber <code>page</code> und <code>limit</code> Parameter der Shopware-API, damit ein einzelner Durchlauf nicht zu grosze Antworten auf einmal verarbeiten muss.</p>
+      <p>Bei größeren Katalogen lohnt sich Pagination über <code>page</code> und <code>limit</code> Parameter der Shopware-API, damit ein einzelner Durchlauf nicht zu große Antworten auf einmal verarbeiten muss.</p>
 
       <h2>4. Fehlerbehandlung nicht vergessen</h2>
-      <p>API-Calls schlagen gelegentlich fehl -- abgelaufenes Token, Timeout, Rate Limit. In n8n lasst sich pro Node ein "Continue On Fail" aktivieren, kombiniert mit einem nachgelagerten Error-Workflow, der bei wiederholtem Fehlschlag eine Benachrichtigung auslost statt den ganzen Workflow stumm abzubrechen.</p>
-      <div class="warn">Ohne Fehlerbehandlung merkt man einen fehlgeschlagenen Lagerbestandsabgleich oft erst, wenn bereits Bestellungen fur ausverkaufte Artikel reinkommen.</div>
+      <p>API-Calls schlagen gelegentlich fehl -- abgelaufenes Token, Timeout, Rate Limit. In n8n lässt sich pro Node ein "Continue On Fail" aktivieren, kombiniert mit einem nachgelagerten Error-Workflow, der bei wiederholtem Fehlschlag eine Benachrichtigung auslöst statt den ganzen Workflow stumm abzubrechen.</p>
+      <div class="warn">Ohne Fehlerbehandlung merkt man einen fehlgeschlagenen Lagerbestandsabgleich oft erst, wenn bereits Bestellungen für ausverkaufte Artikel reinkommen.</div>
 
       <h2>5. Self-hosted vs. n8n Cloud</h2>
-      <p>Fur Shops mit sensiblen Daten spricht viel fur eine selbst gehostete n8n-Instanz (z.B. per Docker neben dem Shop), da Bestell- und Kundendaten dann den eigenen Server nicht verlassen. n8n Cloud ist im Gegenzug schneller startklar und entfallt Wartungsaufwand fur Updates.</p>
+      <p>Für Shops mit sensiblen Daten spricht viel für eine selbst gehostete n8n-Instanz (z.B. per Docker neben dem Shop), da Bestell- und Kundendaten dann den eigenen Server nicht verlassen. n8n Cloud ist im Gegenzug schneller startklar und entfällt Wartungsaufwand für Updates.</p>
 
       <h2>Fazit</h2>
-      <p>Die Kombination aus Shopwares offener REST-API und n8n als visuellem Workflow-Tool deckt viele Automatisierungsaufgaben ab, fur die sich ein eigenes Plugin nicht lohnt. Fur komplexere Logik oder Performance-kritische Prozesse bleibt ein Plugin trotzdem die robustere Wahl.</p>
+      <p>Die Kombination aus Shopwares offener REST-API und n8n als visuellem Workflow-Tool deckt viele Automatisierungsaufgaben ab, für die sich ein eigenes Plugin nicht lohnt. Für komplexere Logik oder Performance-kritische Prozesse bleibt ein Plugin trotzdem die robustere Wahl.</p>
 
       <a class="back" href="index.html">← alle Artikel</a>
     </div>
   </article>
   <footer>
-    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel für Entwickler</div>
   </footer>
 </body>
 </html>

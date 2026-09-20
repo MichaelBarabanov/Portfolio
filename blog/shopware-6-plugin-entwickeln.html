@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopware 6 Plugin entwickeln: Schritt-fur-Schritt von Null zum ersten Release</title>
-  <meta name="description" content="Vollstandiges Tutorial fur Shopware-6-Plugin-Entwicklung: Grundstruktur, Dependency Injection, Events, Admin-UI mit Vue.js und Deployment via GitHub Actions." />
+  <title>Shopware 6 Plugin entwickeln: Schritt-für-Schritt von Null zum ersten Release</title>
+  <meta name="description" content="Vollstandiges Tutorial für Shopware-6-Plugin-Entwicklung: Grundstruktur, Dependency Injection, Events, Admin-UI mit Vue.js und Deployment via GitHub Actions." />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
   <style>
@@ -53,10 +53,10 @@
   <article>
     <div class="container">
       <div class="tag">// plugin-entwicklung</div>
-      <h1>Shopware 6 Plugin entwickeln: Schritt-fur-Schritt von Null zum ersten Release</h1>
+      <h1>Shopware 6 Plugin entwickeln: Schritt-für-Schritt von Null zum ersten Release</h1>
       <div class="meta">2026-06-10 &middot; 12 min Lesezeit</div>
 
-      <p>Shopware 6 basiert auf Symfony und nutzt dessen Dependency-Injection-Container, Event-System und Console-Commands. Wer Symfony kennt, findet sich schnell zurecht. Dieses Tutorial fuhrt von der leeren Verzeichnisstruktur bis zum deploybaren Plugin.</p>
+      <p>Shopware 6 basiert auf Symfony und nutzt dessen Dependency-Injection-Container, Event-System und Console-Commands. Wer Symfony kennt, findet sich schnell zurecht. Dieses Tutorial führt von der leeren Verzeichnisstruktur bis zum deploybaren Plugin.</p>
 
       <h2>1. Verzeichnisstruktur anlegen</h2>
       <p>Ein Shopware-6-Plugin liegt unter <code>custom/plugins/MeinPlugin/</code>. Die Mindeststruktur:</p>
@@ -83,7 +83,7 @@
 }</pre>
 
       <h2>2. Plugin-Basisklasse</h2>
-      <p>Die Hauptklasse erweitert <code>Shopware\Core\Framework\Plugin</code> und ist der Einstiegspunkt fur Installation, Update und Deinstallation:</p>
+      <p>Die Hauptklasse erweitert <code>Shopware\Core\Framework\Plugin</code> und ist der Einstiegspunkt für Installation, Update und Deinstallation:</p>
       <pre>&lt;?php declare(strict_types=1);
 
 namespace MeinPlugin;
@@ -151,7 +151,7 @@ class ProductSubscriber implements EventSubscriberInterface
                 └── mein-modul-list/
                     ├── index.js
                     └── mein-modul-list.html.twig</pre>
-      <p>Nach Anderungen im Admin-Teil muss das Theme neu gebaut werden:</p>
+      <p>Nach Änderungen im Admin-Teil muss das Theme neu gebaut werden:</p>
       <pre>bin/console plugin:refresh
 bin/console plugin:install --activate MeinPlugin
 bin/console theme:compile</pre>
@@ -180,13 +180,13 @@ jobs:
       <div class="tip">SSH-Credentials als GitHub Secrets hinterlegen, nie im Repository committen.</div>
 
       <h2>Fazit</h2>
-      <p>Der schnellste Weg zum ersten lauffahigen Plugin: composer.json und Plugin-Klasse anlegen, Plugin installieren, dann inkrementell Services und Subscriber hinzufugen. Das Symfony-Fundament macht Shopware-Plugins sehr testbar -- PHPUnit-Tests fur Services schreiben sich genau wie in jedem anderen Symfony-Projekt.</p>
+      <p>Der schnellste Weg zum ersten lauffähigen Plugin: composer.json und Plugin-Klasse anlegen, Plugin installieren, dann inkrementell Services und Subscriber hinzufügen. Das Symfony-Fundament macht Shopware-Plugins sehr testbar -- PHPUnit-Tests für Services schreiben sich genau wie in jedem anderen Symfony-Projekt.</p>
 
       <a class="back" href="index.html">← alle Artikel</a>
     </div>
   </article>
   <footer>
-    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel für Entwickler</div>
   </footer>
 </body>
 </html>

@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy"
       content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
   <title>Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</title>
-  <meta name="description" content="Praxisguide: llms.txt, strukturierte Daten und FAQ-Schema richtig einsetzen, damit Shopware-Shops von ChatGPT, Perplexity und Google AI Overviews zitiert werden." />
+  <meta name="description" content="Praxisguide: Erwähnungen in fremden Quellen, strukturierte Daten und FAQ-Schema richtig einsetzen, damit Shopware-Shops von ChatGPT, Perplexity und Google AI Overviews zitiert werden. Inklusive Einordnung zu llms.txt." />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
   <style>
@@ -61,12 +61,14 @@
     <div class="container">
       <div class="tag">// geo</div>
       <h1>Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</h1>
-      <div class="meta">2026-07-08 &middot; 7 min Lesezeit</div>
+      <div class="meta">2026-07-08 &middot; aktualisiert am 2026-09-20 &middot; 8 min Lesezeit</div>
+
+      <div class="tip">Aktualisiert im September 2026: Der Abschnitt zu llms.txt wurde ersetzt, nachdem Google im Juni 2026 klargestellt hat, dass die Suche die Datei nicht verwendet. Details in Abschnitt 7.</div>
 
       <p>Immer mehr Kaufentscheidungen starten nicht mehr mit einer Google-Suche, sondern mit einer Frage an ChatGPT, Perplexity oder Google AI Overviews. Diese Systeme lesen keine Rankings, sie lesen Inhalte und fassen sie zusammen. Klassisches SEO (Backlinks, Keyword-Dichte) hilft dabei nur bedingt. Generative Engine Optimization (GEO) ist die Anpassung an dieses neue Verhalten.</p>
 
       <h2>1. Warum klassisches SEO nicht mehr reicht</h2>
-      <p>Ein LLM crawlt eine Seite, extrahiert Fakten und formuliert daraus eine Antwort in eigenen Worten. Es zitiert selten die komplette Seite, sondern einzelne, klar formulierte Aussagen. Seiten mit vager Marketing-Sprache und ohne Struktur liefern schlicht schlechteres Rohmaterial fur diese Zusammenfassung als Seiten mit klaren Fakten, Zahlen und sauberer Struktur.</p>
+      <p>Ein LLM crawlt eine Seite, extrahiert Fakten und formuliert daraus eine Antwort in eigenen Worten. Es zitiert selten die komplette Seite, sondern einzelne, klar formulierte Aussagen. Seiten mit vager Marketing-Sprache und ohne Struktur liefern schlicht schlechteres Rohmaterial für diese Zusammenfassung als Seiten mit klaren Fakten, Zahlen und sauberer Struktur.</p>
 
       <table>
         <thead>
@@ -74,27 +76,27 @@
         </thead>
         <tbody>
           <tr><td>Ziel</td><td>Hohes Ranking in Suchergebnissen</td><td>Zitiert/paraphrasiert in KI-Antworten werden</td></tr>
-          <tr><td>Signal</td><td>Backlinks, Keyword-Dichte</td><td>Klare Fakten, saubere Struktur, Schema.org</td></tr>
-          <tr><td>Format</td><td>Lange Fliesstexte</td><td>Kurze, abgeschlossene Absatze und Listen</td></tr>
-          <tr><td>Maschinenlesbarkeit</td><td>Optional</td><td>llms.txt, JSON-LD, FAQPage</td></tr>
-          <tr><td>Erfolgsmessung</td><td>Rankings, Klicks</td><td>Erwahnungen in KI-Antworten (noch schwer messbar)</td></tr>
+          <tr><td>Signal</td><td>Backlinks, Keyword-Dichte</td><td>Erwähnungen in Vergleichsquellen, klare Fakten, Schema.org</td></tr>
+          <tr><td>Format</td><td>Lange Fließtexte</td><td>Kurze, abgeschlossene Absätze und Listen</td></tr>
+          <tr><td>Maschinenlesbarkeit</td><td>Optional</td><td>JSON-LD, FAQPage, saubere Semantik</td></tr>
+          <tr><td>Erfolgsmessung</td><td>Rankings, Klicks</td><td>Erwähnungen in KI-Antworten (noch schwer messbar)</td></tr>
         </tbody>
       </table>
 
-      <h2>2. llms.txt: eine strukturierte Landkarte fur LLMs</h2>
-      <p>Die Community-Konvention <a href="https://llmstxt.org" target="_blank" rel="noopener">llms.txt</a> liegt im Root der Domain (<code>/llms.txt</code>) und listet in Markdown die wichtigsten Seiten mit einer Ein-Satz-Beschreibung. Kein offizieller Standard, aber von immer mehr Tools respektiert, die Kontext fur ein LLM aufbereiten wollen:</p>
-      <pre># Firmenname
-
-&gt; Ein-Satz-Zusammenfassung was die Seite/das Unternehmen macht.
-
-## Seiten
-
-- [Leistungen](https://example.com/leistungen): Kurze Beschreibung
-- [Kontakt](https://example.com/kontakt): Kurze Beschreibung</pre>
-      <div class="tip">llms.txt ersetzt keine sitemap.xml -- sitemap.xml ist fur klassische Crawler zum Indexieren, llms.txt ist eine kuratierte Zusammenfassung fur Sprachmodelle.</div>
+      <h2>2. Der größte Hebel liegt außerhalb der eigenen Seite</h2>
+      <p>Sprachmodelle erfinden keine Kaufempfehlungen. Fragt jemand nach dem besten Produkt einer Kategorie, stützt sich die Antwort auf Test- und Vergleichsbeiträge, die im offenen Netz stehen. Entscheidend ist deshalb nicht in erster Linie, wie der eigene Shop formuliert ist, sondern ob die Marke in genau diesen Quellen vorkommt.</p>
+      <p>Das lässt sich ohne Werkzeug prüfen:</p>
+      <ol>
+        <li>Die Produktkategorie so formulieren, wie ein Käufer sucht, also etwa "bester [Kategorie] Test Vergleich [Jahr]".</li>
+        <li>Die ersten sechs bis acht Treffer öffnen. Das sind die Quellen, aus denen zitiert wird.</li>
+        <li>Notieren, welche Marken dort genannt werden.</li>
+        <li>Prüfen, ob die eigene Marke darunter ist.</li>
+      </ol>
+      <p>Fehlt sie, ändert daran kein Werkzeug etwas. Kein Sichtbarkeits-Tool kann bewirken, dass ein fremdes Portal über eine Marke schreibt. Die Hebel sind Testgeräte an Fachmedien, die Aufnahme in Vergleichs- und Händlerverzeichnisse sowie ein gefülltes Organization-Markup, damit die Firma überhaupt als eigenständige Entität erkennbar ist.</p>
+      <div class="tip">Häufiger Sonderfall: Die Vergleichsbeiträge einer Kategorie decken oft nur ein Preissegment ab. Wer im gehobenen Fachsegment verkauft, taucht in Beiträgen zum Einsteigersegment nie auf, egal wie sauber die Website technisch ist. Dann sind die passenden Quellen andere.</div>
 
       <h2>3. Strukturierte Daten konsequent einsetzen</h2>
-      <p>Schema.org JSON-LD ist der zuverlassigste Weg, Fakten maschinenlesbar zu machen. Fur ein Software-Produkt zum Beispiel <code>SoftwareApplication</code>, fur eine Firma <code>Organization</code> oder <code>Person</code>, fur Frage-Antwort-Inhalte <code>FAQPage</code>:</p>
+      <p>Schema.org JSON-LD ist der zuverlässigste Weg, Fakten maschinenlesbar zu machen. Für ein Software-Produkt zum Beispiel <code>SoftwareApplication</code>, für eine Firma <code>Organization</code> oder <code>Person</code>, für Frage-Antwort-Inhalte <code>FAQPage</code>:</p>
       <pre>{
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -104,27 +106,32 @@
     "acceptedAnswer": { "@type": "Answer", "text": "Klare, faktenbasierte Antwort." }
   }]
 }</pre>
-      <p>Wichtig: Der sichtbare Seiteninhalt muss zur Struktur passen. Schema-Markup ohne passenden sichtbaren Text wird von Suchmaschinen als Spam-Signal gewertet und hilft bei LLMs ohnehin nicht, da diese primar den gerenderten Text lesen.</p>
+      <p>Wichtig: Der sichtbare Seiteninhalt muss zur Struktur passen. Schema-Markup ohne passenden sichtbaren Text wird von Suchmaschinen als Spam-Signal gewertet und hilft bei LLMs ohnehin nicht, da diese primär den gerenderten Text lesen.</p>
 
       <h2>4. FAQ-Content mit klaren Frage-Antwort-Paaren</h2>
-      <p>LLMs lieben Frage-Antwort-Struktur, weil sie exakt dem Format entspricht, in dem sie selbst antworten. Eine eigene FAQ-Seite mit echten, haufig gestellten Fragen und kurzen, prazisen Antworten ist eine der wirkungsvollsten GEO-Masznahmen uberhaupt -- und zahlt gleichzeitig auf klassisches SEO ein (Rich Snippets in Google).</p>
+      <p>LLMs lieben Frage-Antwort-Struktur, weil sie exakt dem Format entspricht, in dem sie selbst antworten. Eine eigene FAQ-Seite mit echten, häufig gestellten Fragen und kurzen, präzisen Antworten ist eine der wirkungsvollsten GEO-Maßnahmen überhaupt -- und zahlt gleichzeitig auf klassisches SEO ein (Rich Snippets in Google).</p>
 
       <h2>5. Fakten statt Marketing-Sprache</h2>
-      <p>"Innovative Losungen fur maximalen Erfolg" liefert einem LLM keine zitierfahige Information. "Kompatibel mit Shopware 6.7, PHPStan Level 8, 20 Tests" schon. Konkrete, uberprufbare Aussagen werden bevorzugt zitiert, weil sie als Fakt statt als Meinung behandelt werden konnen.</p>
+      <p>"Innovative Lösungen für maximalen Erfolg" liefert einem LLM keine zitierfähige Information. "Kompatibel mit Shopware 6.7, PHPStan Level 8, 20 Tests" schon. Konkrete, überprüfbare Aussagen werden bevorzugt zitiert, weil sie als Fakt statt als Meinung behandelt werden können.</p>
 
-      <h2>6. robots.txt fur KI-Crawler offen halten</h2>
-      <p>Ein einfacher, aber oft ubersehener Punkt: Wenn <code>robots.txt</code> Bots wie <code>GPTBot</code>, <code>ClaudeBot</code> oder <code>PerplexityBot</code> pauschal blockt, taucht die Seite in den jeweiligen Antworten schlicht nicht auf. Ein permissiver Eintrag reicht meist aus:</p>
+      <h2>6. robots.txt für KI-Crawler offen halten</h2>
+      <p>Ein einfacher, aber oft übersehener Punkt: Wenn <code>robots.txt</code> Bots wie <code>GPTBot</code>, <code>ClaudeBot</code> oder <code>PerplexityBot</code> pauschal blockt, taucht die Seite in den jeweiligen Antworten schlicht nicht auf. Ein permissiver Eintrag reicht meist aus:</p>
       <pre>User-agent: *
 Allow: /</pre>
 
+      <h2>7. llms.txt: was davon übrig ist</h2>
+      <p>Die Community-Konvention <a href="https://llmstxt.org" target="_blank" rel="noopener">llms.txt</a> war 2025 der meistgenannte GEO-Tipp: eine Markdown-Datei im Wurzelverzeichnis, die die wichtigsten Seiten mit je einem Satz beschreibt. Die ursprüngliche Fassung dieses Artikels hat sie ebenfalls empfohlen.</p>
+      <p>Inzwischen ist die Lage eindeutig. Google hat seinen Leitfaden zur KI-Optimierung im Juni 2026 aktualisiert und hält dort fest, dass keine zusätzlichen maschinenlesbaren Dateien nötig sind, um in der Google-Suche einschließlich ihrer KI-Funktionen zu erscheinen, weil die Suche sie nicht verwendet. John Mueller hat den Vergleich mit dem Keywords-Meta-Tag gezogen: eine Datei, in der eine Seite behauptet, worum es bei ihr geht, während Google lieber die Seite selbst liest.</p>
+      <p>Was bleibt: Die Datei schadet nicht und kostet nichts. Ein schmaler Nutzen besteht, wenn ein Agent bereits auf der Seite ist und sich dort zurechtfinden soll. Als Sichtbarkeitsmaßnahme für Suche oder KI-Antworten taugt sie nicht. Die Zeit ist in den Abschnitten 2 bis 4 deutlich besser investiert.</p>
+
       <h2>Fazit</h2>
-      <p>GEO ist kein Ersatz fur SEO, sondern eine Erganzung: klare Fakten, saubere Struktur, schema.org-Markup und eine llms.txt als kuratierte Ubersicht. Der Aufwand ist uberschaubar, der Effekt wachst mit der Verbreitung von KI-gestutzter Suche weiter.</p>
+      <p>GEO ist kein Ersatz für SEO, sondern eine Ergänzung: klare Fakten, saubere Struktur, schema.org-Markup und vor allem Erwähnungen in den Quellen, aus denen Sprachmodelle zitieren. Der technische Teil ist an einem Tag erledigt, der Teil außerhalb der eigenen Seite ist die eigentliche Arbeit. Nicht jeder GEO-Ratschlag aus 2025 hat gehalten, was er versprochen hat, siehe Abschnitt 7.</p>
 
       <a class="back" href="index.html">← alle Artikel</a>
     </div>
   </article>
   <footer>
-    <div class="container">Shopware Dev Blog &middot; Technische Artikel fur Entwickler</div>
+    <div class="container">Shopware Dev Blog &middot; Technische Artikel für Entwickler</div>
   </footer>
 </body>
 </html>
