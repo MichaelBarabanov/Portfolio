@@ -17,7 +17,7 @@
 
   // ── Typewriter (one-time, no loop) ──
   const twEl = document.getElementById('typewriter');
-  const TW_TEXT = 'E-Commerce Engineer & Shopware 6 Spezialist';
+  const TW_TEXT = 'E-Commerce Engineer, Shopware 6 & JTL Spezialist';
   function startTypewriter() {
     if (!twEl) return;
     twEl.textContent = '';

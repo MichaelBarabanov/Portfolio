@@ -191,6 +191,10 @@ body::before {
   margin-bottom: 28px;
 }
 
+.hero-pitch {
+  font-size: clamp(15px, 1.7vw, 17px); color: #c4c4c4; line-height: 1.6;
+  max-width: 46ch; margin: -18px 0 28px;
+}
 .hero-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
 .badge {
   font-family: 'Cascadia Code','Fira Code',monospace;
