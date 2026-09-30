@@ -12,6 +12,11 @@
 (function () {
   if (!window.matchMedia('(pointer: fine)').matches) return;
 
+  /* Wer am System weniger Bewegung eingestellt hat, bekommt eine ruhige
+     Miso: kein Rennen, kein Springen, keine Zoomies. Ganz abschalten muss
+     man sie nicht, denn sichtbar wird sie ohnehin erst auf Knopfdruck. */
+  const RUHIG = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const CAT_NAME = 'Miso';
   const CW = 68, CH = 68;
   const scriptSrc = document.currentScript && document.currentScript.src;
@@ -265,6 +270,7 @@
   let lastSpeak = 0, zoomLeft = 0, pawDist = 0, lastPawX = 0, zzzTimer = 0;
   const mouse = { x: 0, y: 0, still: 0, seen: false };
   let stalkCool = 0, imBett = true, willBett = false, letzteZuwendung = Date.now();
+  let sitzRueck = false;
 
   function beruehrt() { letzteZuwendung = Date.now(); }
 
@@ -272,7 +278,8 @@
     if (s === 'run' || s === 'zoom') return d === 1 ? SRCS.run_r : SRCS.run_l;
     if (s === 'jump') return d === 1 ? SRCS.jump_r : SRCS.jump_l;
     if (s === 'sleep') return SRCS.sleep;
-    if (s === 'sit' || s === 'eat' || s === 'stalk') return SRCS.front;
+    if (s === 'sit') return sitzRueck ? SRCS.back : SRCS.front;
+    if (s === 'eat' || s === 'stalk') return SRCS.front;
     return d === 1 ? SRCS.walk_r : SRCS.walk_l;
   }
   /* Faellt ein Sprite aus, etwa weil der Browser einen alten 404
@@ -292,7 +299,10 @@
       state === 'zoom'  ? 'cat-tilt .35s ease-in-out infinite' : '';
   }
   function face(d) { if (d !== dir) { dir = d; draw(); } }
-  function go(s, dur) { state = s; timer = dur || 0; draw(); }
+  function go(s, dur) {
+    if (s === 'sit') sitzRueck = Math.random() < 0.35;   // manchmal schaut sie weg
+    state = s; timer = dur || 0; draw();
+  }
 
   /* Sprechblase klebt an der Katze, bleibt aber im Bild und kollidiert
      nicht mehr mit einem zweiten Hinweisfeld. Das gibt es nicht mehr. */
@@ -492,8 +502,9 @@
     wrapEl = document.createElement('div');
     wrapEl.id = 'site-cat';
     wrapEl.style.cssText =
-      'position:fixed;bottom:0;left:' + posX + 'px;z-index:9999;cursor:pointer;' +
-      'user-select:none;width:' + CW + 'px;height:' + CH + 'px;display:none;';
+      'position:fixed;bottom:0;left:' + posX + 'px;z-index:9999;' +
+      'user-select:none;width:' + CW + 'px;height:' + CH + 'px;display:none;' +
+      'pointer-events:none;';
 
     imgEl = document.createElement('img');
     imgEl.src = SRCS.front;
@@ -509,6 +520,15 @@
     });
     wrapEl.appendChild(imgEl);
 
+    /* Nur der Koerper faengt Klicks ab, nicht das ganze Quadrat. Sonst
+       verschluckt die Katze am unteren Bildrand Klicks auf Knoepfe. */
+    const treffer = document.createElement('div');
+    treffer.style.cssText =
+      'position:absolute;left:11px;bottom:16px;width:46px;height:32px;' +
+      'cursor:pointer;pointer-events:auto;';
+    wrapEl.appendChild(treffer);
+    wrapEl._treffer = treffer;
+
     fxWrap = document.createElement('div');
     fxWrap.style.cssText = 'position:absolute;bottom:' + CH + 'px;left:0;width:' + CW + 'px;pointer-events:none;';
     wrapEl.appendChild(fxWrap);
@@ -522,9 +542,10 @@
     wrapEl.appendChild(bubbleEl);
     document.body.appendChild(wrapEl);
 
-    wrapEl.addEventListener('mouseenter', () => { beruehrt(); say(imBett ? t().hint : t().tip, 2600); });
-    wrapEl.addEventListener('click', klick);
-    wrapEl.addEventListener('dblclick', e => { e.preventDefault(); zoomies(); });
+    const treff = wrapEl._treffer;
+    treff.addEventListener('mouseenter', () => { beruehrt(); say(imBett ? t().hint : t().tip, 2600); });
+    treff.addEventListener('click', klick);
+    treff.addEventListener('dblclick', e => { e.preventDefault(); zoomies(); });
 
     document.addEventListener('mousemove', e => {
       mouse.x = e.clientX; mouse.y = e.clientY; mouse.still = 0; mouse.seen = true;
@@ -680,6 +701,7 @@
   }
 
   function zoomies() {
+    if (RUHIG) { klick(); return; }
     if (state === 'eat' || pet.energy < 25) { say(t().zzz); return; }
     if (imBett) wecken();
     beruehrt();
@@ -731,8 +753,8 @@
       else if (pet.mood < 28) say(t().bored);
       else if (pet.mood > 85 && Math.random() < 0.4) say(t().fine);
     }
-    if (state === 'walk' && !willBett && pet.mood > 70 && pet.energy > 45 && Math.random() < 0.01) go('jump', 900);
-    if (state === 'walk' && !willBett && pet.mood > 88 && pet.energy > 70 && !nacht && Math.random() < 0.005) zoomies();
+    if (!RUHIG && state === 'walk' && !willBett && pet.mood > 70 && pet.energy > 45 && Math.random() < 0.01) go('jump', 900);
+    if (!RUHIG && state === 'walk' && !willBett && pet.mood > 88 && pet.energy > 70 && !nacht && Math.random() < 0.005) zoomies();
     if (pet.mood > 92 && !imBett && Math.random() < 0.05) fx(['✨'], '#d29922', 1.4);
   }
 
@@ -883,7 +905,7 @@
 
         if (targetX !== null) {
           const dx = targetX - posX;
-          const speed = state === 'run' ? 3.5 : 2.5;
+          const speed = (state === 'run' ? 3.5 : 2.5) * (RUHIG ? 0.5 : 1);
           if (Math.abs(dx) < 4) {
             posX = targetX; targetX = null;
             if (willBett) { willBett = false; imBett = true; go('sleep'); say(t().zzz, 2000); }
@@ -912,7 +934,7 @@
               stalkCool = 12000;
               go('run');
             } else {
-              posX += dir * 0.9 * dt / 16;
+              posX += dir * (RUHIG ? 0.45 : 0.9) * dt / 16;
               if (posX > W - CW) face(-1);
               if (posX < 4) face(1);
               if (Math.random() < 0.00016) go('sit', 2500 + Math.random() * 2500);
