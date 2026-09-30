@@ -269,8 +269,16 @@
     if (s === 'sit' || s === 'eat' || s === 'sleep' || s === 'stalk') return SRCS.front;
     return d === 1 ? SRCS.walk_r : SRCS.walk_l;
   }
+  /* Faellt ein Sprite aus, etwa weil der Browser einen alten 404
+     zwischengespeichert hat, wird auf das Laufbild ausgewichen. Ein
+     zerbrochenes Bildsymbol darf nie zu sehen sein. */
+  const kaputt = new Set();
+
   function draw() {
-    const want = srcFor(state, dir);
+    let want = srcFor(state, dir);
+    if (kaputt.has(want)) want = dir === 1 ? SRCS.walk_r : SRCS.walk_l;
+    if (kaputt.has(want)) { imgEl.style.visibility = 'hidden'; return; }
+    imgEl.style.visibility = '';
     if (imgEl.getAttribute('src') !== want) imgEl.setAttribute('src', want);
     imgEl.style.transformOrigin = 'bottom center';
     imgEl.style.animation =
@@ -483,8 +491,16 @@
 
     imgEl = document.createElement('img');
     imgEl.src = SRCS.front;
-    imgEl.width = CW; imgEl.height = CH; imgEl.alt = CAT_NAME;
+    imgEl.width = CW; imgEl.height = CH;
+    imgEl.alt = '';
     imgEl.style.cssText = 'display:block;image-rendering:pixelated;';
+    imgEl.addEventListener('error', () => {
+      const s = imgEl.getAttribute('src');
+      if (!s || kaputt.has(s)) return;
+      kaputt.add(s);
+      try { console.warn('[' + CAT_NAME + '] Bild nicht ladbar:', s); } catch (e) {}
+      draw();
+    });
     wrapEl.appendChild(imgEl);
 
     fxWrap = document.createElement('div');
