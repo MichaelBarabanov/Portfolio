@@ -6,7 +6,10 @@
    jagt Futter, bekommt Zoomies, hinterlässt Pfotenabdrücke und legt sich
    von allein wieder ins Körbchen, wenn eine Weile nichts passiert.
 
-   Über window.miso lässt sie sich aus der Konsole steuern.
+   Über window.miso lässt sie sich aus der Konsole steuern. miso.why()
+   legt offen, was sie gerade vorhat und warum, mit denselben Schwellen,
+   mit denen sie wirklich rechnet. Denselben Bericht gibt der Befehl miso
+   im Terminal auf der Startseite aus.
    Läuft nur bei feiner Zeigereingabe, also nicht auf Touchgeräten.
    ────────────────────────────────────────────────────────────────────── */
 (function () {
@@ -50,6 +53,33 @@
       stretch: 'gaehn', stalk: 'hallo du', bed: 'ich leg mich hin',
       levels: ['Streuner', 'Hauskatze', 'Stubentiger', 'Chefkatze', 'Legende'],
       moods: { tired: 'muede', hungry: 'hungrig', bored: 'gelangweilt', great: 'bester Laune', ok: 'zufrieden' },
+      wieder: 'ah, du wieder', lieblich: n => n + '! mein Lieblingsfutter',
+      fav: 'Liebling', merkt: 'nur dieser Browser', leeren: 'zuruecksetzen',
+      geleert: 'wer bist du?', streicheln: CAT_NAME + ' streicheln',
+      feld: { state: 'zustand', goal: 'ziel', why: 'grund', drive: 'antrieb',
+              mem: 'gedaechtnis', store: 'speicher' },
+      zust: { sleep: 'SCHLAEFT', zoom: 'ZOOMIES', eat: 'FRISST', hunt: 'JAGT',
+              walk: 'LAEUFT', run: 'RENNT', sit: 'SITZT', jump: 'SPRINGT',
+              stalk: 'SCHLEICHT' },
+      ziele: { bett: 'im Koerbchen bleiben', zurueck: 'zurueck ins Koerbchen',
+               zoom: 'einmal durchdrehen', essen: 'fressen',
+               holen: f => 'Futter holen: ' + f, zeiger: 'zum Mauszeiger',
+               pos: x => 'Position ' + x, streife: 'Streife laufen',
+               pause: 'kurz sitzen und schauen' },
+      gruende: {
+        leer: (e, s) => 'Energie ' + e + ' unter Schwelle ' + s,
+        allein: (sek, s) => 'seit ' + sek + ' s niemand da, Schwelle ' + s + ' s',
+        satt: 'ausgeruht, wartet auf dich',
+        frisch: 'heute noch nicht geweckt',
+        jagd: (h, s) => 'Hunger ' + h + ' ueber Jagdschwelle ' + s,
+        nah: 'Futter in Reichweite',
+        ueber: (m, e) => 'Laune ' + m + ', Energie ' + e + ', Ueberschuss',
+        zeiger: 'Zeiger stand still und war weit weg',
+        gesetzt: 'Ziel wurde gesetzt',
+        nichts: 'nichts zu tun',
+        pause: 'Streife unterbrochen',
+      },
+      einheiten: { mahl: 'Mahlzeiten', gestr: 'mal gestreichelt', nichts: 'noch nichts erlebt' },
     },
     en: {
       hint: 'click me to wake up', tip: 'drag food over, click to pet, double click for zoomies',
@@ -63,6 +93,33 @@
       stretch: 'yaaawn', stalk: 'hi there', bed: 'off to bed',
       levels: ['Stray', 'House cat', 'Room tiger', 'Boss cat', 'Legend'],
       moods: { tired: 'sleepy', hungry: 'hungry', bored: 'bored', great: 'delighted', ok: 'content' },
+      wieder: 'oh, you again', lieblich: n => n + '! my favourite',
+      fav: 'favourite', merkt: 'this browser only', leeren: 'reset',
+      geleert: 'who are you?', streicheln: 'pet ' + CAT_NAME,
+      feld: { state: 'state', goal: 'goal', why: 'reason', drive: 'drives',
+              mem: 'memory', store: 'storage' },
+      zust: { sleep: 'SLEEPING', zoom: 'ZOOMIES', eat: 'EATING', hunt: 'HUNTING',
+              walk: 'WALKING', run: 'RUNNING', sit: 'SITTING', jump: 'JUMPING',
+              stalk: 'STALKING' },
+      ziele: { bett: 'stay in the basket', zurueck: 'back to the basket',
+               zoom: 'lose it for a moment', essen: 'eat',
+               holen: f => 'go get: ' + f, zeiger: 'reach the cursor',
+               pos: x => 'position ' + x, streife: 'patrol',
+               pause: 'sit down and watch' },
+      gruende: {
+        leer: (e, s) => 'energy ' + e + ' below threshold ' + s,
+        allein: (sek, s) => 'nobody here for ' + sek + ' s, threshold ' + s + ' s',
+        satt: 'rested, waiting for you',
+        frisch: 'not woken up yet today',
+        jagd: (h, s) => 'hunger ' + h + ' above hunt threshold ' + s,
+        nah: 'food within reach',
+        ueber: (m, e) => 'mood ' + m + ', energy ' + e + ', surplus',
+        zeiger: 'cursor sat still and far away',
+        gesetzt: 'a target was set',
+        nichts: 'nothing to do',
+        pause: 'patrol interrupted',
+      },
+      einheiten: { mahl: 'meals', gestr: 'pets', nichts: 'nothing happened yet' },
     },
   };
   const t = () => TXT[lang()];
@@ -217,13 +274,23 @@
      oder bei blockierten Seitendaten startet Miso einfach neu.         */
   const KEY = 'miso.state.v2';
   const HOUR = 3600000;
-  const IDLE_MS = 28000;   // so lange ohne Zuwendung, dann geht sie ins Koerbchen
+  const IDLE_MS = 28000;      // so lange ohne Zuwendung, dann geht sie ins Koerbchen
+  const JAGD_AB = 55;         // ab diesem Hunger sucht sie selbst nach Futter
+  const MUEDE_TAG = 20;       // darunter legt sie sich tagsueber hin
+  const MUEDE_NACHT = 34;     // nachts ist sie schneller muede
+  const LIEBLING_AB = 3;      // so oft muss sie etwas gefressen haben
+
+  /* Diese vier Zahlen steuern ihr Verhalten und stehen genau so im
+     Bericht von miso.why(). Wer nachliest, findet dort keine erfundenen
+     Werte, sondern die, mit denen sie wirklich rechnet. */
 
   const pet = {
     hunger: 25, mood: 80, energy: 90,
     meals: 0, pets: 0, zoomies: 0,
+    likes: PIXEL_FOODS.map(() => 0),   // was sie wie oft gefressen hat
     born: Date.now(), seen: Date.now(),
   };
+  let warSchonDa = false, wegStunden = 0;
 
   function loadPet() {
     let raw = null;
@@ -233,9 +300,14 @@
     try { s = JSON.parse(raw); } catch (e) { return; }
     if (!s || typeof s !== 'object') return;
     Object.keys(pet).forEach(k => {
-      if (typeof s[k] === 'number' && isFinite(s[k])) pet[k] = s[k];
+      const v = s[k];
+      if (Array.isArray(pet[k])) {
+        if (Array.isArray(v)) pet[k] = pet[k].map((d, i) => (typeof v[i] === 'number' && isFinite(v[i]) ? v[i] : d));
+      } else if (typeof v === 'number' && isFinite(v)) pet[k] = v;
     });
-    const weg = Math.min((Date.now() - pet.seen) / HOUR, 12);
+    warSchonDa = true;
+    wegStunden = (Date.now() - pet.seen) / HOUR;
+    const weg = Math.min(wegStunden, 12);
     pet.hunger += weg * 7;
     pet.mood   -= weg * 4;
     pet.energy += weg * 9;
@@ -257,6 +329,17 @@
   const levelName = () => t().levels[levelNr()];
   const istNacht  = () => { const h = new Date().getHours(); return h >= 22 || h < 6; };
 
+  /* Kleine Lernspur: Was sie oft bekommt, mag sie lieber. Ab drei
+     Mahlzeiten desselben Futters hat sie einen Liebling, freut sich
+     darueber mehr und findet ihn oefter vor. Ueber den Panel-Link
+     zuruecksetzen laesst sich das jederzeit loeschen. */
+  function lieblingIdx() {
+    let best = -1, max = 0;
+    pet.likes.forEach((z, i) => { if (z > max) { max = z; best = i; } });
+    return max >= LIEBLING_AB ? best : -1;
+  }
+  const futterName = d => (d ? (d[lang()] || d.de) : '?');
+
   /* ── Laufzeit ── */
   const floorY = () => window.innerHeight - CH;
 
@@ -270,6 +353,7 @@
   let lastSpeak = 0, zoomLeft = 0, pawDist = 0, lastPawX = 0, zzzTimer = 0;
   const mouse = { x: 0, y: 0, still: 0, seen: false };
   let stalkCool = 0, imBett = true, willBett = false, letzteZuwendung = Date.now();
+  let jeGeweckt = false;
   let sitzRueck = false;
 
   function beruehrt() { letzteZuwendung = Date.now(); }
@@ -334,6 +418,76 @@
     return m.ok;
   }
 
+  /* ── Lagebericht ──────────────────────────────────────────────────────
+     Warum macht sie das gerade? Der Bericht wird bei jedem Aufruf frisch
+     aus den echten Variablen abgeleitet, nicht mitgeschrieben. Er kann
+     also nicht auseinanderlaufen mit dem, was sie wirklich tut.        */
+  const r0 = z => Math.round(z);
+
+  function lage() {
+    const L = t(), nacht = istNacht();
+    const ruheSek = Math.round((Date.now() - letzteZuwendung) / 1000);
+    const schwelle = nacht ? MUEDE_NACHT : MUEDE_TAG;
+    let zustand, ziel, grund;
+
+    if (imBett || state === 'sleep') {
+      zustand = L.zust.sleep;
+      ziel = L.ziele.bett;
+      grund = !jeGeweckt ? L.gruende.frisch
+            : pet.energy < schwelle ? L.gruende.leer(r0(pet.energy), schwelle)
+            : ruheSek * 1000 > IDLE_MS ? L.gruende.allein(ruheSek, IDLE_MS / 1000)
+            : L.gruende.satt;
+    } else if (state === 'zoom') {
+      zustand = L.zust.zoom; ziel = L.ziele.zoom;
+      grund = L.gruende.ueber(r0(pet.mood), r0(pet.energy));
+    } else if (state === 'eat') {
+      zustand = L.zust.eat; ziel = L.ziele.essen; grund = L.gruende.nah;
+    } else if (seekItem) {
+      zustand = L.zust.hunt; ziel = L.ziele.holen(futterName(seekItem.data));
+      grund = L.gruende.jagd(r0(pet.hunger), JAGD_AB);
+    } else if (willBett) {
+      zustand = L.zust.walk; ziel = L.ziele.zurueck;
+      grund = pet.energy < schwelle ? L.gruende.leer(r0(pet.energy), schwelle)
+                                    : L.gruende.allein(ruheSek, IDLE_MS / 1000);
+    } else if (state === 'stalk') {
+      zustand = L.zust.stalk; ziel = L.ziele.zeiger; grund = L.gruende.zeiger;
+    } else if (targetX !== null) {
+      zustand = state === 'run' ? L.zust.run : L.zust.walk;
+      ziel = L.ziele.pos(r0(targetX)); grund = L.gruende.gesetzt;
+    } else {
+      zustand = state === 'sit' ? L.zust.sit : state === 'jump' ? L.zust.jump : L.zust.walk;
+      ziel  = state === 'sit' ? L.ziele.pause   : L.ziele.streife;
+      grund = state === 'sit' ? L.gruende.pause : L.gruende.nichts;
+    }
+    return { zustand: zustand, ziel: ziel, grund: grund };
+  }
+
+  function berichtPaare() {
+    const L = t(), la = lage(), lieb = lieblingIdx();
+    const merk = [];
+    if (pet.meals)   merk.push(pet.meals + ' ' + L.einheiten.mahl);
+    if (pet.pets)    merk.push(pet.pets + ' ' + L.einheiten.gestr);
+    if (pet.zoomies) merk.push(pet.zoomies + '× Zoomies');
+    if (lieb >= 0)   merk.push(L.fav + ': ' + futterName(PIXEL_FOODS[lieb]));
+    if (!merk.length) merk.push(L.einheiten.nichts);
+    return [
+      [L.feld.state, la.zustand],
+      [L.feld.goal,  la.ziel],
+      [L.feld.why,   la.grund],
+      [L.feld.drive, L.sat.toLowerCase() + ' ' + r0(100 - pet.hunger) +
+                     ' \u00b7 ' + L.mood.toLowerCase() + ' ' + r0(pet.mood) +
+                     ' \u00b7 ' + L.energy.toLowerCase() + ' ' + r0(pet.energy)],
+      [L.feld.mem,   merk.join(' \u00b7 ')],
+      [L.feld.store, L.merkt + ' \u00b7 miso.reset()'],
+    ];
+  }
+  const nbsp = z => new Array(Math.max(1, z + 1)).join('\u00a0');
+  /* Zwei Ausgaben derselben Daten: eine fuers Terminal auf der Seite mit
+     seiner Farbmarkierung, eine fuer die Browserkonsole. */
+  const berichtTerminal = () => berichtPaare().map(([k, v]) =>
+    '@@h@@' + k + ':@@' + nbsp(Math.max(1, 13 - k.length)) + v);
+  const berichtText = () => berichtPaare().map(([k, v]) => (k + ':').padEnd(13) + v);
+
   /* ── Effekte ── */
   function fx(chars, color, dauer) {
     chars.forEach((ch, i) => {
@@ -380,7 +534,15 @@
     if (show) {
       updatePanel();
       beruehrt();
-      say(imBett ? t().hint : CAT_NAME + ': ' + stimmung(), 3200);
+      /* Wer schon einmal hier war und eine Weile weg war, wird begruesst.
+         Beim ersten Besuch bleibt sie neutral. */
+      if (warSchonDa && wegStunden > 0.5 && !toggle._gegruesst) {
+        toggle._gegruesst = true;
+        say(t().wieder, 2600);
+        setTimeout(() => say(t().hint, 3000), 3000);
+      } else {
+        say(imBett ? t().hint : CAT_NAME + ': ' + stimmung(), 3200);
+      }
     }
   }
 
@@ -433,6 +595,24 @@
     fuss.id = 'cat-stats';
     fuss.style.cssText = 'margin-top:8px;padding-top:7px;border-top:1px solid #21262d;color:#8b949e;font-size:10px;';
     panelEl.appendChild(fuss);
+
+    /* Offen sagen, dass etwas gespeichert wird, und einen Weg anbieten,
+       es zu loeschen. Persistenz ohne Hinweis wirkt unangenehm. */
+    const hinweis = document.createElement('div');
+    hinweis.id = 'cat-storage';
+    hinweis.style.cssText = 'margin-top:7px;color:#484f58;font-size:9px;display:flex;justify-content:space-between;gap:8px;';
+    const htxt = document.createElement('span');
+    htxt.id = 'cat-storage-txt';
+    const hlink = document.createElement('span');
+    hlink.id = 'cat-reset';
+    hlink.setAttribute('role', 'button');
+    hlink.setAttribute('tabindex', '0');
+    hlink.addEventListener('click', zuruecksetzen);
+    hlink.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); zuruecksetzen(); }
+    });
+    hinweis.appendChild(htxt); hinweis.appendChild(hlink);
+    panelEl.appendChild(hinweis);
     document.body.appendChild(panelEl);
   }
 
@@ -465,7 +645,27 @@
       s.appendChild(zeile(L.meals, pet.meals));
       s.appendChild(zeile(L.pets, pet.pets));
       if (pet.zoomies) s.appendChild(zeile('Zoomies', pet.zoomies));
+      const lieb = lieblingIdx();
+      if (lieb >= 0) s.appendChild(zeile(L.fav, futterName(PIXEL_FOODS[lieb])));
     }
+    const ht = document.getElementById('cat-storage-txt');
+    if (ht) ht.textContent = L.merkt;
+    const hl = document.getElementById('cat-reset');
+    if (hl) { hl.textContent = L.leeren; hl.setAttribute('aria-label', L.leeren); }
+    if (wrapEl && wrapEl._treffer) wrapEl._treffer.setAttribute('aria-label', L.streicheln);
+  }
+
+  /* Setzt ihr Gedaechtnis zurueck, ohne die Seite neu zu laden. */
+  function zuruecksetzen() {
+    try { localStorage.removeItem(KEY); localStorage.removeItem('miso.state.v1'); } catch (e) { /* egal */ }
+    pet.hunger = 25; pet.mood = 80; pet.energy = 90;
+    pet.meals = 0; pet.pets = 0; pet.zoomies = 0;
+    pet.likes = PIXEL_FOODS.map(() => 0);
+    pet.born = Date.now();
+    warSchonDa = false; wegStunden = 0;
+    savePet(); updatePanel();
+    say(t().geleert, 2400);
+    return t().geleert;
   }
 
   /* ── CSS ─────────────────────────────────────────────────────────────
@@ -481,7 +681,10 @@
       '100%{opacity:0;transform:translateY(-45px) scale(1.4)}}' +
       '@keyframes cat-breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.965)}}' +
       '@keyframes cat-tilt{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}' +
-      '@keyframes cat-paw{0%{opacity:.55}100%{opacity:0}}';
+      '@keyframes cat-paw{0%{opacity:.55}100%{opacity:0}}' +
+      '#site-cat [role=button]:focus-visible{outline:2px solid #2f81f7;outline-offset:3px}' +
+      '#cat-reset{color:#6e7681;cursor:pointer;text-decoration:underline dotted}' +
+      '#cat-reset:hover,#cat-reset:focus-visible{color:#e6edf3}';
     document.head.appendChild(st);
   }
 
@@ -525,7 +728,16 @@
     const treffer = document.createElement('div');
     treffer.style.cssText =
       'position:absolute;left:11px;bottom:16px;width:46px;height:32px;' +
-      'cursor:pointer;pointer-events:auto;';
+      'cursor:pointer;pointer-events:auto;border-radius:6px;';
+    /* Mit der Tastatur erreichbar: Tab hin, Enter oder Leertaste
+       streichelt. Ohne das waere sie nur mit der Maus bedienbar. */
+    treffer.setAttribute('tabindex', '0');
+    treffer.setAttribute('role', 'button');
+    treffer.setAttribute('aria-label', t().streicheln);
+    treffer.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); klick(); }
+    });
+    treffer.addEventListener('focus', () => { beruehrt(); say(imBett ? t().hint : t().tip, 2600); });
     wrapEl.appendChild(treffer);
     wrapEl._treffer = treffer;
 
@@ -610,7 +822,8 @@
       'miso.come()     zum Mauszeiger rufen',
       'miso.zoomies()  einmal durchdrehen',
       'miso.bed()      ins Koerbchen schicken',
-      'miso.reset()    von vorn anfangen',
+      'miso.why()      was sie gerade vorhat und warum',
+      'miso.reset()    Gedaechtnis loeschen',
     ].join('\n');
 
     const api = {
@@ -640,10 +853,18 @@
       },
       zoomies() { buildButton.setActive(true); wecken(); zoomies(); return 'ZOOMIES'; },
       bed()   { buildButton.setActive(true); insBett(); return 'gute Nacht'; },
-      reset() {
-        try { localStorage.removeItem(KEY); localStorage.removeItem('miso.state.v1'); } catch (e) {}
-        return 'Seite neu laden, dann faengt sie von vorn an';
+      why()   {
+        try { berichtText().forEach(z => console.log('%c' + z, 'font-family:monospace')); } catch (e) {}
+        const la = lage();
+        return { state: la.zustand, goal: la.ziel, reason: la.grund,
+                 hunger: +pet.hunger.toFixed(1), mood: +pet.mood.toFixed(1),
+                 energy: +pet.energy.toFixed(1),
+                 thresholds: { hunt: JAGD_AB, tiredDay: MUEDE_TAG, tiredNight: MUEDE_NACHT,
+                               idleMs: IDLE_MS },
+                 favourite: lieblingIdx() >= 0 ? futterName(PIXEL_FOODS[lieblingIdx()]) : null };
       },
+      trace() { return berichtTerminal(); },
+      reset() { return zuruecksetzen(); },
       help()  { console.log(HELP); return 'siehe oben'; },
     };
 
@@ -652,7 +873,7 @@
 
     setTimeout(() => {
       try {
-        console.log('%c ' + CAT_NAME + ' %c schlaeft unten links. %cmiso.help()%c zeigt alle Befehle.',
+        console.log('%c ' + CAT_NAME + ' %c schlaeft unten links. %cmiso.why()%c sagt, was sie vorhat.',
           'background:#d4704a;color:#0d1117;border-radius:3px 0 0 3px;padding:2px 6px;font-weight:700',
           'background:#161b22;color:#e6edf3;border-radius:0 3px 3px 0;padding:2px 8px',
           'color:#3fb950;font-family:monospace', 'color:#8b949e');
@@ -663,7 +884,7 @@
   /* ── Koerbchen ── */
   function wecken() {
     if (!imBett && state !== 'sleep') return false;
-    imBett = false; willBett = false;
+    imBett = false; willBett = false; jeGeweckt = true;
     beruehrt();
     go('jump', 800);
     pet.energy = Math.max(pet.energy, 45);
@@ -739,7 +960,7 @@
     clampPet(); updatePanel();
 
     // Erschoepft oder lange nichts passiert, dann ab ins Koerbchen
-    const muede = pet.energy < (nacht ? 34 : 20);
+    const muede = pet.energy < (nacht ? MUEDE_NACHT : MUEDE_TAG);
     const gelangweilt = Date.now() - letzteZuwendung > IDLE_MS;
     if (!imBett && !willBett && state !== 'eat' && state !== 'zoom' && (muede || gelangweilt)) {
       insBett();
@@ -759,12 +980,35 @@
   }
 
   /* ── Futter ── */
+  /* Futter darf nicht auf einem Knopf oder Link landen. Es nimmt Klicks
+     an, weil man es ziehen koennen soll, und wuerde die Seite sonst an
+     dieser Stelle unbedienbar machen. Deshalb vorher nachsehen, was da
+     liegt, und notfalls eine andere Stelle nehmen. */
+  const KLICKBAR = 'a,button,input,textarea,select,summary,label,[role=button],[onclick]';
+
+  function freierPlatz(y) {
+    const margin = 140;
+    const spanne = Math.max(120, window.innerWidth - margin * 2);
+    let x = margin + Math.random() * spanne;
+    for (let i = 0; i < 10; i++) {
+      const unten = document.elementFromPoint(x, y);
+      const stoerung = unten && (unten.closest('#cat-panel') ||
+        (unten.closest(KLICKBAR) && !unten.closest('#site-cat')));
+      if (!stoerung) return x;
+      x = margin + Math.random() * spanne;
+    }
+    return null;
+  }
+
   function spawnFood() {
     if (items.length >= 4) return;
-    const data = PIXEL_FOODS[Math.floor(Math.random() * PIXEL_FOODS.length)];
-    const margin = 140;
-    const fx0 = margin + Math.random() * Math.max(120, window.innerWidth - margin * 2);
+    const lieb = lieblingIdx();
+    const data = (lieb >= 0 && Math.random() < 0.4)
+      ? PIXEL_FOODS[lieb]
+      : PIXEL_FOODS[Math.floor(Math.random() * PIXEL_FOODS.length)];
     const fy = window.innerHeight - IH - 10;
+    const fx0 = freierPlatz(fy + IH / 2);
+    if (fx0 === null) { setTimeout(spawnFood, 4000); return; }
     const el = document.createElement('div');
     el.title = data[lang()] || data.de;
     el.style.cssText =
@@ -796,6 +1040,9 @@
 
   function eatFood(item) {
     const d = item.data || {};
+    const idx = PIXEL_FOODS.indexOf(item.data);
+    const warLiebling = idx >= 0 && idx === lieblingIdx();
+    if (idx >= 0) pet.likes[idx] += 1;
     killFood(item, true);
     beruehrt();
     go('eat', 1600);
@@ -806,10 +1053,10 @@
       say(t().toy);
     } else {
       pet.hunger = Math.max(0, pet.hunger - (d.fill || 25));
-      pet.mood = Math.min(100, pet.mood + 8);
+      pet.mood = Math.min(100, pet.mood + (warLiebling ? 14 : 8));
       pet.meals += 1;
-      fx(['❤️', '✨', '😻']);
-      say(t().yum(d[lang()] || d.de));
+      fx(warLiebling ? ['❤️', '❤️', '✨', '😻'] : ['❤️', '✨', '😻']);
+      say(warLiebling ? t().lieblich(futterName(d)) : t().yum(futterName(d)));
     }
     clampPet(); updatePanel(); savePet();
     setTimeout(spawnFood, 3000);
@@ -856,9 +1103,17 @@
       eatFood(item);
     } else {
       const ny = window.innerHeight - IH - 10;
-      item.el.style.transition = 'top .28s ease-in';
+      item.el.style.transition = 'top .28s ease-in,left .28s ease-in';
       item.el.style.top = ny + 'px';
       item.y = ny + IH / 2;
+      /* Auf einem Knopf abgelegt? Dann rutscht es daneben. */
+      item.el.style.visibility = 'hidden';
+      const unten = document.elementFromPoint(item.x, item.y);
+      item.el.style.visibility = '';
+      if (unten && unten.closest(KLICKBAR)) {
+        const frei = freierPlatz(item.y);
+        if (frei !== null) { item.x = frei; item.el.style.left = (frei - IW / 2) + 'px'; }
+      }
       setTimeout(() => {
         if (!item.dragging) {
           item.el.style.transition = '';
@@ -917,7 +1172,7 @@
         } else if (state !== 'jump' && state !== 'stalk') {
           if (state === 'run') go('walk');
 
-          if (pet.hunger > 55 && !seekItem && items.length) {
+          if (pet.hunger > JAGD_AB && !seekItem && items.length) {
             const cx = posX + CW / 2;
             seekItem = items.reduce((a, b) => (Math.abs(b.x - cx) < Math.abs(a.x - cx) ? b : a));
           }

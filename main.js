@@ -192,6 +192,7 @@
         `  @@h@@contact@@   → ${isEN ? 'Contact info' : 'Kontakt'}`,
         `  @@h@@hire@@      → ${isEN ? 'Freelance inquiry' : 'Freelance anfragen'}`,
         `  @@h@@git log@@   → ${isEN ? 'Commit history' : 'Commit-Verlauf'}`,
+        `  @@h@@miso@@      → ${isEN ? 'Ask the cat what she is up to' : 'Die Katze fragen, was sie vorhat'}`,
         `  @@h@@clear@@     → ${isEN ? 'Clear terminal' : 'Terminal leeren'}`,
       ];
     },
@@ -211,6 +212,22 @@
       }
     },
     ls:         () => ['hero/  about/  stack/  erfahrung/  plugins/  terminal/  kontakt/'],
+
+    // Fragt die Katze unten links nach ihrem Zustand. Sie baut den
+    // Bericht selbst, in der gerade eingestellten Sprache.
+    miso: () => {
+      const isEN = window.i18n?.lang() === 'en';
+      if (!window.miso || typeof window.miso.trace !== 'function') {
+        return [isEN ? 'Miso only shows up on devices with a mouse.'
+                     : 'Miso zeigt sich nur auf Geraeten mit Maus.'];
+      }
+      window.miso.show();
+      return window.miso.trace().concat([
+        ' ',
+        isEN ? 'She reports this live from her own variables. @@h@@miso.help()@@ in the browser console has the rest.'
+             : 'Das liest sie live aus ihren eigenen Variablen. @@h@@miso.help()@@ in der Browser-Konsole zeigt den Rest.',
+      ]);
+    },
     date:       () => [new Date().toLocaleString(window.i18n?.lang() === 'en' ? 'en-GB' : 'de-DE')],
     'sudo rm -rf /': () => ['@@e@@Permission denied. Nice try.', '( bitte nicht nochmal )'],
     sudo:            () => ['@@e@@sudo: This isn\'t your server.'],
