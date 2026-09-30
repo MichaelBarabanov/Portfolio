@@ -25,6 +25,7 @@
     jump_r: BASE + 'Jump_Right.gif',
     jump_l: BASE + 'Jump_Left.gif',
     front:  BASE + 'Idle_Front.png',
+    sleep:  BASE + 'Sleep.png',
     back:   BASE + 'Idle_Back.png',
   };
   Object.values(SRCS).forEach(src => { new Image().src = src; });
@@ -185,20 +186,24 @@
   ];
 
   const BED = { s: 3,
-    pal: { o: '#2a1d14', r: '#7a5236', h: '#9c6a45', k: '#3f4a57', d: '#2b333d', l: '#4e5b6b' },
-    px: ['........................',
-         '......oooooooooooo......',
-         '....oorrrrrrrrrrrroo....',
-         '...orrhhhhhhhhhhhhrro...',
-         '..orrhoooooooooooohrro..',
-         '..orhokkkkkkkkkkkkohro..',
-         '..orhokllllllllllkohro..',
-         '..orhokkkkkkkkkkkkohro..',
-         '..orrhoddddddddddohrro..',
-         '...orrhhhhhhhhhhhhrro...',
-         '....oorrrrrrrrrrroo.....',
-         '......oooooooooo........'] };
-  const BED_W = 24 * BED.s, BED_H = 12 * BED.s;
+    pal: { o: '#241810', r: '#6f4a30', h: '#96663f', g: '#b3814f',
+           k: '#39434f', d: '#2a323c', l: '#4d5a6b', w: '#5f6e80' },
+    px: ['..........oooooooooo..........',
+         '.......ooogghhhhggooo.........',
+         '.....oorhggggggggggghroo......',
+         '....orhgggggggggggggggghro....',
+         '...orhgoooooooooooooooogghro..',
+         '..orhgokkkkkkkkkkkkkkkkogghro.',
+         '..orggokllllllllllllllkoggrro.',
+         '..orggokllwwwwwwwwwwllkoggrro.',
+         '..orggokllllllllllllllkoggrro.',
+         '..orhgokkkkkkkkkkkkkkkoghhro..',
+         '...orhgoddddddddddddogghro....',
+         '....orhggoooooooooogghro......',
+         '.....oorhgggggggggghroo.......',
+         '.......ooorhhhhhhhroo.........',
+         '..........oooooooo............'] };
+  const BED_W = 30 * BED.s, BED_H = 15 * BED.s;
   const BED_LEFT = 40;
   const bedSpot = () => BED_LEFT + BED_W / 2 - CW / 2;
 
@@ -266,7 +271,8 @@
   function srcFor(s, d) {
     if (s === 'run' || s === 'zoom') return d === 1 ? SRCS.run_r : SRCS.run_l;
     if (s === 'jump') return d === 1 ? SRCS.jump_r : SRCS.jump_l;
-    if (s === 'sit' || s === 'eat' || s === 'sleep' || s === 'stalk') return SRCS.front;
+    if (s === 'sleep') return SRCS.sleep;
+    if (s === 'sit' || s === 'eat' || s === 'stalk') return SRCS.front;
     return d === 1 ? SRCS.walk_r : SRCS.walk_l;
   }
   /* Faellt ein Sprite aus, etwa weil der Browser einen alten 404
@@ -463,7 +469,7 @@
       '@keyframes cat-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}' +
       '@keyframes cat-heart{0%{opacity:1;transform:translateY(0) scale(1)}' +
       '100%{opacity:0;transform:translateY(-45px) scale(1.4)}}' +
-      '@keyframes cat-breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.94)}}' +
+      '@keyframes cat-breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.965)}}' +
       '@keyframes cat-tilt{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}' +
       '@keyframes cat-paw{0%{opacity:.55}100%{opacity:0}}';
     document.head.appendChild(st);
