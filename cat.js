@@ -1,11 +1,12 @@
 /* ──────────────────────────────────────────────────────────────────────
    Miso: eine Katze, die auf dieser Seite wohnt.
 
-   Sie hat Hunger, Laune und Energie, merkt sich alles zwischen Besuchen,
-   schläft nachts eher ein, kommt schauen wenn der Mauszeiger unten liegen
-   bleibt, bekommt Zoomies und hinterlässt Pfotenabdrücke. Über
-   window.miso lässt sie sich aus der Konsole steuern.
+   Sie startet schlafend in ihrem Körbchen. Ein Klick weckt sie. Danach
+   hat sie Hunger, Laune und Energie, merkt sich alles zwischen Besuchen,
+   jagt Futter, bekommt Zoomies, hinterlässt Pfotenabdrücke und legt sich
+   von allein wieder ins Körbchen, wenn eine Weile nichts passiert.
 
+   Über window.miso lässt sie sich aus der Konsole steuern.
    Läuft nur bei feiner Zeigereingabe, also nicht auf Touchgeräten.
    ────────────────────────────────────────────────────────────────────── */
 (function () {
@@ -28,94 +29,185 @@
   };
   Object.values(SRCS).forEach(src => { new Image().src = src; });
 
-  /* ── Sprache ─────────────────────────────────────────────────────────
-     Die Seite setzt document.documentElement.lang. Miso hört mit und
-     wechselt live mit, wenn oben auf EN geklickt wird.                 */
+  /* ── Sprache ── */
   const lang = () => ((document.documentElement.lang || 'de').slice(0, 2) === 'en' ? 'en' : 'de');
-
   const TXT = {
     de: {
-      tip: 'Futter auf ' + CAT_NAME + ' ziehen, klicken zum Streicheln',
+      hint: 'klick mich zum Aufwecken', tip: 'Futter herziehen, Klick streichelt, Doppelklick gibt Zoomies',
       btn: 'play with ' + CAT_NAME,
       sat: 'Satt', mood: 'Laune', energy: 'Energie',
       meals: 'Mahlzeiten', pets: 'Gestreichelt', newHere: 'neu hier',
       days: d => d + (d === 1 ? ' Tag' : ' Tage'),
       purr: 'schnurr', hungry: 'hungrig ...', bored: 'langweilig hier',
-      fine: 'alles gut', night: 'gute Nacht', wake: 'ausgeschlafen',
-      zzz: 'zzz ...', what: 'was gibts?', yum: n => n + ', lecker',
-      toy: 'Spielzeug', zoom: 'ZOOMIES', stretch: 'gaehn', stalk: 'hallo du',
+      fine: 'alles gut', night: 'gute Nacht', zzz: 'zzz ...', what: 'was gibts?',
+      yum: n => n + ', lecker', toy: 'Spielzeug', zoom: 'ZOOMIES',
+      stretch: 'gaehn', stalk: 'hallo du', bed: 'ich leg mich hin',
       levels: ['Streuner', 'Hauskatze', 'Stubentiger', 'Chefkatze', 'Legende'],
       moods: { tired: 'muede', hungry: 'hungrig', bored: 'gelangweilt', great: 'bester Laune', ok: 'zufrieden' },
     },
     en: {
-      tip: 'drag food onto ' + CAT_NAME + ', click to pet',
+      hint: 'click me to wake up', tip: 'drag food over, click to pet, double click for zoomies',
       btn: 'play with ' + CAT_NAME,
       sat: 'Fed', mood: 'Mood', energy: 'Energy',
       meals: 'Meals', pets: 'Pets', newHere: 'new here',
       days: d => d + (d === 1 ? ' day' : ' days'),
       purr: 'purr', hungry: 'hungry ...', bored: 'so bored',
-      fine: 'all good', night: 'good night', wake: 'well rested',
-      zzz: 'zzz ...', what: 'what is it?', yum: n => n + ', yum',
-      toy: 'a toy!', zoom: 'ZOOMIES', stretch: 'yaaawn', stalk: 'hi there',
+      fine: 'all good', night: 'good night', zzz: 'zzz ...', what: 'what is it?',
+      yum: n => n + ', yum', toy: 'a toy!', zoom: 'ZOOMIES',
+      stretch: 'yaaawn', stalk: 'hi there', bed: 'off to bed',
       levels: ['Stray', 'House cat', 'Room tiger', 'Boss cat', 'Legend'],
       moods: { tired: 'sleepy', hungry: 'hungry', bored: 'bored', great: 'delighted', ok: 'content' },
     },
   };
   const t = () => TXT[lang()];
 
-  /* ── Futter, 8x8 Pixelgrafik, Faktor 4 ergibt 32x32 px ── */
-  const IW = 32, IH = 32;
-  const PIXEL_FOODS = [
-    { de: 'Fisch', en: 'fish', fill: 34, w: 8, h: 8, s: 4,
-      c: ['#5b9bc4', '#89cff0', '#0d1b2a'],
-      p: [[0,0,0,0,0,0,0,0],[0,0,0,2,2,2,0,0],[1,0,0,2,2,2,2,0],[1,1,0,2,3,2,2,2],
-          [1,0,0,2,2,2,2,0],[0,0,0,2,2,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]] },
-    { de: 'Kaese', en: 'cheese', fill: 22, w: 8, h: 8, s: 4,
-      c: ['#f5c842', '#c4a030', '#b8920a'],
-      p: [[0,0,0,0,1,0,0,0],[0,0,0,1,1,1,0,0],[0,0,1,1,1,1,1,0],[0,1,1,3,1,1,1,1],
-          [1,1,1,1,1,3,1,1],[2,2,2,2,2,2,2,2],[2,2,2,2,2,2,2,2],[0,0,0,0,0,0,0,0]] },
-    { de: 'Haehnchenkeule', en: 'drumstick', fill: 40, w: 8, h: 8, s: 4,
-      c: ['#5a3010', '#d4704a', '#e8e0d8'],
-      p: [[0,0,1,1,0,0,0,0],[0,1,2,2,1,0,0,0],[0,1,2,2,2,1,0,0],[0,1,2,2,2,1,0,0],
-          [0,0,1,2,1,0,0,0],[0,0,0,1,3,0,0,0],[0,0,0,1,3,3,0,0],[0,0,0,0,1,3,3,0]] },
-    { de: 'Tropenfisch', en: 'clownfish', fill: 34, w: 8, h: 8, s: 4,
-      c: ['#c85a10', '#e8803a', '#0d1b2a', '#f0f0f0'],
-      p: [[0,0,0,0,0,0,0,0],[0,0,0,2,2,2,0,0],[1,0,0,4,4,2,2,0],[1,1,0,4,3,2,2,2],
-          [1,0,0,4,4,2,2,0],[0,0,0,2,2,2,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]] },
-    { de: 'Milch', en: 'milk', fill: 18, w: 8, h: 8, s: 4,
-      c: ['#f4f7fa', '#cfd8e0', '#3b82c4'],
-      p: [[0,0,1,1,1,1,0,0],[0,0,1,3,3,1,0,0],[0,1,1,1,1,1,1,0],[0,1,1,1,1,1,1,0],
-          [0,1,3,3,3,3,1,0],[0,1,1,1,1,1,1,0],[0,2,2,2,2,2,2,0],[0,0,0,0,0,0,0,0]] },
-    { de: 'Spielmaus', en: 'toy mouse', fill: 8, toy: true, w: 8, h: 8, s: 4,
-      c: ['#9aa0a6', '#c8ced4', '#5f6368', '#f4a6c0'],
-      p: [[0,0,0,0,0,0,0,0],[0,0,1,0,0,1,0,0],[0,1,2,1,1,2,1,0],[1,1,1,1,1,1,1,1],
-          [1,1,3,1,1,3,1,1],[0,1,1,1,1,1,1,0],[0,0,1,1,1,1,0,4],[0,0,0,0,0,0,4,4]] },
-  ];
-
+  /* ── Pixelgrafiken ───────────────────────────────────────────────────
+     Zeichenraster mit Farbtabelle. Ein Punkt ist durchsichtig. Das liest
+     sich beim Nachbessern deutlich besser als verschachtelte Zahlen.   */
   const NS = 'http://www.w3.org/2000/svg';
-  function pixelSvg(data) {
+  function pixelSvg(sp) {
+    const w = sp.px[0].length, h = sp.px.length, s = sp.s;
     const svg = document.createElementNS(NS, 'svg');
-    svg.setAttribute('width', data.w * data.s);
-    svg.setAttribute('height', data.h * data.s);
+    svg.setAttribute('width', w * s);
+    svg.setAttribute('height', h * s);
     svg.setAttribute('shape-rendering', 'crispEdges');
     svg.style.display = 'block';
-    data.p.forEach((row, y) => row.forEach((v, x) => {
-      if (!v) return;
-      const r = document.createElementNS(NS, 'rect');
-      r.setAttribute('x', x * data.s); r.setAttribute('y', y * data.s);
-      r.setAttribute('width', data.s); r.setAttribute('height', data.s);
-      r.setAttribute('fill', data.c[v - 1]);
-      svg.appendChild(r);
-    }));
+    sp.px.forEach((row, y) => {
+      for (let x = 0; x < row.length; x++) {
+        const c = sp.pal[row[x]];
+        if (!c) continue;
+        const r = document.createElementNS(NS, 'rect');
+        r.setAttribute('x', x * s); r.setAttribute('y', y * s);
+        r.setAttribute('width', s); r.setAttribute('height', s);
+        r.setAttribute('fill', c);
+        svg.appendChild(r);
+      }
+    });
     return svg;
   }
 
+  const IW = 32, IH = 32;
+  const PIXEL_FOODS = [
+    { de: 'Fisch', en: 'fish', fill: 34, s: 2,
+      pal: { o: '#123047', b: '#3f8fc4', l: '#8fd4f0', w: '#ffffff' },
+      px: ['................',
+           '................',
+           '.......oooo.....',
+           '.....oobbbbo....',
+           '...oobbbbbbbo...',
+           'o.obbbbbbbbbbo..',
+           'oo.obbllbbbbbbo.',
+           'ooo.bbllbbbwoobo',
+           'ooo.bbllbbbwoobo',
+           'oo.obbllbbbbbbo.',
+           'o.obbbbbbbbbbo..',
+           '...oobbbbbbbo...',
+           '.....oobbbbo....',
+           '.......oooo.....',
+           '................',
+           '................'] },
+
+    { de: 'Milchnapf', en: 'bowl of milk', fill: 24, s: 2,
+      pal: { o: '#1b2430', m: '#f6f9fc', s: '#d3dde6', n: '#4a90c4', d: '#2f6d99' },
+      px: ['................',
+           '................',
+           '................',
+           '................',
+           '...oooooooooo...',
+           '..ommmmmmmmmmo..',
+           '..omssmmmmssmo..',
+           '..ommmmmmmmmmo..',
+           '..onnnnnnnnnno..',
+           '..onnnnnnnnnno..',
+           '...odddddddddo..',
+           '....oddddddo....',
+           '.....oooooo.....',
+           '................',
+           '................',
+           '................'] },
+
+    { de: 'Keks', en: 'biscuit', fill: 20, s: 2,
+      pal: { o: '#5a3a18', k: '#d9a35f', d: '#7a4a1c', h: '#f0c68a' },
+      px: ['................',
+           '................',
+           '....oooooo......',
+           '...okkhkkko.....',
+           '..okkkkkkkko....',
+           '.okdkkkkkdkko...',
+           '.okkkkdkkkkko...',
+           '.okkdkkkkkkko...',
+           '.okkkkkkdkkko...',
+           '..okkdkkkkko....',
+           '...okkkkkko.....',
+           '....oooooo......',
+           '................',
+           '................',
+           '................',
+           '................'] },
+
+    { de: 'Wollknaeuel', en: 'ball of yarn', fill: 10, toy: true, s: 2,
+      pal: { o: '#5d2340', w: '#e0679a', l: '#f2a3c0', d: '#b8467a' },
+      px: ['................',
+           '................',
+           '.....oooooo.....',
+           '...oowwllwwoo...',
+           '..owwlwwwwlwwo..',
+           '.owlwwddwwlwwwo.',
+           '.owwddwwwwddwwo.',
+           'owwwwwwddwwwwwwo',
+           'owwddwwwwddwwwwo',
+           '.owwwwddwwwwwwo.',
+           '.owwddwwwwddwwo.',
+           '..owwlwwwwlwwo..',
+           '...oowwllwwoo...',
+           '.....oooooo.....',
+           '................',
+           '................'] },
+
+    { de: 'Spielmaus', en: 'toy mouse', fill: 8, toy: true, s: 2,
+      pal: { o: '#3c4046', g: '#9aa0a6', l: '#c8ced4', p: '#f4a6c0', e: '#1b1f23' },
+      px: ['................',
+           '................',
+           '...op....po.....',
+           '..opgo..ogpo....',
+           '..oglo..olgo....',
+           '...oggggggo.....',
+           '..oggggggggo....',
+           '.ogglgggggggo...',
+           '.oggeggggeggo.oo',
+           '.ogggggggggo.og.',
+           '..oggpppggo.og..',
+           '...ooggggo.og...',
+           '.....oooo.og....',
+           '..........o.....',
+           '................',
+           '................'] },
+  ];
+
+  const BED = { s: 3,
+    pal: { o: '#2a1d14', r: '#7a5236', h: '#9c6a45', k: '#3f4a57', d: '#2b333d', l: '#4e5b6b' },
+    px: ['........................',
+         '......oooooooooooo......',
+         '....oorrrrrrrrrrrroo....',
+         '...orrhhhhhhhhhhhhrro...',
+         '..orrhoooooooooooohrro..',
+         '..orhokkkkkkkkkkkkohro..',
+         '..orhokllllllllllkohro..',
+         '..orhokkkkkkkkkkkkohro..',
+         '..orrhoddddddddddohrro..',
+         '...orrhhhhhhhhhhhhrro...',
+         '....oorrrrrrrrrrroo.....',
+         '......oooooooooo........'] };
+  const BED_W = 24 * BED.s, BED_H = 12 * BED.s;
+  const BED_LEFT = 40;
+  const bedSpot = () => BED_LEFT + BED_W / 2 - CW / 2;
+
   /* ── Dauerhafter Zustand ─────────────────────────────────────────────
      Jeder Zugriff auf localStorage ist abgesichert. Im privaten Fenster
-     oder bei blockierten Seitendaten startet Miso einfach neu, statt die
-     Seite mitzureissen.                                                */
+     oder bei blockierten Seitendaten startet Miso einfach neu.         */
   const KEY = 'miso.state.v2';
   const HOUR = 3600000;
+  const IDLE_MS = 28000;   // so lange ohne Zuwendung, dann geht sie ins Koerbchen
 
   const pet = {
     hunger: 25, mood: 80, energy: 90,
@@ -134,9 +226,9 @@
       if (typeof s[k] === 'number' && isFinite(s[k])) pet[k] = s[k];
     });
     const weg = Math.min((Date.now() - pet.seen) / HOUR, 12);
-    pet.hunger += weg * 3.5;
-    pet.mood   -= weg * 2.0;
-    pet.energy += weg * 4.0;
+    pet.hunger += weg * 7;
+    pet.mood   -= weg * 4;
+    pet.energy += weg * 9;
     clampPet();
   }
   function clampPet() {
@@ -153,23 +245,23 @@
   const xp        = () => pet.meals * 3 + pet.pets + pet.zoomies * 2;
   const levelNr   = () => Math.min(4, Math.floor(Math.sqrt(xp() / 6)));
   const levelName = () => t().levels[levelNr()];
-
-  /* Nachts ist sie mueder. Reine Ortszeit, kein Datenabruf. */
-  const istNacht = () => { const h = new Date().getHours(); return h >= 22 || h < 6; };
+  const istNacht  = () => { const h = new Date().getHours(); return h >= 22 || h < 6; };
 
   /* ── Laufzeit ── */
   const floorY = () => window.innerHeight - CH;
 
-  let posX = 120, dir = 1;
-  let state = 'walk', timer = 0;
+  let posX = bedSpot(), dir = 1;
+  let state = 'sleep', timer = 0;
   let targetX = null, lastTs = 0;
   let paused = true;
-  let wrapEl, imgEl, fxWrap, bubbleEl, panelEl, tipEl;
+  let wrapEl, imgEl, fxWrap, bubbleEl, panelEl, bedEl;
   const bars = {};
   let items = [], drag = null, seekItem = null;
   let lastSpeak = 0, zoomLeft = 0, pawDist = 0, lastPawX = 0, zzzTimer = 0;
   const mouse = { x: 0, y: 0, still: 0, seen: false };
-  let stalkCool = 0;
+  let stalkCool = 0, imBett = true, willBett = false, letzteZuwendung = Date.now();
+
+  function beruehrt() { letzteZuwendung = Date.now(); }
 
   function srcFor(s, d) {
     if (s === 'run' || s === 'zoom') return d === 1 ? SRCS.run_r : SRCS.run_l;
@@ -188,6 +280,8 @@
   function face(d) { if (d !== dir) { dir = d; draw(); } }
   function go(s, dur) { state = s; timer = dur || 0; draw(); }
 
+  /* Sprechblase klebt an der Katze, bleibt aber im Bild und kollidiert
+     nicht mehr mit einem zweiten Hinweisfeld. Das gibt es nicht mehr. */
   function say(text, ms) {
     if (!bubbleEl || paused || !text) return;
     const now = Date.now();
@@ -195,8 +289,16 @@
     lastSpeak = now;
     bubbleEl.textContent = text;
     bubbleEl.style.opacity = '1';
+    platziereBlase();
     clearTimeout(say._t);
     say._t = setTimeout(() => { bubbleEl.style.opacity = '0'; }, ms || 2200);
+  }
+  function platziereBlase() {
+    if (!bubbleEl) return;
+    const b = bubbleEl.offsetWidth || 120;
+    const mitte = posX + CW / 2;
+    const links = Math.max(8, Math.min(window.innerWidth - b - 8, mitte - b / 2));
+    bubbleEl.style.left = (links - posX) + 'px';
   }
 
   function stimmung() {
@@ -222,7 +324,6 @@
     });
   }
 
-  /* Pfotenabdruecke bleiben kurz auf dem Boden liegen. */
   function pfote() {
     const svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('width', 10);
@@ -238,7 +339,7 @@
     const el = document.createElement('div');
     el.style.cssText =
       'position:fixed;left:' + (posX + 28 + (Math.random() * 8 - 4)) + 'px;' +
-      'bottom:' + (2 + Math.random() * 4) + 'px;z-index:9996;pointer-events:none;' +
+      'bottom:' + (2 + Math.random() * 4) + 'px;z-index:9995;pointer-events:none;' +
       'opacity:.55;animation:cat-paw 2.6s ease-out forwards;';
     el.appendChild(svg);
     document.body.appendChild(el);
@@ -249,10 +350,14 @@
   function toggle(show) {
     paused = !show;
     wrapEl.style.display = show ? '' : 'none';
+    if (bedEl) bedEl.style.display = show ? '' : 'none';
     items.forEach(i => { i.el.style.display = show ? '' : 'none'; });
     if (panelEl) panelEl.style.display = show ? '' : 'none';
-    if (tipEl) tipEl.style.display = show ? '' : 'none';
-    if (show) { updatePanel(); say(CAT_NAME + ': ' + stimmung(), 2600); }
+    if (show) {
+      updatePanel();
+      beruehrt();
+      say(imBett ? t().hint : CAT_NAME + ': ' + stimmung(), 3200);
+    }
   }
 
   function makeBar(farbe) {
@@ -287,8 +392,7 @@
     const alt = document.createElement('span');
     alt.id = 'cat-age';
     alt.style.cssText = 'color:#6e7681;font-size:10px;';
-    kopf.appendChild(nm);
-    kopf.appendChild(alt);
+    kopf.appendChild(nm); kopf.appendChild(alt);
     panelEl.appendChild(kopf);
 
     const lvl = document.createElement('div');
@@ -342,8 +446,7 @@
 
   /* ── CSS ─────────────────────────────────────────────────────────────
      cat.js bringt seine Keyframes selbst mit. Vorher standen sie nur in
-     style.css, und hire.html bindet die nicht ein. Dort lief die
-     Futter-Animation deshalb nie und die Herzchen blieben unsichtbar.  */
+     style.css, und hire.html bindet die nicht ein.                     */
   function injectCss() {
     if (document.getElementById('cat-css')) return;
     const st = document.createElement('style');
@@ -362,6 +465,15 @@
   function init() {
     injectCss();
     loadPet();
+    posX = bedSpot();
+
+    bedEl = document.createElement('div');
+    bedEl.id = 'cat-bed';
+    bedEl.style.cssText =
+      'position:fixed;left:' + BED_LEFT + 'px;bottom:0;z-index:9994;' +
+      'pointer-events:none;display:none;opacity:.95;';
+    bedEl.appendChild(pixelSvg(BED));
+    document.body.appendChild(bedEl);
 
     wrapEl = document.createElement('div');
     wrapEl.id = 'site-cat';
@@ -370,7 +482,7 @@
       'user-select:none;width:' + CW + 'px;height:' + CH + 'px;display:none;';
 
     imgEl = document.createElement('img');
-    imgEl.src = SRCS.walk_r;
+    imgEl.src = SRCS.front;
     imgEl.width = CW; imgEl.height = CH; imgEl.alt = CAT_NAME;
     imgEl.style.cssText = 'display:block;image-rendering:pixelated;';
     wrapEl.appendChild(imgEl);
@@ -381,30 +493,15 @@
 
     bubbleEl = document.createElement('div');
     bubbleEl.style.cssText =
-      'position:absolute;bottom:' + (CH + 16) + 'px;left:50%;transform:translateX(-50%);' +
+      'position:absolute;bottom:' + (CH + 18) + 'px;left:0;' +
       "font-family:'Cascadia Code','Fira Code',monospace;font-size:10px;white-space:nowrap;" +
       'background:#161b22;color:#e6edf3;border:1px solid #30363d;border-radius:4px;' +
-      'padding:3px 8px;opacity:0;transition:opacity .25s;pointer-events:none;';
+      'padding:3px 8px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:10001;';
     wrapEl.appendChild(bubbleEl);
     document.body.appendChild(wrapEl);
 
-    tipEl = document.createElement('div');
-    tipEl.id = 'cat-tip';
-    tipEl.style.cssText =
-      'position:fixed;bottom:' + (CH + 8) + 'px;font-family:monospace;font-size:11px;' +
-      'background:#161b22;color:#e6edf3;padding:4px 10px;border-radius:4px;' +
-      'border:1px solid #30363d;pointer-events:none;opacity:0;transition:opacity .2s;' +
-      'z-index:10000;white-space:nowrap;';
-    tipEl.textContent = t().tip;
-    document.body.appendChild(tipEl);
-
-    wrapEl.addEventListener('mouseenter', () => {
-      tipEl.textContent = t().tip;
-      tipEl.style.opacity = '1';
-      tipEl.style.left = posX + 'px';
-    });
-    wrapEl.addEventListener('mouseleave', () => { tipEl.style.opacity = '0'; });
-    wrapEl.addEventListener('click', streicheln);
+    wrapEl.addEventListener('mouseenter', () => { beruehrt(); say(imBett ? t().hint : t().tip, 2600); });
+    wrapEl.addEventListener('click', klick);
     wrapEl.addEventListener('dblclick', e => { e.preventDefault(); zoomies(); });
 
     document.addEventListener('mousemove', e => {
@@ -413,7 +510,7 @@
     });
     document.addEventListener('mouseup', onUp);
 
-    new MutationObserver(() => { updatePanel(); tipEl.textContent = t().tip; })
+    new MutationObserver(updatePanel)
       .observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
     buildPanel();
@@ -459,17 +556,17 @@
     buildButton.setActive = v => { if (v !== active) btn.click(); };
   }
 
-  /* ── Konsolen-Schnittstelle ──────────────────────────────────────────
-     Wer die Entwicklerwerkzeuge oeffnet, soll etwas finden.            */
+  /* ── Konsole ── */
   function exposeApi() {
     const HELP = [
       'miso.stats      aktuelle Werte',
       'miso.show()     Katze einblenden',
+      'miso.wake()     aufwecken',
       'miso.pet()      streicheln',
       'miso.feed()     Futter werfen',
       'miso.come()     zum Mauszeiger rufen',
       'miso.zoomies()  einmal durchdrehen',
-      'miso.sleep()    schlafen legen',
+      'miso.bed()      ins Koerbchen schicken',
       'miso.reset()    von vorn anfangen',
     ].join('\n');
 
@@ -479,31 +576,32 @@
           name: CAT_NAME, level: levelNr() + 1, title: levelName(),
           hunger: +pet.hunger.toFixed(1), mood: +pet.mood.toFixed(1),
           energy: +pet.energy.toFixed(1), meals: pet.meals, pets: pet.pets,
-          zoomies: pet.zoomies, ageDays: ageDays(), state: state,
+          zoomies: pet.zoomies, ageDays: ageDays(), state: state, inBed: imBett,
         };
       },
-      show() { buildButton.setActive(true); return CAT_NAME + ' ist da'; },
-      hide() { buildButton.setActive(false); return 'bis dann'; },
-      pet()  { buildButton.setActive(true); streicheln(); return t().purr; },
-      feed() {
-        buildButton.setActive(true); spawnFood();
+      show()  { buildButton.setActive(true); return CAT_NAME + ' ist da'; },
+      hide()  { buildButton.setActive(false); return 'bis dann'; },
+      wake()  { buildButton.setActive(true); wecken(); return 'guten Morgen'; },
+      pet()   { buildButton.setActive(true); klick(); return t().purr; },
+      feed()  {
+        buildButton.setActive(true); wecken(); spawnFood();
         const i = items[items.length - 1];
         if (i) { targetX = i.x - CW / 2; go('run'); }
         return 'serviert';
       },
-      come() {
-        buildButton.setActive(true);
+      come()  {
+        buildButton.setActive(true); wecken();
         targetX = Math.max(4, Math.min(window.innerWidth - CW, mouse.x - CW / 2));
         go('run');
         return 'komme';
       },
-      zoomies() { buildButton.setActive(true); zoomies(); return 'ZOOMIES'; },
-      sleep()   { buildButton.setActive(true); pet.energy = 10; clampPet(); go('sleep'); return 'zzz'; },
-      reset()   {
+      zoomies() { buildButton.setActive(true); wecken(); zoomies(); return 'ZOOMIES'; },
+      bed()   { buildButton.setActive(true); insBett(); return 'gute Nacht'; },
+      reset() {
         try { localStorage.removeItem(KEY); localStorage.removeItem('miso.state.v1'); } catch (e) {}
         return 'Seite neu laden, dann faengt sie von vorn an';
       },
-      help() { console.log(HELP); return 'siehe oben'; },
+      help()  { console.log(HELP); return 'siehe oben'; },
     };
 
     try { Object.defineProperty(window, 'miso', { value: api, writable: false, configurable: true }); }
@@ -511,7 +609,7 @@
 
     setTimeout(() => {
       try {
-        console.log('%c ' + CAT_NAME + ' %c wohnt auf dieser Seite. %cmiso.help()%c zeigt alle Befehle.',
+        console.log('%c ' + CAT_NAME + ' %c schlaeft unten links. %cmiso.help()%c zeigt alle Befehle.',
           'background:#d4704a;color:#0d1117;border-radius:3px 0 0 3px;padding:2px 6px;font-weight:700',
           'background:#161b22;color:#e6edf3;border-radius:0 3px 3px 0;padding:2px 8px',
           'color:#3fb950;font-family:monospace', 'color:#8b949e');
@@ -519,17 +617,35 @@
     }, 1200);
   }
 
-  /* ── Aktionen ── */
-  function streicheln() {
+  /* ── Koerbchen ── */
+  function wecken() {
+    if (!imBett && state !== 'sleep') return false;
+    imBett = false; willBett = false;
+    beruehrt();
+    go('jump', 800);
+    pet.energy = Math.max(pet.energy, 45);
+    say(t().stretch, 2000);
+    fx(['✨']);
+    updatePanel();
+    return true;
+  }
+
+  function insBett() {
+    if (imBett) return;
+    willBett = true;
+    seekItem = null;
+    targetX = bedSpot();
+    go('walk');
+    say(t().bed, 2200);
+  }
+
+  function klick() {
     if (state === 'eat') return;
-    if (state === 'sleep') {
-      if (pet.energy < 45) { say(t().zzz); return; }
-      pet.energy += 4;
-    }
-    pet.mood = Math.min(100, pet.mood + 7);
+    if (imBett || state === 'sleep') { wecken(); return; }
+    beruehrt();
+    pet.mood = Math.min(100, pet.mood + 9);
     pet.pets += 1;
     clampPet(); updatePanel(); savePet();
-
     if (pet.mood > 80 && pet.energy > 40) {
       go('jump', 900);
       fx(['❤️', '✨']);
@@ -543,8 +659,10 @@
 
   function zoomies() {
     if (state === 'eat' || pet.energy < 25) { say(t().zzz); return; }
+    if (imBett) wecken();
+    beruehrt();
     zoomLeft = 3 + Math.floor(Math.random() * 3);
-    targetX = null; seekItem = null;
+    targetX = null; seekItem = null; willBett = false;
     go('zoom');
     pet.zoomies += 1;
     pet.mood = Math.min(100, pet.mood + 10);
@@ -553,46 +671,54 @@
     fx(['✨', '💨'], null, 1.3);
   }
 
-  /* ── Stoffwechsel, einmal je Sekunde ── */
+  /* ── Stoffwechsel, einmal je Sekunde ──────────────────────────────────
+     Deutlich schneller als vorher. Wer eine Minute zuschaut, soll die
+     Balken wandern sehen, sonst wirkt es tot.                          */
   function stoffwechsel() {
     if (paused) return;
     const nacht = istNacht();
 
-    pet.hunger += 0.09;
-    pet.mood   -= 0.05;
-    if (state === 'sleep') { pet.energy += 0.55; pet.mood += 0.03; }
-    else if (state === 'run' || state === 'jump') pet.energy -= 0.14;
-    else if (state === 'zoom') pet.energy -= 0.45;
-    else pet.energy -= nacht ? 0.09 : 0.05;
-
-    if (pet.hunger > 75) pet.mood -= 0.08;
-    if (pet.energy < 20) pet.mood -= 0.05;
-    clampPet(); updatePanel();
-
-    const schlafGrenze = nacht ? 32 : 18;
-    if (pet.energy < schlafGrenze && state !== 'sleep' && state !== 'eat' && state !== 'zoom') {
-      go('sleep'); targetX = null; seekItem = null;
-      say(t().night, 2600);
-    } else if (state === 'sleep' && pet.energy > (nacht ? 88 : 72)) {
-      go('sit', 1400);
-      say(t().stretch, 2000);
+    if (imBett) {
+      pet.energy += 1.1;
+      pet.hunger += 0.12;
+      pet.mood   += 0.05;
+    } else {
+      pet.hunger += 0.28;
+      pet.mood   -= 0.16;
+      if (state === 'zoom') pet.energy -= 0.9;
+      else if (state === 'run' || state === 'jump') pet.energy -= 0.35;
+      else pet.energy -= nacht ? 0.22 : 0.15;
     }
 
-    if (state !== 'sleep' && Math.random() < 0.02) {
+    if (pet.hunger > 75) pet.mood -= 0.18;
+    if (pet.energy < 20) pet.mood -= 0.12;
+    clampPet(); updatePanel();
+
+    // Erschoepft oder lange nichts passiert, dann ab ins Koerbchen
+    const muede = pet.energy < (nacht ? 34 : 20);
+    const gelangweilt = Date.now() - letzteZuwendung > IDLE_MS;
+    if (!imBett && !willBett && state !== 'eat' && state !== 'zoom' && (muede || gelangweilt)) {
+      insBett();
+    }
+    if (imBett && pet.energy > 96 && !nacht && Date.now() - letzteZuwendung < IDLE_MS) {
+      wecken();
+    }
+
+    if (!imBett && Math.random() < 0.04) {
       if (pet.hunger > 72) say(t().hungry);
       else if (pet.mood < 28) say(t().bored);
       else if (pet.mood > 85 && Math.random() < 0.4) say(t().fine);
     }
-    if (state === 'walk' && pet.mood > 70 && pet.energy > 45 && Math.random() < 0.008) go('jump', 900);
-    if (state === 'walk' && pet.mood > 88 && pet.energy > 70 && !nacht && Math.random() < 0.004) zoomies();
-    if (pet.mood > 92 && Math.random() < 0.05) fx(['✨'], '#d29922', 1.4);
+    if (state === 'walk' && !willBett && pet.mood > 70 && pet.energy > 45 && Math.random() < 0.01) go('jump', 900);
+    if (state === 'walk' && !willBett && pet.mood > 88 && pet.energy > 70 && !nacht && Math.random() < 0.005) zoomies();
+    if (pet.mood > 92 && !imBett && Math.random() < 0.05) fx(['✨'], '#d29922', 1.4);
   }
 
   /* ── Futter ── */
   function spawnFood() {
     if (items.length >= 4) return;
     const data = PIXEL_FOODS[Math.floor(Math.random() * PIXEL_FOODS.length)];
-    const margin = 80;
+    const margin = 140;
     const fx0 = margin + Math.random() * Math.max(120, window.innerWidth - margin * 2);
     const fy = window.innerHeight - IH - 10;
     const el = document.createElement('div');
@@ -627,15 +753,16 @@
   function eatFood(item) {
     const d = item.data || {};
     killFood(item, true);
+    beruehrt();
     go('eat', 1600);
     if (d.toy) {
-      pet.mood = Math.min(100, pet.mood + 14);
-      pet.energy = Math.max(0, pet.energy - 3);
+      pet.mood = Math.min(100, pet.mood + 16);
+      pet.energy = Math.max(0, pet.energy - 4);
       fx(['✨', '😻']);
       say(t().toy);
     } else {
       pet.hunger = Math.max(0, pet.hunger - (d.fill || 25));
-      pet.mood = Math.min(100, pet.mood + 6);
+      pet.mood = Math.min(100, pet.mood + 8);
       pet.meals += 1;
       fx(['❤️', '✨', '😻']);
       say(t().yum(d[lang()] || d.de));
@@ -650,10 +777,11 @@
     item.dragging = true;
     item.el.style.cursor = 'grabbing';
     item.el.style.animation = 'none';
-    item.el.style.zIndex = '10001';
+    item.el.style.zIndex = '10002';
     item.el.style.transition = '';
     item.el.style.filter = 'drop-shadow(0 0 10px rgba(255,180,50,.9))';
-    if (state === 'sleep' && pet.energy > 35) { go('walk'); say(t().what); }
+    beruehrt();
+    if (imBett) { wecken(); say(t().what); }
   }
 
   function onMove(e) {
@@ -664,7 +792,8 @@
     item.x = e.clientX - drag.ox + IW / 2;
     item.y = e.clientY - drag.oy + IH / 2;
     const cx = posX + CW / 2;
-    if (Math.abs(item.x - cx) < 220 && state !== 'eat' && state !== 'sleep' && state !== 'zoom') {
+    if (Math.abs(item.x - cx) < 240 && state !== 'eat' && !imBett && state !== 'zoom') {
+      willBett = false;
       face(item.x < cx ? -1 : 1);
       targetX = item.x - CW / 2;
       if (state !== 'run') go('run');
@@ -692,7 +821,7 @@
           item.el.style.animation = 'cat-float ' + (1.8 + Math.random() * 0.7).toFixed(2) + 's ease-in-out infinite';
         }
       }, 300);
-      if (state !== 'sleep' && state !== 'zoom') {
+      if (!imBett && state !== 'zoom') {
         targetX = item.x - CW / 2;
         if (state !== 'run') go('run');
       }
@@ -702,7 +831,7 @@
   function zzz(dt) {
     zzzTimer -= dt;
     if (zzzTimer > 0) return;
-    zzzTimer = 1400;
+    zzzTimer = 1500;
     fx(['z'], '#8b949e', 1.6);
   }
 
@@ -716,7 +845,7 @@
       mouse.still += dt;
       if (stalkCool > 0) stalkCool -= dt;
 
-      if (state === 'sleep') {
+      if (imBett) {
         zzz(dt);
       } else if (state === 'zoom') {
         posX += dir * 7 * dt / 16;
@@ -733,21 +862,27 @@
         if (targetX !== null) {
           const dx = targetX - posX;
           const speed = state === 'run' ? 3.5 : 2.5;
-          if (Math.abs(dx) < 4) { posX = targetX; targetX = null; checkEat(); checkStalkArrive(); }
-          else { face(dx > 0 ? 1 : -1); posX += dir * Math.min(Math.abs(dx), speed * dt / 16); }
+          if (Math.abs(dx) < 4) {
+            posX = targetX; targetX = null;
+            if (willBett) { willBett = false; imBett = true; go('sleep'); say(t().zzz, 2000); }
+            else { checkEat(); checkStalkArrive(); }
+          } else {
+            face(dx > 0 ? 1 : -1);
+            posX += dir * Math.min(Math.abs(dx), speed * dt / 16);
+          }
         } else if (state !== 'jump' && state !== 'stalk') {
           if (state === 'run') go('walk');
 
-          if (pet.hunger > 62 && !seekItem && items.length) {
+          if (pet.hunger > 55 && !seekItem && items.length) {
             const cx = posX + CW / 2;
             seekItem = items.reduce((a, b) => (Math.abs(b.x - cx) < Math.abs(a.x - cx) ? b : a));
           }
           if (seekItem && !seekItem.dragging && items.indexOf(seekItem) !== -1) {
+            willBett = false;
             targetX = seekItem.x - CW / 2;
             if (state !== 'run') go('run');
           } else {
             seekItem = null;
-            // Zeiger ruht unten am Rand? Dann kommt sie schauen.
             if (mouse.seen && mouse.still > 1400 && stalkCool <= 0 &&
                 mouse.y > window.innerHeight - 220 &&
                 Math.abs(mouse.x - (posX + CW / 2)) > 90) {
@@ -767,15 +902,14 @@
         if (timer <= 0) go('walk');
       }
 
-      // Pfotenabdruecke nach zurueckgelegter Strecke, nicht nach Zeit
-      if (state === 'walk' || state === 'run') {
+      if ((state === 'walk' || state === 'run') && !imBett) {
         pawDist += Math.abs(posX - lastPawX);
         if (pawDist > 46) { pfote(); pawDist = 0; }
       }
       lastPawX = posX;
 
       wrapEl.style.left = posX + 'px';
-      if (tipEl && tipEl.style.opacity !== '0') tipEl.style.left = posX + 'px';
+      if (bubbleEl.style.opacity === '1') platziereBlase();
     }
     requestAnimationFrame(tick);
   }
