@@ -1,0 +1,505 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src https://api.github.com; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <title>Michael Barabanov | Shopware-5-Migration, Shopware 6 & JTL</title>
+  <meta name="description" content="E-Commerce Engineer aus Koblenz. Shopware 6, JTL-Shop und JTL-Wawi: Plugin-Entwicklung, Schnittstellen, Updates und Migrationen, dazu technische SEO- und GEO-Audits. Nebenberuflich, rund 10 Stunden pro Woche." />
+  <link rel="canonical" href="https://mbara.net/portfolio" />
+
+    <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://mbara.net/" />
+  <meta property="og:title"       content="Michael Barabanov | E-Commerce Engineer, Shopware 6 & JTL" />
+  <meta property="og:description" content="Shopware 6, JTL-Shop und JTL-Wawi: Plugins, Schnittstellen, Updates. Dazu technische SEO- und GEO-Audits." />
+  <meta property="og:image"       content="https://mbara.net/og-image.png" />
+
+    <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Michael Barabanov | E-Commerce Engineer, Shopware 6 & JTL" />
+  <meta name="twitter:description" content="Shopware 6, JTL-Shop und JTL-Wawi: Plugins, Schnittstellen, Updates. Dazu technische SEO- und GEO-Audits." />
+  <meta name="twitter:image"       content="https://mbara.net/og-image.png" />
+
+  <meta name="keywords" content="Shopware 6 Developer, JTL-Wawi, JTL-Shop, PHP Backend Developer, Freelancer, Plugin-Entwicklung, Koblenz, E-Commerce, SEO Audit, GEO Audit, REST API">
+  <meta name="author" content="Michael Barabanov">
+  <meta name="robots" content="index, follow">
+  <meta property="og:locale" content="de_DE">
+  <meta name="theme-color" content="#00ff88">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Michael Barabanov",
+    "jobTitle": "E-Commerce Engineer & Shopware 6 Spezialist",
+    "description": "Fachinformatiker für Anwendungsentwicklung aus Koblenz. Hauptberuflich Digital Process & Solutions Engineer in der Logistik (Python, Django, Prozessautomatisierung), nebenberuflich Shopware-6-Plugin-Entwicklung und API-Integrationen über mbara.net.",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "J+R Wirths Logistik GmbH & Co. KG"
+    },
+    "url": "https://mbara.net",
+    "email": "m.barabanov@mbara.net",
+    "telephone": "+4915111808065",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Koblenz",
+      "addressRegion": "Rheinland-Pfalz",
+      "addressCountry": "DE"
+    },
+    "sameAs": [
+      "https://github.com/MichaelBarabanov",
+      "https://linkedin.com/in/michael-barabanov-103265357",
+      "https://www.malt.de/profile/michaelbarabanov",
+      "https://www.xing.com/profile/Michael_Barabanov015208"
+    ],
+    "knowsAbout": ["PHP", "Shopware 6", "Shopware 5", "Shopware-Migration", "JTL-Shop", "JTL-Wawi", "MySQL", "REST API", "Plugin-Entwicklung", "E-Commerce", "Technisches SEO", "Generative Engine Optimization", "Python", "Django", "Docker", "Linux", "Prozessautomatisierung"]
+  }
+  </script>
+
+  <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#stack">stack</a></li>
+      <li><a href="#erfahrung">erfahrung</a></li>
+      <li><a href="#plugins" class="nav-plugins">plugins ✦</a></li>
+      <li><a href="demo.html">demo projekte</a></li>
+      <li><a href="blog/">blog</a></li>
+      <li><a href="index.html" class="nav-hire">leistungen</a></li>
+      <li><a href="#kontakt">kontakt</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
+      <span class="lo active" id="lang-de">DE</span>
+      <span class="lang-sep">/</span>
+      <span class="lo" id="lang-en">EN</span>
+    </button>
+  </div>
+</nav>
+
+<main>
+<section id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-term-line"><span class="tp">$ </span><span class="tc">whoami</span></div>
+    <h1 class="glitch" data-text="MICHAEL BARABANOV">MICHAEL BARABANOV</h1>
+    <div class="hero-term-line"><span class="tp">$ </span><span class="tc">cat rolle.txt</span></div>
+    <p class="hero-role"><span id="typewriter"></span><span class="c-blink">▋</span></p>
+    <p class="hero-pitch" data-i18n="hero.pitch">Migration von Shopware 5 auf 6, Plugins und Schnittstellen ohne Ausfall. Dazu technische SEO- und GEO-Audits.</p>
+    <div class="hero-badges">
+      <span class="badge">Koblenz, DE</span>
+      <span class="badge badge-green" data-i18n="badge.avail">● Freelance, nebenberuflich</span>
+      <span class="badge">Shopware 6 · JTL-Shop · JTL-Wawi</span>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="index.html" data-i18n="cta.hire">See services</a>
+      <a class="btn btn-outline" href="#plugins" data-i18n="cta.work">View Work</a>
+    </div>
+  </div>
+    <div class="hero-code" aria-hidden="true">
+    <div class="hcode-bar">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="hcode-title">michael@mbara: ~/shopware</span>
+    </div>
+    <div class="hcode-body">
+      <pre class="hcode-pre" id="hcode-output"></pre>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <h2 class="section-title reveal-left">// about</h2>
+    <div class="about-grid">
+      <p class="about-text reveal-left" data-i18n-html="about.text">
+        Ich bin Michael, Fachinformatiker für Anwendungsentwicklung aus Koblenz. Ich baue Werkzeuge, die im Betrieb tatsächlich benutzt werden.
+
+Hauptberuflich arbeite ich als Digital Process &amp; Solutions Engineer bei einem Logistikdienstleister in Mayen. Ich bin dort die einzige interne Stelle für Digitalisierung: logistische Prozesse analysieren, daraus interne Webanwendungen und Automatisierungen bauen, Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen betreuen. Technisch vor allem Python, Django, Docker und Linux.
+
+Nebenberuflich läuft mbara.net, mein angemeldetes Kleingewerbe. Schwerpunkt sind Shopware 6 und JTL: Plugin-Entwicklung, Schnittstellen, SEO- und GEO-Audits. Vier eigene Plugins sind als Open Source veröffentlicht und laufen in produktiven Shops.
+
+Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten Shops, Softwareentwicklung im Versicherungsumfeld an einem Vertriebstool mit über 10.000 Nutzern, Ausbildung im Bundesarchiv.
+
+Kapazität für Freelance-Projekte: rund 10 Stunden pro Woche.
+      </p>
+      <div class="about-stats">
+        <div class="stat reveal-right">
+          <span class="stat-num" data-target="4">0</span>
+          <span class="stat-label" data-i18n="stat.years">Jahre Erfahrung</span>
+        </div>
+        <div class="stat reveal-right">
+          <span class="stat-num" data-target="30">0</span>
+          <span class="stat-label" data-i18n="stat.projects">Shops Live</span>
+        </div>
+        <div class="stat reveal-right">
+          <span class="stat-num" data-target="4">0</span>
+          <span class="stat-label" data-i18n="stat.plugins">SW6 Plugins</span>
+        </div>
+      </div>
+    </div>
+    <div class="ref-featured reveal">
+      <div class="ref-rating">
+        <span class="ref-stars" aria-hidden="true">★★★★★</span>
+        <span class="ref-rating-label" data-i18n="ref.malt.rating">5,0 von 5 · verifizierte Kundenbewertung auf Malt</span>
+      </div>
+      <p class="ref-quote" data-i18n="ref.malt.q1">"Michael hat für uns das Update unserer JTL-Wawi von 1.11.8 auf 2.0.6 vorbereitet und durchgeführt, inklusive vorheriger Kompatibilitätsprüfung.</p>
+      <p class="ref-quote" data-i18n="ref.malt.q2">Er hat das Update zuerst auf einer Kopie unserer Datenbank getestet, bevor er an unser Livesystem ging, und uns vorab eine verständliche Checkliste geschickt. Der Umstieg lief ohne Ausfall, am nächsten Morgen konnten wir normal weiterarbeiten."</p>
+      <span class="ref-source" data-i18n="ref.malt.source">Tour Made GmbH · JTL-Wawi Update, 09/2026</span>
+    </div>
+    <div class="refs">
+      <div class="ref-card reveal">
+        <p class="ref-quote" data-i18n="ref.1.quote">"Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien."</p>
+        <span class="ref-source" data-i18n="ref.1.source">Bundesarchiv · Koblenz, 2025</span>
+      </div>
+      <div class="ref-card reveal">
+        <p class="ref-quote" data-i18n="ref.2.quote">"Seine Zuverlässigkeit, sein Einsatz und seine Bereitschaft, Neues zu lernen, waren von großem Wert. Wir können ihn für zukünftige Aufgaben empfehlen."</p>
+        <span class="ref-source" data-i18n="ref.2.source">TC Unterhaltungselektronik AG · 2023</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="container">
+    <h2 class="section-title reveal-left">// stack</h2>
+    <div class="stack-group">
+      <span class="stack-group-label" data-i18n="stack.primary">primär</span>
+      <div class="tech-grid">
+        <div class="tech-item reveal" style="--brand:#787CB5"><span class="tech-badge">PHP</span><span class="tech-label">PHP</span></div>
+        <div class="tech-item reveal" style="--brand:#00758f"><span class="tech-badge">SQL</span><span class="tech-label">MySQL</span></div>
+        <div class="tech-item reveal" style="--brand:#189EFF"><span class="tech-badge">SW6</span><span class="tech-label">Shopware 6</span></div>
+        <div class="tech-item reveal" style="--brand:#A0A0A0"><span class="tech-badge">SF</span><span class="tech-label">Symfony</span></div>
+        <div class="tech-item reveal" style="--brand:#E87200"><span class="tech-badge">JTL</span><span class="tech-label">JTL</span></div>
+        <div class="tech-item reveal" style="--brand:#F7DF1E"><span class="tech-badge">JS</span><span class="tech-label">JavaScript</span></div>
+        <div class="tech-item reveal" style="--brand:#FF6C37"><span class="tech-badge">API</span><span class="tech-label">REST APIs</span></div>
+        <div class="tech-item reveal" style="--brand:#F05133"><span class="tech-badge">GIT</span><span class="tech-label">Git</span></div>
+        <div class="tech-item reveal" style="--brand:#FCC624"><span class="tech-badge">🐧</span><span class="tech-label">Linux</span></div>
+      </div>
+    </div>
+    <div class="stack-group">
+      <span class="stack-group-label stack-group-label--dim" data-i18n="stack.skills">kenntnisse</span>
+      <div class="tech-grid tech-grid--skills">
+        <div class="tech-item reveal" style="--brand:#3178C6"><span class="tech-badge">TS</span><span class="tech-label">TypeScript</span></div>
+        <div class="tech-item reveal" style="--brand:#3776AB"><span class="tech-badge">PY</span><span class="tech-label">Python</span></div>
+        <div class="tech-item reveal" style="--brand:#2496ED"><span class="tech-badge">🐳</span><span class="tech-label">Docker</span></div>
+        <div class="tech-item reveal" style="--brand:#E34F26"><span class="tech-badge">H5</span><span class="tech-label">HTML5</span></div>
+        <div class="tech-item reveal" style="--brand:#1572B6"><span class="tech-badge">CSS</span><span class="tech-label">CSS3</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="erfahrung">
+  <div class="container">
+    <h2 class="section-title reveal-left">// <span data-i18n="exp.title">erfahrung</span></h2>
+    <div class="timeline">
+      <div class="timeline-beam" id="timeline-beam"></div>
+
+      <div class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">09/2023 bis 06/2025</span>
+          <span class="timeline-company">Bundesarchiv · Koblenz</span>
+        </div>
+        <div class="timeline-role" data-i18n="exp.1.role">Ausbildung zum Fachinformatiker für Anwendungsentwicklung</div>
+        <div class="timeline-note" data-i18n="exp.1.note">Ausbildung um 1 Jahr verkürzt (vorherige IT-Vollzeitausbildung)</div>
+        <ul class="timeline-highlights">
+          <li data-i18n="exp.1.h1">Eigenverantwortliche Planung &amp; Entwicklung eines koordinatenbasierten Dokument-Viewers, täglich genutzt von mehreren Tausend Archivnutzern</li>
+          <li data-i18n="exp.1.h2">Integration von Whisper AI zur Transkription von 100.000+ Audiodateien, 85% weniger manuelle Aufwände</li>
+          <li data-i18n="exp.1.h3">MCaptcha-Sicherheitstest durch reale Bot-Simulation &amp; Testautomatisierung mit Selenium / Python</li>
+        </ul>
+      </div>
+
+      <div class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">07/2025 bis 01/2026</span>
+          <span class="timeline-company">Debeka · Koblenz</span>
+        </div>
+        <div class="timeline-role" data-i18n="exp.2.role">Softwareentwickler (Visual Smalltalk Enterprise)</div>
+        <ul class="timeline-highlights">
+          <li data-i18n="exp.2.h1">Mitentwicklung von EASY2000, täglich von 10.000+ Außendienstmitarbeitern genutzt</li>
+          <li data-i18n="exp.2.h2">Feature-Entwicklung &amp; Testing in objektorientierter Fatclient-Anwendung</li>
+          <li data-i18n="exp.2.h3">Technische Konzeption &amp; Prototyping für abteilungsübergreifende IT-Projekte im Versicherungsumfeld</li>
+        </ul>
+      </div>
+
+      <div class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date">01/2026 bis 06/2026</span>
+          <span class="timeline-company">eRock Marketing GmbH · Limburg a. d. Lahn</span>
+        </div>
+        <div class="timeline-role" data-i18n="exp.3.role">Backend &amp; Fullstack Developer</div>
+        <ul class="timeline-highlights">
+          <li data-i18n="exp.3.h1">30+ internationale E-Commerce-Shops live gebracht (Shopware 6, JTL 5)</li>
+          <li data-i18n="exp.3.h2">Bot-Angriff via Cloudflare abgewehrt, 90% Reduktion des Schadtraffics</li>
+          <li data-i18n="exp.3.h3">SEO &amp; Performance-Optimierungen: +22% mehr organischer Traffic</li>
+        </ul>
+      </div>
+
+      <div class="timeline-entry reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span class="timeline-date" data-i18n="exp.4.date">seit 07/2026</span>
+          <span class="timeline-company">J+R Wirths Logistik · Mayen</span>
+        </div>
+        <div class="timeline-role" data-i18n="exp.4.role">Digital Process &amp; Solutions Engineer</div>
+        <div class="timeline-note" data-i18n="exp.4.note">Einzige interne Stelle für Digitalisierung, direkt an der Geschäftsleitung</div>
+        <ul class="timeline-highlights">
+          <li data-i18n="exp.4.h1">Analyse und Optimierung logistischer Geschäftsprozesse, gemeinsam mit den Fachbereichen</li>
+          <li data-i18n="exp.4.h2">Entwicklung interner Webanwendungen und Automatisierungen (Python, Django, Docker, Linux)</li>
+          <li data-i18n="exp.4.h3">Aufbau und Betreuung von Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="plugins">
+  <div class="container">
+    <div class="plugins-head reveal-left">
+      <h2 class="section-title" style="margin-bottom:0">// shopware plugins</h2>
+      <span class="sw-tag">Shopware Store</span>
+    </div>
+    <p class="plugins-sub reveal-left" data-i18n="plugins.sub">Professionelle Shopware 6 Plugins, entwickelt, getestet, produktionsreif.</p>
+    <div class="plugin-cards">
+
+      <article class="plugin-card reveal">
+        <div class="plugin-badge">SW6 Plugin</div>
+        <h3 class="plugin-name">PriceOnRequest</h3>
+        <p class="plugin-desc" data-i18n="plugin.pr.desc">Preise auf Anfrage für B2B-Shops. Versteckt Preise und ersetzt den Warenkorb-Button durch ein individuelles Kontaktformular.</p>
+        <ul class="plugin-features">
+          <li data-i18n="plugin.pr.f1">✓ Konfigurierbar per Kategorie oder Produkt</li>
+          <li data-i18n="plugin.pr.f2">✓ Custom E-Mail-Template</li>
+          <li data-i18n="plugin.pr.f3">✓ Kompatibel mit Shopware 6.4+</li>
+        </ul>
+        <div class="plugin-footer">
+          <a class="plugin-btn" href="plugins/price-on-request.html" data-i18n="demo.details" aria-label="Details: PriceOnRequest">Details ansehen →</a>
+        </div>
+      </article>
+
+      <article class="plugin-card reveal">
+        <div class="plugin-badge">SW6 Plugin</div>
+        <h3 class="plugin-name">ComingSoon</h3>
+        <p class="plugin-desc" data-i18n="plugin.cs.desc">Coming-Soon-Modus für Shopware 6. Countdown-Timer, E-Mail-Benachrichtigung beim Launch und vollständig anpassbares Design.</p>
+        <ul class="plugin-features">
+          <li data-i18n="plugin.cs.f1">✓ Konfigurierbarer Countdown-Timer</li>
+          <li data-i18n="plugin.cs.f2">✓ E-Mail-Benachrichtigung bei Launch</li>
+          <li data-i18n="plugin.cs.f3">✓ Kompatibel mit Shopware 6.4+</li>
+        </ul>
+        <div class="plugin-footer">
+          <a class="plugin-btn" href="plugins/coming-soon.html" data-i18n="demo.details" aria-label="Details: ComingSoon">Details ansehen →</a>
+        </div>
+      </article>
+
+      <article class="plugin-card reveal">
+        <div class="plugin-badge">SW6 Plugin · AI</div>
+        <h3 class="plugin-name">AiProductDescription</h3>
+        <p class="plugin-desc" data-i18n="plugin.ai.desc">Generiert überzeugende Produktbeschreibungen direkt im Admin, powered by Claude (Anthropic) oder ChatGPT (OpenAI).</p>
+        <ul class="plugin-features">
+          <li data-i18n="plugin.ai.f1">✓ Claude & OpenAI unterstützt</li>
+          <li data-i18n="plugin.ai.f2">✓ Deutsch & Englisch</li>
+          <li data-i18n="plugin.ai.f3">✓ Professionell / Casual / SEO-optimiert</li>
+          <li data-i18n="plugin.ai.f4">✓ Kompatibel mit Shopware 6.7+</li>
+        </ul>
+        <div class="plugin-footer">
+          <a class="plugin-btn" href="plugins/ai-product-description.html" data-i18n="demo.details" aria-label="Details: AiProductDescription">Details ansehen →</a>
+        </div>
+      </article>
+
+      <article class="plugin-card reveal">
+        <div class="plugin-badge">SW6 Plugin · AI</div>
+        <h3 class="plugin-name">BotProtection</h3>
+        <p class="plugin-desc" data-i18n="plugin.bp.desc">Application-Layer-Schutz gegen automatisierten Missbrauch von Formularen. Honeypot, Rate-Limiting und Time-Validation, ergänzend zu Netzwerkschutz wie Cloudflare.</p>
+        <ul class="plugin-features">
+          <li data-i18n="plugin.bp.f1">✓ Honeypot, Rate-Limit & Time-Validation</li>
+          <li data-i18n="plugin.bp.f2">✓ Admin-Dashboard mit 14-Tage-Statistik</li>
+          <li data-i18n="plugin.bp.f3">✓ Optionale KI-Bedrohungsanalyse (Claude)</li>
+          <li data-i18n="plugin.bp.f4">✓ Kompatibel mit Shopware 6.7+</li>
+        </ul>
+        <div class="plugin-footer">
+          <a class="plugin-btn" href="plugins/botprotection.html" data-i18n="demo.details" aria-label="Details: BotProtection">Details ansehen →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="terminal">
+  <div class="container">
+    <h2 class="section-title reveal-left">// terminal</h2>
+    <p class="term-hint reveal" data-i18n-html="term.hint">Tippe <code>help</code> für alle Commands, probier's aus.</p>
+    <div class="iterm reveal">
+      <div class="iterm-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="iterm-title">michael@portfolio:~</span>
+      </div>
+      <div class="iterm-output" id="iterm-output">
+        <div class="iterm-row"><span class="ip">michael@portfolio:~$ </span><span>help</span></div>
+        <div class="ir" id="help-init">
+          <div>Verfügbare Commands:</div>
+          <div>&nbsp;&nbsp;<span class="ih">whoami</span>    → Wer ist Michael?</div>
+          <div>&nbsp;&nbsp;<span class="ih">skills</span>    → Tech Stack</div>
+          <div>&nbsp;&nbsp;<span class="ih">projects</span>  → Alle Projekte</div>
+          <div>&nbsp;&nbsp;<span class="ih">plugins</span>   → Shopware Plugins</div>
+          <div>&nbsp;&nbsp;<span class="ih">contact</span>   → Kontakt</div>
+          <div>&nbsp;&nbsp;<span class="ih">hire</span>      → Freelance anfragen</div>
+          <div>&nbsp;&nbsp;<span class="ih">git log</span>   → Commit-Verlauf</div>
+          <div>&nbsp;&nbsp;<span class="ih">miso</span>      → Die Katze fragen, was sie vorhat</div>
+          <div>&nbsp;&nbsp;<span class="ih">clear</span>     → Terminal leeren</div>
+        </div>
+      </div>
+      <div class="iterm-input-row">
+        <span class="ip">michael@portfolio:~$ </span>
+        <input class="iterm-input" id="iterm-input" type="text" autocomplete="off" spellcheck="false" placeholder="command..." />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="container">
+    <button type="button" class="vk-blob" id="vk-trigger" aria-label="Visitenkarte anzeigen">
+      <span class="vk-blob-core"></span>
+    </button>
+    <div class="contact-grid">
+    <div>
+    <h2 class="section-title reveal-left">// kontakt</h2>
+    <p class="contact-sub reveal-left" data-i18n="contact.sub">Projektanfrage, Freelance-Job oder einfach reden?</p>
+
+    <div class="contact-links reveal-left">
+      <a class="contact-btn" href="mailto:m.barabanov@mbara.net">
+        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></svg>
+        <span>E-Mail</span>
+      </a>
+      <a class="contact-btn" href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+        <span>GitHub</span>
+      </a>
+      <a class="contact-btn" href="https://www.malt.de/profile/michaelbarabanov" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 18 18" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M1 15V5l8 7 8-7v10"/></svg>
+        <span>Malt</span>
+      </a>
+      <a class="contact-btn" href="https://linkedin.com/in/michael-barabanov-103265357" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>
+        <span>LinkedIn</span>
+      </a>
+            <a class="contact-btn contact-btn-cv" id="cv-btn"
+         href="mailto:m.barabanov@mbara.net?subject=Lebenslauf%20Anfrage&body=Hallo%20Michael%2C%0A%0Aich%20bin%20auf%20dein%20Portfolio%20aufmerksam%20geworden%20und%20w%C3%BCrde%20gerne%20deinen%20Lebenslauf%20erhalten.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A%5BDein%20Name%5D"
+         data-i18n-href="cv.href">
+        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
+          <path d="M3.75 1.5a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6H9.75A1.75 1.75 0 0 1 8 4.25V1.5Zm5.75.56v2.19c0 .138.112.25.25.25h2.19Zm-7.5-.56C2 1.5 1 2.5 1 3.75v8.5C1 13.5 2 14.5 3.25 14.5h9.5c1.25 0 2.25-1 2.25-2.25v-8a.75.75 0 0 0-.22-.53l-4-4A.75.75 0 0 0 10.25 0h-7Z"/>
+        </svg>
+        <span data-i18n="cv.btn">Lebenslauf anfordern</span>
+      </a>
+    </div>
+
+    </div>
+    <div>
+        <form class="contact-form reveal-right"
+          action="https://formsubmit.co/7936068ed5412555d264cf616b08f36d"
+          method="POST">
+            <input type="hidden" name="_subject"  data-i18n-value="form.subject" value="Portfolio Kontakt">
+      <input type="hidden" name="_captcha"  value="false">
+      <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cf-name" data-i18n="form.name.label">Name</label>
+          <input type="text" id="cf-name" name="name" required
+                 placeholder="Max Mustermann"
+                 data-i18n-placeholder="form.name.ph">
+        </div>
+        <div class="form-group">
+          <label for="cf-email" data-i18n="form.email.label">E-Mail</label>
+          <input type="email" id="cf-email" name="email" required
+                 placeholder="max@beispiel.de"
+                 data-i18n-placeholder="form.email.ph">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cf-msg" data-i18n="form.msg.label">Nachricht</label>
+        <textarea id="cf-msg" name="message" required rows="5"
+                  placeholder="Ich suche einen Entwickler für..."
+                  data-i18n-placeholder="form.msg.ph"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" data-i18n="form.submit">Senden →</button>
+    </form>
+    </div>
+    </div>
+  </div>
+
+  <div class="vk-overlay" id="vk-overlay" aria-hidden="true">
+    <div class="vk-overlay-backdrop" id="vk-backdrop"></div>
+    <div class="vk-card-expanded" role="dialog" aria-modal="true" aria-label="Visitenkarte">
+      <div class="vk-corner vk-corner-tl"></div>
+      <div class="vk-corner vk-corner-br"></div>
+      <div class="vk-chip"></div>
+      <div class="vk-top">
+        <img class="vk-avatar" src="img/michael.jpg" alt="Michael Barabanov" width="64" height="64">
+        <div class="vk-info">
+          <div class="vk-label">// vcard</div>
+          <div class="vk-name">Michael Barabanov</div>
+          <div class="vk-role" data-i18n="vk.role">E-Commerce Engineer &amp; Shopware 6 Spezialist</div>
+        </div>
+      </div>
+      <div class="vk-divider"></div>
+      <div class="vk-bottom">
+        <div class="vk-contact">
+          <div class="vk-loc">Koblenz, Deutschland</div>
+          <a class="vk-mail" href="mailto:M.Barabanov@mbara.net">M.Barabanov@mbara.net</a>
+          <a class="vk-domain" href="https://mbara.net" target="_blank" rel="noopener noreferrer">mbara.net</a>
+        </div>
+        <div class="vk-tags">
+          <span>PHP</span><span>Shopware 6</span><span>MySQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-privacy" data-i18n-html="footer.privacy">
+      <span class="fp-dot"></span>
+      // keine cookies · kein tracking · deine daten gehören dir
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
+      <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="blog/">Blog</a> · <a href="faq.html">FAQ</a> · <a href="index.html">Hire Me</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+<script src="cat.js"></script>
+<script src="hcode.js" defer></script>
+</body>
+</html>

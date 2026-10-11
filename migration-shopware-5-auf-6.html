@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopware 5 auf 6 migrieren: Bestandsaufnahme vorab | mbara.net</title>
+<meta name="description" content="Bestandsaufnahme vor der Migration von Shopware 5 auf Shopware 6: welche Plugins es noch gibt, was übernommen werden kann, wo die Schnittstellen hängen. Schriftlich, ohne Termin.">
+<link rel="canonical" href="https://mbara.net/migration-shopware-5-auf-6">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shopware 5 auf 6 migrieren: Bestandsaufnahme vorab">
+<meta property="og:description" content="Was ein Umstieg auf Shopware 6 bei Ihnen konkret bedeutet, schriftlich und vorab.">
+<meta property="og:url" content="https://mbara.net/migration-shopware-5-auf-6">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
+<link rel="icon href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="mbara.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Bestandsaufnahme vor der Migration von Shopware 5 auf Shopware 6",
+  "serviceType": "Shop-Migration",
+  "areaServed": "DACH",
+  "provider": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Start",
+      "item": "https://mbara.net/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Shopware 5 auf 6 migrieren",
+      "item": "https://mbara.net/migration-shopware-5-auf-6"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert die Bestandsaufnahme?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In der Regel eine bis zwei Wochen ab dem Moment, in dem ich Zugang zum System habe. Den genauen Termin nenne ich vorher verbindlich."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Zugänge brauchen Sie von mir?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lesenden Zugriff auf das Backend, idealerweise auch auf die Datenbank oder einen Datenbankabzug. Schreibende Rechte brauche ich für eine Bestandsaufnahme nicht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich auf Shopware 5 bleiben?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Technisch ja. Es gibt kostenpflichtige Sicherheitsupdates von Drittanbietern. Sie zahlen dann dauerhaft für einen Zustand, der nicht besser wird, während die Auswahl an Erweiterungen weiter schrumpft. Die Bestandsaufnahme sagt Ihnen, was die Alternative kostet, damit Sie das rechnen können."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was, wenn meine Plugins es für Shopware 6 nicht gibt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das ist der häufigste Fall und meistens der größte Kostenblock. Im Bericht steht je Plugin, ob es einen Nachfolger gibt, ob eine andere Erweiterung dasselbe kann, oder ob neu gebaut werden muss, inklusive geschätztem Aufwand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Arbeiten Sie auch für Agenturen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, als Unterauftragnehmer, remote und schriftlich, auf Wunsch ohne Kontakt zu Ihrem Endkunden."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="index.html#leistungen">Leistungen</a>
+      <a href="index.html#plugins">Plugins</a>
+      <a href="index.html#bericht">Beispielbericht</a>
+      <a href="index.html#bewertungen">Bewertungen</a>
+      <a href="index.html#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="#anfragen">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main>
+
+<section class="unter-hero dunkel">
+  <div class="wrap unter-hero-in">
+    <div>
+    <a class="pfad" href="index.html">&larr; Start</a>
+    <h1>Shopware 5 auf 6 migrieren</h1>
+    <p class="gross">Die meisten Betreiber schieben den Umstieg, weil niemand sagen kann, was
+        er kostet. Genau diese Frage beantworte ich, bevor Sie eine Agentur
+        beauftragen.</p>
+    </div>
+    <div class="skizze-rahmen">
+<svg class="skizze" viewBox="0 0 520 312" role="img" aria-label="Schema: Plugins aus Shopware 5 werden einzeln auf Shopware 6 zugeordnet, mit Status Nachfolger, anpassen oder neu bauen">
+<text x="40" y="34" fill="#a8b1c5" font-size="12" letter-spacing="2" style="font-family:'JetBrains Mono','Consolas',monospace">SHOPWARE 5</text>
+<text x="330" y="34" fill="#d7a73d" font-size="12" letter-spacing="2" style="font-family:'JetBrains Mono','Consolas',monospace">SHOPWARE 6</text>
+<rect x="40" y="60" width="170" height="36" rx="4" fill="#182c55" stroke="#2b406c"/>
+<text x="54" y="83" fill="#ece8de" font-size="13" style="font-family:'JetBrains Mono','Consolas',monospace">Zahlung</text>
+<path d="M210 78 C 270 78, 270 78, 330 78" fill="none" stroke="#5cc083" stroke-width="1.5" stroke-dasharray="0"/>
+<rect x="330" y="60" width="150" height="36" rx="4" fill="#182c55" stroke="#5cc083"/>
+<circle cx="346" cy="78" r="4" fill="#5cc083"/>
+<text x="358" y="83" fill="#ece8de" font-size="12.5" style="font-family:'JetBrains Mono','Consolas',monospace">Nachfolger</text>
+<rect x="40" y="106" width="170" height="36" rx="4" fill="#182c55" stroke="#2b406c"/>
+<text x="54" y="129" fill="#ece8de" font-size="13" style="font-family:'JetBrains Mono','Consolas',monospace">Versand</text>
+<path d="M210 124 C 270 124, 270 124, 330 124" fill="none" stroke="#5cc083" stroke-width="1.5" stroke-dasharray="0"/>
+<rect x="330" y="106" width="150" height="36" rx="4" fill="#182c55" stroke="#5cc083"/>
+<circle cx="346" cy="124" r="4" fill="#5cc083"/>
+<text x="358" y="129" fill="#ece8de" font-size="12.5" style="font-family:'JetBrains Mono','Consolas',monospace">Nachfolger</text>
+<rect x="40" y="152" width="170" height="36" rx="4" fill="#182c55" stroke="#2b406c"/>
+<text x="54" y="175" fill="#ece8de" font-size="13" style="font-family:'JetBrains Mono','Consolas',monospace">Theme</text>
+<path d="M210 170 C 270 170, 270 170, 330 170" fill="none" stroke="#e0a040" stroke-width="1.5" stroke-dasharray="4 4"/>
+<rect x="330" y="152" width="150" height="36" rx="4" fill="#182c55" stroke="#e0a040"/>
+<circle cx="346" cy="170" r="4" fill="#e0a040"/>
+<text x="358" y="175" fill="#ece8de" font-size="12.5" style="font-family:'JetBrains Mono','Consolas',monospace">anpassen</text>
+<rect x="40" y="198" width="170" height="36" rx="4" fill="#182c55" stroke="#2b406c"/>
+<text x="54" y="221" fill="#ece8de" font-size="13" style="font-family:'JetBrains Mono','Consolas',monospace">Wawi-Anbindung</text>
+<path d="M210 216 C 270 216, 270 216, 330 216" fill="none" stroke="#e0a040" stroke-width="1.5" stroke-dasharray="4 4"/>
+<rect x="330" y="198" width="150" height="36" rx="4" fill="#182c55" stroke="#e0a040"/>
+<circle cx="346" cy="216" r="4" fill="#e0a040"/>
+<text x="358" y="221" fill="#ece8de" font-size="12.5" style="font-family:'JetBrains Mono','Consolas',monospace">anpassen</text>
+<rect x="40" y="244" width="170" height="36" rx="4" fill="#182c55" stroke="#2b406c"/>
+<text x="54" y="267" fill="#ece8de" font-size="13" style="font-family:'JetBrains Mono','Consolas',monospace">Eigenes Plugin</text>
+<path d="M210 262 C 270 262, 270 262, 330 262" fill="none" stroke="#e07a6a" stroke-width="1.5" stroke-dasharray="4 4"/>
+<rect x="330" y="244" width="150" height="36" rx="4" fill="#182c55" stroke="#e07a6a"/>
+<circle cx="346" cy="262" r="4" fill="#e07a6a"/>
+<text x="358" y="267" fill="#ece8de" font-size="12.5" style="font-family:'JetBrains Mono','Consolas',monospace">neu bauen</text>
+<text x="40" y="302" fill="#a8b1c5" font-size="11" letter-spacing="1.5" style="font-family:'JetBrains Mono','Consolas',monospace">JE PLUGIN EIN BEFUND, MIT AUFWAND</text>
+</svg>
+    </div>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <div class="inhalt">
+
+      <h2>Warum das Thema nicht wegläuft</h2>
+      <p>
+        Shopware 5 hat am 31. Juli 2024 das Supportende erreicht. Sicherheitsupdates
+        kommen seitdem nicht mehr vom Hersteller, sondern nur noch kostenpflichtig
+        über Drittanbieter. Das ist kein akutes Problem, es wird aber mit jedem
+        Monat eines.
+      </p>
+
+      <h2>Was in der Bestandsaufnahme steht</h2>
+      <ul>
+        <li>Welche Plugins und Themes bei Ihnen laufen. Welche davon es für Shopware 6 überhaupt noch gibt</li>
+        <li>Was übernommen werden kann, was angepasst werden muss, was neu gebaut wird</li>
+        <li>Wo Ihre Schnittstellen hängen, also Warenwirtschaft, Zahlungsdienstleister, Marktplätze</li>
+        <li>Eine belastbare Aufwands- und Risikoeinschätzung, mit Reihenfolge</li>
+      </ul>
+
+      <div class="merk">
+        <p>
+          <b>Festpreis nach kurzer Prüfung.</b> Der Umfang richtet sich nach der
+          Größe des Shops. Sie bekommen ein schriftliches Dokument, keinen
+          Gesprächstermin.
+        </p>
+        <p>
+          Damit können Sie Angebote von Agenturen beurteilen, statt sie glauben zu
+          müssen.
+        </p>
+      </div>
+
+      <h2>Bestandsaufnahme und Migration sind getrennt</h2>
+      <p>
+        Die Bestandsaufnahme hängt an keinem Folgeauftrag. Sie können damit zu
+        jeder Agentur gehen oder die Migration bei mir beauftragen. So bekommen
+        Sie eine Einschätzung, die nicht zufällig in einem Auftrag für mich
+        endet.
+      </p>
+      <p>
+        Bei der Migration selbst übernehme ich die technischen Kernstücke:
+        Plugin-Portierung, Theme, Schnittstelle zur Warenwirtschaft und den
+        Livegang mit Sicherung.
+      </p>
+
+      <h2>Häufige Fragen</h2>
+
+      <details>
+        <summary>Wie lange dauert die Bestandsaufnahme?</summary>
+        <p>In der Regel eine bis zwei Wochen ab dem Moment, in dem ich Zugang zum System habe. Den genauen Termin nenne ich vorher verbindlich.</p>
+      </details>
+
+      <details>
+        <summary>Welche Zugänge brauchen Sie von mir?</summary>
+        <p>Lesenden Zugriff auf das Backend, idealerweise auch auf die Datenbank oder einen Datenbankabzug. Schreibende Rechte brauche ich für eine Bestandsaufnahme nicht.</p>
+      </details>
+
+      <details>
+        <summary>Kann ich auf Shopware 5 bleiben?</summary>
+        <p>Technisch ja. Es gibt kostenpflichtige Sicherheitsupdates von Drittanbietern. Sie zahlen dann dauerhaft für einen Zustand, der nicht besser wird, während die Auswahl an Erweiterungen weiter schrumpft. Die Bestandsaufnahme sagt Ihnen, was die Alternative kostet, damit Sie das rechnen können.</p>
+      </details>
+
+      <details>
+        <summary>Was, wenn meine Plugins es für Shopware 6 nicht gibt?</summary>
+        <p>Das ist der häufigste Fall und meistens der größte Kostenblock. Im Bericht steht je Plugin, ob es einen Nachfolger gibt, ob eine andere Erweiterung dasselbe kann, oder ob neu gebaut werden muss, inklusive geschätztem Aufwand.</p>
+      </details>
+
+      <details>
+        <summary>Arbeiten Sie auch für Agenturen?</summary>
+        <p>Ja, als Unterauftragnehmer, remote und schriftlich, auf Wunsch ohne Kontakt zu Ihrem Endkunden.</p>
+      </details>
+
+      <h2 id="anfragen">Anfragen</h2>
+      <p>
+        Schreiben Sie mir, welche Shopware-Version bei Ihnen läuft und welche
+        Warenwirtschaft dranhängt. Mehr brauche ich für eine erste Einschätzung nicht.
+      </p>
+      <p><a class="mail-gross" href="mailto:m.barabanov@mbara.net?subject=Bestandsaufnahme%20Shopware%205%20auf%206">m.barabanov@mbara.net</a></p>
+      <h2>Verwandte Themen</h2>
+      <div class="weiter">
+        <a href="jtl-wawi-update.html"><b>JTL-Wawi aktualisieren</b><span>Kompatibilitätsprüfung vorab, Test auf einer Kopie, Livegang ohne Ausfall.</span></a>
+        <a href="schnittstellen.html"><b>Schnittstellen</b><span>Shop, Warenwirtschaft und Drittsysteme über REST-API verbinden.</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Weitere Seiten">
+      <a href="index.html">Start</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

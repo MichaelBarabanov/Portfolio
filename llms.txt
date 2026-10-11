@@ -1,36 +1,48 @@
 # Michael Barabanov
 
-> E-Commerce Engineer & Shopware 6 Spezialist aus Koblenz, Deutschland. Hauptberuflich Digital Process & Solutions Engineer in der Logistik (Python, Django, Prozessautomatisierung), nebenberuflich Shopware 6 und JTL-Shop 5 Plugins, API-Integrationen und Backend-Lösungen für E-Commerce. Vier veröffentlichte Open-Source-Plugins, Kapazität für Freelance-Projekte rund 10 Stunden pro Woche.
+> Shopware- und JTL-Entwickler aus Koblenz, arbeitet remote im gesamten deutschsprachigen Raum. Schwerpunkte: Migration von Shopware 5 auf Shopware 6, Versionsupdates für JTL-Wawi, JTL-Shop 5 und Shopware 6 mit vorheriger Kompatibilitätsprüfung, Testsysteme mit Übernahme echter Daten, Schnittstellen über REST-API, Plugin-Entwicklung sowie technische SEO- und GEO-Audits. Arbeitsweise: geprüft wird immer zuerst auf einer Kopie, der Rückweg steht vorher schriftlich fest. Abwicklung schriftlich, kein Termin nötig. Über 30 Shops live gebracht, 5,0 von 5 auf Malt, vier eigene Plugins als Open Source.
 
-## Portfolio
+## Leistungen
 
-- [Portfolio](https://mbara.net/): Übersicht über Erfahrung, Tech-Stack und Projekte
-- [Hire Me](https://mbara.net/hire): Freelance-Verfügbarkeit, Leistungen, Referenzen, Kontakt
-- [Plugins & Projekte](https://mbara.net/demo): Shopware-6-Plugin-Showcase mit Screenshots
-- [FAQ](https://mbara.net/faq): Häufige Fragen zu Freelance-Projekten und Zusammenarbeit
+- [Startseite](https://mbara.net/): Alle Leistungen im Überblick, Bewertungen, Ablauf, Kontakt
+- [Migration Shopware 5 auf 6](https://mbara.net/migration-shopware-5-auf-6): Bestandsaufnahme vor der Migration. Je Plugin steht im Bericht, ob es einen Nachfolger für Shopware 6 gibt, ob eine andere Erweiterung dasselbe kann oder ob neu gebaut werden muss. Shopware 5 ist seit dem 31. Juli 2024 ohne Herstellersupport.
+- [JTL-Wawi Update und Testsystem](https://mbara.net/jtl-wawi-update): Versionsupdates mit Kompatibilitätsprüfung je Komponente, Test auf einer Kopie der Datenbank, Livegang mit Sicherung. Dazu getrennte Testsysteme mit Übernahme echter Daten vor einem Wechsel der Warenwirtschaft.
+- [Schnittstellen über REST-API](https://mbara.net/schnittstellen): Verbindungen zwischen Shopware 6, JTL-Wawi und Drittsystemen. Verarbeitung im Hintergrund, Protokolle mit Grund je Fehlschlag, Wiederholung fehlgeschlagener Vorgänge. eBay über JTL-eazyAuction.
+- [Beispielbericht SEO- und GEO-Audit](https://mbara.net/beispiel-audit): Anonymisierter Prüfbericht eines echten Shopware-6-Shops. Alle Messwerte real erhoben, Messung von außen ohne Zugang zum Shop.
 
 ## Plugins
 
-- [BotProtection](https://mbara.net/plugins/botprotection): Application-Layer-Schutz gegen Bots für Shopware 6, Honeypot, Rate-Limiting, Time-Validation, optionale KI-Bedrohungsanalyse
-- [AiProductDescription](https://mbara.net/plugins/ai-product-description): KI-gestützte Produktbeschreibungen im Shopware-Admin, Claude und ChatGPT wählbar
-- [ComingSoon](https://mbara.net/plugins/coming-soon): Coming-Soon-Modus für Shopware 6 mit Countdown, IP-Whitelist und SEO-sicherem HTTP 503
-- [PriceOnRequest](https://mbara.net/plugins/price-on-request): Preis auf Anfrage für B2B-Shops, ersetzt den Warenkorb-Button durch ein Anfrageformular
+Vier eigene Shopware-6-Plugins, alle als Open Source auf GitHub, alle mit Tests.
+
+- [BotProtection](https://mbara.net/plugins/botprotection): Bot-Schutz auf Anwendungsebene mit Honeypot, Zeitprüfung und Rate-Limit je Formular. Auswertung im Adminbereich, keine Daten an Dritte.
+- [AiProductDescription](https://mbara.net/plugins/ai-product-description): Produktbeschreibungen über Claude oder ChatGPT, direkt im Shopware-Adminbereich. Deutsch oder Englisch, drei Schreibstile.
+- [ComingSoon](https://mbara.net/plugins/coming-soon): Baustellenseite für Shopware 6 mit Countdown, IP-Freigabe und SEO-sicherem HTTP 503.
+- [PriceOnRequest](https://mbara.net/plugins/price-on-request): Preis auf Anfrage je Verkaufskanal. Ersetzt den Warenkorbknopf durch ein Anfrageformular mit Spamschutz.
 
 ## Blog
 
 - [Generative Engine Optimization (GEO)](https://mbara.net/blog/generative-engine-optimization-geo.html): llms.txt, strukturierte Daten und FAQ-Schema für KI-Suchmaschinen
-- [n8n + Shopware 6](https://mbara.net/blog/n8n-shopware-6-automatisierung.html): Bestellprozesse und Lagerbestände automatisieren
+- [n8n und Shopware 6](https://mbara.net/blog/n8n-shopware-6-automatisierung.html): Bestellprozesse und Lagerbestände automatisieren
 - [Shopware 6 Performance optimieren](https://mbara.net/blog/shopware-6-performance-optimieren.html): Caching, Elasticsearch, HTTP/2
-- [Shopware 6 Plugin entwickeln](https://mbara.net/blog/shopware-6-plugin-entwickeln.html): Schritt-für-Schritt-Tutorial
+- [Shopware 6 Plugin entwickeln](https://mbara.net/blog/shopware-6-plugin-entwickeln.html): Schritt für Schritt
 - [Bot-Schutz mit Cloudflare](https://mbara.net/blog/shopware-6-bot-schutz-cloudflare.html): WAF Rules, Rate Limiting, Bot-Fight-Mode
 
-## Contact
+## Für wen
 
+- Shopbetreiber ohne eigene IT: beschreiben, was nicht geht, bekommen Arbeitsschritte und vorab einen Preis.
+- Agenturen: Unterauftrag remote und schriftlich, auf Wunsch ohne Kontakt zum Endkunden.
+
+## Kontakt
+
+- E-Mail: m.barabanov@mbara.net
 - GitHub: https://github.com/MichaelBarabanov
+- Malt: https://www.malt.de/profile/michaelbarabanov
 - LinkedIn: https://linkedin.com/in/michael-barabanov-103265357
-- Email: m.barabanov@mbara.net
 
 ## Optional
 
-- [Impressum](https://mbara.net/impressum): Rechtliche Anbieterkennzeichnung
+- [Portfolio](https://mbara.net/portfolio): Persönliche Entwicklerseite mit Werdegang und Technikstapel
+- [Plugins und Projekte](https://mbara.net/demo): Übersicht mit Screenshots
+- [FAQ](https://mbara.net/faq): Häufige Fragen zur Zusammenarbeit
+- [Impressum](https://mbara.net/impressum): Anbieterkennzeichnung
 - [Datenschutz](https://mbara.net/datenschutz): Datenschutzerklärung

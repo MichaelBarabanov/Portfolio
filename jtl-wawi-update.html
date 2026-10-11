@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JTL-Wawi Update und Testsystem mit Datenübernahme | mbara.net</title>
+<meta name="description" content="JTL-Wawi und JTL-Shop aktualisieren: Kompatibilitätsprüfung vorab, Test auf einer Kopie, Livegang ohne Ausfall. Dazu Testsysteme mit Datenübernahme zur Sondierung vor einem ERP-Wechsel.">
+<link rel="canonical" href="https://mbara.net/jtl-wawi-update">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JTL-Wawi Update und Testsystem mit Datenübernahme">
+<meta property="og:description" content="Kompatibilitätsprüfung vorab, Test auf einer Kopie, Livegang ohne Ausfall.">
+<meta property="og:url" content="https://mbara.net/jtl-wawi-update">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
+<link rel="icon href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="mbara.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "JTL-Wawi Versionsupdate mit vorheriger Kompatibilitätsprüfung",
+  "serviceType": "ERP-Update",
+  "areaServed": "DACH",
+  "provider": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Start",
+      "item": "https://mbara.net/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "JTL-Wawi Update",
+      "item": "https://mbara.net/jtl-wawi-update"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie lange steht der Betrieb beim Livegang still?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das hängt von der Datenmenge ab. Bei den bisherigen Updates lag es im Bereich eines Abends. Am nächsten Morgen lief der Betrieb normal. Den erwarteten Zeitraum nenne ich vorher, zusammen mit dem Rückweg."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was passiert mit eigenen Druck- und Mailvorlagen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die sind erfahrungsgemäß der häufigste Stolperstein, weil sich Variablen zwischen Versionen ändern. Sie stehen in der Kompatibilitätsprüfung einzeln drin und werden auf der Kopie angepasst, bevor es live geht."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Betreuen Sie auch den angebundenen Shop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Shopware 6 und JTL-Shop 5 gehören zu meinem Arbeitsgebiet, ebenso die Schnittstelle zwischen Shop und Warenwirtschaft. Genau dort sitzen die meisten Probleme."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet das?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das hängt vom Umfang ab. Nach einer kurzen Prüfung nenne ich Ihnen entweder einen Stundensatz oder einen Festpreis. Vorher nenne ich keine Zahl, die ich später korrigieren müsste."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="index.html#leistungen">Leistungen</a>
+      <a href="index.html#plugins">Plugins</a>
+      <a href="index.html#bericht">Beispielbericht</a>
+      <a href="index.html#bewertungen">Bewertungen</a>
+      <a href="index.html#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="#anfragen">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main>
+
+<section class="unter-hero dunkel">
+  <div class="wrap unter-hero-in">
+    <div>
+    <a class="pfad" href="index.html">&larr; Start</a>
+    <h1>JTL-Wawi aktualisieren,<br>ohne Ausfall</h1>
+    <p class="gross">Ein Versionssprung scheitert selten am Kern. Er scheitert an Plugins,
+        an eigenen Vorlagen und an den Systemen, die dranhängen. Deshalb wird bei
+        mir zuerst geprüft und dann erst angefasst.</p>
+    </div>
+    <div class="skizze-rahmen">
+<svg class="skizze" viewBox="0 0 520 300" role="img" aria-label="Schema: Das Update läuft zuerst auf einer Kopie mit Prüfschritten, das Livesystem springt erst danach auf die neue Version, der Rückweg bleibt offen">
+<text x="40" y="226" fill="#a8b1c5" font-size="11" letter-spacing="2" style="font-family:'JetBrains Mono','Consolas',monospace">LIVESYSTEM</text>
+<line x1="40" y1="250" x2="480" y2="250" stroke="#2b406c" stroke-width="2"/>
+<circle cx="70" cy="250" r="7" fill="#182c55" stroke="#a8b1c5" stroke-width="2"/>
+<text x="46" y="280" fill="#ece8de" font-size="13" style="font-family:'JetBrains Mono','Consolas',monospace">1.11.8</text>
+<circle cx="450" cy="250" r="7" fill="#d7a73d" stroke="#d7a73d" stroke-width="2"/>
+<text x="430" y="280" fill="#d7a73d" font-size="13" style="font-family:'JetBrains Mono','Consolas',monospace">2.0.6</text>
+<path d="M70 250 C 70 120, 100 90, 130 90" fill="none" stroke="#d7a73d" stroke-width="2"/>
+<path d="M400 90 C 430 90, 450 120, 450 250" fill="none" stroke="#d7a73d" stroke-width="2"/>
+<rect x="136" y="72" width="54" height="36" rx="4" fill="#182c55" stroke="#5cc083"/>
+<path d="M156 90 l5 5 l9 -10" fill="none" stroke="#5cc083" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="163" y="128" fill="#a8b1c5" font-size="10.5" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">Plugins</text>
+<rect x="204" y="72" width="54" height="36" rx="4" fill="#182c55" stroke="#5cc083"/>
+<path d="M224 90 l5 5 l9 -10" fill="none" stroke="#5cc083" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="231" y="128" fill="#a8b1c5" font-size="10.5" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">Vorlagen</text>
+<rect x="272" y="72" width="54" height="36" rx="4" fill="#182c55" stroke="#5cc083"/>
+<path d="M292 90 l5 5 l9 -10" fill="none" stroke="#5cc083" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="299" y="128" fill="#a8b1c5" font-size="10.5" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">Anbindung</text>
+<rect x="340" y="72" width="54" height="36" rx="4" fill="#182c55" stroke="#5cc083"/>
+<path d="M360 90 l5 5 l9 -10" fill="none" stroke="#5cc083" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="367" y="128" fill="#a8b1c5" font-size="10.5" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">Bestellung</text>
+<text x="130" y="60" fill="#d7a73d" font-size="11" letter-spacing="2" style="font-family:'JetBrains Mono','Consolas',monospace">KOPIE</text>
+<path d="M440 236 C 400 180, 150 180, 86 236" fill="none" stroke="#a8b1c5" stroke-width="1.5" stroke-dasharray="4 5"/>
+<path d="M92 228 l-8 9 l12 2" fill="none" stroke="#a8b1c5" stroke-width="1.5"/>
+<text x="260" y="190" fill="#a8b1c5" font-size="11" letter-spacing="1.5" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">RÜCKWEG MIT SICHERUNG</text>
+</svg>
+    </div>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <div class="inhalt">
+
+      <h2>Der Ablauf</h2>
+      <ul>
+        <li>Bestandsaufnahme: aktuelle Version, Plugins, eigene Vorlagen, angebundene Systeme</li>
+        <li>Kompatibilitätsprüfung gegen die Zielversion, je Komponente einzeln</li>
+        <li>Checkliste an Sie, schriftlich: was passiert, in welcher Reihenfolge, wie der Rückweg aussieht</li>
+        <li>Update auf einer Kopie Ihrer Datenbank, inklusive Funktionstest</li>
+        <li>Livegang mit Sicherung, danach eine kurze Übergabe, was sich geändert hat</li>
+      </ul>
+
+      <div class="merk">
+        <p>
+          Zuletzt durchgeführt: Sprung von <b class="mono">1.11.8 auf 2.0.6</b>
+          mit vorheriger Prüfung aller Plugins und Schnittstellen. Der Livegang lief
+          ohne Ausfall, am Morgen danach lief der Betrieb normal weiter.
+        </p>
+      </div>
+
+      <blockquote class="zitat">
+          <p>
+            „
+            Er hat das Update zuerst auf einer Kopie unserer Datenbank getestet,
+            bevor er an unser Livesystem ging, und uns vorab eine verständliche
+            Checkliste geschickt. Der Umstieg lief ohne Ausfall, am nächsten Morgen
+            konnten wir normal weiterarbeiten.“
+          </p>
+        <footer>Händler, JTL-Wawi und Shopware 6, Bewertung vom September 2026</footer>
+      </blockquote>
+
+      <h2 id="testsystem">Testsystem mit Datenübernahme</h2>
+      <p>
+        Wenn Sie überlegen, Ihre Warenwirtschaft zu wechseln, brauchen Sie vorher
+        etwas zum Ausprobieren. Ich setze ein getrenntes Testsystem auf, übernehme
+        Ihre Daten hinein und Sie können Ihre Abläufe durchspielen, bevor am
+        Livebetrieb irgendetwas passiert.
+      </p>
+      <p>
+        Üblich sind Wareneingang, Versand, Retouren und Rechnungsstellung. Welche
+        Abläufe bei Ihnen kritisch sind, legen wir vorher fest.
+      </p>
+
+      <h2>Häufige Fragen</h2>
+
+      <details>
+        <summary>Wie lange steht der Betrieb beim Livegang still?</summary>
+        <p>Das hängt von der Datenmenge ab. Bei den bisherigen Updates lag es im Bereich eines Abends. Am nächsten Morgen lief der Betrieb normal. Den erwarteten Zeitraum nenne ich vorher, zusammen mit dem Rückweg.</p>
+      </details>
+
+      <details>
+        <summary>Was passiert mit eigenen Druck- und Mailvorlagen?</summary>
+        <p>Die sind erfahrungsgemäß der häufigste Stolperstein, weil sich Variablen zwischen Versionen ändern. Sie stehen in der Kompatibilitätsprüfung einzeln drin und werden auf der Kopie angepasst, bevor es live geht.</p>
+      </details>
+
+      <details>
+        <summary>Betreuen Sie auch den angebundenen Shop?</summary>
+        <p>Ja. Shopware 6 und JTL-Shop 5 gehören zu meinem Arbeitsgebiet, ebenso die Schnittstelle zwischen Shop und Warenwirtschaft. Genau dort sitzen die meisten Probleme.</p>
+      </details>
+
+      <details>
+        <summary>Was kostet das?</summary>
+        <p>Das hängt vom Umfang ab. Nach einer kurzen Prüfung nenne ich Ihnen entweder einen Stundensatz oder einen Festpreis. Vorher nenne ich keine Zahl, die ich später korrigieren müsste.</p>
+      </details>
+
+      <h2 id="anfragen">Anfragen</h2>
+      <p>
+        Schreiben Sie mir Ihre aktuelle Version, die Zielversion und welche
+        Systeme dranhängen. Dann sage ich Ihnen, was zu erwarten ist.
+      </p>
+      <p><a class="mail-gross" href="mailto:m.barabanov@mbara.net?subject=JTL-Wawi%20Update">m.barabanov@mbara.net</a></p>
+      <h2>Verwandte Themen</h2>
+      <div class="weiter">
+        <a href="migration-shopware-5-auf-6.html"><b>Shopware 5 auf 6</b><span>Bestandsaufnahme vor der Migration, damit Sie Angebote beurteilen können.</span></a>
+        <a href="schnittstellen.html"><b>Schnittstellen</b><span>Shop, Warenwirtschaft und Drittsysteme über REST-API verbinden.</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Weitere Seiten">
+      <a href="index.html">Start</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

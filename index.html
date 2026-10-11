@@ -1,505 +1,637 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopware 5 auf 6 migrieren, JTL-Wawi Update | Shopware Freelancer Koblenz</title>
+<meta name="description" content="Shopware 5 auf 6 migrieren, mit Bestandsaufnahme vorab. JTL-Wawi und Shopware 6 Updates mit Kompatibilitätsprüfung vorab. Shopware Freelancer aus Koblenz, remote, Abwicklung schriftlich.">
+<link rel="canonical" href="https://mbara.net/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src https://api.github.com; form-action https://formsubmit.co; frame-ancestors 'none'; base-uri 'self';" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://mbara.net/">
+<meta property="og:title" content="Shopware 5 auf 6 migrieren, JTL-Wawi Update | Michael Barabanov">
+<meta property="og:description" content="Migration, Versionsupdates, Testsysteme und Schnittstellen für Shopware 6 und JTL. Erst auf einer Kopie, dann im Livesystem.">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
 
-    <title>Michael Barabanov | Shopware-5-Migration, Shopware 6 & JTL</title>
-  <meta name="description" content="E-Commerce Engineer aus Koblenz. Shopware 6, JTL-Shop und JTL-Wawi: Plugin-Entwicklung, Schnittstellen, Updates und Migrationen, dazu technische SEO- und GEO-Audits. Nebenberuflich, rund 10 Stunden pro Woche." />
-  <link rel="canonical" href="https://mbara.net/" />
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="mbara.css">
 
-    <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://mbara.net/" />
-  <meta property="og:title"       content="Michael Barabanov | E-Commerce Engineer, Shopware 6 & JTL" />
-  <meta property="og:description" content="Shopware 6, JTL-Shop und JTL-Wawi: Plugins, Schnittstellen, Updates. Dazu technische SEO- und GEO-Audits." />
-  <meta property="og:image"       content="https://mbara.net/og-image.png" />
-
-    <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Michael Barabanov | E-Commerce Engineer, Shopware 6 & JTL" />
-  <meta name="twitter:description" content="Shopware 6, JTL-Shop und JTL-Wawi: Plugins, Schnittstellen, Updates. Dazu technische SEO- und GEO-Audits." />
-  <meta name="twitter:image"       content="https://mbara.net/og-image.png" />
-
-  <meta name="keywords" content="Shopware 6 Developer, JTL-Wawi, JTL-Shop, PHP Backend Developer, Freelancer, Plugin-Entwicklung, Koblenz, E-Commerce, SEO Audit, GEO Audit, REST API">
-  <meta name="author" content="Michael Barabanov">
-  <meta name="robots" content="index, follow">
-  <meta property="og:locale" content="de_DE">
-  <meta name="theme-color" content="#00ff88">
-
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "https://mbara.net/#betrieb",
+  "name": "Michael Barabanov, Shopware 6 und JTL-Wawi Entwicklung",
+  "url": "https://mbara.net/",
+  "email": "m.barabanov@mbara.net",
+  "image": "https://mbara.net/og-image.png",
+  "founder": {
     "@type": "Person",
-    "name": "Michael Barabanov",
-    "jobTitle": "E-Commerce Engineer & Shopware 6 Spezialist",
-    "description": "Fachinformatiker für Anwendungsentwicklung aus Koblenz. Hauptberuflich Digital Process & Solutions Engineer in der Logistik (Python, Django, Prozessautomatisierung), nebenberuflich Shopware-6-Plugin-Entwicklung und API-Integrationen über mbara.net.",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "J+R Wirths Logistik GmbH & Co. KG"
+    "name": "Michael Barabanov"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Koblenz",
+    "addressCountry": "DE"
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "Deutschland"
     },
-    "url": "https://mbara.net",
-    "email": "m.barabanov@mbara.net",
-    "telephone": "+4915111808065",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Koblenz",
-      "addressRegion": "Rheinland-Pfalz",
-      "addressCountry": "DE"
+    {
+      "@type": "Country",
+      "name": "Österreich"
     },
-    "sameAs": [
-      "https://github.com/MichaelBarabanov",
-      "https://linkedin.com/in/michael-barabanov-103265357",
-      "https://www.malt.de/profile/michaelbarabanov",
-      "https://www.xing.com/profile/Michael_Barabanov015208"
-    ],
-    "knowsAbout": ["PHP", "Shopware 6", "Shopware 5", "Shopware-Migration", "JTL-Shop", "JTL-Wawi", "MySQL", "REST API", "Plugin-Entwicklung", "E-Commerce", "Technisches SEO", "Generative Engine Optimization", "Python", "Django", "Docker", "Linux", "Prozessautomatisierung"]
+    {
+      "@type": "Country",
+      "name": "Schweiz"
+    }
+  ],
+  "availableLanguage": [
+    "de",
+    "en"
+  ],
+  "knowsAbout": [
+    "Shopware 6",
+    "Shopware 5",
+    "Shopware 5 auf 6 migrieren",
+    "JTL-Wawi",
+    "JTL-Shop 5",
+    "JTL-eazyAuction",
+    "REST-API",
+    "Plugin-Entwicklung",
+    "Technisches SEO",
+    "Generative Engine Optimization"
+  ],
+  "sameAs": [
+    "https://github.com/MichaelBarabanov",
+    "https://www.malt.de/profile/michaelbarabanov",
+    "https://linkedin.com/in/michael-barabanov-103265357"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Leistungen",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Migration von Shopware 5 auf Shopware 6",
+          "url": "https://mbara.net/migration-shopware-5-auf-6",
+          "description": "Bestandsaufnahme vor der Migration: je Plugin, ob es einen Nachfolger für Shopware 6 gibt, ob eine andere Erweiterung dasselbe kann oder ob neu gebaut werden muss."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Versionsupdate für JTL-Wawi, JTL-Shop 5 und Shopware 6",
+          "url": "https://mbara.net/jtl-wawi-update",
+          "description": "Kompatibilitätsprüfung je Komponente, Test auf einer Kopie der Datenbank, Livegang mit Sicherung."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Testsystem mit Übernahme echter Daten",
+          "url": "https://mbara.net/jtl-wawi-update#testsystem",
+          "description": "Getrennte Umgebung mit Artikeln, Kunden und Bestellungen aus dem Bestand, zum Durchspielen der Abläufe vor einem Wechsel."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Schnittstellen über REST-API",
+          "url": "https://mbara.net/schnittstellen",
+          "description": "Verbindungen zwischen Shopware 6, JTL-Wawi und Drittsystemen, mit Protokoll je Vorgang und Wiederholung bei Fehlern."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Plugin-Entwicklung für Shopware 6",
+          "url": "https://mbara.net/#plugins",
+          "description": "Eigene Erweiterungen für Adminbereich, Storefront oder Hintergrundjobs, wenn der Standard nicht reicht."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Fehlersuche und technisches SEO",
+          "url": "https://mbara.net/beispiel-audit",
+          "description": "Messung von außen ohne Zugang zum Shop, jeder Befund mit Lösung und Aufwand."
+        }
+      }
+    ]
   }
-  </script>
-
-  <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
-  <link rel="stylesheet" href="style.css" />
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Michael Barabanov",
+  "url": "https://mbara.net/",
+  "jobTitle": "Shopware- und JTL-Entwickler",
+  "worksFor": {
+    "@id": "https://mbara.net/#betrieb"
+  },
+  "knowsLanguage": [
+    "Deutsch",
+    "Englisch",
+    "Russisch"
+  ],
+  "sameAs": [
+    "https://github.com/MichaelBarabanov",
+    "https://www.malt.de/profile/michaelbarabanov",
+    "https://linkedin.com/in/michael-barabanov-103265357"
+  ]
+}
+</script>
 </head>
 <body>
 
-<nav id="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="#hero"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about">about</a></li>
-      <li><a href="#stack">stack</a></li>
-      <li><a href="#erfahrung">erfahrung</a></li>
-      <li><a href="#plugins" class="nav-plugins">plugins ✦</a></li>
-      <li><a href="demo.html">demo projekte</a></li>
-      <li><a href="blog/">blog</a></li>
-      <li><a href="hire.html" class="nav-hire">leistungen</a></li>
-      <li><a href="#kontakt">kontakt</a></li>
-    </ul>
-    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
-      <span class="lo active" id="lang-de">DE</span>
-      <span class="lang-sep">/</span>
-      <span class="lo" id="lang-en">EN</span>
-    </button>
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="/">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#plugins">Plugins</a>
+      <a href="#bericht">Beispielbericht</a>
+      <a href="#bewertungen">Bewertungen</a>
+      <a href="#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="#kontakt">Anfrage schreiben</a>
   </div>
-</nav>
+</header>
 
 <main>
-<section id="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="hero-term-line"><span class="tp">$ </span><span class="tc">whoami</span></div>
-    <h1 class="glitch" data-text="MICHAEL BARABANOV">MICHAEL BARABANOV</h1>
-    <div class="hero-term-line"><span class="tp">$ </span><span class="tc">cat rolle.txt</span></div>
-    <p class="hero-role"><span id="typewriter"></span><span class="c-blink">▋</span></p>
-    <p class="hero-pitch" data-i18n="hero.pitch">Migration von Shopware 5 auf 6, Plugins und Schnittstellen ohne Ausfall. Dazu technische SEO- und GEO-Audits.</p>
-    <div class="hero-badges">
-      <span class="badge">Koblenz, DE</span>
-      <span class="badge badge-green" data-i18n="badge.avail">● Freelance, nebenberuflich</span>
-      <span class="badge">Shopware 6 · JTL-Shop · JTL-Wawi</span>
-    </div>
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="hire.html" data-i18n="cta.hire">See services</a>
-      <a class="btn btn-outline" href="#plugins" data-i18n="cta.work">View Work</a>
-    </div>
-  </div>
-    <div class="hero-code" aria-hidden="true">
-    <div class="hcode-bar">
-      <span class="dot red"></span>
-      <span class="dot yellow"></span>
-      <span class="dot green"></span>
-      <span class="hcode-title">michael@mbara: ~/shopware</span>
-    </div>
-    <div class="hcode-body">
-      <pre class="hcode-pre" id="hcode-output"></pre>
-    </div>
-  </div>
 
-  <div class="hero-scroll" aria-hidden="true">
-    <span>scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container">
-    <h2 class="section-title reveal-left">// about</h2>
-    <div class="about-grid">
-      <p class="about-text reveal-left" data-i18n-html="about.text">
-        Ich bin Michael, Fachinformatiker für Anwendungsentwicklung aus Koblenz. Ich baue Werkzeuge, die im Betrieb tatsächlich benutzt werden.
-
-Hauptberuflich arbeite ich als Digital Process &amp; Solutions Engineer bei einem Logistikdienstleister in Mayen. Ich bin dort die einzige interne Stelle für Digitalisierung: logistische Prozesse analysieren, daraus interne Webanwendungen und Automatisierungen bauen, Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen betreuen. Technisch vor allem Python, Django, Docker und Linux.
-
-Nebenberuflich läuft mbara.net, mein angemeldetes Kleingewerbe. Schwerpunkt sind Shopware 6 und JTL: Plugin-Entwicklung, Schnittstellen, SEO- und GEO-Audits. Vier eigene Plugins sind als Open Source veröffentlicht und laufen in produktiven Shops.
-
-Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten Shops, Softwareentwicklung im Versicherungsumfeld an einem Vertriebstool mit über 10.000 Nutzern, Ausbildung im Bundesarchiv.
-
-Kapazität für Freelance-Projekte: rund 10 Stunden pro Woche.
+<section class="hero dunkel">
+  <div class="wrap hero-in">
+    <div>
+      <span class="marke">Shopware Freelancer aus Koblenz, remote</span>
+      <h1>Shopware 5 auf 6 migrieren, JTL-Wawi aktualisieren. Erst auf einer Kopie, dann im Livesystem.</h1>
+      <p class="gross">
+        Ich bin Michael Barabanov. Über 30 Shops habe ich live gebracht,
+        ohne dass ein Livesystem dabei stand. Bevor ich ein Update einspiele
+        oder einen Shop migriere, prüfe ich auf einer Kopie, welche Plugins und
+        welches Theme den Versionssprung nicht überleben. Das Ergebnis bekommen
+        Sie schriftlich, bevor etwas passiert.
       </p>
-      <div class="about-stats">
-        <div class="stat reveal-right">
-          <span class="stat-num" data-target="4">0</span>
-          <span class="stat-label" data-i18n="stat.years">Jahre Erfahrung</span>
-        </div>
-        <div class="stat reveal-right">
-          <span class="stat-num" data-target="30">0</span>
-          <span class="stat-label" data-i18n="stat.projects">Shops Live</span>
-        </div>
-        <div class="stat reveal-right">
-          <span class="stat-num" data-target="4">0</span>
-          <span class="stat-label" data-i18n="stat.plugins">SW6 Plugins</span>
-        </div>
+      <div class="hero-aktion">
+        <a class="knopf" href="#kontakt">Anfrage schreiben</a>
+        <a class="textlink" href="#leistungen">Leistungen ansehen</a>
       </div>
+      <ul class="fakten">
+        <li>Shopware 5 und 6</li>
+        <li>JTL-Wawi und JTL-Shop</li>
+        <li>remote, Antwort innerhalb eines Werktags</li>
+      </ul>
     </div>
-    <div class="ref-featured reveal">
-      <div class="ref-rating">
-        <span class="ref-stars" aria-hidden="true">★★★★★</span>
-        <span class="ref-rating-label" data-i18n="ref.malt.rating">5,0 von 5 · verifizierte Kundenbewertung auf Malt</span>
+
+    <div class="buehne" role="img" aria-label="Schema der Arbeitsweise: Das Livesystem bleibt unberührt, gearbeitet und geprüft wird auf einer Kopie, erst danach folgt der Livegang mit Sicherung.">
+      <div class="system system-live">
+        <div class="system-kopf"><span class="system-name">Livesystem</span><span class="system-status">unberührt</span></div>
+        <div class="system-zeilen" aria-hidden="true">
+          <i style="--b:62%"></i><i style="--b:84%"></i><i style="--b:48%"></i><i style="--b:73%"></i><i style="--b:56%"></i>
+        </div>
+        <div class="stempel">kein Eingriff</div>
       </div>
-      <p class="ref-quote" data-i18n="ref.malt.q1">"Michael hat für uns das Update unserer JTL-Wawi von 1.11.8 auf 2.0.6 vorbereitet und durchgeführt, inklusive vorheriger Kompatibilitätsprüfung.</p>
-      <p class="ref-quote" data-i18n="ref.malt.q2">Er hat das Update zuerst auf einer Kopie unserer Datenbank getestet, bevor er an unser Livesystem ging, und uns vorab eine verständliche Checkliste geschickt. Der Umstieg lief ohne Ausfall, am nächsten Morgen konnten wir normal weiterarbeiten."</p>
-      <span class="ref-source" data-i18n="ref.malt.source">Tour Made GmbH · JTL-Wawi Update, 09/2026</span>
-    </div>
-    <div class="refs">
-      <div class="ref-card reveal">
-        <p class="ref-quote" data-i18n="ref.1.quote">"Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien."</p>
-        <span class="ref-source" data-i18n="ref.1.source">Bundesarchiv · Koblenz, 2025</span>
+      <div class="buehne-pfeil" aria-hidden="true"><span>Kopie</span></div>
+      <div class="system system-kopie">
+        <div class="system-kopf"><span class="system-name">Kopie</span><span class="system-status laeuft">hier wird gearbeitet</span></div>
+        <ol class="pruefung" aria-hidden="true">
+          <li style="--i:0">Datenbank kopiert</li>
+          <li style="--i:1">Plugins gegen Zielversion geprüft</li>
+          <li style="--i:2">Theme auf neuer Version gebaut</li>
+          <li style="--i:3">Bestellvorgang durchgetestet</li>
+          <li style="--i:4" class="ziel">Livegang mit Sicherung</li>
+        </ol>
       </div>
-      <div class="ref-card reveal">
-        <p class="ref-quote" data-i18n="ref.2.quote">"Seine Zuverlässigkeit, sein Einsatz und seine Bereitschaft, Neues zu lernen, waren von großem Wert. Wir können ihn für zukünftige Aufgaben empfehlen."</p>
-        <span class="ref-source" data-i18n="ref.2.source">TC Unterhaltungselektronik AG · 2023</span>
-      </div>
+      <div class="rueckweg" aria-hidden="true">Rückweg dokumentiert</div>
     </div>
   </div>
 </section>
 
-<section id="stack">
-  <div class="container">
-    <h2 class="section-title reveal-left">// stack</h2>
-    <div class="stack-group">
-      <span class="stack-group-label" data-i18n="stack.primary">primär</span>
-      <div class="tech-grid">
-        <div class="tech-item reveal" style="--brand:#787CB5"><span class="tech-badge">PHP</span><span class="tech-label">PHP</span></div>
-        <div class="tech-item reveal" style="--brand:#00758f"><span class="tech-badge">SQL</span><span class="tech-label">MySQL</span></div>
-        <div class="tech-item reveal" style="--brand:#189EFF"><span class="tech-badge">SW6</span><span class="tech-label">Shopware 6</span></div>
-        <div class="tech-item reveal" style="--brand:#A0A0A0"><span class="tech-badge">SF</span><span class="tech-label">Symfony</span></div>
-        <div class="tech-item reveal" style="--brand:#E87200"><span class="tech-badge">JTL</span><span class="tech-label">JTL</span></div>
-        <div class="tech-item reveal" style="--brand:#F7DF1E"><span class="tech-badge">JS</span><span class="tech-label">JavaScript</span></div>
-        <div class="tech-item reveal" style="--brand:#FF6C37"><span class="tech-badge">API</span><span class="tech-label">REST APIs</span></div>
-        <div class="tech-item reveal" style="--brand:#F05133"><span class="tech-badge">GIT</span><span class="tech-label">Git</span></div>
-        <div class="tech-item reveal" style="--brand:#FCC624"><span class="tech-badge">🐧</span><span class="tech-label">Linux</span></div>
-      </div>
-    </div>
-    <div class="stack-group">
-      <span class="stack-group-label stack-group-label--dim" data-i18n="stack.skills">kenntnisse</span>
-      <div class="tech-grid tech-grid--skills">
-        <div class="tech-item reveal" style="--brand:#3178C6"><span class="tech-badge">TS</span><span class="tech-label">TypeScript</span></div>
-        <div class="tech-item reveal" style="--brand:#3776AB"><span class="tech-badge">PY</span><span class="tech-label">Python</span></div>
-        <div class="tech-item reveal" style="--brand:#2496ED"><span class="tech-badge">🐳</span><span class="tech-label">Docker</span></div>
-        <div class="tech-item reveal" style="--brand:#E34F26"><span class="tech-badge">H5</span><span class="tech-label">HTML5</span></div>
-        <div class="tech-item reveal" style="--brand:#1572B6"><span class="tech-badge">CSS</span><span class="tech-label">CSS3</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="erfahrung">
-  <div class="container">
-    <h2 class="section-title reveal-left">// <span data-i18n="exp.title">erfahrung</span></h2>
-    <div class="timeline">
-      <div class="timeline-beam" id="timeline-beam"></div>
-
-      <div class="timeline-entry reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-meta">
-          <span class="timeline-date">09/2023 bis 06/2025</span>
-          <span class="timeline-company">Bundesarchiv · Koblenz</span>
-        </div>
-        <div class="timeline-role" data-i18n="exp.1.role">Ausbildung zum Fachinformatiker für Anwendungsentwicklung</div>
-        <div class="timeline-note" data-i18n="exp.1.note">Ausbildung um 1 Jahr verkürzt (vorherige IT-Vollzeitausbildung)</div>
-        <ul class="timeline-highlights">
-          <li data-i18n="exp.1.h1">Eigenverantwortliche Planung &amp; Entwicklung eines koordinatenbasierten Dokument-Viewers, täglich genutzt von mehreren Tausend Archivnutzern</li>
-          <li data-i18n="exp.1.h2">Integration von Whisper AI zur Transkription von 100.000+ Audiodateien, 85% weniger manuelle Aufwände</li>
-          <li data-i18n="exp.1.h3">MCaptcha-Sicherheitstest durch reale Bot-Simulation &amp; Testautomatisierung mit Selenium / Python</li>
-        </ul>
-      </div>
-
-      <div class="timeline-entry reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-meta">
-          <span class="timeline-date">07/2025 bis 01/2026</span>
-          <span class="timeline-company">Debeka · Koblenz</span>
-        </div>
-        <div class="timeline-role" data-i18n="exp.2.role">Softwareentwickler (Visual Smalltalk Enterprise)</div>
-        <ul class="timeline-highlights">
-          <li data-i18n="exp.2.h1">Mitentwicklung von EASY2000, täglich von 10.000+ Außendienstmitarbeitern genutzt</li>
-          <li data-i18n="exp.2.h2">Feature-Entwicklung &amp; Testing in objektorientierter Fatclient-Anwendung</li>
-          <li data-i18n="exp.2.h3">Technische Konzeption &amp; Prototyping für abteilungsübergreifende IT-Projekte im Versicherungsumfeld</li>
-        </ul>
-      </div>
-
-      <div class="timeline-entry reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-meta">
-          <span class="timeline-date">01/2026 bis 06/2026</span>
-          <span class="timeline-company">eRock Marketing GmbH · Limburg a. d. Lahn</span>
-        </div>
-        <div class="timeline-role" data-i18n="exp.3.role">Backend &amp; Fullstack Developer</div>
-        <ul class="timeline-highlights">
-          <li data-i18n="exp.3.h1">30+ internationale E-Commerce-Shops live gebracht (Shopware 6, JTL 5)</li>
-          <li data-i18n="exp.3.h2">Bot-Angriff via Cloudflare abgewehrt, 90% Reduktion des Schadtraffics</li>
-          <li data-i18n="exp.3.h3">SEO &amp; Performance-Optimierungen: +22% mehr organischer Traffic</li>
-        </ul>
-      </div>
-
-      <div class="timeline-entry reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-meta">
-          <span class="timeline-date" data-i18n="exp.4.date">seit 07/2026</span>
-          <span class="timeline-company">J+R Wirths Logistik · Mayen</span>
-        </div>
-        <div class="timeline-role" data-i18n="exp.4.role">Digital Process &amp; Solutions Engineer</div>
-        <div class="timeline-note" data-i18n="exp.4.note">Einzige interne Stelle für Digitalisierung, direkt an der Geschäftsleitung</div>
-        <ul class="timeline-highlights">
-          <li data-i18n="exp.4.h1">Analyse und Optimierung logistischer Geschäftsprozesse, gemeinsam mit den Fachbereichen</li>
-          <li data-i18n="exp.4.h2">Entwicklung interner Webanwendungen und Automatisierungen (Python, Django, Docker, Linux)</li>
-          <li data-i18n="exp.4.h3">Aufbau und Betreuung von Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="plugins">
-  <div class="container">
-    <div class="plugins-head reveal-left">
-      <h2 class="section-title" style="margin-bottom:0">// shopware plugins</h2>
-      <span class="sw-tag">Shopware Store</span>
-    </div>
-    <p class="plugins-sub reveal-left" data-i18n="plugins.sub">Professionelle Shopware 6 Plugins, entwickelt, getestet, produktionsreif.</p>
-    <div class="plugin-cards">
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin</div>
-        <h3 class="plugin-name">PriceOnRequest</h3>
-        <p class="plugin-desc" data-i18n="plugin.pr.desc">Preise auf Anfrage für B2B-Shops. Versteckt Preise und ersetzt den Warenkorb-Button durch ein individuelles Kontaktformular.</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.pr.f1">✓ Konfigurierbar per Kategorie oder Produkt</li>
-          <li data-i18n="plugin.pr.f2">✓ Custom E-Mail-Template</li>
-          <li data-i18n="plugin.pr.f3">✓ Kompatibel mit Shopware 6.4+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/price-on-request.html" data-i18n="demo.details" aria-label="Details: PriceOnRequest">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin</div>
-        <h3 class="plugin-name">ComingSoon</h3>
-        <p class="plugin-desc" data-i18n="plugin.cs.desc">Coming-Soon-Modus für Shopware 6. Countdown-Timer, E-Mail-Benachrichtigung beim Launch und vollständig anpassbares Design.</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.cs.f1">✓ Konfigurierbarer Countdown-Timer</li>
-          <li data-i18n="plugin.cs.f2">✓ E-Mail-Benachrichtigung bei Launch</li>
-          <li data-i18n="plugin.cs.f3">✓ Kompatibel mit Shopware 6.4+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/coming-soon.html" data-i18n="demo.details" aria-label="Details: ComingSoon">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin · AI</div>
-        <h3 class="plugin-name">AiProductDescription</h3>
-        <p class="plugin-desc" data-i18n="plugin.ai.desc">Generiert überzeugende Produktbeschreibungen direkt im Admin, powered by Claude (Anthropic) oder ChatGPT (OpenAI).</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.ai.f1">✓ Claude & OpenAI unterstützt</li>
-          <li data-i18n="plugin.ai.f2">✓ Deutsch & Englisch</li>
-          <li data-i18n="plugin.ai.f3">✓ Professionell / Casual / SEO-optimiert</li>
-          <li data-i18n="plugin.ai.f4">✓ Kompatibel mit Shopware 6.7+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/ai-product-description.html" data-i18n="demo.details" aria-label="Details: AiProductDescription">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin · AI</div>
-        <h3 class="plugin-name">BotProtection</h3>
-        <p class="plugin-desc" data-i18n="plugin.bp.desc">Application-Layer-Schutz gegen automatisierten Missbrauch von Formularen. Honeypot, Rate-Limiting und Time-Validation, ergänzend zu Netzwerkschutz wie Cloudflare.</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.bp.f1">✓ Honeypot, Rate-Limit & Time-Validation</li>
-          <li data-i18n="plugin.bp.f2">✓ Admin-Dashboard mit 14-Tage-Statistik</li>
-          <li data-i18n="plugin.bp.f3">✓ Optionale KI-Bedrohungsanalyse (Claude)</li>
-          <li data-i18n="plugin.bp.f4">✓ Kompatibel mit Shopware 6.7+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/botprotection.html" data-i18n="demo.details" aria-label="Details: BotProtection">Details ansehen →</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section id="terminal">
-  <div class="container">
-    <h2 class="section-title reveal-left">// terminal</h2>
-    <p class="term-hint reveal" data-i18n-html="term.hint">Tippe <code>help</code> für alle Commands, probier's aus.</p>
-    <div class="iterm reveal">
-      <div class="iterm-bar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <span class="iterm-title">michael@portfolio:~</span>
-      </div>
-      <div class="iterm-output" id="iterm-output">
-        <div class="iterm-row"><span class="ip">michael@portfolio:~$ </span><span>help</span></div>
-        <div class="ir" id="help-init">
-          <div>Verfügbare Commands:</div>
-          <div>&nbsp;&nbsp;<span class="ih">whoami</span>    → Wer ist Michael?</div>
-          <div>&nbsp;&nbsp;<span class="ih">skills</span>    → Tech Stack</div>
-          <div>&nbsp;&nbsp;<span class="ih">projects</span>  → Alle Projekte</div>
-          <div>&nbsp;&nbsp;<span class="ih">plugins</span>   → Shopware Plugins</div>
-          <div>&nbsp;&nbsp;<span class="ih">contact</span>   → Kontakt</div>
-          <div>&nbsp;&nbsp;<span class="ih">hire</span>      → Freelance anfragen</div>
-          <div>&nbsp;&nbsp;<span class="ih">git log</span>   → Commit-Verlauf</div>
-          <div>&nbsp;&nbsp;<span class="ih">miso</span>      → Die Katze fragen, was sie vorhat</div>
-          <div>&nbsp;&nbsp;<span class="ih">clear</span>     → Terminal leeren</div>
-        </div>
-      </div>
-      <div class="iterm-input-row">
-        <span class="ip">michael@portfolio:~$ </span>
-        <input class="iterm-input" id="iterm-input" type="text" autocomplete="off" spellcheck="false" placeholder="command..." />
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kontakt">
-  <div class="container">
-    <button type="button" class="vk-blob" id="vk-trigger" aria-label="Visitenkarte anzeigen">
-      <span class="vk-blob-core"></span>
-    </button>
-    <div class="contact-grid">
+<div class="streifen">
+  <div class="wrap streifen-in">
     <div>
-    <h2 class="section-title reveal-left">// kontakt</h2>
-    <p class="contact-sub reveal-left" data-i18n="contact.sub">Projektanfrage, Freelance-Job oder einfach reden?</p>
-
-    <div class="contact-links reveal-left">
-      <a class="contact-btn" href="mailto:m.barabanov@mbara.net">
-        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></svg>
-        <span>E-Mail</span>
-      </a>
-      <a class="contact-btn" href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-        <span>GitHub</span>
-      </a>
-      <a class="contact-btn" href="https://www.malt.de/profile/michaelbarabanov" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 18 18" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M1 15V5l8 7 8-7v10"/></svg>
-        <span>Malt</span>
-      </a>
-      <a class="contact-btn" href="https://linkedin.com/in/michael-barabanov-103265357" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>
-        <span>LinkedIn</span>
-      </a>
-            <a class="contact-btn contact-btn-cv" id="cv-btn"
-         href="mailto:m.barabanov@mbara.net?subject=Lebenslauf%20Anfrage&body=Hallo%20Michael%2C%0A%0Aich%20bin%20auf%20dein%20Portfolio%20aufmerksam%20geworden%20und%20w%C3%BCrde%20gerne%20deinen%20Lebenslauf%20erhalten.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C%0A%5BDein%20Name%5D"
-         data-i18n-href="cv.href">
-        <svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true">
-          <path d="M3.75 1.5a.25.25 0 0 0-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V6H9.75A1.75 1.75 0 0 1 8 4.25V1.5Zm5.75.56v2.19c0 .138.112.25.25.25h2.19Zm-7.5-.56C2 1.5 1 2.5 1 3.75v8.5C1 13.5 2 14.5 3.25 14.5h9.5c1.25 0 2.25-1 2.25-2.25v-8a.75.75 0 0 0-.22-.53l-4-4A.75.75 0 0 0 10.25 0h-7Z"/>
-        </svg>
-        <span data-i18n="cv.btn">Lebenslauf anfordern</span>
-      </a>
+      <span class="zahl-gross">30<sup>+</sup></span>
+      <span class="beschr">Shops live gebracht</span>
     </div>
-
-    </div>
+    <a class="streifen-eintrag" href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">
+      <span class="zahl-gross">5,0</span>
+      <span class="beschr">von 5 auf Malt, jede Kategorie</span>
+    </a>
+    <a class="streifen-eintrag" href="https://github.com/MichaelBarabanov" rel="noopener">
+      <span class="zahl-gross">4</span>
+      <span class="beschr">Plugins als Open Source, mit Tests</span>
+    </a>
     <div>
-        <form class="contact-form reveal-right"
-          action="https://formsubmit.co/7936068ed5412555d264cf616b08f36d"
-          method="POST">
-            <input type="hidden" name="_subject"  data-i18n-value="form.subject" value="Portfolio Kontakt">
-      <input type="hidden" name="_captcha"  value="false">
-      <input type="hidden" name="_template" value="table">
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="cf-name" data-i18n="form.name.label">Name</label>
-          <input type="text" id="cf-name" name="name" required
-                 placeholder="Max Mustermann"
-                 data-i18n-placeholder="form.name.ph">
-        </div>
-        <div class="form-group">
-          <label for="cf-email" data-i18n="form.email.label">E-Mail</label>
-          <input type="email" id="cf-email" name="email" required
-                 placeholder="max@beispiel.de"
-                 data-i18n-placeholder="form.email.ph">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="cf-msg" data-i18n="form.msg.label">Nachricht</label>
-        <textarea id="cf-msg" name="message" required rows="5"
-                  placeholder="Ich suche einen Entwickler für..."
-                  data-i18n-placeholder="form.msg.ph"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" data-i18n="form.submit">Senden →</button>
-    </form>
-    </div>
+      <span class="zahl-gross">1<small>Werktag</small></span>
+      <span class="beschr">bis Sie eine Antwort haben</span>
     </div>
   </div>
+</div>
 
-  <div class="vk-overlay" id="vk-overlay" aria-hidden="true">
-    <div class="vk-overlay-backdrop" id="vk-backdrop"></div>
-    <div class="vk-card-expanded" role="dialog" aria-modal="true" aria-label="Visitenkarte">
-      <div class="vk-corner vk-corner-tl"></div>
-      <div class="vk-corner vk-corner-br"></div>
-      <div class="vk-chip"></div>
-      <div class="vk-top">
-        <img class="vk-avatar" src="img/michael.jpg" alt="Michael Barabanov" width="64" height="64">
-        <div class="vk-info">
-          <div class="vk-label">// vcard</div>
-          <div class="vk-name">Michael Barabanov</div>
-          <div class="vk-role" data-i18n="vk.role">E-Commerce Engineer &amp; Shopware 6 Spezialist</div>
+<section class="abschnitt" id="leistungen">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="marke">Leistungen</span>
+      <h2>Womit Sie zu mir kommen</h2>
+      <p class="gross">Sechs Dinge, die ich regelmäßig mache. Zu jeder steht dabei, was Sie am Ende in der Hand haben.</p>
+    </div>
+
+    <div class="reiter">
+      <input class="reiter-input" type="radio" name="leistung" id="r1" checked>
+      <input class="reiter-input" type="radio" name="leistung" id="r2">
+      <input class="reiter-input" type="radio" name="leistung" id="r3">
+      <input class="reiter-input" type="radio" name="leistung" id="r4">
+      <input class="reiter-input" type="radio" name="leistung" id="r5">
+      <input class="reiter-input" type="radio" name="leistung" id="r6">
+
+      <div class="reiter-leiste">
+        <label for="r1"><span class="nr">01</span>Migration Shopware 5 auf 6</label>
+        <label for="r2"><span class="nr">02</span>Versionsupdates</label>
+        <label for="r3"><span class="nr">03</span>Testsystem</label>
+        <label for="r4"><span class="nr">04</span>Schnittstellen</label>
+        <label for="r5"><span class="nr">05</span>Plugins</label>
+        <label for="r6"><span class="nr">06</span>Fehlersuche und SEO</label>
+      </div>
+
+      <div class="reiter-panel p1" id="migration">
+        <div>
+          <span class="nr-gross">01</span>
+          <h3>Migration von Shopware 5 auf Shopware 6</h3>
+          <p>
+            Shopware 5 bekommt seit Juli 2024 keine Updates vom Hersteller mehr.
+            Wer wechselt, scheitert selten am Shopware-Kern. Es sind die Plugins,
+            das Theme und die Anbindung an die Warenwirtschaft, die im neuen
+            System fehlen oder anders heißen.
+          </p>
+          <p>
+            Deshalb beginne ich mit einer Bestandsaufnahme. Sie bekommen einen
+            schriftlichen Bericht, mit dem Sie die Migration bei mir oder bei
+            jeder anderen Agentur beauftragen können.
+          </p>
+          <a class="textlink" href="migration-shopware-5-auf-6.html">Mehr zur Migration</a>
+        </div>
+        <div class="kasten">
+          <div class="kasten-kopf"><b>Bestandsaufnahme</b><span class="mono">auf Anfrage</span></div>
+          <p class="preis">Festpreis nach kurzer Prüfung</p>
+          <p class="preis-zusatz">Der Umfang richtet sich nach der Zahl der Plugins und Schnittstellen</p>
+          <ul class="liste">
+            <li><span class="nr">01</span><span>Jedes Plugin: gibt es einen Nachfolger für Shopware 6 oder muss es neu gebaut werden</span></li>
+            <li><span class="nr">02</span><span>Theme und eigene Anpassungen am Template</span></li>
+            <li><span class="nr">03</span><span>Schnittstellen zu Warenwirtschaft, Zahlung und Versand</span></li>
+            <li><span class="nr">04</span><span>Aufwandsschätzung für die Migration selbst</span></li>
+          </ul>
         </div>
       </div>
-      <div class="vk-divider"></div>
-      <div class="vk-bottom">
-        <div class="vk-contact">
-          <div class="vk-loc">Koblenz, Deutschland</div>
-          <a class="vk-mail" href="mailto:M.Barabanov@mbara.net">M.Barabanov@mbara.net</a>
-          <a class="vk-domain" href="https://mbara.net" target="_blank" rel="noopener noreferrer">mbara.net</a>
+
+      <div class="reiter-panel p2" id="updates">
+        <div>
+          <span class="nr-gross">02</span>
+          <h3>Versionsupdates für JTL-Wawi, JTL-Shop 5 und Shopware 6</h3>
+          <p>
+            Ein JTL-Wawi Update ist in einer Stunde eingespielt. Die Arbeit
+            steckt davor: Welche Erweiterungen laufen mit der neuen Version,
+            welche eigenen Vorlagen brechen, wie sieht der Rückweg aus, wenn
+            etwas schiefgeht.
+          </p>
+          <p>
+            Zuletzt habe ich eine JTL-Wawi von Version 1.11.8 auf 2.0.6
+            gebracht. Der Kunde hat den Ablauf in seiner Bewertung beschrieben,
+            sie steht weiter unten auf dieser Seite.
+          </p>
+          <a class="textlink" href="jtl-wawi-update.html">Mehr zu Updates</a>
         </div>
-        <div class="vk-tags">
-          <span>PHP</span><span>Shopware 6</span><span>MySQL</span>
+        <div class="kasten">
+          <div class="kasten-kopf"><b>So lief das letzte Update</b><span class="mono">JTL-Wawi 1.11.8 auf 2.0.6</span></div>
+          <ul class="liste">
+            <li><span class="haken">ok</span><span>Kompatibilität der eingesetzten Erweiterungen vorab geprüft</span></li>
+            <li><span class="haken">ok</span><span>Update zuerst auf einer Kopie der Datenbank getestet</span></li>
+            <li><span class="haken">ok</span><span>Checkliste vorher an den Kunden geschickt</span></li>
+            <li><span class="haken">ok</span><span>Livegang ohne Ausfall, am nächsten Morgen normaler Betrieb</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reiter-panel p3" id="testsystem">
+        <div>
+          <span class="nr-gross">03</span>
+          <h3>Testsystem mit Übernahme Ihrer Daten</h3>
+          <p>
+            Vor einem Wechsel der Warenwirtschaft oder vor einem großen Update
+            wollen Sie sehen, wie Ihre Artikel, Kunden und Bestellungen im neuen
+            System aussehen. Nicht die Demodaten des Herstellers.
+          </p>
+          <p>
+            Ich baue ein getrenntes System auf und spiele Ihre Daten ein. Ihr
+            Team probiert die Abläufe durch: Wareneingang, Versand, Retoure,
+            Rechnung. Das Livesystem bleibt unberührt.
+          </p>
+          <a class="textlink" href="jtl-wawi-update.html#testsystem">Mehr zum Testsystem</a>
+        </div>
+        <div class="kasten">
+          <div class="kasten-kopf"><b>Was Sie bekommen</b><span class="mono">getrennt vom Livesystem</span></div>
+          <ul class="liste">
+            <li><span class="nr">01</span><span>Eigene Umgebung, die den Livebetrieb nicht berührt</span></li>
+            <li><span class="nr">02</span><span>Artikel, Kunden und Bestellungen aus Ihrem Bestand</span></li>
+            <li><span class="nr">03</span><span>Zugänge für Ihr Team zum Ausprobieren</span></li>
+            <li><span class="nr">04</span><span>Protokoll, welche Datensätze bei der Übernahme nicht sauber durchkamen</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reiter-panel p4" id="schnittstellen">
+        <div>
+          <span class="nr-gross">04</span>
+          <h3>Schnittstellen über REST-API</h3>
+          <p>
+            Artikel, Bestände, Preise und Bestellungen sollen zwischen Shop,
+            Warenwirtschaft und Drittsystemen laufen, ohne dass morgens jemand
+            Listen abgleicht.
+          </p>
+          <p>
+            Ich baue die Anbindung über die REST-API von Shopware 6 oder JTL.
+            Mit Protokoll, aus dem hervorgeht, welcher Datensatz wann übertragen
+            wurde und welcher nicht.
+          </p>
+          <a class="textlink" href="schnittstellen.html">Mehr zu Schnittstellen</a>
+        </div>
+        <div class="kasten">
+          <div class="kasten-kopf"><b>Typische Verbindungen</b><span class="mono">REST-API</span></div>
+          <ul class="liste">
+            <li><span class="nr">01</span><span>Shopware 6 zu JTL-Wawi: Artikel, Bestände, Bestellungen</span></li>
+            <li><span class="nr">02</span><span>eBay über eazyAuction</span></li>
+            <li><span class="nr">03</span><span>Drittsysteme mit eigener API, in beide Richtungen</span></li>
+            <li><span class="nr">04</span><span>Hintergrundverarbeitung mit Wiederholung bei Fehlern</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="reiter-panel p5" id="plugin-entwicklung">
+        <div>
+          <span class="nr-gross">05</span>
+          <h3>Plugin-Entwicklung für Shopware 6</h3>
+          <p>
+            Wenn der Standard nicht reicht und es im Store nichts Passendes
+            gibt. Administrationsbereich, Storefront oder Hintergrundjobs, je
+            nachdem, wo die Lücke ist.
+          </p>
+          <p>
+            Vier eigene Plugins liegen als Open Source auf GitHub, alle mit
+            Tests. Sie können den Code lesen, bevor Sie mich beauftragen.
+          </p>
+          <a class="textlink" href="#plugins">Plugins ansehen</a>
+        </div>
+        <figure class="kasten-bild">
+          <img src="img/plugins/price-on-request-storefront-modal.png" alt="Anfrageformular des Plugins PriceOnRequest in der Shopware-Storefront, geöffnet über den Knopf Preis anfragen" width="1519" height="825" loading="lazy">
+          <figcaption>PriceOnRequest, Storefront: Anfrage statt Warenkorb</figcaption>
+        </figure>
+      </div>
+
+      <div class="reiter-panel p6" id="fehlersuche">
+        <div>
+          <span class="nr-gross">06</span>
+          <h3>Fehlersuche und technisches SEO</h3>
+          <p>
+            Wenn im Shop etwas hakt und keiner sagen kann, warum. Oder wenn der
+            Shop bei Google nicht auftaucht, obwohl Produkte und Preise stimmen.
+          </p>
+          <p>
+            Ich messe von außen, ohne Zugang zum Shop. Was ich finde, schreibe
+            ich auf. Ein Beispielbericht mit echten Messwerten steht weiter unten.
+          </p>
+          <a class="textlink" href="beispiel-audit.html">Beispielbericht lesen</a>
+        </div>
+        <div class="kasten">
+          <div class="kasten-kopf"><b>Was ich prüfe</b><span class="mono">von außen, ohne Shopzugang</span></div>
+          <ul class="liste">
+            <li><span class="nr">01</span><span>Ladezeit, Bildgewicht, Fremddomains</span></li>
+            <li><span class="nr">02</span><span>Erreichbarkeit unter einer einzigen Adresse</span></li>
+            <li><span class="nr">03</span><span>Überschriften, Kopfbereich, strukturierte Daten</span></li>
+            <li><span class="nr">04</span><span>Fehlerprotokolle und gerendertes DOM bei Funktionsfehlern</span></li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<section class="abschnitt papier" id="plugins">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="marke">Eigene Plugins</span>
+      <h2>Arbeit, die Sie vor der Beauftragung ansehen können</h2>
+      <p class="gross">
+        Vier Plugins für Shopware 6, alle als Open Source auf GitHub, alle mit
+        Tests. Die Ausschnitte stammen aus dem Administrationsbereich und aus
+        der Storefront.
+      </p>
+    </div>
+
+    <ul class="plugin-liste">
+      <li><a href="plugins/ai-product-description.html">AiProductDescription</a><span>Erzeugt Produktbeschreibungen über Claude oder ChatGPT. Deutsch oder Englisch, drei Schreibstile, Ergebnis landet direkt im Beschreibungsfeld.</span></li>
+      <li><a href="plugins/botprotection.html">BotProtection</a><span>Bot-Schutz auf Anwendungsebene mit Honeypot, Zeitprüfung und Rate-Limit. Auswertung im Adminbereich, keine Daten an Dritte.</span></li>
+      <li><a href="plugins/price-on-request.html">PriceOnRequest</a><span>Preis auf Anfrage je Verkaufskanal. Ersetzt den Warenkorbknopf durch ein Formular mit Spamschutz.</span></li>
+      <li><a href="plugins/coming-soon.html">ComingSoon</a><span>Baustellenseite vor dem Start, mit Vorschau für angemeldete Nutzer.</span></li>
+    </ul>
+
+    <div class="galerie">
+      <figure class="karte">
+        <div class="rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/ai-product-description-modal.png" alt="Dialog zum Erzeugen einer Produktbeschreibung: Modus, Anbieter, Sprache und Schreibstil wählbar" width="835" height="764" loading="lazy"></div>
+        <figcaption><b>AiProductDescription</b><span>Beschreibung per Knopf im Produkt. Anbieter, Sprache und Stil wählbar, Text landet direkt im Feld.</span></figcaption>
+      </figure>
+      <figure class="karte">
+        <div class="rahmen dunkel-rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/botprotection-blocked-attempts.png" alt="Protokoll geblockter Anfragen mit Zeit, Endpunkt und Grund der Sperre" width="937" height="503" loading="lazy"></div>
+        <figcaption><b>BotProtection</b><span>Jede Sperre mit Grund im Protokoll. Honeypot, Zeitprüfung, Rate-Limit, keine Daten an Dritte.</span></figcaption>
+      </figure>
+      <figure class="karte">
+        <div class="rahmen" style="--pos: 50% 40%; --h: 300px"><img src="img/plugins/price-on-request-storefront-modal.png" alt="Anfrageformular in der Storefront, geöffnet über den Knopf Preis anfragen" width="1519" height="825" loading="lazy"></div>
+        <figcaption><b>PriceOnRequest</b><span>Anfrage statt Warenkorb, je Produkt und Verkaufskanal. Mit Spamschutz und Bestätigungsmail.</span></figcaption>
+      </figure>
+      <figure class="karte">
+        <div class="rahmen" style="--pos: 0 42%; --h: 300px"><img src="img/plugins/ai-product-description-2.png" alt="Produktformular mit dem Knopf AI Beschreibung generieren über dem Beschreibungsfeld" width="888" height="836" loading="lazy"></div>
+        <figcaption><b>AiProductDescription</b><span>Sitzt direkt im Produktformular, kein Wechsel in ein anderes Werkzeug.</span></figcaption>
+      </figure>
+      <figure class="karte">
+        <div class="rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/price-on-request-storefront-listing.png" alt="Produktliste, bei einem Produkt steht Preis anfragen statt des Warenkorbknopfs" width="869" height="620" loading="lazy"></div>
+        <figcaption><b>PriceOnRequest</b><span>Im Listing ersetzt der Knopf den Warenkorb nur dort, wo Sie es eingestellt haben.</span></figcaption>
+      </figure>
+      <figure class="karte">
+        <div class="rahmen dunkel-rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/botprotection-settings.png" alt="Einstellungen des Bot-Schutzes: Honeypot, Zeitprüfung, Rate-Limit je Formular" width="754" height="785" loading="lazy"></div>
+        <figcaption><b>BotProtection</b><span>Grenzwerte je Formular einstellbar: Kontakt, Newsletter, Login.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt dunkel" id="bericht">
+  <div class="wrap bericht-in">
+    <div>
+      <span class="marke">Beispielbericht</span>
+      <h2>Ein Prüfbericht mit echten Messwerten</h2>
+      <p class="gross">
+        So sieht es aus, wenn ich einen Shop von außen prüfe. Der Bericht ist
+        veröffentlicht, nur der Name des Shops fehlt. Alle Zahlen sind gemessen,
+        nicht geschätzt.
+      </p>
+      <p><a class="textlink" href="beispiel-audit.html">Vollständigen Bericht lesen</a></p>
+    </div>
+    <div class="dokument">
+      <div class="dokument-kopf">
+        <b>SEO- und GEO-Audit</b>
+        <span>Shopware 6</span>
+        <span>20.09.2026</span>
+        <span>anonymisiert</span>
+      </div>
+      <div class="befund">
+        <span class="status ok">geprüft</span>
+        <div><b>Ladezeit 2,3 Sekunden</b><p>Sechs Fremddomains, robots.txt schließt Filterseiten sauber aus.</p></div>
+      </div>
+      <div class="befund">
+        <span class="status offen">offen</span>
+        <div><b>Shop unter zwei Adressen erreichbar</b><p>Mit und ohne www, beide mit Status 200. Die Sitemap meldet beide getrennt an.</p></div>
+      </div>
+      <div class="befund">
+        <span class="status offen">offen</span>
+        <div><b>Startseite ohne H1</b><p>Acht H2 und sechs H3 sind da, die stärkste Überschrift fehlt.</p></div>
+      </div>
+      <div class="befund">
+        <span class="status offen">offen</span>
+        <div><b>Kundenbewertungen zeigen auf die falsche Domain</b><p>Fünfstellige Zahl an Bewertungen im Markup, die Adresse darin gehört zu einem anderen Shop.</p></div>
+      </div>
+      <div class="dokument-fuss">Messung von außen, ohne Zugang zum Shop. Jeder Befund mit Lösung und Aufwand.</div>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt" id="bewertungen">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="marke">Bewertungen</span>
+      <h2>Was Kunden geschrieben haben</h2>
+    </div>
+    <div class="bewertung-in">
+      <a class="note" href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">
+        <div class="zahl">5,0<small>von 5</small></div>
+        <dl>
+          <dt>Qualität</dt><dd>5,0</dd>
+          <dt>Termintreue</dt><dd>5,0</dd>
+          <dt>Kommunikation</dt><dd>5,0</dd>
+        </dl>
+        <p class="quelle">Zwei Bewertungen, nachprüfbar im Profil auf Malt</p>
+      </a>
+      <div class="zitate">
+        <blockquote class="zitat">
+          <p>
+            „Der Umstieg lief ohne Ausfall, am nächsten Morgen konnten wir normal
+            weiterarbeiten. Besonders gefallen hat uns, dass er sich von selbst
+            meldet, wenn ihm etwas auffällt, auch wenn es nicht zum Auftrag gehört.“
+          </p>
+          <footer>Händler, JTL-Wawi und Shopware 6, Bewertung vom September 2026</footer>
+        </blockquote>
+        <blockquote class="zitat">
+          <p>
+            „Besonders hervorheben möchte ich seine schnelle Reaktionszeit, den
+            stets freundlichen Kontakt und seine strukturierte, saubere
+            Vorgehensweise.“
+          </p>
+          <footer>Geschäftsführer einer E-Commerce-Agentur, Empfehlung vom September 2026</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt papier" id="ablauf">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="marke">Ablauf</span>
+      <h2>Kein Eingriff ohne Rückweg</h2>
+      <p class="gross">Der teuerste Moment ist der, in dem ein Livesystem steht und keiner weiß, wie es vorher aussah. Darum läuft jeder Auftrag in dieser Reihenfolge.</p>
+    </div>
+    <ol class="schritte">
+      <li><span class="nr">01</span><div><b>Sie schreiben, was klemmt</b><span>Eine Mail reicht. Welches System, welche Version, was gerade nicht geht.</span></div></li>
+      <li><span class="nr">02</span><div><b>Ich prüfe und nenne einen Preis</b><span>Nach der Bestandsaufnahme Stundensatz oder Festpreis. Vorher nenne ich keine Zahl, die ich später korrigieren müsste.</span></div></li>
+      <li><span class="nr">03</span><div><b>Checkliste vor dem ersten Handgriff</b><span>Schriftlich: was passiert, in welcher Reihenfolge, wie der Rückweg aussieht.</span></div></li>
+      <li><span class="nr">04</span><div><b>Erst die Kopie, dann live</b><span>Getestet wird bis durch den Bestellvorgang. Livegang mit Sicherung.</span></div></li>
+      <li><span class="nr">05</span><div><b>Was mir nebenbei auffällt, sage ich</b><span>Auch wenn es nicht zum Auftrag gehört. Ein Kunde hat genau das in seiner Bewertung hervorgehoben.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="abschnitt dunkel kontakt" id="kontakt">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="marke">Kontakt</span>
+      <h2>Schreiben reicht</h2>
+      <p class="gross">
+        Kein Erstgespräch, kein Telefon. Schreiben Sie mir, welches System bei
+        Ihnen läuft und was nicht funktioniert. Ich antworte schriftlich und
+        sage Ihnen, ob ich der Richtige bin. Wenn nicht, sage ich auch das.
+      </p>
+    </div>
+
+    <div class="zielgruppen">
+      <div class="ziel">
+        <h3>Für Shopbetreiber</h3>
+        <p>Sie brauchen kein IT-Wissen. Sie beschreiben, was nicht geht, ich übersetze das in Arbeitsschritte und nenne vorher den Preis.</p>
+        <span class="mono">Festpreis oder Stundensatz, Angebot nach kurzer Prüfung</span>
+      </div>
+      <div class="ziel">
+        <h3>Für Agenturen</h3>
+        <p>Unterauftrag remote und schriftlich. Auf Wunsch ohne Kontakt zu Ihrem Endkunden, Ergebnisse gehen über Sie raus.</p>
+        <span class="mono">Konditionen auf Anfrage, Abrechnung monatlich</span>
+      </div>
+    </div>
+
+    <p><a class="knopf" href="mailto:m.barabanov@mbara.net?subject=Anfrage%20%C3%BCber%20mbara.net">Anfrage schreiben</a></p>
+
+    <div class="visite">
+      <img src="img/michael.jpg" alt="Michael Barabanov" width="64" height="64" loading="lazy">
+      <div>
+        <div class="name">Michael Barabanov</div>
+        <div class="zeile">Shopware und JTL, Koblenz, remote im gesamten deutschsprachigen Raum</div>
+        <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-privacy" data-i18n-html="footer.privacy">
-      <span class="fp-dot"></span>
-      // keine cookies · kein tracking · deine daten gehören dir
-    </div>
-    <div class="footer-bottom">
-      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
-      <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="blog/">Blog</a> · <a href="faq.html">FAQ</a> · <a href="hire.html">Hire Me</a></span>
-    </div>
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>© 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Weitere Seiten">
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a>
+      <a href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Malt</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
   </div>
 </footer>
 
-<script src="i18n.js"></script>
-<script src="main.js"></script>
-<script src="cat.js"></script>
-<script src="hcode.js" defer></script>
 </body>
 </html>
