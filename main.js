@@ -190,7 +190,7 @@
         `  @@h@@projects@@  → ${isEN ? 'All projects' : 'Alle Projekte'}`,
         `  @@h@@plugins@@   → Shopware Plugins`,
         `  @@h@@contact@@   → ${isEN ? 'Contact info' : 'Kontakt'}`,
-        `  @@h@@hire@@      → ${isEN ? 'Freelance inquiry' : 'Freelance anfragen'}`,
+        `  @@h@@hire@@      → ${isEN ? 'Services and enquiry' : 'Zu den Leistungen'}`,
         `  @@h@@git log@@   → ${isEN ? 'Commit history' : 'Commit-Verlauf'}`,
         `  @@h@@miso@@      → ${isEN ? 'Ask the cat what she is up to' : 'Die Katze fragen, was sie vorhat'}`,
         `  @@h@@clear@@     → ${isEN ? 'Clear terminal' : 'Terminal leeren'}`,

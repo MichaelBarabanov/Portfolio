@@ -6,11 +6,11 @@
 
   const T = {
     de: {
-      'badge.avail':          '● Freelance, nebenberuflich',
+      'badge.avail':          '● Freelance verfügbar',
       'cta.work':             'Projekte ansehen',
       'cta.hire':             'Leistungen ansehen',
       'hero.pitch':           'Migration von Shopware 5 auf 6, Plugins und Schnittstellen ohne Ausfall. Dazu technische SEO- und GEO-Audits.',
-      'about.text':           'Ich bin Michael, Fachinformatiker für Anwendungsentwicklung aus Koblenz. Ich baue Werkzeuge, die im Betrieb tatsächlich benutzt werden.<br><br>Hauptberuflich arbeite ich als Digital Process &amp; Solutions Engineer bei einem Logistikdienstleister in Mayen. Ich bin dort die einzige interne Stelle für Digitalisierung: logistische Prozesse analysieren, daraus interne Webanwendungen und Automatisierungen bauen, Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen betreuen. Technisch vor allem Python, Django, Docker und Linux.<br><br>Nebenberuflich läuft mbara.net, mein angemeldetes Kleingewerbe. Schwerpunkt sind Shopware 6 und JTL: Plugin-Entwicklung, Schnittstellen, SEO- und GEO-Audits. Vier eigene Plugins sind als Open Source veröffentlicht und laufen in produktiven Shops.<br><br>Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten Shops, Softwareentwicklung im Versicherungsumfeld an einem Vertriebstool mit über 10.000 Nutzern, Ausbildung im Bundesarchiv.<br><br>Kapazität für Freelance-Projekte: rund 10 Stunden pro Woche.',
+      'about.text':           'Ich bin Michael, Fachinformatiker für Anwendungsentwicklung aus Koblenz. Ich baue Werkzeuge, die im Betrieb tatsächlich benutzt werden.<br><br>Hauptberuflich arbeite ich als Digital Process &amp; Solutions Engineer bei einem Logistikdienstleister in Mayen. Ich bin dort die einzige interne Stelle für Digitalisierung: logistische Prozesse analysieren, daraus interne Webanwendungen und Automatisierungen bauen, Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen betreuen. Technisch vor allem Python, Django, Docker und Linux.<br><br>Unter mbara.net arbeite ich freiberuflich an Shopware 6 und JTL: Migration von Shopware 5 auf 6, Versionsupdates, Schnittstellen, Plugin-Entwicklung, dazu technische SEO- und GEO-Audits. Vier eigene Plugins sind als Open Source veröffentlicht und laufen in produktiven Shops.<br><br>Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten Shops, Softwareentwicklung im Versicherungsumfeld an einem Vertriebstool mit über 10.000 Nutzern, Ausbildung im Bundesarchiv.',
       'stack.primary':        'primär',
       'stack.skills':         'kenntnisse',
       'exp.title':            'erfahrung',
@@ -36,7 +36,7 @@
       'ref.malt.rating':      '5,0 von 5 · verifizierte Kundenbewertung auf Malt',
       'ref.malt.q1':          '"Michael hat für uns das Update unserer JTL-Wawi von 1.11.8 auf 2.0.6 vorbereitet und durchgeführt, inklusive vorheriger Kompatibilitätsprüfung.',
       'ref.malt.q2':          'Er hat das Update zuerst auf einer Kopie unserer Datenbank getestet, bevor er an unser Livesystem ging, und uns vorab eine verständliche Checkliste geschickt. Der Umstieg lief ohne Ausfall, am nächsten Morgen konnten wir normal weiterarbeiten."',
-      'ref.malt.source':      'Tour Made GmbH · JTL-Wawi Update, 09/2026',
+      'ref.malt.source':      'Händler, JTL-Wawi und Shopware 6 · Bewertung 09/2026',
       'ref.1.quote':          '"Herr Barabanov zeigt ein großes Maß an Selbstständigkeit bei der Projektarbeit und beim Aneignen neuer Technologien."',
       'ref.1.source':         'Bundesarchiv · Koblenz, 2025',
       'ref.2.quote':          '"Seine Zuverlässigkeit, sein Einsatz und seine Bereitschaft, Neues zu lernen, waren von großem Wert. Wir können ihn für zukünftige Aufgaben empfehlen."',
@@ -239,7 +239,7 @@
       'faq.q1':                'Was macht ein E-Commerce Engineer / Shopware 6 Spezialist genau?',
       'faq.a1':                'Backend-Entwicklung rund um Online-Shops: eigene Shopware 6 Plugins, API-Integrationen, Performance-Optimierung, Bugfixing und technische Anpassungen im laufenden Betrieb, von der Anforderung bis zum produktiven Go-Live.',
       'faq.q2':                'Bietest du Freelance-Projekte an und bist du aktuell verfügbar?',
-      'faq.a2':                'Ja. Ich arbeite remote und vor Ort im Raum Koblenz für Agenturen und Shop-Betreiber. Aktuelle Verfügbarkeit steht auf der <a href="hire.html">Hire-Seite</a>.',
+      'faq.a2':                'Ja. Ich arbeite remote für Agenturen und Shop-Betreiber im deutschsprachigen Raum. Was ich anbiete, steht auf der <a href="index.html">Leistungsseite</a>.',
       'faq.q3':                'Welche Shopware-Versionen unterstützt du?',
       'faq.a3':                'Schwerpunkt ist Shopware 6.6 und 6.7. Ältere 6.x-Versionen sind je nach Plugin und Projekt ebenfalls möglich, PriceOnRequest etwa läuft ab Shopware 6.1.',
       'faq.q4':                'Entwickelst du auch für JTL 5?',
@@ -251,7 +251,7 @@
       'faq.q7':                'Wie läuft die Zusammenarbeit ab?',
       'faq.a7':                'Kurzes Erstgespräch zu Umfang und Zielsetzung, Angebot mit Zeitrahmen, Umsetzung mit regelmäßigen Zwischenständen, Übergabe inklusive Dokumentation. Kommunikation läuft nach Wunsch per E-Mail, Telefon oder auf den üblichen Freelance-Plattformen.',
       'faq.q8':                'Wie kann ich dich kontaktieren?',
-      'faq.a8':                'Per E-Mail an <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>, über das Kontaktformular auf der <a href="hire.html">Hire-Seite</a> oder über <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">GitHub</a> und <a href="https://linkedin.com/in/michael-barabanov-103265357" target="_blank" rel="noopener noreferrer">LinkedIn</a>.',
+      'faq.a8':                'Per E-Mail an <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>, über das Kontaktformular auf der <a href="index.html">Leistungsseite</a> oder über <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">GitHub</a> und <a href="https://linkedin.com/in/michael-barabanov-103265357" target="_blank" rel="noopener noreferrer">LinkedIn</a>.',
 
       // CV button
       'cv.btn':               'Lebenslauf anfordern',
@@ -276,7 +276,7 @@
         '  Nebenberuf → Shopware 6 Freelancer (mbara.net)',
         '  Ausbildung → Fachinformatiker Anwendungsentwicklung',
         '  Fokus      → Python · PHP · Shopware 6 · Prozessautomatisierung',
-        '@@g@@  Status     → ● Freelance nebenberuflich, ca. 10 Std./Woche',
+        '@@g@@  Status     → ● Freelance verfügbar, Anfragen über mbara.net',
       ],
       'term.skills': [
         '@@h@@Tech Stack:',
@@ -444,11 +444,11 @@
     },
 
     en: {
-      'badge.avail':          '● Freelance, part-time',
+      'badge.avail':          '● Available for freelance',
       'cta.work':             'View Work',
       'cta.hire':             'See services',
       'hero.pitch':           'Shopware 5 to 6 migration, plugins and interfaces without downtime. Plus technical SEO and GEO audits.',
-      'about.text':           'I\'m Michael, IT specialist for application development from Koblenz, Germany. I build tools that actually get used in day to day operations.<br><br>My main role is Digital Process &amp; Solutions Engineer at a logistics provider in Mayen. I am the only internal position for digitalisation there: analysing logistics processes, building internal web applications and automations from them, maintaining interfaces between customer, logistics and IT systems. Technically mostly Python, Django, Docker and Linux.<br><br>Alongside that I run mbara.net, my registered side business. The focus is Shopware 6 and JTL: plugin development, interfaces, SEO and GEO audits. Four of my plugins are published as open source and run in production shops.<br><br>Before that: backend and fullstack at an e-commerce agency with 30+ shops launched, software development in the insurance sector on a sales tool with more than 10,000 users, apprenticeship at the German Federal Archives.<br><br>Capacity for freelance projects: around 10 hours per week.',
+      'about.text':           'I\'m Michael, IT specialist for application development from Koblenz, Germany. I build tools that actually get used in day to day operations.<br><br>My main role is Digital Process &amp; Solutions Engineer at a logistics provider in Mayen. I am the only internal position for digitalisation there: analysing logistics processes, building internal web applications and automations from them, maintaining interfaces between customer, logistics and IT systems. Technically mostly Python, Django, Docker and Linux.<br><br>Under mbara.net I work freelance on Shopware 6 and JTL: migration from Shopware 5 to 6, version updates, interfaces, plugin development, plus technical SEO and GEO audits. Four of my plugins are published as open source and run in production shops.<br><br>Before that: backend and fullstack at an e-commerce agency with 30+ shops launched, software development in the insurance sector on a sales tool with more than 10,000 users, apprenticeship at the German Federal Archives.',
 
       'stack.primary':        'core',
       'stack.skills':         'also know',
@@ -475,7 +475,7 @@
       'ref.malt.rating':      '5.0 out of 5 · verified client review on Malt',
       'ref.malt.q1':          '"Michael prepared and carried out the update of our JTL-Wawi from 1.11.8 to 2.0.6 for us, including a compatibility check beforehand.',
       'ref.malt.q2':          'He tested the update on a copy of our database first, before touching our live system, and sent us an understandable checklist in advance. The switch ran without downtime, the next morning we were able to carry on as usual."',
-      'ref.malt.source':      'Tour Made GmbH · JTL-Wawi update, 09/2026',
+      'ref.malt.source':      'Retailer, JTL-Wawi and Shopware 6 · review 09/2026',
       'ref.1.quote':          '"Michael demonstrates a high degree of independence in project work and in learning new technologies."',
       'ref.1.source':         'Bundesarchiv · Koblenz, 2025',
       'ref.2.quote':          '"His reliability, commitment and willingness to learn were of great value. We can recommend him for future tasks."',
@@ -678,7 +678,7 @@
       'faq.q1':                'What exactly does an E-Commerce Engineer / Shopware 6 specialist do?',
       'faq.a1':                'Backend development around online shops: custom Shopware 6 plugins, API integrations, performance optimization, bugfixing and technical adjustments in live operation, from requirements to production go-live.',
       'faq.q2':                'Do you take on freelance projects, and are you currently available?',
-      'faq.a2':                'Yes. I work remotely and on-site in the Koblenz area for agencies and shop owners. Current availability is listed on the <a href="hire.html">hire page</a>.',
+      'faq.a2':                'Yes. I work remotely for agencies and shop owners across the German-speaking region. What I offer is listed on the <a href="index.html">services page</a>.',
       'faq.q3':                'Which Shopware versions do you support?',
       'faq.a3':                'Main focus is Shopware 6.6 and 6.7. Older 6.x versions are possible depending on the plugin and project, PriceOnRequest, for example, runs from Shopware 6.1 onward.',
       'faq.q4':                'Do you also develop for JTL 5?',
@@ -690,7 +690,7 @@
       'faq.q7':                'How does the collaboration work?',
       'faq.a7':                'A short initial call about scope and goals, a proposal with a timeframe, implementation with regular check-ins, and handover including documentation. Communication works via email, phone, or the usual freelance platforms, whatever you prefer.',
       'faq.q8':                'How can I contact you?',
-      'faq.a8':                'By email at <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>, via the contact form on the <a href="hire.html">hire page</a>, or via <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">GitHub</a> and <a href="https://linkedin.com/in/michael-barabanov-103265357" target="_blank" rel="noopener noreferrer">LinkedIn</a>.',
+      'faq.a8':                'By email at <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>, via the contact form on the <a href="index.html">services page</a>, or via <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">GitHub</a> and <a href="https://linkedin.com/in/michael-barabanov-103265357" target="_blank" rel="noopener noreferrer">LinkedIn</a>.',
 
       // CV button
       'cv.btn':               'Request CV',
@@ -715,7 +715,7 @@
         '  Side work  → Shopware 6 freelancer (mbara.net)',
         '  Training   → IT Specialist for Application Development',
         '  Focus      → Python · PHP · Shopware 6 · process automation',
-        '@@g@@  Status     → ● Freelance part-time, approx. 10 hrs/week',
+        '@@g@@  Status     → ● Available for freelance, enquiries via mbara.net',
       ],
       'term.skills': [
         '@@h@@Tech Stack:',
