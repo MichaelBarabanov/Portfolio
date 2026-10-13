@@ -63,7 +63,7 @@
   </script>
 
   <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20261013" />
 </head>
 <body>
 
@@ -74,10 +74,9 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="nav-links">
+      <li><a href="#arbeiten" class="nav-plugins">arbeiten ✦</a></li>
       <li><a href="#about">about</a></li>
-      <li><a href="#stack">stack</a></li>
-      <li><a href="#erfahrung">erfahrung</a></li>
-      <li><a href="#plugins" class="nav-plugins">plugins ✦</a></li>
+      <li><a href="#erfahrung">werdegang</a></li>
       <li><a href="demo.html">demo projekte</a></li>
       <li><a href="blog/">blog</a></li>
       <li><a href="index.html" class="nav-hire">leistungen</a></li>
@@ -107,7 +106,7 @@
     </div>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="index.html" data-i18n="cta.hire">Leistungen ansehen</a>
-      <a class="btn btn-outline" href="#plugins" data-i18n="cta.work">View Work</a>
+      <a class="btn btn-outline" href="#arbeiten" data-i18n="cta.work">Arbeiten ansehen</a>
     </div>
   </div>
     <div class="hero-code" aria-hidden="true">
@@ -178,32 +177,147 @@ Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten
   </div>
 </section>
 
-<section id="stack">
+<section id="arbeiten">
   <div class="container">
-    <h2 class="section-title reveal-left">// stack</h2>
-    <div class="stack-group">
-      <span class="stack-group-label" data-i18n="stack.primary">primär</span>
-      <div class="tech-grid">
-        <div class="tech-item reveal" style="--brand:#787CB5"><span class="tech-badge">PHP</span><span class="tech-label">PHP</span></div>
-        <div class="tech-item reveal" style="--brand:#00758f"><span class="tech-badge">SQL</span><span class="tech-label">MySQL</span></div>
-        <div class="tech-item reveal" style="--brand:#189EFF"><span class="tech-badge">SW6</span><span class="tech-label">Shopware 6</span></div>
-        <div class="tech-item reveal" style="--brand:#A0A0A0"><span class="tech-badge">SF</span><span class="tech-label">Symfony</span></div>
-        <div class="tech-item reveal" style="--brand:#E87200"><span class="tech-badge">JTL</span><span class="tech-label">JTL</span></div>
-        <div class="tech-item reveal" style="--brand:#F7DF1E"><span class="tech-badge">JS</span><span class="tech-label">JavaScript</span></div>
-        <div class="tech-item reveal" style="--brand:#FF6C37"><span class="tech-badge">API</span><span class="tech-label">REST APIs</span></div>
-        <div class="tech-item reveal" style="--brand:#F05133"><span class="tech-badge">GIT</span><span class="tech-label">Git</span></div>
-        <div class="tech-item reveal" style="--brand:#FCC624"><span class="tech-badge">🐧</span><span class="tech-label">Linux</span></div>
-      </div>
-    </div>
-    <div class="stack-group">
-      <span class="stack-group-label stack-group-label--dim" data-i18n="stack.skills">kenntnisse</span>
-      <div class="tech-grid tech-grid--skills">
-        <div class="tech-item reveal" style="--brand:#3178C6"><span class="tech-badge">TS</span><span class="tech-label">TypeScript</span></div>
-        <div class="tech-item reveal" style="--brand:#3776AB"><span class="tech-badge">PY</span><span class="tech-label">Python</span></div>
-        <div class="tech-item reveal" style="--brand:#2496ED"><span class="tech-badge">🐳</span><span class="tech-label">Docker</span></div>
-        <div class="tech-item reveal" style="--brand:#E34F26"><span class="tech-badge">H5</span><span class="tech-label">HTML5</span></div>
-        <div class="tech-item reveal" style="--brand:#1572B6"><span class="tech-badge">CSS</span><span class="tech-label">CSS3</span></div>
-      </div>
+    <h2 class="section-title reveal-left">// arbeiten</h2>
+    <p class="arbeiten-intro reveal-left">
+      Sechs Sachen, die ich gebaut habe. Jede mit dem Problem davor, nicht mit
+      einer Funktionsliste. Was sie verbindet: Sie sagen, wenn etwas schiefgeht,
+      statt es still zu verschlucken.
+    </p>
+
+    <div class="arbeiten">
+
+      <article class="arbeit reveal">
+        <div class="arbeit-kopf">
+          <span class="arbeit-nr">01</span>
+          <div>
+            <h3 class="arbeit-titel">Dokument-Viewer im Bundesarchiv</h3>
+            <span class="arbeit-meta">Bundesarchiv Koblenz · 2023 bis 2025 · eigenverantwortlich</span>
+          </div>
+        </div>
+        <dl class="arbeit-text">
+          <dt>Problem</dt>
+          <dd>Archivgut liegt digitalisiert vor, aber die Stelle im Dokument, auf die sich ein Fundstück bezieht, war nicht direkt ansteuerbar.</dd>
+          <dt>Gebaut</dt>
+          <dd>Ein koordinatenbasierter Viewer, der eine Fundstelle als Position im Digitalisat adressiert und sie beim Öffnen direkt anspringt.</dd>
+          <dt>Ergebnis</dt>
+          <dd>Täglich im Einsatz bei mehreren Tausend Archivnutzern.</dd>
+        </dl>
+        <div class="arbeit-technik">Planung · Umsetzung · Abnahme</div>
+      </article>
+
+      <article class="arbeit reveal">
+        <div class="arbeit-kopf">
+          <span class="arbeit-nr">02</span>
+          <div>
+            <h3 class="arbeit-titel">Transkription von 100.000 Audiodateien</h3>
+            <span class="arbeit-meta">Bundesarchiv Koblenz · 2023 bis 2025</span>
+          </div>
+        </div>
+        <dl class="arbeit-text">
+          <dt>Problem</dt>
+          <dd>Ein sechsstelliger Bestand an Tonaufnahmen war nur über Metadaten auffindbar. Was gesagt wurde, stand nirgends durchsuchbar.</dd>
+          <dt>Gebaut</dt>
+          <dd>Eine Verarbeitungsstrecke, die den Bestand mit Whisper transkribiert und die Ergebnisse den Aufnahmen zuordnet.</dd>
+          <dt>Ergebnis</dt>
+          <dd>Rund 85 Prozent weniger Handarbeit gegenüber dem manuellen Weg.</dd>
+        </dl>
+        <div class="arbeit-technik">Python · Whisper · Stapelverarbeitung</div>
+      </article>
+
+      <article class="arbeit reveal">
+        <div class="arbeit-kopf">
+          <span class="arbeit-nr">03</span>
+          <div>
+            <h3 class="arbeit-titel">Vier Shopware-6-Plugins, offen einsehbar</h3>
+            <span class="arbeit-meta">eigene Arbeit · Open Source · mit Tests</span>
+          </div>
+        </div>
+        <dl class="arbeit-text">
+          <dt>Problem</dt>
+          <dd>Vier Lücken, für die es im Store nichts Passendes gab: Preis auf Anfrage im B2B, Bot-Schutz auf Anwendungsebene, Produkttexte per KI im Adminbereich, eine Baustellenseite vor dem Start.</dd>
+          <dt>Gebaut</dt>
+          <dd>Vier Erweiterungen, jede für genau ein Problem. Der Bot-Schutz schreibt zu jeder Sperre den Grund mit, statt nur zu blocken. Die KI-Erweiterung überträgt nur aggregierte Zahlen, nie IP-Adressen.</dd>
+          <dt>Ergebnis</dt>
+          <dd>Laufen in produktiven Shops. Der komplette Code steht offen, inklusive Tests und Dokumentation.</dd>
+        </dl>
+        <div class="arbeit-technik">PHP · Symfony · Shopware 6 · Twig · Vue</div>
+        <div class="arbeit-links">
+          <a class="arbeit-link" href="plugins/botprotection.html">BotProtection</a>
+          <a class="arbeit-link" href="plugins/ai-product-description.html">AiProductDescription</a>
+          <a class="arbeit-link" href="plugins/price-on-request.html">PriceOnRequest</a>
+          <a class="arbeit-link" href="plugins/coming-soon.html">ComingSoon</a>
+        </div>
+      </article>
+
+      <article class="arbeit reveal">
+        <div class="arbeit-kopf">
+          <span class="arbeit-nr">04</span>
+          <div>
+            <h3 class="arbeit-titel">Finanz-Dashboard mit Kontoauszug-Import</h3>
+            <span class="arbeit-meta">eigenes Projekt · läuft lokal</span>
+          </div>
+        </div>
+        <dl class="arbeit-text">
+          <dt>Problem</dt>
+          <dd>Einnahmen, Ausgaben und Schulden über mehrere Konten verteilt. Jede Auswertung war Handarbeit in einer Tabelle.</dd>
+          <dt>Gebaut</dt>
+          <dd>Eine Anwendung, die Kontoauszüge als PDF einliest und einsortiert. Vor dem Übernehmen steht eine Vorschau mit Salden-Prüfsumme, Doppelte werden erkannt, nichts wird automatisch gebucht. Eine Regel-Engine lernt aus den Korrekturen, die ich mache.</dd>
+          <dt>Ergebnis</dt>
+          <dd>Zwei Bankformate laufen, dazu Schulden mit festen Raten und flexibler Tilgung.</dd>
+        </dl>
+        <div class="arbeit-technik">Laravel 11 · Livewire 3 · SQLite · Docker</div>
+        <div class="arbeit-links">
+          <a class="arbeit-link" href="https://github.com/MichaelBarabanov/finanz-dashboard" target="_blank" rel="noopener noreferrer">Code ansehen</a>
+        </div>
+      </article>
+
+      <article class="arbeit reveal">
+        <div class="arbeit-kopf">
+          <span class="arbeit-nr">05</span>
+          <div>
+            <h3 class="arbeit-titel">n8n-Vorlagen, getestet statt exportiert</h3>
+            <span class="arbeit-meta">eigenes Produkt · frei und kostenpflichtig</span>
+          </div>
+        </div>
+        <dl class="arbeit-text">
+          <dt>Problem</dt>
+          <dd>Die meisten Automatisierungsvorlagen im Umlauf sind Exporte, die beim ersten Lauf an fehlender Fehlerbehandlung scheitern.</dd>
+          <dt>Gebaut</dt>
+          <dd>Vorlagen für je einen Zweck, die vor der Veröffentlichung tatsächlich durchgelaufen sind. Mit Fehlerbehandlung, nicht nur mit dem glücklichen Pfad.</dd>
+          <dt>Ergebnis</dt>
+          <dd>Vier Vorlagen veröffentlicht, zwei davon kostenpflichtig.</dd>
+        </dl>
+        <div class="arbeit-technik">n8n · Claude · Webhooks</div>
+        <div class="arbeit-links">
+          <a class="arbeit-link" href="https://github.com/MichaelBarabanov/n8n-templates" target="_blank" rel="noopener noreferrer">Vorlagen ansehen</a>
+        </div>
+      </article>
+
+      <article class="arbeit reveal">
+        <div class="arbeit-kopf">
+          <span class="arbeit-nr">06</span>
+          <div>
+            <h3 class="arbeit-titel">Diese Seite samt Katze</h3>
+            <span class="arbeit-meta">eigenes Projekt · ohne Framework</span>
+          </div>
+        </div>
+        <dl class="arbeit-text">
+          <dt>Problem</dt>
+          <dd>Eine Entwicklerseite, die ohne Baukasten auskommt, ohne fremde Skripte lädt und trotzdem etwas zeigt, das man nicht überall sieht.</dd>
+          <dt>Gebaut</dt>
+          <dd>Reines HTML, CSS und JavaScript, keine Fremdquellen, Schriften selbst gehostet. Dazu ein Terminal, das echte Befehle kennt, dazu Miso, eine Pixelkatze mit eigenem Zustand aus Hunger, Müdigkeit und Zuwendung. Sie begründet ihre Entscheidungen: <code>miso.why()</code> gibt aus, was sie gerade vorhat und warum.</dd>
+          <dt>Ergebnis</dt>
+          <dd>Die Begründung wird aus denselben Werten erzeugt, die ihr Verhalten steuern. Sie kann also nicht auseinanderlaufen.</dd>
+        </dl>
+        <div class="arbeit-technik">HTML · CSS · JavaScript · Canvas</div>
+        <div class="arbeit-links">
+          <a class="arbeit-link" href="#terminal">Terminal ausprobieren</a>
+          <a class="arbeit-link" href="https://github.com/MichaelBarabanov/Portfolio" target="_blank" rel="noopener noreferrer">Code ansehen</a>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -271,77 +385,6 @@ Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten
           <li data-i18n="exp.4.h3">Aufbau und Betreuung von Schnittstellen zwischen Kunden-, Logistik- und IT-Systemen</li>
         </ul>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="plugins">
-  <div class="container">
-    <div class="plugins-head reveal-left">
-      <h2 class="section-title" style="margin-bottom:0">// shopware plugins</h2>
-      <span class="sw-tag">Shopware Store</span>
-    </div>
-    <p class="plugins-sub reveal-left" data-i18n="plugins.sub">Professionelle Shopware 6 Plugins, entwickelt, getestet, produktionsreif.</p>
-    <div class="plugin-cards">
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin</div>
-        <h3 class="plugin-name">PriceOnRequest</h3>
-        <p class="plugin-desc" data-i18n="plugin.pr.desc">Preise auf Anfrage für B2B-Shops. Versteckt Preise und ersetzt den Warenkorb-Button durch ein individuelles Kontaktformular.</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.pr.f1">✓ Konfigurierbar per Kategorie oder Produkt</li>
-          <li data-i18n="plugin.pr.f2">✓ Custom E-Mail-Template</li>
-          <li data-i18n="plugin.pr.f3">✓ Kompatibel mit Shopware 6.4+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/price-on-request.html" data-i18n="demo.details" aria-label="Details: PriceOnRequest">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin</div>
-        <h3 class="plugin-name">ComingSoon</h3>
-        <p class="plugin-desc" data-i18n="plugin.cs.desc">Coming-Soon-Modus für Shopware 6. Countdown-Timer, E-Mail-Benachrichtigung beim Launch und vollständig anpassbares Design.</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.cs.f1">✓ Konfigurierbarer Countdown-Timer</li>
-          <li data-i18n="plugin.cs.f2">✓ E-Mail-Benachrichtigung bei Launch</li>
-          <li data-i18n="plugin.cs.f3">✓ Kompatibel mit Shopware 6.4+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/coming-soon.html" data-i18n="demo.details" aria-label="Details: ComingSoon">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin · AI</div>
-        <h3 class="plugin-name">AiProductDescription</h3>
-        <p class="plugin-desc" data-i18n="plugin.ai.desc">Generiert überzeugende Produktbeschreibungen direkt im Admin, powered by Claude (Anthropic) oder ChatGPT (OpenAI).</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.ai.f1">✓ Claude & OpenAI unterstützt</li>
-          <li data-i18n="plugin.ai.f2">✓ Deutsch & Englisch</li>
-          <li data-i18n="plugin.ai.f3">✓ Professionell / Casual / SEO-optimiert</li>
-          <li data-i18n="plugin.ai.f4">✓ Kompatibel mit Shopware 6.7+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/ai-product-description.html" data-i18n="demo.details" aria-label="Details: AiProductDescription">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="plugin-card reveal">
-        <div class="plugin-badge">SW6 Plugin · AI</div>
-        <h3 class="plugin-name">BotProtection</h3>
-        <p class="plugin-desc" data-i18n="plugin.bp.desc">Application-Layer-Schutz gegen automatisierten Missbrauch von Formularen. Honeypot, Rate-Limiting und Time-Validation, ergänzend zu Netzwerkschutz wie Cloudflare.</p>
-        <ul class="plugin-features">
-          <li data-i18n="plugin.bp.f1">✓ Honeypot, Rate-Limit & Time-Validation</li>
-          <li data-i18n="plugin.bp.f2">✓ Admin-Dashboard mit 14-Tage-Statistik</li>
-          <li data-i18n="plugin.bp.f3">✓ Optionale KI-Bedrohungsanalyse (Claude)</li>
-          <li data-i18n="plugin.bp.f4">✓ Kompatibel mit Shopware 6.7+</li>
-        </ul>
-        <div class="plugin-footer">
-          <a class="plugin-btn" href="plugins/botprotection.html" data-i18n="demo.details" aria-label="Details: BotProtection">Details ansehen →</a>
-        </div>
-      </article>
 
     </div>
   </div>
