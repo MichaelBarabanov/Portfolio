@@ -35,11 +35,13 @@
 
   /* Akzent */
   --gold: #d7a73d;         /* Akzent auf dunklem Grund: Marken, Nummern, Knopf */
-  --gold-dunkel: #8f6a12;  /* Akzent auf hellem Grund, nur für kleine Beschriftungen */
+  --gold-dunkel: #7d5c10;  /* Akzent auf hellem Grund, nur für kleine Beschriftungen */
 
-  /* Status im Bericht */
-  --ok: #2d7a4c;
-  --offen: #b06a0f;
+  /* Status im Bericht. Zwei Gruentoene, weil derselbe Wert auf hellem und
+     auf dunklem Grund nicht beidseitig lesbar ist. */
+  --ok: #2a7347;        /* auf hellem Grund */
+  --ok-hell: #5cc083;   /* auf dunklem Grund */
+  --offen: #92570c;
 
   /* Schrift */
   --sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
@@ -313,7 +315,7 @@ figure { margin: 0; }
   background: currentColor;
   animation: puls 1.8s ease-in-out infinite;
 }
-.system-status.laeuft { color: var(--ok); }
+.system-status.laeuft { color: var(--ok-hell); }
 .system-status.arbeitet { color: var(--gold); }
 @keyframes puls { 50% { opacity: .2; } }
 
@@ -506,9 +508,9 @@ figure { margin: 0; }
 }
 @keyframes haken-fuellen {
   to {
-    background-color: var(--ok);
-    border-color: var(--ok);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-color: var(--ok-hell);
+    border-color: var(--ok-hell);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='%230f1f3d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
     background-size: 13px;
     background-repeat: no-repeat;
     background-position: center;
@@ -1007,8 +1009,21 @@ a.streifen-eintrag:hover .zahl-gross { color: var(--gold-dunkel); }
 
 @media (max-width: 820px) {
   :root { --s-9: 64px; --s-8: 48px; }
-  .kopf nav { display: none; }
-  .kopf .knopf { margin-left: auto; }
+  /* Die Navigation bleibt erreichbar, sie wird waagerecht scrollbar
+     statt ausgeblendet zu werden. */
+  .kopf-in { flex-wrap: wrap; gap: var(--s-3) var(--s-4); padding-bottom: var(--s-2); }
+  .kopf .knopf { margin-left: auto; order: 2; }
+  .kopf nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: var(--s-4);
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .kopf nav::-webkit-scrollbar { display: none; }
+  .kopf nav a { white-space: nowrap; font-size: 14px; }
   .hero-in { grid-template-columns: 1fr; gap: var(--s-7); }
   .hero h1 { max-width: none; }
   .buehne { padding-left: 0; gap: var(--s-4); }
@@ -1199,9 +1214,9 @@ a.streifen-eintrag:hover .zahl-gross { color: var(--gold-dunkel); }
   .puls { display: none; }
   .system-status::before { animation: none; }
   .pruefung li::before {
-    background-color: var(--ok);
-    border-color: var(--ok);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-color: var(--ok-hell);
+    border-color: var(--ok-hell);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='%230f1f3d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
     background-size: 13px;
     background-repeat: no-repeat;
     background-position: center;
@@ -1344,3 +1359,43 @@ a.streifen-eintrag:hover .zahl-gross { color: var(--gold-dunkel); }
   .kennzahlen > div { border-right: 0; border-bottom: 1px solid var(--linie); }
   .kennzahlen > div:last-child { border-bottom: 0; }
 }
+
+/* ------------------------------------------------------------
+   Tastaturbedienung und Kleinigkeiten, die beim Durchgehen auffielen
+   ------------------------------------------------------------ */
+
+/* Sprungmarke: sichtbar nur, wenn sie den Fokus hat */
+.sprung {
+  position: absolute;
+  left: var(--s-4);
+  top: -3rem;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--gold);
+  color: var(--tinte);
+  font-weight: 600;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: top .15s ease;
+}
+.sprung:focus { top: var(--s-3); }
+
+/* Sichtbarer Fokus auf hellem wie auf dunklem Grund.
+   Vorher gab es keinen, auf Navy war die Voreinstellung des Browsers unsichtbar. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.dunkel a:focus-visible,
+.kopf a:focus-visible,
+.fuss a:focus-visible {
+  outline-color: var(--gold);
+}
+.knopf:focus-visible { outline-offset: 4px; }
+
+/* Haelt Produktnamen beim Umbruch zusammen, ohne Sonderzeichen im Text */
+.zusammen { white-space: nowrap; }
