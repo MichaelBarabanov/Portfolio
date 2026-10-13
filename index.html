@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shopware 5 auf 6 migrieren, JTL-Wawi Update | Shopware Freelancer Koblenz</title>
-<meta name="description" content="Shopware 5 auf 6 migrieren, mit Bestandsaufnahme vorab. JTL-Wawi und Shopware 6 Updates mit Kompatibilitätsprüfung vorab. Shopware Freelancer aus Koblenz, remote, Abwicklung schriftlich.">
+<title>Shopware 5 auf 6 migrieren, JTL-Wawi Update | mbara.net</title>
+<meta name="description" content="Shopware 5 auf 6 migrieren, JTL-Wawi und Shopware 6 aktualisieren. Geprüft wird zuerst auf einer Kopie. Shopware Freelancer aus Koblenz, remote.">
 <link rel="canonical" href="https://mbara.net/">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Michael Barabanov">
@@ -23,9 +23,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mbara.net/og-image.png">
 
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-mbara.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
-<link rel="stylesheet" href="mbara.css">
+<link rel="stylesheet" href="mbara.css?v=20261013e">
 
 <script type="application/ld+json">
 {
@@ -187,7 +188,7 @@
   <div class="wrap hero-in">
     <div>
       <span class="marke">Shopware Freelancer aus Koblenz, remote</span>
-      <h1>Shopware 5 auf 6 migrieren, JTL-Wawi aktualisieren. Erst auf einer Kopie, dann im Livesystem.</h1>
+      <h1>Shopware 5 auf 6 migrieren, JTL&#8209;Wawi aktualisieren. Erst auf einer Kopie, dann im Livesystem.</h1>
       <p class="gross">
         Ich bin Michael Barabanov. Über 30 Shops habe ich live gebracht,
         ohne dass ein Livesystem dabei stand. Bevor ich ein Update einspiele
@@ -206,17 +207,37 @@
       </ul>
     </div>
 
-    <div class="buehne" role="img" aria-label="Schema der Arbeitsweise: Das Livesystem bleibt unberührt, gearbeitet und geprüft wird auf einer Kopie, erst danach folgt der Livegang mit Sicherung.">
-      <div class="system system-live">
-        <div class="system-kopf"><span class="system-name">Livesystem</span><span class="system-status">unberührt</span></div>
-        <div class="system-zeilen" aria-hidden="true">
-          <i style="--b:62%"></i><i style="--b:84%"></i><i style="--b:48%"></i><i style="--b:73%"></i><i style="--b:56%"></i>
+    <div class="buehne" role="img" aria-label="Schema der Arbeitsweise: Das Livesystem läuft unberührt weiter und nimmt währenddessen Bestellungen entgegen. Geprüft und gearbeitet wird auf einer Kopie. Erst wenn dort alles durchgetestet ist, folgt der Livegang mit Sicherung, und das Livesystem steht auf der neuen Version.">
+
+      <figure class="system system-live">
+        <div class="system-kopf">
+          <span class="system-name">Livesystem</span>
+          <span class="system-status laeuft">läuft weiter</span>
         </div>
-        <div class="stempel">kein Eingriff</div>
+        <div class="version" aria-hidden="true">
+          <span class="version-beschr">JTL-Wawi</span>
+          <span class="version-fenster">
+            <b class="v-alt">1.11.8</b>
+            <b class="v-neu">2.0.6</b>
+          </span>
+        </div>
+        <div class="ticker" aria-hidden="true">
+          <span class="ticker-beschr">Bestellungen heute</span>
+          <span class="rolle"><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i></span>
+        </div>
+        <figcaption class="stempel">kein Eingriff</figcaption>
+      </figure>
+
+      <div class="buehne-pfeil" aria-hidden="true">
+        <span class="pfeil-bahn"><i class="puls"></i></span>
+        <span class="pfeil-wort">Kopie</span>
       </div>
-      <div class="buehne-pfeil" aria-hidden="true"><span>Kopie</span></div>
-      <div class="system system-kopie">
-        <div class="system-kopf"><span class="system-name">Kopie</span><span class="system-status laeuft">hier wird gearbeitet</span></div>
+
+      <figure class="system system-kopie">
+        <div class="system-kopf">
+          <span class="system-name">Kopie</span>
+          <span class="system-status arbeitet">hier wird gearbeitet</span>
+        </div>
         <ol class="pruefung" aria-hidden="true">
           <li style="--i:0">Datenbank kopiert</li>
           <li style="--i:1">Plugins gegen Zielversion geprüft</li>
@@ -224,7 +245,8 @@
           <li style="--i:3">Bestellvorgang durchgetestet</li>
           <li style="--i:4" class="ziel">Livegang mit Sicherung</li>
         </ol>
-      </div>
+      </figure>
+
       <div class="rueckweg" aria-hidden="true">Rückweg dokumentiert</div>
     </div>
   </div>

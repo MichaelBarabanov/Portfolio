@@ -1,76 +1,86 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 Nicht gefunden | Michael Barabanov</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <style>
-    :root { --bg:#0a0a0a; --surface:#111111; --border:#222222; --text:#e8e8e8; --accent:#00ff88; --muted:#666666; --red:#f85149; }
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    body {
-      background:var(--bg); color:var(--text);
-      font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-      min-height:100vh; display:flex; align-items:center; justify-content:center;
-      padding:24px;
-      background-image:
-        linear-gradient(rgba(0,255,136,.03) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(0,255,136,.03) 1px,transparent 1px);
-      background-size:52px 52px;
-    }
-    .wrap { text-align:center; max-width:480px; }
-    .term {
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:8px; overflow:hidden;
-      box-shadow:0 16px 48px rgba(0,0,0,.5);
-      margin-bottom:40px;
-    }
-    .term-bar {
-      display:flex; align-items:center; gap:8px;
-      padding:10px 16px; background:#21262d;
-      border-bottom:1px solid var(--border);
-    }
-    .dot { width:12px; height:12px; border-radius:50%; }
-    .dot.r { background:#ff5f57; }
-    .dot.y { background:#febc2e; }
-    .dot.g { background:#28c840; }
-    .term-title { margin-left:8px; font-family:monospace; font-size:13px; color:var(--muted); }
-    .term-body { padding:24px 20px; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:15px; text-align:left; line-height:1.8; }
-    .p  { color:var(--green); }
-    .e  { color:var(--red); }
-    .c  { color:var(--muted); }
-    .code { font-family:'Cascadia Code','Fira Code',monospace; font-size:clamp(56px,10vw,100px); font-weight:900; color:var(--accent); line-height:1; margin-bottom:12px; }
-    .subtitle { font-family:monospace; font-size:15px; color:var(--muted); margin-bottom:32px; }
-    .back {
-      font-family:'Cascadia Code','Fira Code',monospace; font-size:14px;
-      color:var(--text); border:1px solid var(--border);
-      padding:10px 24px; border-radius:6px; text-decoration:none;
-      display:inline-block; transition:border-color .2s,color .2s;
-    }
-    .back:hover { border-color:var(--accent); color:var(--accent); }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seite nicht gefunden | mbara.net</title>
+<meta name="description" content="Diese Adresse gibt es auf mbara.net nicht. Hier stehen die Seiten zu Migration, Updates, Schnittstellen und zum Beispielbericht.">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="favicon-mbara.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="mbara.css?v=20261013e">
 </head>
 <body>
-  <div class="wrap">
-    <div class="code">404</div>
-    <div class="term">
-      <div class="term-bar">
-        <span class="dot r"></span>
-        <span class="dot y"></span>
-        <span class="dot g"></span>
-        <span class="term-title">michael@portfolio:~</span>
-      </div>
-      <div class="term-body">
-        <div><span class="p">$ </span>cd <span class="c">$REQUESTED_PATH</span></div>
-        <div class="e">bash: cd: page not found: No such file or directory</div>
-        <div style="margin-top:12px"><span class="p">$ </span>ls /</div>
-        <div class="c">about/&nbsp; stack/&nbsp; projekte/&nbsp; plugins/&nbsp; kontakt/</div>
-        <div style="margin-top:12px"><span class="p">$ </span><span style="animation:blink 1s step-end infinite;color:var(--accent)">▋</span></div>
-      </div>
-    </div>
-    <p class="subtitle">Diese Seite existiert nicht, aber der Rest schon.</p>
-    <a class="back" href="/">← zurück zum Portfolio</a>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="index.html#leistungen">Leistungen</a>
+      <a href="index.html#plugins">Plugins</a>
+      <a href="index.html#bewertungen">Bewertungen</a>
+      <a href="index.html#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="index.html#kontakt">Anfrage schreiben</a>
   </div>
-  <style>@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}</style>
+</header>
+
+<main>
+
+<section class="unter-hero dunkel">
+  <div class="wrap">
+    <span class="pfad">Fehler 404</span>
+    <h1>Diese Adresse gibt es hier nicht</h1>
+    <p class="gross">
+      Entweder stimmt etwas am Link nicht oder die Seite ist umgezogen. Unten
+      stehen die Seiten, die es gibt.
+    </p>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <div class="inhalt">
+      <h2>Leistungen</h2>
+      <div class="weiter">
+        <a href="migration-shopware-5-auf-6.html"><b>Shopware 5 auf 6</b><span>Bestandsaufnahme vor der Migration, damit Sie Angebote beurteilen können.</span></a>
+        <a href="jtl-wawi-update.html"><b>JTL-Wawi aktualisieren</b><span>Kompatibilitätsprüfung vorab, Test auf einer Kopie, Livegang ohne Ausfall.</span></a>
+        <a href="schnittstellen.html"><b>Schnittstellen</b><span>Shop, Warenwirtschaft und Drittsysteme über REST-API verbinden.</span></a>
+        <a href="beispiel-audit.html"><b>Beispielbericht</b><span>Ein echter Prüfbericht, anonymisiert, mit gemessenen Werten.</span></a>
+      </div>
+
+      <h2>Sonst noch</h2>
+      <div class="weiter">
+        <a href="index.html"><b>Startseite</b><span>Alle Leistungen, Bewertungen und der Ablauf im Überblick.</span></a>
+        <a href="blog/"><b>Blog</b><span>Technische Beiträge zu Shopware 6, JTL und Sichtbarkeit.</span></a>
+        <a href="portfolio.html"><b>Portfolio</b><span>Werdegang, Technikstapel und eigene Projekte.</span></a>
+      </div>
+
+      <h2>Nichts dabei</h2>
+      <p>
+        Schreiben Sie mir, wonach Sie gesucht haben. Wenn ich die Seite
+        verschoben habe, schicke ich Ihnen die richtige Adresse.
+      </p>
+      <p><a class="mail-gross" href="mailto:m.barabanov@mbara.net?subject=Seite%20nicht%20gefunden">m.barabanov@mbara.net</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Weitere Seiten">
+      <a href="index.html">Start</a>
+      <a href="blog/">Blog</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

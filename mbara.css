@@ -185,7 +185,7 @@ figure { margin: 0; }
 /* ------------------------------------------------------------
    Hero
    ------------------------------------------------------------ */
-.hero { padding: var(--s-8) 0 var(--s-9); }
+.hero { padding: var(--s-7) 0 var(--s-8); }
 .hero-in {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -193,11 +193,12 @@ figure { margin: 0; }
   align-items: center;
 }
 .hero h1 {
-  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
-  line-height: 1.08;
+  font-size: clamp(1.95rem, 3.5vw, 2.95rem);
+  line-height: 1.1;
   letter-spacing: -0.025em;
   margin-bottom: var(--s-5);
-  max-width: 19ch;
+  max-width: 24ch;
+  text-wrap: balance;
 }
 .hero .gross { color: var(--hell); max-width: 52ch; }
 .hero-aktion {
@@ -243,136 +244,283 @@ figure { margin: 0; }
 }
 .hero-in { position: relative; z-index: 1; }
 
-/* Bühne: Livesystem bleibt stehen, auf der Kopie wird geprüft */
+/* ------------------------------------------------------------
+   Bühne im Hero
+   Erzählt die Arbeitsweise als Abfolge: der Shop nimmt weiter Bestellungen
+   an, parallel wird auf der Kopie geprüft, am Ende springt die Version um.
+   Alles in CSS, damit die Seite ohne JavaScript auskommt.
+
+   Taktung:   0,4 s Karten da
+              0,8 s bis 3,0 s die vier Prüfungen haken ab
+              3,6 s der Puls läuft zurück zum Livesystem
+              4,2 s die Version springt
+              4,6 s der Livegang ist abgehakt
+   ------------------------------------------------------------ */
 .buehne {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr auto 1.25fr;
+  grid-template-columns: 1fr auto 1.15fr;
   align-items: center;
-  gap: var(--s-3);
-  padding: var(--s-6) 0 var(--s-6) var(--s-4);
+  gap: var(--s-5);
+  padding: var(--s-6) 0 var(--s-7) var(--s-3);
 }
 .system {
   position: relative;
-  border-radius: 6px;
+  margin: 0;
+  border-radius: 8px;
   background: var(--tinte-2);
   border: 1px solid var(--tinte-linie);
-  box-shadow: 0 30px 60px rgba(0,0,0,.4);
+  box-shadow: 0 30px 60px rgba(0,0,0,.45);
   font-family: var(--mono);
-  overflow: hidden;
+  opacity: 0;
+  animation: karte-rein .5s ease forwards;
 }
-.system-live { transform: rotate(-2deg) translateY(10px); opacity: .85; }
-.system-kopie { transform: rotate(1deg); border-color: rgba(215,167,61,.45); }
+.system-live { transform: rotate(-1.6deg); }
+.system-kopie { transform: rotate(1.2deg); border-color: rgba(215,167,61,.5); animation-delay: .18s; }
+@keyframes karte-rein {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.system-live { animation-name: karte-rein-links; }
+.system-kopie { animation-name: karte-rein-rechts; }
+@keyframes karte-rein-links {
+  from { opacity: 0; transform: translateY(14px) rotate(0deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(-1.6deg); }
+}
+@keyframes karte-rein-rechts {
+  from { opacity: 0; transform: translateY(14px) rotate(0deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(1.2deg); }
+}
+
 .system-kopf {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: var(--s-3);
-  padding: 11px 14px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--tinte-linie);
-  font-size: 12px;
+  font-size: 12.5px;
 }
-.system-name { color: var(--hell); font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
-.system-status { color: var(--hell-2); font-size: 11px; }
-.system-status.laeuft { color: var(--gold); }
-.system-status.laeuft::before {
+.system-name { color: var(--hell); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+.system-status { font-size: 11px; color: var(--hell-2); white-space: nowrap; }
+.system-status::before {
   content: '';
   display: inline-block;
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: var(--gold);
   margin-right: 6px;
   vertical-align: 1px;
-  animation: puls 1.6s ease-in-out infinite;
+  background: currentColor;
+  animation: puls 1.8s ease-in-out infinite;
 }
-@keyframes puls { 50% { opacity: .25; } }
+.system-status.laeuft { color: var(--ok); }
+.system-status.arbeitet { color: var(--gold); }
+@keyframes puls { 50% { opacity: .2; } }
 
-/* Zeilen ohne Text, nur Balken: Daten, die man nicht lesen muss */
-.system-zeilen { padding: 16px 14px 18px; display: grid; gap: 10px; }
-.system-zeilen i {
+/* Laufende Bestellungen: zeigt, dass der Shop nebenher Geld verdient */
+.ticker { padding: 18px 18px 22px; }
+.ticker-beschr {
   display: block;
-  height: 8px;
-  width: var(--b);
-  border-radius: 2px;
-  background: linear-gradient(90deg, rgba(168,177,197,.35), rgba(168,177,197,.12));
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--hell-2);
+  margin-bottom: 6px;
 }
+.rolle {
+  display: block;
+  height: 46px;
+  overflow: hidden;
+  line-height: 46px;
+  width: 2.2em;
+}
+.rolle i {
+  display: block;
+  height: 46px;
+  font-style: normal;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+/* Der erste Eintrag zieht den ganzen Stapel nach oben */
+.rolle i:first-child {
+  animation: rollen 12s cubic-bezier(.3,.9,.3,1) infinite;
+}
+@keyframes rollen {
+  0%, 16%   { margin-top: 0; }
+  20%, 36%  { margin-top: -46px; }
+  40%, 56%  { margin-top: -92px; }
+  60%, 76%  { margin-top: -138px; }
+  80%, 100% { margin-top: -184px; }
+}
+
+/* Versionsstand, springt am Ende der Abfolge um */
+.version {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--tinte-linie);
+  font-size: 12px;
+}
+.version-beschr { color: var(--hell-2); letter-spacing: .06em; text-transform: uppercase; font-size: 10.5px; }
+.version-fenster {
+  position: relative;
+  display: block;
+  width: 80px;
+  height: 20px;
+  overflow: hidden;
+  text-align: right;
+}
+.version-fenster b {
+  position: absolute;
+  right: 0;
+  display: block;
+  width: 100%;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+.v-alt {
+  top: 0;
+  color: var(--hell-2);
+  animation: version-raus .45s ease 4.2s forwards;
+}
+.v-neu {
+  top: 20px;
+  color: var(--gold);
+  animation: version-rein .45s ease 4.2s forwards;
+}
+@keyframes version-raus { to { top: -20px; opacity: 0; } }
+@keyframes version-rein { to { top: 0; } }
 
 /* Stempel quer über dem Livesystem */
 .stempel {
   position: absolute;
-  right: -6px;
-  bottom: 14px;
-  transform: rotate(-9deg);
+  right: -12px;
+  bottom: 16px;
+  transform: rotate(-9deg) scale(.86);
+  transform-origin: center;
+  opacity: 0;
   padding: 5px 12px;
   border: 2px solid var(--gold);
   border-radius: 3px;
   color: var(--gold);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
-  background: rgba(15,31,61,.6);
-  box-shadow: 0 0 0 3px rgba(15,31,61,.6);
+  background: rgba(15,31,61,.72);
+  box-shadow: 0 0 0 3px rgba(15,31,61,.72);
+  animation: stempel-drauf .35s cubic-bezier(.2,1.4,.4,1) .9s forwards;
+}
+@keyframes stempel-drauf {
+  to { opacity: 1; transform: rotate(-9deg) scale(1); }
 }
 
-/* Pfeil zwischen den beiden Systemen */
+/* Verbindung zwischen den Systemen, der Puls läuft am Ende zurück */
 .buehne-pfeil {
   display: grid;
   justify-items: center;
-  gap: 4px;
-  color: var(--gold);
+  gap: 6px;
+}
+.pfeil-bahn {
+  position: relative;
+  display: block;
+  width: 64px;
+  height: 2px;
+  background: var(--tinte-linie);
+  border-radius: 2px;
+}
+.pfeil-bahn::after {
+  content: '';
+  position: absolute;
+  right: -1px; top: -4px;
+  border-left: 7px solid var(--tinte-linie);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.puls {
+  position: absolute;
+  top: -3px; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px 2px rgba(215,167,61,.8);
+  opacity: 0;
+  animation: puls-zurueck 1s ease 3.6s forwards;
+}
+@keyframes puls-zurueck {
+  0%   { opacity: 0; left: 56px; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { opacity: 0; left: 0; }
+}
+.pfeil-wort {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: .1em;
   text-transform: uppercase;
-}
-.buehne-pfeil::before {
-  content: '';
-  width: 40px;
-  height: 10px;
-  background: var(--gold);
-  clip-path: polygon(0 40%, 80% 40%, 80% 0, 100% 50%, 80% 100%, 80% 60%, 0 60%);
+  color: var(--gold);
 }
 
-/* Prüfliste auf der Kopie, Haken erscheinen nacheinander */
+/* Prüfliste auf der Kopie, die Haken erscheinen nacheinander */
 .pruefung {
   list-style: none;
-  padding: 10px 14px 14px;
+  padding: 16px 18px 20px;
   display: grid;
-  gap: 8px;
-  font-size: 12.5px;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.4;
   color: var(--hell);
 }
 .pruefung li {
   display: grid;
   grid-template-columns: 18px 1fr;
-  gap: 10px;
+  gap: 11px;
   align-items: center;
-  opacity: .45;
+  opacity: .4;
   animation: haken-an .4s ease forwards;
-  animation-delay: calc(.6s + var(--i) * .55s);
+  animation-delay: calc(.8s + var(--i) * .55s);
 }
 .pruefung li::before {
   content: '';
-  width: 14px; height: 14px;
+  width: 15px; height: 15px;
   border: 1.5px solid var(--hell-2);
   border-radius: 3px;
   display: block;
   box-sizing: border-box;
 }
-.pruefung li.ziel { color: var(--gold); }
-.pruefung li.ziel::before { border-color: var(--gold); border-style: dashed; }
 @keyframes haken-an { to { opacity: 1; } }
 .pruefung li:not(.ziel)::before {
   animation: haken-fuellen .3s ease forwards;
-  animation-delay: calc(.75s + var(--i) * .55s);
+  animation-delay: calc(.95s + var(--i) * .55s);
 }
 @keyframes haken-fuellen {
   to {
     background-color: var(--ok);
     border-color: var(--ok);
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-    background-size: 12px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+/* Der Livegang wird zuletzt abgehakt, in Gold */
+.pruefung li.ziel { color: var(--gold); }
+.pruefung li.ziel::before { border-color: var(--gold); border-style: dashed; }
+.pruefung li.ziel::before {
+  animation: ziel-fuellen .4s ease 4.6s forwards;
+}
+@keyframes ziel-fuellen {
+  to {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    border-style: solid;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='%230f1f3d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-size: 13px;
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -382,9 +530,9 @@ figure { margin: 0; }
 .rueckweg {
   position: absolute;
   left: var(--s-4);
-  bottom: 0;
+  bottom: 8px;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--hell-2);
@@ -858,8 +1006,8 @@ a.streifen-eintrag:hover .zahl-gross { color: var(--gold-dunkel); }
   .hero-in { grid-template-columns: 1fr; gap: var(--s-7); }
   .hero h1 { max-width: none; }
   .buehne { padding-left: 0; gap: var(--s-4); }
-  .system-live { transform: none; }
-  .system-kopie { transform: none; }
+  .system-live { animation-name: karte-rein; transform: none; }
+  .system-kopie { animation-name: karte-rein; transform: none; }
   .rueckweg { left: 0; }
   .streifen-in { grid-template-columns: 1fr 1fr; }
   .streifen-in > * { border-right: 0; margin-right: 0; padding: var(--s-4) 0; border-bottom: 1px solid var(--linie); }
@@ -874,9 +1022,11 @@ a.streifen-eintrag:hover .zahl-gross { color: var(--gold-dunkel); }
 @media (max-width: 560px) {
   body { font-size: 16px; }
   .galerie { grid-template-columns: 1fr; }
-  .buehne { grid-template-columns: 1fr; }
-  .buehne-pfeil { display: none; }
-  .system-live { display: none; }
+  .buehne { grid-template-columns: 1fr; gap: var(--s-3); }
+  .buehne-pfeil { transform: rotate(90deg); margin: var(--s-2) 0; }
+  .pfeil-wort { display: none; }
+  .rolle, .rolle i { height: 38px; line-height: 38px; }
+  .rolle i { font-size: 32px; }
   .streifen .zahl-gross { font-size: 2.2rem; }
   .plugin-liste li { grid-template-columns: 1fr; gap: 4px; }
   .streifen-in { grid-template-columns: 1fr; }
@@ -1025,12 +1175,37 @@ a.streifen-eintrag:hover .zahl-gross { color: var(--gold-dunkel); }
   .skizze .fluss { animation: none; }
 }
 
-/* Hero-Bühne etwas größer, nur auf breiten Fenstern */
-.pruefung { font-size: 13.5px; gap: 10px; padding: 14px 16px 18px; }
-.system-zeilen { padding: 20px 16px 26px; gap: 12px; }
+/* Auf breiten Fenstern bekommt die Bühne mehr Platz */
 @media (min-width: 821px) {
-  .hero-in { grid-template-columns: 1fr 1fr; }
-  .buehne { grid-template-columns: 1fr auto 1.3fr; }
+  .hero-in { grid-template-columns: 1fr 1.02fr; }
+}
+
+/* Bewegung nur, wenn sie gewünscht ist. Ohne Bewegung steht das Ergebnis
+   sofort da: alles abgehakt, Version umgesprungen, Stempel drauf. */
+@media (prefers-reduced-motion: reduce) {
+  .system, .stempel, .pruefung li { opacity: 1 !important; }
+  .system-live { transform: rotate(-1.6deg) !important; }
+  .system-kopie { transform: rotate(1.2deg) !important; }
+  .stempel { transform: rotate(-9deg) scale(1) !important; }
+  .rolle i:not(:last-child) { display: none; }
+  .v-alt { display: none; }
+  .v-neu { top: 0 !important; }
+  .puls { display: none; }
+  .system-status::before { animation: none; }
+  .pruefung li::before {
+    background-color: var(--ok);
+    border-color: var(--ok);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .pruefung li.ziel::before {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    border-style: solid;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='%230f1f3d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  }
 }
 
 /* ------------------------------------------------------------
