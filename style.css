@@ -97,7 +97,10 @@ body::before {
 .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
 
 /* ── CONTAINER ── */
-.container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+/* Breite Flaeche, schmale Textspalten. Lesbarkeit kommt ueber die
+   Zeilenlaenge der Textbloecke, nicht ueber eine enge Seite. */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 680px) { .container { padding: 0 20px; } }
 
 /* ── HERO ── */
 #hero {
@@ -1152,125 +1155,203 @@ footer a:hover { color: var(--accent); }
   .spec-table th, .spec-table td { padding: 10px 12px; }
 }
 
+
 /* ─────────────────────────────────────────────────────────────
-   ARBEITEN
-   Faelle statt Faehigkeitenliste. Jede Karte nennt das Problem
-   davor, nicht nur das Ergebnis. Technik steht am Fall, nicht
-   als eigene Wand.
+   ARBEITEN ALS ZEITSTRAHL
+   Waagerechte Bahn, Titel und Jahr immer sichtbar, Einzelheiten
+   beim Darueberfahren oder bei Tastaturfokus. Ohne JavaScript.
+   Auf schmalen Fenstern wird daraus eine Liste untereinander,
+   dort steht alles offen, weil es kein Darueberfahren gibt.
    ───────────────────────────────────────────────────────────── */
 .arbeiten-intro {
   max-width: 62ch;
   color: #bbb;
   font-size: 15.5px;
   line-height: 1.75;
-  margin: -16px 0 40px;
+  margin: -16px 0 44px;
 }
-.arbeiten {
-  display: grid;
-  gap: 20px;
+
+.zeitstrahl {
+  /* bricht bewusst aus der Spalte aus und nutzt die volle Breite */
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 0 34px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
-.arbeit {
+.zeitstrahl::-webkit-scrollbar { height: 8px; }
+.zeitstrahl::-webkit-scrollbar-track { background: transparent; }
+.zeitstrahl::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.zeitstrahl:hover::-webkit-scrollbar-thumb { background: #333; }
+
+.zeitstrahl-bahn {
   position: relative;
-  padding: 26px 28px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  width: max-content;
+  padding: 44px max(32px, calc((100vw - 1280px) / 2 + 32px)) 0;
+}
+.zeitstrahl-linie {
+  position: absolute;
+  left: 0; right: 0; top: 52px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 6%, var(--border) 94%, transparent);
+}
+
+.station {
+  position: relative;
+  flex: 0 0 auto;
+  width: 290px;
+  padding: 26px 24px 24px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  transition: border-color .2s, transform .2s, box-shadow .2s;
+  scroll-snap-align: center;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color .2s, transform .2s, box-shadow .2s, width .25s ease;
 }
-.arbeit:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 28px rgba(0,0,0,.35);
+.station-punkt {
+  position: absolute;
+  left: 24px; top: -36px;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  transition: border-color .2s, box-shadow .2s, background .2s;
 }
-.arbeit-kopf {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 18px;
-  align-items: baseline;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid var(--border);
-}
-.arbeit-nr {
+.station-jahr {
+  display: block;
   font-family: 'Cascadia Code','Fira Code',monospace;
-  font-size: 13px;
+  font-size: 12px;
   color: var(--accent);
-  opacity: .7;
+  opacity: .75;
+  margin-bottom: 10px;
 }
-.arbeit-titel {
-  font-size: 19px;
+.station-titel {
+  font-size: 18px;
   font-weight: 600;
-  color: var(--text);
-  margin: 0 0 4px;
   line-height: 1.3;
+  margin: 0 0 6px;
+  color: var(--text);
 }
-.arbeit-meta {
+.station-nr {
   font-family: 'Cascadia Code','Fira Code',monospace;
-  font-size: 12.5px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-right: 10px;
+  vertical-align: 2px;
+}
+.station-ort {
+  display: block;
+  font-family: 'Cascadia Code','Fira Code',monospace;
+  font-size: 12px;
   color: var(--muted);
 }
 
-/* Problem, Gebaut, Ergebnis als Beschreibungsliste */
-.arbeit-text {
+/* Einzelheiten, zusammengeklappt bis zum Darueberfahren */
+.station-detail {
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 10px 20px;
-  margin: 0;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows .28s ease, opacity .2s ease, margin-top .28s ease;
+  margin-top: 0;
 }
-.arbeit-text dt {
+.station-detail > * { overflow: hidden; }
+.station:hover,
+.station:focus-visible,
+.station:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 10px 34px rgba(0,0,0,.45);
+  transform: translateY(-4px);
+  z-index: 2;
+}
+.station:hover .station-punkt,
+.station:focus-visible .station-punkt,
+.station:focus-within .station-punkt {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--glow);
+}
+.station:hover .station-detail,
+.station:focus-visible .station-detail,
+.station:focus-within .station-detail {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 18px;
+}
+
+.station-detail dl {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 2px;
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.station-detail dt {
   font-family: 'Cascadia Code','Fira Code',monospace;
-  font-size: 11.5px;
+  font-size: 10.5px;
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--accent);
   opacity: .8;
-  padding-top: 3px;
+  margin-top: 12px;
 }
-.arbeit-text dd {
+.station-detail dt:first-child { margin-top: 0; }
+.station-detail dd {
   margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #ccc;
-}
-.arbeit-text code {
-  font-family: 'Cascadia Code','Fira Code',monospace;
   font-size: 13.5px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 1px 6px;
-  color: var(--accent);
+  line-height: 1.6;
+  color: #bbb;
 }
-
-.arbeit-technik {
-  margin-top: 20px;
-  padding-top: 16px;
+.station-technik {
+  display: block;
+  margin-top: 16px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
   font-family: 'Cascadia Code','Fira Code',monospace;
-  font-size: 12.5px;
+  font-size: 11.5px;
   color: var(--muted);
 }
-.arbeit-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-  margin-top: 14px;
-}
-.arbeit-link {
+.station-ziel {
+  display: block;
+  margin-top: 12px;
   font-family: 'Cascadia Code','Fira Code',monospace;
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color .15s;
 }
-.arbeit-link:hover { border-bottom-color: var(--accent); }
-.arbeit-link::before { content: '→ '; opacity: .6; }
+.station-ziel::before { content: '→ '; opacity: .6; }
 
-@media (max-width: 720px) {
-  .arbeit { padding: 22px 20px; }
-  .arbeit-kopf { grid-template-columns: 1fr; gap: 6px; }
-  .arbeit-text { grid-template-columns: 1fr; gap: 4px 0; }
-  .arbeit-text dt { padding-top: 12px; }
-  .arbeit-text dt:first-child { padding-top: 0; }
+.zeitstrahl-hinweis {
+  font-family: 'Cascadia Code','Fira Code',monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* Schmale Fenster: Liste statt Bahn, alles offen */
+@media (max-width: 900px) {
+  .zeitstrahl { overflow: visible; padding-bottom: 0; }
+  .zeitstrahl-bahn {
+    flex-direction: column;
+    width: auto;
+    gap: 16px;
+    padding: 0 32px;
+  }
+  .zeitstrahl-linie { display: none; }
+  .station { width: auto; }
+  .station-punkt { display: none; }
+  .station-detail { grid-template-rows: 1fr; opacity: 1; margin-top: 18px; }
+  .station:hover { transform: none; }
+  .zeitstrahl-hinweis { display: none; }
+}
+@media (max-width: 680px) {
+  .zeitstrahl-bahn { padding: 0 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .station, .station-detail { transition: none; }
 }
