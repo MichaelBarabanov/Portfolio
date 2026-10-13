@@ -1,6 +1,6 @@
 # Michael Barabanov
 
-> Shopware- und JTL-Entwickler aus Koblenz, arbeitet remote im gesamten deutschsprachigen Raum. Schwerpunkte: Migration von Shopware 5 auf Shopware 6, Versionsupdates für JTL-Wawi, JTL-Shop 5 und Shopware 6 mit vorheriger Kompatibilitätsprüfung, Testsysteme mit Übernahme echter Daten, Schnittstellen über REST-API, Plugin-Entwicklung sowie technische SEO- und GEO-Audits. Arbeitsweise: geprüft wird immer zuerst auf einer Kopie, der Rückweg steht vorher schriftlich fest. Abwicklung schriftlich, kein Termin nötig. Über 30 Shops live gebracht, 5,0 von 5 auf Malt, vier eigene Plugins als Open Source.
+> Shopware- und JTL-Entwickler aus Koblenz, arbeitet remote im gesamten deutschsprachigen Raum. Schwerpunkte: Migration von Shopware 5 auf Shopware 6, Versionsupdates für JTL-Wawi, JTL-Shop 5 und Shopware 6 mit vorheriger Kompatibilitätsprüfung, Testsysteme mit Übernahme echter Daten, Schnittstellen über REST-API, Plugin-Entwicklung sowie technische SEO- und GEO-Audits. Arbeitsweise: geprüft wird immer zuerst auf einer Kopie, der Rückweg steht vorher schriftlich fest. Abwicklung schriftlich, kein Termin nötig. Über 30 Shops betreut, vom Livegang bis zu größeren Updates. 5,0 von 5 auf Malt, vier eigene Plugins als Open Source.
 
 ## Leistungen
 
