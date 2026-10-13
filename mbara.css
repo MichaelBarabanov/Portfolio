@@ -328,15 +328,21 @@ figure { margin: 0; }
   margin-bottom: 6px;
 }
 .rolle {
+  /* Zeilenhoehe als Variable: die Rollweite leitet sich davon ab, damit
+     Schriftgroesse und Schrittweite nicht auseinanderlaufen koennen.
+     JetBrains Mono braucht rund das 1,33-fache der Schriftgroesse. */
+  --zh: 56px;
   display: block;
-  height: 46px;
+  height: var(--zh);
+  /* Der Kasten nimmt die volle Breite, beschnitten wird nur senkrecht.
+     Keine Breitenangabe in em: die bezoege sich auf die Schriftgroesse
+     des Kastens, nicht auf die der Ziffern. */
   overflow: hidden;
-  line-height: 46px;
-  width: 2.2em;
+  line-height: var(--zh);
 }
 .rolle i {
   display: block;
-  height: 46px;
+  height: var(--zh);
   font-style: normal;
   font-size: 40px;
   font-weight: 500;
@@ -349,10 +355,10 @@ figure { margin: 0; }
 }
 @keyframes rollen {
   0%, 16%   { margin-top: 0; }
-  20%, 36%  { margin-top: -46px; }
-  40%, 56%  { margin-top: -92px; }
-  60%, 76%  { margin-top: -138px; }
-  80%, 100% { margin-top: -184px; }
+  20%, 36%  { margin-top: calc(var(--zh) * -1); }
+  40%, 56%  { margin-top: calc(var(--zh) * -2); }
+  60%, 76%  { margin-top: calc(var(--zh) * -3); }
+  80%, 100% { margin-top: calc(var(--zh) * -4); }
 }
 
 /* Versionsstand, springt am Ende der Abfolge um */
@@ -1025,8 +1031,8 @@ a.streifen-eintrag:hover .zahl-gross { color: var(--gold-dunkel); }
   .buehne { grid-template-columns: 1fr; gap: var(--s-3); }
   .buehne-pfeil { transform: rotate(90deg); margin: var(--s-2) 0; }
   .pfeil-wort { display: none; }
-  .rolle, .rolle i { height: 38px; line-height: 38px; }
-  .rolle i { font-size: 32px; }
+  .rolle { --zh: 48px; }
+  .rolle i { font-size: 34px; }
   .streifen .zahl-gross { font-size: 2.2rem; }
   .plugin-liste li { grid-template-columns: 1fr; gap: 4px; }
   .streifen-in { grid-template-columns: 1fr; }
