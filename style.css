@@ -1379,3 +1379,52 @@ footer a:hover { color: var(--accent); }
 }
 .timeline-highlights a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
 .timeline-highlights a:hover { border-bottom-color: var(--accent); }
+
+/* ─────────────────────────────────────────────────────────────
+   PROJEKTSEITEN
+   ───────────────────────────────────────────────────────────── */
+.projekt-text { max-width: 70ch; }
+.projekt-text h2 {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 44px 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.projekt-text h2:first-child { margin-top: 0; }
+.projekt-text p { color: #ccc; font-size: 15.5px; line-height: 1.8; margin-bottom: 16px; }
+.projekt-text ul { list-style: none; padding: 0; margin: 0 0 16px; }
+.projekt-text li {
+  position: relative;
+  padding: 9px 0 9px 24px;
+  border-bottom: 1px solid var(--border);
+  color: #ccc;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.projekt-text li::before {
+  content: '—';
+  position: absolute; left: 0; top: 9px;
+  color: var(--accent); opacity: .7;
+  font-family: 'Cascadia Code','Fira Code',monospace; font-size: 12px;
+}
+
+.projekt-weiter {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 8px;
+}
+.projekt-karte {
+  display: block;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+.projekt-karte:hover { border-color: var(--accent); transform: translateY(-3px); }
+.projekt-karte b { display: block; color: var(--text); font-size: 16px; margin-bottom: 6px; }
+.projekt-karte span { color: var(--muted); font-size: 14px; line-height: 1.6; }

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>100.000 Audiodateien transkribiert | Michael Barabanov</title>
+  <meta name="description" content="Über 100.000 Tonaufnahmen mit Whisper transkribiert und durchsuchbar gemacht. Rund 85 Prozent weniger Handarbeit, gemessen." />
+  <link rel="canonical" href="https://mbara.net/projekte/transkription-tonbestand-bundesarchiv" />
+
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://mbara.net/projekte/transkription-tonbestand-bundesarchiv" />
+  <meta property="og:title"       content="Transkription eines Tonbestands mit Whisper" />
+  <meta property="og:description" content="Über 100.000 Tonaufnahmen mit Whisper transkribiert und durchsuchbar gemacht. Rund 85 Prozent weniger Handarbeit, gemessen." />
+  <meta property="og:image"       content="https://mbara.net/og-image.png" />
+  <meta property="og:locale"      content="de_DE" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:image"      content="https://mbara.net/og-image.png" />
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#00ff88">
+
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
+  <link rel="stylesheet" href="../style.css?v=20261014f" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Transkription eines Tonbestands mit Whisper",
+    "about": "Über 100.000 Tonaufnahmen mit Whisper transkribiert und durchsuchbar gemacht. Rund 85 Prozent weniger Handarbeit, gemessen.",
+    "url": "https://mbara.net/projekte/transkription-tonbestand-bundesarchiv",
+    "creator": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net/" },
+    "inLanguage": "de"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Portfolio", "item": "https://mbara.net/portfolio" },
+      { "@type": "ListItem", "position": 2, "name": "Arbeiten", "item": "https://mbara.net/portfolio#arbeiten" },
+      { "@type": "ListItem", "position": 3, "name": "Transkription eines Tonbestands mit Whisper", "item": "https://mbara.net/projekte/transkription-tonbestand-bundesarchiv" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="../portfolio.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../portfolio.html#arbeiten">arbeiten</a></li>
+      <li><a href="../portfolio.html">portfolio</a></li>
+      <li><a href="../index.html">leistungen</a></li>
+      <li><a href="../blog/">blog</a></li>
+    </ul>
+    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
+      <span class="lo active" id="lang-de">DE</span>
+      <span class="lang-sep">/</span>
+      <span class="lo" id="lang-en">EN</span>
+    </button>
+  </div>
+</nav>
+
+<main>
+<section class="product-hero">
+  <div class="container">
+    <div class="product-crumb reveal-left"><a href="../portfolio.html#arbeiten">← alle arbeiten</a></div>
+
+    <div class="product-badges reveal-left">
+      <span class="product-badge product-badge--tool">2023 bis 2025</span>
+      <span class="product-badge product-badge--ai">Whisper</span>
+      <span class="product-badge product-badge--php">Python</span>
+    </div>
+
+    <h1 class="product-h1 reveal-left">100.000 Audiodateien transkribiert</h1>
+    <p class="product-pitch reveal-left">Ein Tonbestand im sechsstelligen Bereich, auffindbar nur über Metadaten. Mit Whisper transkribiert und damit über den Inhalt durchsuchbar gemacht.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="projekt-text reveal">
+      <h2>Das Problem</h2>
+      <p>
+        Ein Bestand von über 100.000 Tonaufnahmen war nur über seine Metadaten
+        auffindbar, also über Titel, Datum und Signatur. Was in den Aufnahmen
+        gesagt wurde, stand nirgends durchsuchbar.
+      </p>
+      <p>
+        Darunter sind Dokumentationen, die länger als eine Stunde laufen. Wer
+        eine bestimmte Aussage suchte, musste sie anhören.
+      </p>
+
+      <h2>Was ich gebaut habe</h2>
+      <p>
+        Eine Verarbeitungsstrecke auf einem Server, die den Bestand mit Whisper
+        transkribiert und die Ergebnisse wieder den jeweiligen Aufnahmen
+        zuordnet. Aus Ton wird damit Text, der sich durchsuchen lässt.
+      </p>
+      <p>
+        Der Durchlauf über den gesamten Bestand hat entsprechend lange gedauert.
+        Bei Aufnahmen dieser Länge ist die Laufzeit allerdings zweitrangig, weil
+        sie einmal anfällt und danach jede Suche davon profitiert.
+      </p>
+
+      <h2>Was dabei herauskam</h2>
+      <ul>
+        <li>Rund 85 Prozent weniger Handarbeit gegenüber dem manuellen Weg, gemessen, nicht geschätzt</li>
+        <li>Der Bestand ist über den Inhalt durchsuchbar, nicht mehr nur über Metadaten</li>
+      </ul>
+
+      <h2>Womit</h2>
+      <p>
+        Python und Whisper, als Stapelverarbeitung auf einem Server.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="page-tag reveal-left">// weitere arbeiten</div>
+    <div class="projekt-weiter reveal">
+      <a class="projekt-karte" href="dokument-viewer-bundesarchiv.html">
+        <b>Dokument-Viewer</b><span>Eine Fundstelle als Koordinate adressieren, statt ein Dokument zu öffnen und zu suchen.</span>
+      </a>
+      <a class="projekt-karte" href="../portfolio.html#arbeiten">
+        <b>Alle Arbeiten</b><span>Sechs Projekte als Zeitstrahl, jedes mit dem Problem davor.</span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-bottom">
+    <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
+    <span><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a> · <a href="../portfolio.html">Portfolio</a> · <a href="../index.html">Leistungen</a></span>
+  </div>
+</footer>
+
+<script src="../i18n.js?v=20261014b"></script>
+<script src="../main.js?v=20261014"></script>
+<script src="../cat.js?v=20261012"></script>
+</body>
+</html>

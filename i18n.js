@@ -6,6 +6,8 @@
 
   const T = {
     de: {
+      'arb.1.z':               'Projekt ansehen',
+      'arb.2.z':               'Projekt ansehen',
       'vk.role':               'Shopware- und JTL-Entwickler',
       'arb.title':               'arbeiten',
       'arb.intro':               'Sechs Sachen, die ich gebaut habe. Jede mit dem Problem davor, nicht mit einer Funktionsliste. Was sie verbindet: Sie sagen, wenn etwas schiefgeht, statt es still zu verschlucken.',
@@ -498,6 +500,8 @@
     },
 
     en: {
+      'arb.1.z':               'See the project',
+      'arb.2.z':               'See the project',
       'vk.role':               'Shopware and JTL developer',
       'arb.title':               'work',
       'arb.intro':               'Six things I built. Each one with the problem that came first, not with a feature list. What they share: they speak up when something goes wrong instead of swallowing it quietly.',

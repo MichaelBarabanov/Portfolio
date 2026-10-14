@@ -99,6 +99,18 @@
 
   <!-- Portfolio und Nebenseiten -->
   <url>
+    <loc>https://mbara.net/projekte/dokument-viewer-bundesarchiv</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mbara.net/projekte/transkription-tonbestand-bundesarchiv</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://mbara.net/portfolio</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
