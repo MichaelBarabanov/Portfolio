@@ -63,7 +63,7 @@
   </script>
 
   <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
-  <link rel="stylesheet" href="style.css?v=20261014" />
+  <link rel="stylesheet" href="style.css?v=20261014e" />
 </head>
 <body>
 
@@ -190,104 +190,130 @@ Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten
   <div class="zeitstrahl reveal">
     <div class="zeitstrahl-bahn">
       <div class="zeitstrahl-linie" aria-hidden="true"></div>
-      <div class="station" tabindex="0">
-        <span class="station-punkt" aria-hidden="true"></span>
-        <span class="station-jahr">2023 bis 2025</span>
-        <h3 class="station-titel"><span class="station-nr">01</span>Dokument-Viewer</h3>
-        <span class="station-ort">Bundesarchiv Koblenz</span>
-        <div class="station-detail">
-          <dl>
-            <dt>Problem</dt><dd>Archivgut liegt digitalisiert vor, aber die Stelle im Dokument, auf die sich ein Fundstück bezieht, war nicht direkt ansteuerbar.</dd>
-            <dt>Gebaut</dt><dd>Ein koordinatenbasierter Viewer, der eine Fundstelle als Position im Digitalisat adressiert und sie beim Öffnen direkt anspringt.</dd>
-            <dt>Ergebnis</dt><dd>Täglich im Einsatz bei mehreren Tausend Archivnutzern.</dd>
-          </dl>
-          <span class="station-technik">Planung · Umsetzung · Abnahme</span>
+      <div class="station-platz">
+        <div class="station" tabindex="0">
+          <span class="station-jahr">2023 bis 2025</span>
+          <h3 class="station-titel"><span class="station-nr">01</span>Dokument-Viewer</h3>
+          <span class="station-ort">Bundesarchiv Koblenz</span>
+          <div class="station-detail">
+            <div class="station-detail-in">
+              <dl>
+                <dt>Problem</dt><dd>Die Stelle im Digitalisat, auf die sich ein Fundstück bezieht, war nicht direkt ansteuerbar.</dd>
+                <dt>Gebaut</dt><dd>Einen Viewer, der eine Fundstelle als Koordinate adressiert und sie beim Öffnen anspringt.</dd>
+                <dt>Ergebnis</dt><dd>Täglich im Einsatz bei mehreren Tausend Archivnutzern.</dd>
+              </dl>
+              <span class="station-technik">Planung · Umsetzung · Abnahme</span>
+            </div>
+          </div>
         </div>
+        <span class="station-punkt" aria-hidden="true"></span>
       </div>
 
-      <div class="station" tabindex="0">
-        <span class="station-punkt" aria-hidden="true"></span>
-        <span class="station-jahr">2023 bis 2025</span>
-        <h3 class="station-titel"><span class="station-nr">02</span>100.000 Audiodateien transkribiert</h3>
-        <span class="station-ort">Bundesarchiv Koblenz</span>
-        <div class="station-detail">
-          <dl>
-            <dt>Problem</dt><dd>Ein sechsstelliger Bestand an Tonaufnahmen war nur über Metadaten auffindbar. Was gesagt wurde, stand nirgends durchsuchbar.</dd>
-            <dt>Gebaut</dt><dd>Eine Verarbeitungsstrecke, die den Bestand mit Whisper transkribiert und die Ergebnisse den Aufnahmen zuordnet.</dd>
-            <dt>Ergebnis</dt><dd>Rund 85 Prozent weniger Handarbeit gegenüber dem manuellen Weg.</dd>
-          </dl>
-          <span class="station-technik">Python · Whisper · Stapelverarbeitung</span>
+      <div class="station-platz">
+        <div class="station" tabindex="0">
+          <span class="station-jahr">2023 bis 2025</span>
+          <h3 class="station-titel"><span class="station-nr">02</span>100.000 Audiodateien transkribiert</h3>
+          <span class="station-ort">Bundesarchiv Koblenz</span>
+          <div class="station-detail">
+            <div class="station-detail-in">
+              <dl>
+                <dt>Problem</dt><dd>Ein sechsstelliger Bestand an Tonaufnahmen war nur über Metadaten auffindbar, nicht über den Inhalt.</dd>
+                <dt>Gebaut</dt><dd>Eine Strecke, die den Bestand mit Whisper transkribiert und den Aufnahmen zuordnet.</dd>
+                <dt>Ergebnis</dt><dd>Rund 85 Prozent weniger Handarbeit gegenüber dem manuellen Weg.</dd>
+              </dl>
+              <span class="station-technik">Python · Whisper · Stapelverarbeitung</span>
+            </div>
+          </div>
         </div>
+        <span class="station-punkt" aria-hidden="true"></span>
       </div>
 
-      <a class="station station--link" href="plugins/botprotection.html">
+      <div class="station-platz">
+        <a class="station station--link" href="plugins/botprotection.html">
+          <span class="station-jahr">seit 2026</span>
+          <h3 class="station-titel"><span class="station-nr">03</span>Vier Shopware-6-Plugins</h3>
+          <span class="station-ort">eigene Arbeit, Open Source</span>
+          <div class="station-detail">
+            <div class="station-detail-in">
+              <dl>
+                <dt>Problem</dt><dd>Vier Lücken ohne passende Erweiterung im Store: Preis auf Anfrage, Bot-Schutz, KI-Produkttexte, Baustellenseite.</dd>
+                <dt>Gebaut</dt><dd>Vier Erweiterungen, jede für genau ein Problem. Der Bot-Schutz schreibt zu jeder Sperre den Grund mit, statt nur zu blocken.</dd>
+                <dt>Ergebnis</dt><dd>Laufen in produktiven Shops, Code offen, mit Tests.</dd>
+              </dl>
+              <span class="station-technik">PHP · Symfony · Shopware 6 · Twig · Vue</span>
+              <span class="station-ziel">Zu den Plugins</span>
+            </div>
+          </div>
+        </a>
         <span class="station-punkt" aria-hidden="true"></span>
-        <span class="station-jahr">seit 2026</span>
-        <h3 class="station-titel"><span class="station-nr">03</span>Vier Shopware-6-Plugins</h3>
-        <span class="station-ort">eigene Arbeit, Open Source</span>
-        <div class="station-detail">
-          <dl>
-            <dt>Problem</dt><dd>Vier Lücken, für die es im Store nichts Passendes gab: Preis auf Anfrage im B2B, Bot-Schutz auf Anwendungsebene, Produkttexte per KI im Adminbereich, eine Baustellenseite vor dem Start.</dd>
-            <dt>Gebaut</dt><dd>Vier Erweiterungen, jede für genau ein Problem. Der Bot-Schutz schreibt zu jeder Sperre den Grund mit, statt nur zu blocken. Die KI-Erweiterung überträgt nur aggregierte Zahlen, nie IP-Adressen.</dd>
-            <dt>Ergebnis</dt><dd>Laufen in produktiven Shops. Der Code steht offen, inklusive Tests und Dokumentation.</dd>
-          </dl>
-          <span class="station-technik">PHP · Symfony · Shopware 6 · Twig · Vue</span>
-        <span class="station-ziel">Zu den Plugins</span>
-        </div>
-      </a>
+      </div>
 
-      <a class="station station--link" href="https://github.com/MichaelBarabanov/finanz-dashboard" target="_blank" rel="noopener noreferrer">
+      <div class="station-platz">
+        <a class="station station--link" href="https://github.com/MichaelBarabanov/finanz-dashboard" target="_blank" rel="noopener noreferrer">
+          <span class="station-jahr">2026</span>
+          <h3 class="station-titel"><span class="station-nr">04</span>Finanz-Dashboard</h3>
+          <span class="station-ort">eigenes Projekt</span>
+          <div class="station-detail">
+            <div class="station-detail-in">
+              <dl>
+                <dt>Problem</dt><dd>Einnahmen, Ausgaben und Schulden über mehrere Konten verteilt, jede Auswertung Handarbeit.</dd>
+                <dt>Gebaut</dt><dd>Liest Kontoauszüge als PDF ein. Vorschau mit Salden-Prüfsumme, Doppelte werden erkannt, nichts wird automatisch gebucht. Die Regel-Engine lernt aus Korrekturen.</dd>
+                <dt>Ergebnis</dt><dd>Zwei Bankformate, dazu Raten und flexible Tilgung.</dd>
+              </dl>
+              <span class="station-technik">Laravel 11 · Livewire 3 · SQLite · Docker</span>
+              <span class="station-ziel">Code ansehen</span>
+            </div>
+          </div>
+        </a>
         <span class="station-punkt" aria-hidden="true"></span>
-        <span class="station-jahr">2026</span>
-        <h3 class="station-titel"><span class="station-nr">04</span>Finanz-Dashboard</h3>
-        <span class="station-ort">eigenes Projekt</span>
-        <div class="station-detail">
-          <dl>
-            <dt>Problem</dt><dd>Einnahmen, Ausgaben und Schulden über mehrere Konten verteilt. Jede Auswertung war Handarbeit in einer Tabelle.</dd>
-            <dt>Gebaut</dt><dd>Liest Kontoauszüge als PDF ein und sortiert sie. Vor dem Übernehmen steht eine Vorschau mit Salden-Prüfsumme, Doppelte werden erkannt, nichts wird automatisch gebucht. Eine Regel-Engine lernt aus meinen Korrekturen.</dd>
-            <dt>Ergebnis</dt><dd>Zwei Bankformate laufen, dazu Schulden mit festen Raten und flexibler Tilgung.</dd>
-          </dl>
-          <span class="station-technik">Laravel 11 · Livewire 3 · SQLite · Docker</span>
-        <span class="station-ziel">Code ansehen</span>
-        </div>
-      </a>
+      </div>
 
-      <a class="station station--link" href="https://github.com/MichaelBarabanov/n8n-templates" target="_blank" rel="noopener noreferrer">
+      <div class="station-platz">
+        <a class="station station--link" href="https://github.com/MichaelBarabanov/n8n-templates" target="_blank" rel="noopener noreferrer">
+          <span class="station-jahr">2026</span>
+          <h3 class="station-titel"><span class="station-nr">05</span>n8n-Vorlagen</h3>
+          <span class="station-ort">eigenes Produkt</span>
+          <div class="station-detail">
+            <div class="station-detail-in">
+              <dl>
+                <dt>Problem</dt><dd>Die meisten Vorlagen im Umlauf sind Exporte, die beim ersten Lauf an fehlender Fehlerbehandlung scheitern.</dd>
+                <dt>Gebaut</dt><dd>Vorlagen für je einen Zweck, vor der Veröffentlichung tatsächlich durchgelaufen, mit Fehlerbehandlung.</dd>
+                <dt>Ergebnis</dt><dd>Vier Vorlagen veröffentlicht, zwei davon kostenpflichtig.</dd>
+              </dl>
+              <span class="station-technik">n8n · Claude · Webhooks</span>
+              <span class="station-ziel">Vorlagen ansehen</span>
+            </div>
+          </div>
+        </a>
         <span class="station-punkt" aria-hidden="true"></span>
-        <span class="station-jahr">2026</span>
-        <h3 class="station-titel"><span class="station-nr">05</span>n8n-Vorlagen</h3>
-        <span class="station-ort">eigenes Produkt</span>
-        <div class="station-detail">
-          <dl>
-            <dt>Problem</dt><dd>Die meisten Automatisierungsvorlagen im Umlauf sind Exporte, die beim ersten Lauf an fehlender Fehlerbehandlung scheitern.</dd>
-            <dt>Gebaut</dt><dd>Vorlagen für je einen Zweck, die vor der Veröffentlichung tatsächlich durchgelaufen sind. Mit Fehlerbehandlung, nicht nur mit dem glücklichen Pfad.</dd>
-            <dt>Ergebnis</dt><dd>Vier Vorlagen veröffentlicht, zwei davon kostenpflichtig.</dd>
-          </dl>
-          <span class="station-technik">n8n · Claude · Webhooks</span>
-        <span class="station-ziel">Vorlagen ansehen</span>
-        </div>
-      </a>
+      </div>
 
-      <a class="station station--link" href="https://github.com/MichaelBarabanov/Portfolio" target="_blank" rel="noopener noreferrer">
+      <div class="station-platz">
+        <a class="station station--link" href="https://github.com/MichaelBarabanov/Portfolio" target="_blank" rel="noopener noreferrer">
+          <span class="station-jahr">laufend</span>
+          <h3 class="station-titel"><span class="station-nr">06</span>Diese Seite und Miso</h3>
+          <span class="station-ort">eigenes Projekt</span>
+          <div class="station-detail">
+            <div class="station-detail-in">
+              <dl>
+                <dt>Problem</dt><dd>Eine Entwicklerseite ohne Baukasten und ohne fremde Skripte, die trotzdem etwas zeigt.</dd>
+                <dt>Gebaut</dt><dd>Reines HTML, CSS und JavaScript, Schriften selbst gehostet. Dazu ein Terminal mit echten Befehlen und Miso, eine Pixelkatze mit eigenem Zustand. Sie begründet sich über miso.why().</dd>
+                <dt>Ergebnis</dt><dd>Die Begründung entsteht aus denselben Werten, die Misos Verhalten steuern.</dd>
+              </dl>
+              <span class="station-technik">HTML · CSS · JavaScript · Canvas</span>
+              <span class="station-ziel">Code ansehen</span>
+            </div>
+          </div>
+        </a>
         <span class="station-punkt" aria-hidden="true"></span>
-        <span class="station-jahr">laufend</span>
-        <h3 class="station-titel"><span class="station-nr">06</span>Diese Seite samt Katze</h3>
-        <span class="station-ort">eigenes Projekt</span>
-        <div class="station-detail">
-          <dl>
-            <dt>Problem</dt><dd>Eine Entwicklerseite, die ohne Baukasten auskommt, ohne fremde Skripte lädt und trotzdem etwas zeigt, das man nicht überall sieht.</dd>
-            <dt>Gebaut</dt><dd>Reines HTML, CSS und JavaScript, keine Fremdquellen, Schriften selbst gehostet. Dazu ein Terminal mit echten Befehlen, dazu Miso, eine Pixelkatze mit eigenem Zustand aus Hunger, Müdigkeit und Zuwendung. Sie begründet ihre Entscheidungen über miso.why().</dd>
-            <dt>Ergebnis</dt><dd>Die Begründung entsteht aus denselben Werten, die ihr Verhalten steuern. Sie kann also nicht auseinanderlaufen.</dd>
-          </dl>
-          <span class="station-technik">HTML · CSS · JavaScript · Canvas</span>
-        <span class="station-ziel">Code ansehen</span>
-        </div>
-      </a>
+      </div>
     </div>
   </div>
-  <p class="zeitstrahl-hinweis container" aria-hidden="true">
-    Zum Lesen über eine Station fahren, waagerecht scrollen für mehr
-  </p>
+  <div class="container">
+    <p class="zeitstrahl-hinweis" aria-hidden="true">
+      Zum Lesen über eine Station fahren, waagerecht scrollen für mehr
+    </p>
+  </div>
 </section>
 
 <section id="erfahrung">
@@ -378,7 +404,7 @@ Davor: Backend und Fullstack in einer E-Commerce-Agentur mit 30+ live gebrachten
           <div>&nbsp;&nbsp;<span class="ih">contact</span>   → Kontakt</div>
           <div>&nbsp;&nbsp;<span class="ih">hire</span>      → Zu den Leistungen</div>
           <div>&nbsp;&nbsp;<span class="ih">git log</span>   → Commit-Verlauf</div>
-          <div>&nbsp;&nbsp;<span class="ih">miso</span>      → Die Katze fragen, was sie vorhat</div>
+          <div>&nbsp;&nbsp;<span class="ih">miso</span>      → Miso fragen, was sie vorhat</div>
           <div>&nbsp;&nbsp;<span class="ih">clear</span>     → Terminal leeren</div>
         </div>
       </div>

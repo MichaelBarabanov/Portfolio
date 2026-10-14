@@ -99,7 +99,7 @@ body::before {
 /* ── CONTAINER ── */
 /* Breite Flaeche, schmale Textspalten. Lesbarkeit kommt ueber die
    Zeilenlaenge der Textbloecke, nicht ueber eine enge Seite. */
-.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.container { width: min(94vw, 1520px); margin: 0 auto; padding: 0 32px; }
 @media (max-width: 680px) { .container { padding: 0 20px; } }
 
 /* ── HERO ── */
@@ -1156,29 +1156,34 @@ footer a:hover { color: var(--accent); }
 }
 
 
+
 /* ─────────────────────────────────────────────────────────────
    ARBEITEN ALS ZEITSTRAHL
-   Waagerechte Bahn, Titel und Jahr immer sichtbar, Einzelheiten
-   beim Darueberfahren oder bei Tastaturfokus. Ohne JavaScript.
-   Auf schmalen Fenstern wird daraus eine Liste untereinander,
-   dort steht alles offen, weil es kein Darueberfahren gibt.
+   Jede Station sitzt in einem Platz fester Hoehe. Die Karte haengt
+   oben im Platz und waechst beim Aufklappen nach unten darueber
+   hinaus. Dadurch verschiebt sich nichts, was darunter steht.
+   Ohne JavaScript, ueber hover und focus-within.
    ───────────────────────────────────────────────────────────── */
 .arbeiten-intro {
   max-width: 62ch;
   color: #bbb;
   font-size: 15.5px;
   line-height: 1.75;
-  margin: -16px 0 44px;
+  margin: -16px 0 40px;
 }
 
 .zeitstrahl {
-  /* bricht bewusst aus der Spalte aus und nutzt die volle Breite */
   overflow-x: auto;
-  overflow-y: hidden;
-  padding: 10px 0 34px;
+  overflow-y: visible;
   scroll-snap-type: x proximity;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
+  /* overflow-x: auto macht auch die senkrechte Achse zum Scrollkasten.
+     Die aufgeklappte Karte wuerde sonst unten abgeschnitten, deshalb
+     steht hier der Platz bereit, den sie braucht. Der Abschnitt holt
+     ihn ueber einen negativen Aussenabstand wieder herein. */
+  padding-bottom: 400px;
+  margin-bottom: -384px;
 }
 .zeitstrahl::-webkit-scrollbar { height: 8px; }
 .zeitstrahl::-webkit-scrollbar-track { background: transparent; }
@@ -1191,37 +1196,47 @@ footer a:hover { color: var(--accent); }
   gap: 18px;
   align-items: flex-start;
   width: max-content;
-  padding: 44px max(32px, calc((100vw - 1280px) / 2 + 32px)) 0;
+  /* buendig mit der Spalte, aber laeuft rechts bewusst aus dem Bild */
+  padding: 44px max(32px, calc((100vw - min(94vw, 1520px)) / 2 + 32px)) 0;
 }
 .zeitstrahl-linie {
   position: absolute;
   left: 0; right: 0; top: 52px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border) 6%, var(--border) 94%, transparent);
+  background: linear-gradient(90deg, transparent, var(--border) 4%, var(--border) 96%, transparent);
 }
 
-.station {
+/* Der Platz haelt die Hoehe, egal ob die Karte offen ist */
+.station-platz {
   position: relative;
   flex: 0 0 auto;
-  width: 290px;
-  padding: 26px 24px 24px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  width: 300px;
+  height: 172px;
   scroll-snap-align: center;
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  transition: border-color .2s, transform .2s, box-shadow .2s, width .25s ease;
 }
 .station-punkt {
   position: absolute;
-  left: 24px; top: -36px;
+  left: 26px; top: -36px;
   width: 11px; height: 11px;
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--border);
   transition: border-color .2s, box-shadow .2s, background .2s;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.station {
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  padding: 24px 24px 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: border-color .2s, box-shadow .2s, transform .2s;
 }
 .station-jahr {
   display: block;
@@ -1252,26 +1267,25 @@ footer a:hover { color: var(--accent); }
   color: var(--muted);
 }
 
-/* Einzelheiten, zusammengeklappt bis zum Darueberfahren */
 .station-detail {
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
-  transition: grid-template-rows .28s ease, opacity .2s ease, margin-top .28s ease;
   margin-top: 0;
+  transition: grid-template-rows .3s ease, opacity .22s ease, margin-top .3s ease;
 }
-.station-detail > * { overflow: hidden; }
+/* Genau ein Kind, sonst greift die 0fr-Zeile nur auf den ersten Block */
+.station-detail-in { overflow: hidden; min-height: 0; }
+
 .station:hover,
 .station:focus-visible,
 .station:focus-within {
   border-color: var(--accent);
-  box-shadow: 0 10px 34px rgba(0,0,0,.45);
-  transform: translateY(-4px);
-  z-index: 2;
+  box-shadow: 0 16px 44px rgba(0,0,0,.6);
+  z-index: 4;
 }
-.station:hover .station-punkt,
-.station:focus-visible .station-punkt,
-.station:focus-within .station-punkt {
+.station-platz:hover .station-punkt,
+.station-platz:focus-within .station-punkt {
   border-color: var(--accent);
   background: var(--accent);
   box-shadow: 0 0 0 4px var(--glow);
@@ -1286,7 +1300,6 @@ footer a:hover { color: var(--accent); }
 
 .station-detail dl {
   display: grid;
-  grid-template-columns: auto;
   gap: 2px;
   margin: 0;
   padding-top: 18px;
@@ -1301,7 +1314,7 @@ footer a:hover { color: var(--accent); }
   opacity: .8;
   margin-top: 12px;
 }
-.station-detail dt:first-child { margin-top: 0; }
+.station-detail dl > dt:first-child { margin-top: 0; }
 .station-detail dd {
   margin: 0;
   font-size: 13.5px;
@@ -1330,12 +1343,12 @@ footer a:hover { color: var(--accent); }
   font-family: 'Cascadia Code','Fira Code',monospace;
   font-size: 12px;
   color: var(--muted);
-  margin-top: 4px;
+  margin: 18px 0 0;
 }
 
-/* Schmale Fenster: Liste statt Bahn, alles offen */
+/* Schmale Fenster: Liste statt Bahn, alles offen, kein Darueberfahren */
 @media (max-width: 900px) {
-  .zeitstrahl { overflow: visible; padding-bottom: 0; }
+  .zeitstrahl { overflow: visible; padding-bottom: 0; margin-bottom: 0; }
   .zeitstrahl-bahn {
     flex-direction: column;
     width: auto;
@@ -1343,15 +1356,16 @@ footer a:hover { color: var(--accent); }
     padding: 0 32px;
   }
   .zeitstrahl-linie { display: none; }
-  .station { width: auto; }
+  .station-platz { width: auto; height: auto; }
+  .station { position: static; }
   .station-punkt { display: none; }
   .station-detail { grid-template-rows: 1fr; opacity: 1; margin-top: 18px; }
-  .station:hover { transform: none; }
+  .station:hover { box-shadow: none; }
   .zeitstrahl-hinweis { display: none; }
 }
 @media (max-width: 680px) {
   .zeitstrahl-bahn { padding: 0 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .station, .station-detail { transition: none; }
+  .station, .station-detail, .station-punkt { transition: none; }
 }

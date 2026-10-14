@@ -192,7 +192,7 @@
         `  @@h@@contact@@   → ${isEN ? 'Contact info' : 'Kontakt'}`,
         `  @@h@@hire@@      → ${isEN ? 'Services and enquiry' : 'Zu den Leistungen'}`,
         `  @@h@@git log@@   → ${isEN ? 'Commit history' : 'Commit-Verlauf'}`,
-        `  @@h@@miso@@      → ${isEN ? 'Ask the cat what she is up to' : 'Die Katze fragen, was sie vorhat'}`,
+        `  @@h@@miso@@      → ${isEN ? 'Ask Miso what she is up to' : 'Miso fragen, was sie vorhat'}`,
         `  @@h@@clear@@     → ${isEN ? 'Clear terminal' : 'Terminal leeren'}`,
       ];
     },
