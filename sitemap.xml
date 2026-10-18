@@ -62,41 +62,40 @@
   <!-- Blog -->
   <url>
     <loc>https://mbara.net/blog/</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mbara.net/blog/generative-engine-optimization-geo.html</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://mbara.net/blog/n8n-shopware-6-automatisierung.html</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://mbara.net/blog/shopware-6-performance-optimieren.html</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://mbara.net/blog/shopware-6-plugin-entwickeln.html</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://mbara.net/blog/shopware-6-bot-schutz-cloudflare.html</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
   <!-- Portfolio und Nebenseiten -->
   <url>
     <loc>https://mbara.net/projekte/dokument-viewer-bundesarchiv</loc>
@@ -121,18 +120,6 @@
     <lastmod>2026-10-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://mbara.net/impressum</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://mbara.net/datenschutz</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
   </url>
 
 </urlset>
