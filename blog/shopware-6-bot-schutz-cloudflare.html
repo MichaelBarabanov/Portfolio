@@ -70,7 +70,7 @@
       <h1>Bot-Traffic in Shopware 6 mit Cloudflare eliminieren</h1>
       <div class="meta">2026-05-28 &middot; 6 min Lesezeit</div>
 
-      <p>Aggressiver Bot-Traffic ist für Shopware-Shops ein echtes Problem: Scraper laden Produktkataloge, Credential-Stuffing-Bots probieren gestohlene Passwörter durch, und simple Crawler generieren Last ohne irgendeinen Mehrwert. Cloudflare bietet mehrere Schutzschichten die sich gut kombinieren lassen.</p>
+      <p>Aggressiver Bot-Traffic ist für Shopware-Shops ein echtes Problem: Scraper laden Produktkataloge, Credential-Stuffing-Bots probieren gestohlene Passwörter durch, simple Crawler erzeugen Last ohne irgendeinen Mehrwert. Cloudflare bietet mehrere Schutzschichten, die sich gut kombinieren lassen.</p>
 
       <h2>1. Bot Fight Mode aktivieren</h2>
       <p>Der einfachste erste Schritt: Im Cloudflare-Dashboard unter <strong>Security &rarr; Bots</strong> den <em>Bot Fight Mode</em> einschalten. Er blockiert bekannte Bad Bots anhand von Cloudflares globaler Threat Intelligence ohne dass man selbst Regeln schreiben muss.</p>
@@ -115,7 +115,7 @@ Action: Block for 10 minutes</pre>
 
       <h2>6. Ergebnisse messen</h2>
       <p>Im Cloudflare-Dashboard unter <strong>Analytics &rarr; Security</strong> sieht man exakt, wie viele Anfragen welche Regel getriggert hat. Nach einer Woche ist gut abzulesen ob das Rate-Limit zu restriktiv ist oder Scraper weiterhin durchkommen.</p>
-      <p>Typische Ergebnisse nach einer vollständigen Konfiguration: 80-95 % des Bot-Traffics werden geblockt, Serverauslastung und Bandbreite sinken spürbar, und das MySQL Slow Query Log wird deutlich dünner.</p>
+      <p>Typische Ergebnisse nach einer vollständigen Konfiguration: 80-95 % des Bot-Traffics werden geblockt, Serverauslastung und Bandbreite sinken spürbar, das MySQL Slow Query Log wird deutlich dünner.</p>
 
       <h2>Fazit</h2>
       <p>Die Kombination aus Bot Fight Mode, Admin-IP-Allowlist und Rate Limiting auf Login/Checkout deckt die meisten Angriffsvektoren ab. Der Aufwand für die initiale Konfiguration liegt bei unter einer Stunde; danach läuft der Schutz wartungsarm im Hintergrund.</p>

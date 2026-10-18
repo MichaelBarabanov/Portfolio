@@ -670,7 +670,7 @@
 
   /* ── CSS ─────────────────────────────────────────────────────────────
      cat.js bringt seine Keyframes selbst mit. Vorher standen sie nur in
-     style.css, und hire.html bindet die nicht ein.                     */
+     style.css, das nicht auf jeder Seite eingebunden ist.                     */
   function injectCss() {
     if (document.getElementById('cat-css')) return;
     const st = document.createElement('style');
