@@ -1,58 +1,34 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy"
-      content="default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
-  <title>Generative Engine Optimization: in ChatGPT gefunden werden</title>
-  <meta name="description" content="Erwähnungen in fremden Quellen, strukturierte Daten und FAQ-Schema richtig einsetzen, damit Shopware-Shops von ChatGPT und Perplexity zitiert werden." />
-  <link rel="canonical" href="https://mbara.net/blog/generative-engine-optimization-geo.html" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="article" />
-  <meta property="og:locale" content="de_DE" />
-  <meta property="og:site_name" content="Michael Barabanov" />
-  <meta property="og:url" content="https://mbara.net/blog/generative-engine-optimization-geo.html" />
-  <meta property="og:title" content="Generative Engine Optimization: in ChatGPT gefunden werden" />
-  <meta property="og:description" content="Erwähnungen in fremden Quellen, strukturierte Daten und FAQ-Schema richtig einsetzen, damit Shopware-Shops von ChatGPT und Perplexity zitiert werden." />
-  <meta property="og:image" content="https://mbara.net/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://mbara.net/og-image.png" />
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
-  <style>
-    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00e87a; }
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; }
-    a { color:var(--accent); text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    header { border-bottom:1px solid var(--border); padding:20px 0; }
-    .container { max-width:720px; margin:0 auto; padding:0 24px; }
-    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
-    .logo span { color:var(--accent); }
-    article { padding:56px 0 80px; }
-    .tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; color:var(--accent); margin-bottom:12px; }
-    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; margin-bottom:16px; }
-    .meta { font-size:13px; color:var(--muted); margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid var(--border); }
-    h2 { font-size:20px; font-weight:600; margin:40px 0 12px; }
-    p { margin-bottom:18px; font-size:15px; color:#ccc; }
-    pre { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; overflow-x:auto; margin:24px 0; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; line-height:1.6; color:#ccc; }
-    code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
-    ul, ol { padding-left:20px; margin-bottom:18px; }
-    li { font-size:15px; color:#ccc; margin-bottom:6px; }
-    table { width:100%; border-collapse:collapse; margin:24px 0; font-size:14px; }
-    th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--border); }
-    th { color:var(--accent); font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.05em; }
-    td { color:#ccc; }
-    .tip { background:var(--surface2); border-left:3px solid var(--accent); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
-    .warn { background:var(--surface2); border-left:3px solid #e3b341; border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
-    .back { display:inline-block; margin-top:48px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
-    .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
-    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
-  </style>
-  <script type="application/ld+json">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generative Engine Optimization: in ChatGPT gefunden werden</title>
+<meta name="description" content="Erwähnungen in fremden Quellen, strukturierte Daten und FAQ-Schema richtig einsetzen, damit Shopware-Shops von ChatGPT und Perplexity zitiert werden.">
+<link rel="canonical" href="https://mbara.net/blog/generative-engine-optimization-geo.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta property="og:url" content="https://mbara.net/blog/generative-engine-optimization-geo.html">
+<meta property="og:title" content="Generative Engine Optimization: in ChatGPT gefunden werden">
+<meta property="og:description" content="Erwähnungen in fremden Quellen, strukturierte Daten und FAQ-Schema richtig einsetzen, damit Shopware-Shops von ChatGPT und Perplexity zitiert werden.">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
+
+<link rel="icon" href="../favicon-mbara.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="../mbara.css?v=20261018a">
+
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -65,18 +41,37 @@
   </script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><a href="index.html" style="color:var(--muted)"><span>//</span> shopware-dev.blog</a></div>
-    </div>
-  </header>
-  <article>
-    <div class="container">
-      <div class="tag">// geo</div>
-      <h1>Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</h1>
-      <div class="meta">2026-07-08 &middot; aktualisiert am 2026-09-20 &middot; 8 min Lesezeit</div>
 
-      <div class="tip">Aktualisiert im September 2026: Der Abschnitt zu llms.txt wurde ersetzt, nachdem Google im Juni 2026 klargestellt hat, dass die Suche die Datei nicht verwendet. Details in Abschnitt 7.</div>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="../index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="../index.html#leistungen">Leistungen</a>
+      <a href="../index.html#plugins">Plugins</a>
+      <a href="../beispiel-audit.html">Beispielbericht</a>
+      <a href="../index.html#bewertungen">Bewertungen</a>
+      <a href="../index.html#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="../index.html#kontakt">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main id="inhalt">
+
+<section class="unter-hero dunkel">
+  <div class="wrap">
+    <a class="pfad" href="index.html">&larr; Blog</a>
+    <h1 class="artikel-titel">Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</h1>
+    <p class="artikel-meta">8. Juli 2026 &middot; aktualisiert am 20. September 2026 &middot; 8 Minuten Lesezeit &middot; geo</p>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <article class="artikel">
+      <div class="merk"><p>Aktualisiert im September 2026: Der Abschnitt zu llms.txt wurde ersetzt, nachdem Google im Juni 2026 klargestellt hat, dass die Suche die Datei nicht verwendet. Details in Abschnitt 7.</p></div>
 
       <p>Immer mehr Kaufentscheidungen starten nicht mehr mit einer Google-Suche, sondern mit einer Frage an ChatGPT, Perplexity oder Google AI Overviews. Diese Systeme lesen keine Rankings, sie lesen Inhalte und fassen sie zusammen. Klassisches SEO (Backlinks, Keyword-Dichte) hilft dabei nur bedingt. Generative Engine Optimization (GEO) ist die Anpassung an dieses neue Verhalten.</p>
 
@@ -84,41 +79,41 @@
       <p>Ein LLM crawlt eine Seite, extrahiert Fakten und formuliert daraus eine Antwort in eigenen Worten. Es zitiert selten die komplette Seite, sondern einzelne, klar formulierte Aussagen. Seiten mit vager Marketing-Sprache und ohne Struktur liefern schlicht schlechteres Rohmaterial für diese Zusammenfassung als Seiten mit klaren Fakten, Zahlen und sauberer Struktur.</p>
 
       <table>
-        <thead>
-          <tr><th>Aspekt</th><th>Klassisches SEO</th><th>GEO</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Ziel</td><td>Hohes Ranking in Suchergebnissen</td><td>Zitiert/paraphrasiert in KI-Antworten werden</td></tr>
-          <tr><td>Signal</td><td>Backlinks, Keyword-Dichte</td><td>Erwähnungen in Vergleichsquellen, klare Fakten, Schema.org</td></tr>
-          <tr><td>Format</td><td>Lange Fließtexte</td><td>Kurze, abgeschlossene Absätze und Listen</td></tr>
-          <tr><td>Maschinenlesbarkeit</td><td>Optional</td><td>JSON-LD, FAQPage, saubere Semantik</td></tr>
-          <tr><td>Erfolgsmessung</td><td>Rankings, Klicks</td><td>Erwähnungen in KI-Antworten (noch schwer messbar)</td></tr>
-        </tbody>
+      <thead>
+      <tr><th>Aspekt</th><th>Klassisches SEO</th><th>GEO</th></tr>
+      </thead>
+      <tbody>
+      <tr><td>Ziel</td><td>Hohes Ranking in Suchergebnissen</td><td>Zitiert/paraphrasiert in KI-Antworten werden</td></tr>
+      <tr><td>Signal</td><td>Backlinks, Keyword-Dichte</td><td>Erwähnungen in Vergleichsquellen, klare Fakten, Schema.org</td></tr>
+      <tr><td>Format</td><td>Lange Fließtexte</td><td>Kurze, abgeschlossene Absätze und Listen</td></tr>
+      <tr><td>Maschinenlesbarkeit</td><td>Optional</td><td>JSON-LD, FAQPage, saubere Semantik</td></tr>
+      <tr><td>Erfolgsmessung</td><td>Rankings, Klicks</td><td>Erwähnungen in KI-Antworten (noch schwer messbar)</td></tr>
+      </tbody>
       </table>
 
       <h2>2. Der größte Hebel liegt außerhalb der eigenen Seite</h2>
       <p>Sprachmodelle erfinden keine Kaufempfehlungen. Fragt jemand nach dem besten Produkt einer Kategorie, stützt sich die Antwort auf Test- und Vergleichsbeiträge, die im offenen Netz stehen. Entscheidend ist deshalb nicht in erster Linie, wie der eigene Shop formuliert ist, sondern ob die Marke in genau diesen Quellen vorkommt.</p>
       <p>Das lässt sich ohne Werkzeug prüfen:</p>
       <ol>
-        <li>Die Produktkategorie so formulieren, wie ein Käufer sucht, also etwa "bester [Kategorie] Test Vergleich [Jahr]".</li>
-        <li>Die ersten sechs bis acht Treffer öffnen. Das sind die Quellen, aus denen zitiert wird.</li>
-        <li>Notieren, welche Marken dort genannt werden.</li>
-        <li>Prüfen, ob die eigene Marke darunter ist.</li>
+      <li>Die Produktkategorie so formulieren, wie ein Käufer sucht, also etwa "bester [Kategorie] Test Vergleich [Jahr]".</li>
+      <li>Die ersten sechs bis acht Treffer öffnen. Das sind die Quellen, aus denen zitiert wird.</li>
+      <li>Notieren, welche Marken dort genannt werden.</li>
+      <li>Prüfen, ob die eigene Marke darunter ist.</li>
       </ol>
       <p>Fehlt sie, ändert daran kein Werkzeug etwas. Kein Sichtbarkeits-Tool kann bewirken, dass ein fremdes Portal über eine Marke schreibt. Die Hebel sind Testgeräte an Fachmedien, die Aufnahme in Vergleichs- und Händlerverzeichnisse sowie ein gefülltes Organization-Markup, damit die Firma überhaupt als eigenständige Entität erkennbar ist.</p>
-      <div class="tip">Häufiger Sonderfall: Die Vergleichsbeiträge einer Kategorie decken oft nur ein Preissegment ab. Wer im gehobenen Fachsegment verkauft, taucht in Beiträgen zum Einsteigersegment nie auf, egal wie sauber die Website technisch ist. Dann sind die passenden Quellen andere.</div>
+      <div class="merk"><p>Häufiger Sonderfall: Die Vergleichsbeiträge einer Kategorie decken oft nur ein Preissegment ab. Wer im gehobenen Fachsegment verkauft, taucht in Beiträgen zum Einsteigersegment nie auf, egal wie sauber die Website technisch ist. Dann sind die passenden Quellen andere.</p></div>
 
       <h2>3. Strukturierte Daten konsequent einsetzen</h2>
       <p>Schema.org JSON-LD ist der zuverlässigste Weg, Fakten maschinenlesbar zu machen. Für ein Software-Produkt zum Beispiel <code>SoftwareApplication</code>, für eine Firma <code>Organization</code> oder <code>Person</code>, für Frage-Antwort-Inhalte <code>FAQPage</code>:</p>
       <pre>{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "Frage im Klartext?",
-    "acceptedAnswer": { "@type": "Answer", "text": "Klare, faktenbasierte Antwort." }
-  }]
-}</pre>
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+      "@type": "Question",
+      "name": "Frage im Klartext?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Klare, faktenbasierte Antwort." }
+      }]
+      }</pre>
       <p>Wichtig: Der sichtbare Seiteninhalt muss zur Struktur passen. Schema-Markup ohne passenden sichtbaren Text wird von Suchmaschinen als Spam-Signal gewertet und hilft bei LLMs ohnehin nicht, da diese primär den gerenderten Text lesen.</p>
 
       <h2>4. FAQ-Content mit klaren Frage-Antwort-Paaren</h2>
@@ -130,7 +125,7 @@
       <h2>6. robots.txt für KI-Crawler offen halten</h2>
       <p>Ein einfacher, aber oft übersehener Punkt: Wenn <code>robots.txt</code> Bots wie <code>GPTBot</code>, <code>ClaudeBot</code> oder <code>PerplexityBot</code> pauschal blockt, taucht die Seite in den jeweiligen Antworten schlicht nicht auf. Ein permissiver Eintrag reicht meist aus:</p>
       <pre>User-agent: *
-Allow: /</pre>
+      Allow: /</pre>
 
       <h2>7. llms.txt: was davon übrig ist</h2>
       <p>Die Community-Konvention <a href="https://llmstxt.org" target="_blank" rel="noopener">llms.txt</a> war 2025 der meistgenannte GEO-Tipp: eine Markdown-Datei im Wurzelverzeichnis, die die wichtigsten Seiten mit je einem Satz beschreibt. Die ursprüngliche Fassung dieses Artikels hat sie ebenfalls empfohlen.</p>
@@ -139,12 +134,32 @@ Allow: /</pre>
 
       <h2>Fazit</h2>
       <p>GEO ist kein Ersatz für SEO, sondern eine Ergänzung: klare Fakten, saubere Struktur, schema.org-Markup und vor allem Erwähnungen in den Quellen, aus denen Sprachmodelle zitieren. Der technische Teil ist an einem Tag erledigt, der Teil außerhalb der eigenen Seite ist die eigentliche Arbeit. Nicht jeder GEO-Ratschlag aus 2025 hat gehalten, was er versprochen hat, siehe Abschnitt 7.</p>
+      <p class="artikel-zurueck"><a href="index.html">Alle Artikel</a></p>
+    </article>
+  </div>
+</section>
 
-      <a class="back" href="index.html">← alle Artikel</a>
-    </div>
-  </article>
-  <footer>
-    <div class="container">Shopware Dev Blog &middot; Technische Artikel für Entwickler</div>
-  </footer>
+</main>
+
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Leistungen">
+      <a href="../migration-shopware-5-auf-6.html">Shopware 5 auf 6</a>
+      <a href="../jtl-wawi-update.html">JTL-Wawi Update</a>
+      <a href="../schnittstellen.html">Schnittstellen</a>
+      <a href="../beispiel-audit.html">Beispielbericht</a>
+    </nav>
+    <nav aria-label="Weitere Seiten">
+      <a href="../index.html">Start</a>
+      <a href="index.html">Blog</a>
+      <a href="../faq.html">Fragen</a>
+      <a href="../portfolio.html">Portfolio</a>
+      <a href="../impressum.html">Impressum</a>
+      <a href="../datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

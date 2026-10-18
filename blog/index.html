@@ -1,51 +1,34 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopware Dev Blog | Tipps, Tutorials & Best Practices</title>
-  <meta name="description" content="Technische Artikel rund um Shopware 6 Entwicklung, Plugin-Entwicklung, Performance und PHP Best Practices." />
-  <link rel="canonical" href="https://mbara.net/blog/" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="article" />
-  <meta property="og:locale" content="de_DE" />
-  <meta property="og:site_name" content="Michael Barabanov" />
-  <meta property="og:url" content="https://mbara.net/blog/" />
-  <meta property="og:title" content="Shopware Dev Blog | Tipps, Tutorials & Best Practices" />
-  <meta property="og:description" content="Technische Artikel rund um Shopware 6 Entwicklung, Plugin-Entwicklung, Performance und PHP Best Practices." />
-  <meta property="og:image" content="https://mbara.net/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://mbara.net/og-image.png" />
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
-  <style>
-    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00e87a; }
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.6; }
-    a { color:var(--accent); text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    header { border-bottom:1px solid var(--border); padding:20px 0; }
-    .container { max-width:760px; margin:0 auto; padding:0 24px; }
-    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
-    .logo span { color:var(--accent); }
-    main { padding:60px 0; }
-    h1 { font-size:clamp(22px,4vw,32px); font-weight:700; margin-bottom:8px; }
-    .subtitle { color:var(--muted); font-size:15px; margin-bottom:48px; }
-    .posts { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:8px; overflow:hidden; }
-    .post { background:var(--surface); padding:24px 28px; border-bottom:1px solid var(--border); transition:background .15s; }
-    .post:last-child { border-bottom:none; }
-    .post:hover { background:var(--surface2); }
-    .post-tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:11px; color:var(--accent); margin-bottom:8px; }
-    .post h2 { font-size:18px; font-weight:600; margin-bottom:6px; }
-    .post h2 a { color:var(--text); }
-    .post h2 a:hover { color:var(--accent); text-decoration:none; }
-    .post-meta { font-size:13px; color:var(--muted); margin-bottom:10px; }
-    .post p { font-size:14px; color:var(--muted); line-height:1.65; }
-    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
-  </style>
-  <script type="application/ld+json">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog zu Shopware 6 und JTL-Wawi | mbara.net</title>
+<meta name="description" content="Technische Artikel zu Shopware 6, JTL-Wawi, Plugin-Entwicklung, Performance und Schnittstellen. Geschrieben aus Fällen aus der Praxis.">
+<link rel="canonical" href="https://mbara.net/blog/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta property="og:url" content="https://mbara.net/blog/">
+<meta property="og:title" content="Blog zu Shopware 6 und JTL-Wawi">
+<meta property="og:description" content="Technische Artikel zu Shopware 6, JTL-Wawi, Plugin-Entwicklung, Performance und Schnittstellen. Geschrieben aus Fällen aus der Praxis.">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
+
+<link rel="icon" href="../favicon-mbara.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="../mbara.css?v=20261018a">
+
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -57,51 +40,94 @@
   </script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><span>//</span> shopware-dev.blog</div>
+
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="../index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="../index.html#leistungen">Leistungen</a>
+      <a href="../index.html#plugins">Plugins</a>
+      <a href="../beispiel-audit.html">Beispielbericht</a>
+      <a href="../index.html#bewertungen">Bewertungen</a>
+      <a href="../index.html#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="../index.html#kontakt">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main id="inhalt">
+
+<section class="unter-hero dunkel">
+  <div class="wrap">
+    <a class="pfad" href="../index.html">&larr; Start</a>
+    <h1>Blog</h1>
+    <p class="gross">
+      Technische Artikel zu Shopware 6, JTL-Wawi und dem, was beim Betrieb
+      dazwischenkommt. Geschrieben aus F&auml;llen, die mir begegnet sind.
+    </p>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <div class="beitraege">
+      <a class="beitrag" href="generative-engine-optimization-geo.html">
+        <span class="beitrag-marke">geo</span>
+        <h2>Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</h2>
+        <span class="beitrag-meta">8. Juli 2026 &middot; 8 Minuten</span>
+        <p>Warum der größte Hebel außerhalb der eigenen Seite liegt, dazu strukturierte Daten, FAQ-Schema und eine ehrliche Einordnung zu llms.txt.</p>
+      </a>
+      <a class="beitrag" href="n8n-shopware-6-automatisierung.html">
+        <span class="beitrag-marke">automatisierung</span>
+        <h2>n8n + Shopware 6: Bestellprozesse und Lagerbestände automatisieren</h2>
+        <span class="beitrag-meta">8. Juli 2026 &middot; 8 Minuten</span>
+        <p>Shopware-API-Zugriff für n8n einrichten und Workflows für Bestellbenachrichtigungen und Lagerbestandsabgleich bauen, ganz ohne eigenes Plugin.</p>
+      </a>
+      <a class="beitrag" href="shopware-6-performance-optimieren.html">
+        <span class="beitrag-marke">performance</span>
+        <h2>Shopware 6 Performance optimieren: Caching, Elasticsearch & HTTP/2</h2>
+        <span class="beitrag-meta">20. Juni 2026 &middot; 8 Minuten</span>
+        <p>Wie man einen Shopware-6-Shop durch richtig konfiguriertes HTTP-Caching, Elasticsearch-Integration und optimierte Datenbankabfragen auf unter 1&nbsp;s TTFB bringt.</p>
+      </a>
+      <a class="beitrag" href="shopware-6-plugin-entwickeln.html">
+        <span class="beitrag-marke">plugin-entwicklung</span>
+        <h2>Shopware 6 Plugin entwickeln: Schritt-für-Schritt von Null zum ersten Release</h2>
+        <span class="beitrag-meta">10. Juni 2026 &middot; 12 Minuten</span>
+        <p>Ein vollständiges Tutorial: Plugin-Grundstruktur, Dependency Injection, Events & Subscriber, Admin-UI mit Vue.js und automatisches Deployment via GitHub Actions.</p>
+      </a>
+      <a class="beitrag" href="shopware-6-bot-schutz-cloudflare.html">
+        <span class="beitrag-marke">security</span>
+        <h2>Bot-Traffic in Shopware 6 mit Cloudflare eliminieren</h2>
+        <span class="beitrag-meta">28. Mai 2026 &middot; 6 Minuten</span>
+        <p>Praxisguide: Wie Cloudflare WAF Rules, Rate Limiting und Bot-Fight-Mode zusammenspielen um bösen Bot-Traffic zu blockieren ohne echte Kunden zu treffen.</p>
+      </a>
     </div>
-  </header>
-  <main>
-    <div class="container">
-      <h1>Shopware Dev Blog</h1>
-      <p class="subtitle">Technische Artikel zu Shopware 6, Plugin-Entwicklung und PHP.</p>
-      <div class="posts">
-        <div class="post">
-          <div class="post-tag">// geo</div>
-          <h2><a href="generative-engine-optimization-geo.html">Generative Engine Optimization (GEO): Wie Shops in ChatGPT & Perplexity gefunden werden</a></h2>
-          <div class="post-meta">2026-07-08 &middot; 7 min</div>
-          <p>Warum der größte Hebel außerhalb der eigenen Seite liegt, dazu strukturierte Daten, FAQ-Schema und eine ehrliche Einordnung zu llms.txt.</p>
-        </div>
-        <div class="post">
-          <div class="post-tag">// automatisierung</div>
-          <h2><a href="n8n-shopware-6-automatisierung.html">n8n + Shopware 6: Bestellprozesse und Lagerbestände automatisieren</a></h2>
-          <div class="post-meta">2026-07-08 &middot; 8 min</div>
-          <p>Shopware-API-Zugriff für n8n einrichten und Workflows für Bestellbenachrichtigungen und Lagerbestandsabgleich bauen, ganz ohne eigenes Plugin.</p>
-        </div>
-        <div class="post">
-          <div class="post-tag">// performance</div>
-          <h2><a href="shopware-6-performance-optimieren.html">Shopware 6 Performance optimieren: Caching, Elasticsearch & HTTP/2</a></h2>
-          <div class="post-meta">2026-06-20 &middot; 8 min</div>
-          <p>Wie man einen Shopware-6-Shop durch richtig konfiguriertes HTTP-Caching, Elasticsearch-Integration und optimierte Datenbankabfragen auf unter 1&nbsp;s TTFB bringt.</p>
-        </div>
-        <div class="post">
-          <div class="post-tag">// plugin-entwicklung</div>
-          <h2><a href="shopware-6-plugin-entwickeln.html">Shopware 6 Plugin entwickeln: Schritt-für-Schritt von Null zum ersten Release</a></h2>
-          <div class="post-meta">2026-06-10 &middot; 12 min</div>
-          <p>Ein vollständiges Tutorial: Plugin-Grundstruktur, Dependency Injection, Events & Subscriber, Admin-UI mit Vue.js und automatisches Deployment via GitHub Actions.</p>
-        </div>
-        <div class="post">
-          <div class="post-tag">// security</div>
-          <h2><a href="shopware-6-bot-schutz-cloudflare.html">Bot-Traffic in Shopware 6 mit Cloudflare eliminieren</a></h2>
-          <div class="post-meta">2026-05-28 &middot; 6 min</div>
-          <p>Praxisguide: Wie Cloudflare WAF Rules, Rate Limiting und Bot-Fight-Mode zusammenspielen um bösen Bot-Traffic zu blockieren ohne echte Kunden zu treffen.</p>
-        </div>
-      </div>
-    </div>
-  </main>
-  <footer>
-    <div class="container">Shopware Dev Blog &middot; Technische Artikel für Entwickler</div>
-  </footer>
+  </div>
+</section>
+
+</main>
+
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Leistungen">
+      <a href="../migration-shopware-5-auf-6.html">Shopware 5 auf 6</a>
+      <a href="../jtl-wawi-update.html">JTL-Wawi Update</a>
+      <a href="../schnittstellen.html">Schnittstellen</a>
+      <a href="../beispiel-audit.html">Beispielbericht</a>
+    </nav>
+    <nav aria-label="Weitere Seiten">
+      <a href="../index.html">Start</a>
+      <a href="index.html">Blog</a>
+      <a href="../faq.html">Fragen</a>
+      <a href="../portfolio.html">Portfolio</a>
+      <a href="../impressum.html">Impressum</a>
+      <a href="../datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

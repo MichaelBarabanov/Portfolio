@@ -1,51 +1,34 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopware 6 Plugin entwickeln: Schritt für Schritt</title>
-  <meta name="description" content="Vollständiges Tutorial für Shopware-6-Plugin-Entwicklung: Grundstruktur, Dependency Injection, Events, Admin-UI mit Vue.js und Deployment via GitHub Actions." />
-  <link rel="canonical" href="https://mbara.net/blog/shopware-6-plugin-entwickeln.html" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="article" />
-  <meta property="og:locale" content="de_DE" />
-  <meta property="og:site_name" content="Michael Barabanov" />
-  <meta property="og:url" content="https://mbara.net/blog/shopware-6-plugin-entwickeln.html" />
-  <meta property="og:title" content="Shopware 6 Plugin entwickeln: Schritt für Schritt" />
-  <meta property="og:description" content="Vollständiges Tutorial für Shopware-6-Plugin-Entwicklung: Grundstruktur, Dependency Injection, Events, Admin-UI mit Vue.js und Deployment via GitHub Actions." />
-  <meta property="og:image" content="https://mbara.net/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://mbara.net/og-image.png" />
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
-  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
-  <style>
-    :root { --bg:#0a0a0a; --surface:#111111; --surface2:#1a1a1a; --border:#222222; --text:#e8e8e8; --muted:#666666; --accent:#00e87a; }
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    body { background:var(--bg); color:var(--text); font-family:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; }
-    a { color:var(--accent); text-decoration:none; }
-    a:hover { text-decoration:underline; }
-    header { border-bottom:1px solid var(--border); padding:20px 0; }
-    .container { max-width:720px; margin:0 auto; padding:0 24px; }
-    .logo { font-family:'Cascadia Code','Fira Code',monospace; font-size:15px; color:var(--muted); }
-    .logo span { color:var(--accent); }
-    article { padding:56px 0 80px; }
-    .tag { font-family:'Cascadia Code','Fira Code',monospace; font-size:12px; color:var(--accent); margin-bottom:12px; }
-    h1 { font-size:clamp(22px,4vw,34px); font-weight:700; line-height:1.25; margin-bottom:16px; }
-    .meta { font-size:13px; color:var(--muted); margin-bottom:48px; padding-bottom:24px; border-bottom:1px solid var(--border); }
-    h2 { font-size:20px; font-weight:600; margin:40px 0 12px; }
-    p { margin-bottom:18px; font-size:15px; color:#ccc; }
-    pre { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; overflow-x:auto; margin:24px 0; font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; line-height:1.6; color:#ccc; }
-    code { font-family:'Cascadia Code','Fira Code','Courier New',monospace; font-size:13px; background:var(--surface); padding:2px 6px; border-radius:3px; color:var(--accent); }
-    ul, ol { padding-left:20px; margin-bottom:18px; }
-    li { font-size:15px; color:#ccc; margin-bottom:6px; }
-    .tip { background:var(--surface2); border-left:3px solid var(--accent); border-radius:0 6px 6px 0; padding:16px 20px; margin:24px 0; font-size:14px; color:var(--muted); }
-    .back { display:inline-block; margin-top:48px; font-family:'Cascadia Code','Fira Code',monospace; font-size:13px; color:var(--muted); border:1px solid var(--border); padding:8px 16px; border-radius:5px; }
-    .back:hover { border-color:var(--accent); color:var(--accent); text-decoration:none; }
-    footer { border-top:1px solid var(--border); padding:24px 0; text-align:center; font-size:13px; color:var(--muted); }
-  </style>
-  <script type="application/ld+json">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shopware 6 Plugin entwickeln: Schritt für Schritt</title>
+<meta name="description" content="Vollständiges Tutorial für Shopware-6-Plugin-Entwicklung: Grundstruktur, Dependency Injection, Events, Admin-UI mit Vue.js und Deployment via GitHub Actions.">
+<link rel="canonical" href="https://mbara.net/blog/shopware-6-plugin-entwickeln.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta property="og:url" content="https://mbara.net/blog/shopware-6-plugin-entwickeln.html">
+<meta property="og:title" content="Shopware 6 Plugin entwickeln: Schritt für Schritt">
+<meta property="og:description" content="Vollständiges Tutorial für Shopware-6-Plugin-Entwicklung: Grundstruktur, Dependency Injection, Events, Admin-UI mit Vue.js und Deployment via GitHub Actions.">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
+
+<link rel="icon" href="../favicon-mbara.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="stylesheet" href="../fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="../mbara.css?v=20261018a">
+
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -58,148 +41,187 @@
   </script>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><a href="index.html" style="color:var(--muted)"><span>//</span> shopware-dev.blog</a></div>
-    </div>
-  </header>
-  <article>
-    <div class="container">
-      <div class="tag">// plugin-entwicklung</div>
-      <h1>Shopware 6 Plugin entwickeln: Schritt-für-Schritt von Null zum ersten Release</h1>
-      <div class="meta">2026-06-10 &middot; 12 min Lesezeit</div>
 
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="../index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="../index.html#leistungen">Leistungen</a>
+      <a href="../index.html#plugins">Plugins</a>
+      <a href="../beispiel-audit.html">Beispielbericht</a>
+      <a href="../index.html#bewertungen">Bewertungen</a>
+      <a href="../index.html#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="../index.html#kontakt">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main id="inhalt">
+
+<section class="unter-hero dunkel">
+  <div class="wrap">
+    <a class="pfad" href="index.html">&larr; Blog</a>
+    <h1 class="artikel-titel">Shopware 6 Plugin entwickeln: Schritt-für-Schritt von Null zum ersten Release</h1>
+    <p class="artikel-meta">10. Juni 2026 &middot; 12 Minuten Lesezeit &middot; plugin-entwicklung</p>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <article class="artikel">
       <p>Shopware 6 basiert auf Symfony und nutzt dessen Dependency-Injection-Container, Event-System und Console-Commands. Wer Symfony kennt, findet sich schnell zurecht. Dieses Tutorial führt von der leeren Verzeichnisstruktur bis zum deploybaren Plugin.</p>
 
       <h2>1. Verzeichnisstruktur anlegen</h2>
       <p>Ein Shopware-6-Plugin liegt unter <code>custom/plugins/MeinPlugin/</code>. Die Mindeststruktur:</p>
       <pre>custom/plugins/MeinPlugin/
-├── composer.json
-├── src/
-│   └── MeinPlugin.php
-└── Resources/
-    └── config/
-        └── services.xml</pre>
+      ├── composer.json
+      ├── src/
+      │   └── MeinPlugin.php
+      └── Resources/
+      └── config/
+      └── services.xml</pre>
       <p>Die <code>composer.json</code> definiert den Plugin-Typ und den Autoload-Pfad:</p>
       <pre>{
-  "name": "vendor/mein-plugin",
-  "type": "shopware-platform-plugin",
-  "autoload": {
-    "psr-4": {
+      "name": "vendor/mein-plugin",
+      "type": "shopware-platform-plugin",
+      "autoload": {
+      "psr-4": {
       "MeinPlugin\\": "src/"
-    }
-  },
-  "extra": {
-    "shopware-plugin-class": "MeinPlugin\\MeinPlugin",
-    "label": { "de-DE": "Mein Plugin", "en-GB": "My Plugin" }
-  }
-}</pre>
+      }
+      },
+      "extra": {
+      "shopware-plugin-class": "MeinPlugin\\MeinPlugin",
+      "label": { "de-DE": "Mein Plugin", "en-GB": "My Plugin" }
+      }
+      }</pre>
 
       <h2>2. Plugin-Basisklasse</h2>
       <p>Die Hauptklasse erweitert <code>Shopware\Core\Framework\Plugin</code> und ist der Einstiegspunkt für Installation, Update und Deinstallation:</p>
       <pre>&lt;?php declare(strict_types=1);
 
-namespace MeinPlugin;
+      namespace MeinPlugin;
 
-use Shopware\Core\Framework\Plugin;
-use Shopware\Core\Framework\Plugin\Context\InstallContext;
+      use Shopware\Core\Framework\Plugin;
+      use Shopware\Core\Framework\Plugin\Context\InstallContext;
 
-class MeinPlugin extends Plugin
-{
-    public function install(InstallContext $installContext): void
-    {
-        parent::install($installContext);
-        // Migrationen, Custom Fields etc.
-    }
-}</pre>
+      class MeinPlugin extends Plugin
+      {
+      public function install(InstallContext $installContext): void
+      {
+      parent::install($installContext);
+      // Migrationen, Custom Fields etc.
+      }
+      }</pre>
 
       <h2>3. Services per Dependency Injection registrieren</h2>
       <p>Services werden in <code>Resources/config/services.xml</code> registriert:</p>
       <pre>&lt;?xml version="1.0" ?&gt;
-&lt;container xmlns="http://symfony.com/schema/dic/services"&gt;
-  &lt;services&gt;
-    &lt;service id="MeinPlugin\Service\MeinService" public="false"&gt;
+      &lt;container xmlns="http://symfony.com/schema/dic/services"&gt;
+      &lt;services&gt;
+      &lt;service id="MeinPlugin\Service\MeinService" public="false"&gt;
       &lt;argument type="service" id="product.repository" /&gt;
       &lt;tag name="shopware.feature" flag="v6.5.0.0" /&gt;
-    &lt;/service&gt;
-  &lt;/services&gt;
-&lt;/container&gt;</pre>
+      &lt;/service&gt;
+      &lt;/services&gt;
+      &lt;/container&gt;</pre>
 
       <h2>4. Events subscriben</h2>
       <p>Shopware dispatcht hunderte von Events. Ein Subscriber registriert sich auf beliebige davon:</p>
       <pre>&lt;?php declare(strict_types=1);
 
-namespace MeinPlugin\Subscriber;
+      namespace MeinPlugin\Subscriber;
 
-use Shopware\Core\Content\Product\Events\ProductListingCriteriaEvent;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+      use Shopware\Core\Content\Product\Events\ProductListingCriteriaEvent;
+      use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class ProductSubscriber implements EventSubscriberInterface
-{
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            ProductListingCriteriaEvent::class =&gt; 'onProductListing',
-        ];
-    }
+      class ProductSubscriber implements EventSubscriberInterface
+      {
+      public static function getSubscribedEvents(): array
+      {
+      return [
+      ProductListingCriteriaEvent::class =&gt; 'onProductListing',
+      ];
+      }
 
-    public function onProductListing(ProductListingCriteriaEvent $event): void
-    {
-        $event->getCriteria()->addAssociation('manufacturer');
-    }
-}</pre>
+      public function onProductListing(ProductListingCriteriaEvent $event): void
+      {
+      $event->getCriteria()->addAssociation('manufacturer');
+      }
+      }</pre>
       <p>Den Subscriber in <code>services.xml</code> mit dem Tag <code>kernel.event_subscriber</code> registrieren:</p>
       <pre>&lt;service id="MeinPlugin\Subscriber\ProductSubscriber"&gt;
-  &lt;tag name="kernel.event_subscriber" /&gt;
-&lt;/service&gt;</pre>
+      &lt;tag name="kernel.event_subscriber" /&gt;
+      &lt;/service&gt;</pre>
 
       <h2>5. Admin-UI mit Vue.js erweitern</h2>
       <p>Das Shopware-Admin-Panel basiert auf Vue.js. Eigene Komponenten liegen unter <code>Resources/app/administration/</code>:</p>
       <pre>Resources/app/administration/
-└── src/
-    └── module/
-        └── mein-modul/
-            ├── index.js
-            └── page/
-                └── mein-modul-list/
-                    ├── index.js
-                    └── mein-modul-list.html.twig</pre>
+      └── src/
+      └── module/
+      └── mein-modul/
+      ├── index.js
+      └── page/
+      └── mein-modul-list/
+      ├── index.js
+      └── mein-modul-list.html.twig</pre>
       <p>Nach Änderungen im Admin-Teil muss das Theme neu gebaut werden:</p>
       <pre>bin/console plugin:refresh
-bin/console plugin:install --activate MeinPlugin
-bin/console theme:compile</pre>
+      bin/console plugin:install --activate MeinPlugin
+      bin/console theme:compile</pre>
 
       <h2>6. Deployment via GitHub Actions</h2>
       <p>Ein simpler Workflow der bei jedem Push auf <code>main</code> das Plugin auf dem Server deployt:</p>
       <pre>name: Deploy Plugin
-on:
-  push:
-    branches: [main]
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
+      on:
+      push:
+      branches: [main]
+      jobs:
+      deploy:
+      runs-on: ubuntu-latest
+      steps:
       - uses: actions/checkout@v4
       - name: Deploy via rsync
-        run: |
-          rsync -az --delete ./src/ \
-            ${{ "{{" }} secrets.SSH_USER }}@${{ "{{" }} secrets.SSH_HOST }}:\
-            /var/www/shopware/custom/plugins/MeinPlugin/src/
+      run: |
+      rsync -az --delete ./src/ \
+      ${{ "{{" }} secrets.SSH_USER }}@${{ "{{" }} secrets.SSH_HOST }}:\
+      /var/www/shopware/custom/plugins/MeinPlugin/src/
       - name: Clear cache
-        run: |
-          ssh ${{ "{{" }} secrets.SSH_USER }}@${{ "{{" }} secrets.SSH_HOST }} \
-            "cd /var/www/shopware && bin/console cache:clear"</pre>
+      run: |
+      ssh ${{ "{{" }} secrets.SSH_USER }}@${{ "{{" }} secrets.SSH_HOST }} \
+      "cd /var/www/shopware && bin/console cache:clear"</pre>
 
-      <div class="tip">SSH-Credentials als GitHub Secrets hinterlegen, nie im Repository committen.</div>
+      <div class="merk"><p>SSH-Credentials als GitHub Secrets hinterlegen, nie im Repository committen.</p></div>
 
       <h2>Fazit</h2>
       <p>Der schnellste Weg zum ersten lauffähigen Plugin: composer.json und Plugin-Klasse anlegen, Plugin installieren, dann inkrementell Services und Subscriber hinzufügen. Das Symfony-Fundament macht Shopware-Plugins sehr testbar -- PHPUnit-Tests für Services schreiben sich genau wie in jedem anderen Symfony-Projekt.</p>
+      <p class="artikel-zurueck"><a href="index.html">Alle Artikel</a></p>
+    </article>
+  </div>
+</section>
 
-      <a class="back" href="index.html">← alle Artikel</a>
-    </div>
-  </article>
-  <footer>
-    <div class="container">Shopware Dev Blog &middot; Technische Artikel für Entwickler</div>
-  </footer>
+</main>
+
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Leistungen">
+      <a href="../migration-shopware-5-auf-6.html">Shopware 5 auf 6</a>
+      <a href="../jtl-wawi-update.html">JTL-Wawi Update</a>
+      <a href="../schnittstellen.html">Schnittstellen</a>
+      <a href="../beispiel-audit.html">Beispielbericht</a>
+    </nav>
+    <nav aria-label="Weitere Seiten">
+      <a href="../index.html">Start</a>
+      <a href="index.html">Blog</a>
+      <a href="../faq.html">Fragen</a>
+      <a href="../portfolio.html">Portfolio</a>
+      <a href="../impressum.html">Impressum</a>
+      <a href="../datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>

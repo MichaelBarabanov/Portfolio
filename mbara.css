@@ -1399,3 +1399,75 @@ summary:focus-visible,
 
 /* Haelt Produktnamen beim Umbruch zusammen, ohne Sonderzeichen im Text */
 .zusammen { white-space: nowrap; }
+
+
+/* ────────────────────────────────────────────────────────────
+   BLOG
+   Übersicht und Artikel im Geschäftsdesign. Der Fließtext bekommt eine
+   eigene Spaltenbreite, sonst laufen die Zeilen zu lang, auch wenn der
+   Wrap darunter breiter ist.
+   ────────────────────────────────────────────────────────── */
+
+.beitraege { display: grid; gap: var(--s-5); max-width: 860px; }
+.beitrag {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--papier); border: 1px solid var(--linie);
+  border-radius: var(--radius); padding: var(--s-5) var(--s-6);
+  transition: border-color .15s ease, transform .15s ease;
+}
+.beitrag:hover { border-color: var(--gold); transform: translateY(-2px); }
+.beitrag:hover h2 { color: var(--gold-dunkel); }
+.beitrag-marke {
+  font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold-dunkel);
+}
+.beitrag h2 { font-size: 1.3rem; line-height: 1.3; margin: var(--s-2) 0; }
+.beitrag-meta { font-family: var(--mono); font-size: 12.5px; color: var(--text-2); }
+.beitrag p { margin: var(--s-3) 0 0; color: var(--text-2); font-size: 15.5px; line-height: 1.6; }
+
+/* Titelband eines Artikels. Die Standardbreite von 20ch stellt lange
+   Artikeltitel zu schmal, deshalb hier eine eigene Breite. */
+.unter-hero h1.artikel-titel {
+  max-width: 30ch;
+  font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  margin-bottom: var(--s-4);
+}
+.artikel-meta { font-family: var(--mono); font-size: 12.5px; color: var(--hell-2); margin: 0; }
+
+.artikel { max-width: 70ch; }
+.artikel p, .artikel ul, .artikel ol { margin: 0 0 var(--s-5); }
+.artikel h2 { font-size: 1.45rem; margin: var(--s-7) 0 var(--s-4); }
+.artikel h3 { font-size: 1.1rem; margin: var(--s-6) 0 var(--s-3); }
+.artikel ul, .artikel ol { padding-left: var(--s-5); }
+.artikel li { margin-bottom: var(--s-2); }
+.artikel a { color: var(--gold-dunkel); }
+.artikel pre {
+  background: var(--tinte); color: var(--hell);
+  font-family: var(--mono); font-size: 13px; line-height: 1.7;
+  padding: var(--s-5); border-radius: var(--radius);
+  overflow-x: auto; margin: 0 0 var(--s-5);
+}
+.artikel code {
+  font-family: var(--mono); font-size: 0.9em;
+  background: var(--papier); border: 1px solid var(--linie);
+  border-radius: 3px; padding: 1px 5px;
+}
+.artikel pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+.artikel-zurueck { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 1px solid var(--linie); }
+.artikel-zurueck a { font-family: var(--mono); font-size: 13px; color: var(--gold-dunkel); }
+
+/* Rechtstexte: gleiche Spaltenbreite wie der Artikel, damit Absaetze
+   und Listen dort genauso lesbar sind. */
+.rechtstext { max-width: 70ch; }
+.rechtstext h2 { font-size: 1.35rem; margin: var(--s-7) 0 var(--s-4); }
+.rechtstext h3 { font-size: 1.05rem; margin: var(--s-5) 0 var(--s-3); }
+.rechtstext p, .rechtstext ul, .rechtstext ol { margin: 0 0 var(--s-4); }
+.rechtstext ul, .rechtstext ol { padding-left: var(--s-5); }
+.rechtstext li { margin-bottom: var(--s-2); }
+.rechtstext a { color: var(--gold-dunkel); }
+.rechtstext address { font-style: normal; }
+
+@media (max-width: 700px) {
+  .beitrag { padding: var(--s-5); }
+  .artikel pre { font-size: 12px; padding: var(--s-4); }
+}
