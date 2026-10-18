@@ -1,178 +1,231 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Häufige Fragen zu Shopware und JTL | mbara.net</title>
+<meta name="description" content="Antworten auf das, was vor einer Anfrage meistens gefragt wird: Versionen, Ablauf, Preise, Zugänge, Zusammenarbeit mit Agenturen.">
+<link rel="canonical" href="https://mbara.net/faq">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 
-  <meta http-equiv="Content-Security-Policy"
-      content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta property="og:url" content="https://mbara.net/faq">
+<meta property="og:title" content="Häufige Fragen zu Shopware und JTL">
+<meta property="og:description" content="Versionen, Ablauf, Preise, Zugänge, Zusammenarbeit mit Agenturen.">
+<meta property="og:image" content="https://mbara.net/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-image.png">
 
-  <title>Häufige Fragen zu Shopware und JTL | Michael Barabanov</title>
-  <meta name="description" content="Häufige Fragen zu Freelance-Projekten, Shopware 6 & JTL 5 Plugin-Entwicklung, Verfügbarkeit und Zusammenarbeit mit Michael Barabanov." />
-  <link rel="canonical" href="https://mbara.net/faq" />
+<link rel="icon" href="favicon-mbara.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="mbara.css?v=20261014f">
 
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://mbara.net/faq" />
-  <meta property="og:title"       content="FAQ | Michael Barabanov, E-Commerce Engineer & Shopware 6 Spezialist" />
-  <meta property="og:description" content="Häufige Fragen zu Freelance-Projekten, Shopware 6 Plugin-Entwicklung, Verfügbarkeit und Zusammenarbeit." />
-  <meta property="og:image"       content="https://mbara.net/og-image.png" />
-  <meta property="og:locale"      content="de_DE" />
-
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#00ff88">
-
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-
-  <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
-  <link rel="stylesheet" href="style.css" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Was macht ein E-Commerce Engineer / Shopware 6 Spezialist genau?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Backend-Entwicklung rund um Online-Shops: eigene Shopware 6 Plugins, API-Integrationen, Performance-Optimierung, Bugfixing und technische Anpassungen im laufenden Betrieb, von der Anforderung bis zum produktiven Go-Live." }
-      },
-      {
-        "@type": "Question",
-        "name": "Bietest du Freelance-Projekte an und bist du aktuell verfügbar?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ja. Ich arbeite remote für Agenturen und Shop-Betreiber im deutschsprachigen Raum. Was ich anbiete, steht auf der Leistungsseite unter mbara.net." }
-      },
-      {
-        "@type": "Question",
-        "name": "Welche Shopware-Versionen unterstützt du?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Schwerpunkt ist Shopware 6.6 und 6.7. Ältere 6.x-Versionen sind je nach Plugin und Projekt ebenfalls möglich, PriceOnRequest etwa läuft ab Shopware 6.1." }
-      },
-      {
-        "@type": "Question",
-        "name": "Entwickelst du auch für JTL 5?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ja, neben Shopware 6 auch Plugin- und Backend-Entwicklung für JTL-Shop 5." }
-      },
-      {
-        "@type": "Question",
-        "name": "Sind deine Plugins Open Source? Kann ich den Code einsehen?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ja, alle vier veröffentlichten Plugins (BotProtection, AiProductDescription, ComingSoon, PriceOnRequest) sind Open Source auf GitHub einsehbar, inklusive Tests und Dokumentation." }
-      },
-      {
-        "@type": "Question",
-        "name": "Bietest du auch KI-Integrationen an, zum Beispiel mit Claude oder ChatGPT?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Ja. AiProductDescription generiert Produktbeschreibungen per Claude oder ChatGPT direkt im Shopware-Admin, und BotProtection nutzt optional Claude für eine aggregierte Bedrohungsanalyse ohne Übertragung von IPs oder personenbezogenen Daten." }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie läuft die Zusammenarbeit ab?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Kurzes Erstgespräch zu Umfang und Zielsetzung, Angebot mit Zeitrahmen, Umsetzung mit regelmäßigen Zwischenständen, Übergabe inklusive Dokumentation. Kommunikation läuft nach Wunsch per E-Mail, Telefon oder auf den üblichen Freelance-Plattformen." }
-      },
-      {
-        "@type": "Question",
-        "name": "Wie kann ich dich kontaktieren?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Per E-Mail an m.barabanov@mbara.net, über das Kontaktformular auf der Leistungsseite oder über GitHub, LinkedIn und Xing." }
-      }
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mbara.net/" },
-      { "@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://mbara.net/faq" }
-    ]
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://mbara.net/" },
+    { "@type": "ListItem", "position": 2, "name": "Häufige Fragen", "item": "https://mbara.net/faq" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Womit kann ich Sie beauftragen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Migration von Shopware 5 auf Shopware 6, Versionsupdates für Shopware 6, JTL-Shop 5 und JTL-Wawi, Testsysteme mit Übernahme echter Daten, Schnittstellen über REST-API, Plugin-Entwicklung sowie Fehlersuche und technisches SEO." }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Versionen unterstützen Sie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Shopware 6.6 und 6.7 als Schwerpunkt, ältere 6er-Versionen je nach Projekt. Shopware 5 für Bestandsaufnahmen vor einer Migration. Bei JTL der Shop 5 und die Wawi, zuletzt ein Sprung von 1.11.8 auf 2.0.6." }
+    },
+    {
+      "@type": "Question",
+      "name": "Muss ich mit Ihnen telefonieren?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nein. Die Abwicklung läuft schriftlich, ein Erstgespräch ist nicht nötig. Das hat einen praktischen Grund: Was schriftlich steht, können Sie später nachlesen, auch Monate danach, wenn jemand fragt, warum etwas so gebaut wurde." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet das?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Das hängt vom Umfang ab. Nach einer kurzen Prüfung nenne ich einen Stundensatz oder einen Festpreis. Vorher nenne ich keine Zahl, die ich später korrigieren müsste. Bei der Bestandsaufnahme vor einer Migration steht der Festpreis vor dem Start fest und ändert sich danach nicht." }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Zugänge brauchen Sie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Für eine erste Einschätzung keine. Für eine Bestandsaufnahme reicht lesender Zugriff auf das Backend, idealerweise auch auf die Datenbank oder einen Abzug. Schreibende Rechte brauche ich erst, wenn tatsächlich etwas umgesetzt wird." }
+    },
+    {
+      "@type": "Question",
+      "name": "Arbeiten Sie auch für Agenturen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja, als Unterauftragnehmer, remote und schriftlich. Auf Wunsch ohne Kontakt zu Ihrem Endkunden, die Ergebnisse gehen dann über Sie raus. Abrechnung monatlich." }
+    },
+    {
+      "@type": "Question",
+      "name": "Kann ich Ihre Arbeit vorher ansehen?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Vier Shopware-6-Plugins liegen als Open Source auf GitHub, mit Tests und Dokumentation. Dazu steht ein anonymisierter Prüfbericht aus einem echten Audit online, mit allen gemessenen Werten." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie schnell bekomme ich eine Antwort?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Innerhalb eines Werktags. Wenn ich für Ihr Anliegen nicht der Richtige bin, sage ich das in derselben Mail." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was passiert, wenn beim Update etwas schiefgeht?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Deshalb wird zuerst auf einer Kopie getestet und nicht im Livesystem. Vor dem ersten Handgriff bekommen Sie schriftlich, was passiert, in welcher Reihenfolge und wie der Rückweg aussieht. Der Livegang läuft mit Sicherung." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie erreiche ich Sie?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Per E-Mail an m.barabanov@mbara.net. Schreiben Sie dazu, welches System und welche Version bei Ihnen läuft und was gerade nicht funktioniert." }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-<nav id="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="portfolio.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="portfolio.html">portfolio</a></li>
-      <li><a href="index.html">leistungen</a></li>
-      <li><a href="blog/">blog</a></li>
-    </ul>
-    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
-      <span class="lo active" id="lang-de">DE</span>
-      <span class="lang-sep">/</span>
-      <span class="lo" id="lang-en">EN</span>
-    </button>
-  </div>
-</nav>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
 
-<main>
-<section class="product-hero">
-  <div class="container">
-    <div class="product-crumb reveal-left"><a href="portfolio.html" data-i18n="faq.back">← startseite</a></div>
-    <div class="page-tag reveal-left" data-i18n="faq.tag">// faq</div>
-    <h1 class="product-h1 reveal-left" data-i18n="faq.h1">Häufige Fragen.</h1>
-    <p class="product-pitch reveal-left" data-i18n="faq.pitch">Zu Freelance-Projekten, Shopware 6 & JTL 5 Plugin-Entwicklung, Verfügbarkeit und Zusammenarbeit.</p>
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="index.html#leistungen">Leistungen</a>
+      <a href="index.html#plugins">Plugins</a>
+      <a href="beispiel-audit.html">Beispielbericht</a>
+      <a href="index.html#bewertungen">Bewertungen</a>
+      <a href="index.html#ablauf">Ablauf</a>
+    </nav>
+    <a class="knopf" href="#anfragen">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main id="inhalt">
+
+<section class="unter-hero dunkel">
+  <div class="wrap">
+    <a class="pfad" href="index.html">&larr; Start</a>
+    <h1>Häufige Fragen</h1>
+    <p class="gross">
+      Das, was vor einer Anfrage meistens gefragt wird. Wenn Ihre Frage nicht
+      dabei ist, schreiben Sie mir, dann kommt sie hier dazu.
+    </p>
   </div>
 </section>
 
-<section style="padding-bottom:96px;">
-  <div class="container">
-    <div class="reveal" style="max-width:720px;">
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q1">Was macht ein E-Commerce Engineer / Shopware 6 Spezialist genau?</div>
-        <div class="faq-a" data-i18n="faq.a1">Backend-Entwicklung rund um Online-Shops: eigene Shopware 6 Plugins, API-Integrationen, Performance-Optimierung, Bugfixing und technische Anpassungen im laufenden Betrieb, von der Anforderung bis zum produktiven Go-Live.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q2">Bietest du Freelance-Projekte an und bist du aktuell verfügbar?</div>
-        <div class="faq-a" data-i18n-html="faq.a2">Ja. Ich arbeite remote für Agenturen und Shop-Betreiber im deutschsprachigen Raum. Was ich anbiete, steht auf der <a href="index.html">Leistungsseite</a>.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q3">Welche Shopware-Versionen unterstützt du?</div>
-        <div class="faq-a" data-i18n="faq.a3">Schwerpunkt ist Shopware 6.6 und 6.7. Ältere 6.x-Versionen sind je nach Plugin und Projekt ebenfalls möglich, PriceOnRequest etwa läuft ab Shopware 6.1.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q4">Entwickelst du auch für JTL 5?</div>
-        <div class="faq-a" data-i18n="faq.a4">Ja, neben Shopware 6 auch Plugin- und Backend-Entwicklung für JTL-Shop 5.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q5">Sind deine Plugins Open Source? Kann ich den Code einsehen?</div>
-        <div class="faq-a" data-i18n-html="faq.a5">Ja, alle vier veröffentlichten Plugins (<a href="plugins/botprotection.html">BotProtection</a>, <a href="plugins/ai-product-description.html">AiProductDescription</a>, <a href="plugins/coming-soon.html">ComingSoon</a>, <a href="plugins/price-on-request.html">PriceOnRequest</a>) sind Open Source auf GitHub einsehbar, inklusive Tests und Dokumentation.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q6">Bietest du auch KI-Integrationen an, zum Beispiel mit Claude oder ChatGPT?</div>
-        <div class="faq-a" data-i18n="faq.a6">Ja. AiProductDescription generiert Produktbeschreibungen per Claude oder ChatGPT direkt im Shopware-Admin, und BotProtection nutzt optional Claude für eine aggregierte Bedrohungsanalyse ohne Übertragung von IPs oder personenbezogenen Daten.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q7">Wie läuft die Zusammenarbeit ab?</div>
-        <div class="faq-a" data-i18n="faq.a7">Kurzes Erstgespräch zu Umfang und Zielsetzung, Angebot mit Zeitrahmen, Umsetzung mit regelmäßigen Zwischenständen, Übergabe inklusive Dokumentation. Kommunikation läuft nach Wunsch per E-Mail, Telefon oder auf den üblichen Freelance-Plattformen.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.q8">Wie kann ich dich kontaktieren?</div>
-        <div class="faq-a" data-i18n-html="faq.a8">Per E-Mail an <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>, über das Kontaktformular auf der <a href="index.html">Leistungsseite</a> oder über <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">GitHub</a> und <a href="https://linkedin.com/in/michael-barabanov-103265357" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</div>
+<section class="seite">
+  <div class="wrap">
+    <div class="inhalt">
+
+      <h2>Leistung und Technik</h2>
+
+      <details>
+        <summary>Womit kann ich Sie beauftragen?</summary>
+        <p>Migration von Shopware 5 auf Shopware 6, Versionsupdates für Shopware 6, JTL-Shop 5 und JTL-Wawi, Testsysteme mit Übernahme echter Daten, Schnittstellen über REST-API, Plugin-Entwicklung, dazu Fehlersuche und technisches SEO. Die fünf häufigsten Fälle stehen ausführlich auf der <a href="index.html#leistungen">Leistungsübersicht</a>.</p>
+      </details>
+
+      <details>
+        <summary>Welche Versionen unterstützen Sie?</summary>
+        <p>Shopware 6.6 und 6.7 als Schwerpunkt, ältere 6er-Versionen je nach Projekt. Shopware 5 für Bestandsaufnahmen vor einer Migration. Bei JTL der Shop 5 und die Wawi, zuletzt ein Sprung von 1.11.8 auf 2.0.6.</p>
+      </details>
+
+      <details>
+        <summary>Was passiert, wenn beim Update etwas schiefgeht?</summary>
+        <p>Deshalb wird zuerst auf einer Kopie getestet und nicht im Livesystem. Vor dem ersten Handgriff bekommen Sie schriftlich, was passiert, in welcher Reihenfolge und wie der Rückweg aussieht. Der Livegang läuft mit Sicherung.</p>
+      </details>
+
+      <details>
+        <summary>Welche Zugänge brauchen Sie?</summary>
+        <p>Für eine erste Einschätzung keine. Für eine Bestandsaufnahme reicht lesender Zugriff auf das Backend, idealerweise auch auf die Datenbank oder einen Abzug. Schreibende Rechte brauche ich erst, wenn tatsächlich etwas umgesetzt wird.</p>
+      </details>
+
+      <h2>Zusammenarbeit</h2>
+
+      <details>
+        <summary>Muss ich mit Ihnen telefonieren?</summary>
+        <p>Nein. Die Abwicklung läuft schriftlich, ein Erstgespräch ist nicht nötig. Das hat einen praktischen Grund: Was schriftlich steht, können Sie später nachlesen, auch Monate danach, wenn jemand fragt, warum etwas so gebaut wurde.</p>
+      </details>
+
+      <details>
+        <summary>Wie schnell bekomme ich eine Antwort?</summary>
+        <p>Innerhalb eines Werktags. Wenn ich für Ihr Anliegen nicht der Richtige bin, sage ich das in derselben Mail.</p>
+      </details>
+
+      <details>
+        <summary>Arbeiten Sie auch für Agenturen?</summary>
+        <p>Ja, als Unterauftragnehmer, remote und schriftlich. Auf Wunsch ohne Kontakt zu Ihrem Endkunden, die Ergebnisse gehen dann über Sie raus. Abrechnung monatlich.</p>
+      </details>
+
+      <details>
+        <summary>Bekomme ich den Quellcode?</summary>
+        <p>Ja. Was ich für Sie baue, gehört Ihnen, inklusive Dokumentation.</p>
+      </details>
+
+      <h2>Preis und Nachweis</h2>
+
+      <details>
+        <summary>Was kostet das?</summary>
+        <p>Das hängt vom Umfang ab. Nach einer kurzen Prüfung nenne ich einen Stundensatz oder einen Festpreis. Vorher nenne ich keine Zahl, die ich später korrigieren müsste. Bei der <a href="migration-shopware-5-auf-6.html">Bestandsaufnahme</a> vor einer Migration steht der Festpreis vor dem Start fest und ändert sich danach nicht.</p>
+      </details>
+
+      <details>
+        <summary>Kann ich Ihre Arbeit vorher ansehen?</summary>
+        <p>Ja. Vier Shopware-6-Plugins liegen als Open Source auf <a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a>, mit Tests und Dokumentation. Dazu steht ein <a href="beispiel-audit.html">anonymisierter Prüfbericht</a> aus einem echten Audit online, mit allen gemessenen Werten.</p>
+      </details>
+
+      <h2 id="anfragen">Wie erreiche ich Sie?</h2>
+      <p>
+        Per E-Mail. Schreiben Sie dazu, welches System und welche Version bei
+        Ihnen läuft und was gerade nicht funktioniert. Mehr brauche ich für eine
+        erste Einschätzung nicht.
+      </p>
+      <p><a class="mail-gross" href="mailto:m.barabanov@mbara.net?subject=Anfrage%20%C3%BCber%20mbara.net&body=Welches%20System%20und%20welche%20Version%3A%0A%0AWas%20gerade%20nicht%20funktioniert%3A%0A%0ABis%20wann%20es%20laufen%20soll%3A%0A%0A">m.barabanov@mbara.net</a></p>
+
+      <h2>Verwandte Themen</h2>
+      <div class="weiter">
+        <a href="migration-shopware-5-auf-6.html"><b>Shopware 5 auf 6</b><span>Bestandsaufnahme vor der Migration, damit Sie Angebote beurteilen können.</span></a>
+        <a href="jtl-wawi-update.html"><b>JTL-Wawi aktualisieren</b><span>Kompatibilitätsprüfung vorab, Test auf einer Kopie, Livegang ohne Ausfall.</span></a>
+        <a href="beispiel-audit.html"><b>Beispielbericht</b><span>Ein echter Prüfbericht, anonymisiert, mit gemessenen Werten.</span></a>
       </div>
     </div>
   </div>
 </section>
+
 </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-privacy" data-i18n-html="footer.privacy">
-      <span class="fp-dot"></span>
-      // keine cookies · kein tracking · deine daten gehören dir
-    </div>
-    <div class="footer-bottom">
-      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
-      <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="blog/">Blog</a> · <a href="index.html">Leistungen und Anfrage</a></span>
-    </div>
+<footer class="fuss">
+  <div class="wrap fuss-in">
+    <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+    <nav aria-label="Leistungen">
+      <a href="migration-shopware-5-auf-6.html">Shopware 5 auf 6</a>
+      <a href="jtl-wawi-update.html">JTL-Wawi Update</a>
+      <a href="schnittstellen.html">Schnittstellen</a>
+      <a href="beispiel-audit.html">Beispielbericht</a>
+    </nav>
+    <nav aria-label="Weitere Seiten">
+      <a href="index.html">Start</a>
+      <a href="blog/">Blog</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
   </div>
 </footer>
 
-<script src="i18n.js?v=20261014b"></script>
-<script src="main.js?v=20261014"></script>
-<script src="cat.js?v=20261012"></script>
 </body>
 </html>

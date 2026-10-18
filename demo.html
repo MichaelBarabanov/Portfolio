@@ -1,252 +1,34 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta http-equiv="Content-Security-Policy"
-      content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self';" />
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="strict-origin-when-cross-origin" />
-
-  <title>Plugins & Projekte | Michael Barabanov</title>
-  <meta name="description" content="Vier veröffentlichte Shopware 6 Plugins und eigene Software-Projekte von Michael Barabanov, mit Features, Tech-Stack und Links zum Quellcode." />
-  <link rel="canonical" href="https://mbara.net/demo" />
-
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://mbara.net/demo" />
-  <meta property="og:title"       content="Plugins & Projekte | Michael Barabanov" />
-  <meta property="og:description" content="Shopware 6 Plugins und Software-Projekte, Features, Tech-Stack, Quellcode." />
-  <meta property="og:image"       content="https://mbara.net/og-image.png" />
-  <meta property="og:locale"      content="de_DE" />
-
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#00ff88">
-
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-
-  <link rel="stylesheet" href="fonts/plus-jakarta-sans.css" />
-  <link rel="stylesheet" href="style.css" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mbara.net/" },
-      { "@type": "ListItem", "position": 2, "name": "Plugins & Projekte", "item": "https://mbara.net/demo" }
-    ]
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weitergeleitet zu den Arbeiten</title>
+<link rel="canonical" href="https://mbara.net/portfolio">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=portfolio.html#arbeiten">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #0a0a0a;
+    color: #e8e8e8;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    text-align: center;
+    padding: 24px;
+    line-height: 1.7;
   }
-  </script>
-  <style>
-    .page-tag {
-      font-family: 'Cascadia Code','Fira Code',monospace;
-      font-size: 11px; color: var(--accent); letter-spacing: .15em;
-      text-transform: uppercase; margin-bottom: 16px;
-    }
-    .demo-hero { padding: 140px 0 40px; }
-    .demo-sub { color: var(--muted); font-size: 16px; max-width: 620px; margin-top: 12px; }
-
-    .filter-tabs { display: flex; gap: 10px; margin-top: 32px; flex-wrap: wrap; }
-    .filter-tab {
-      font-family: 'Cascadia Code','Fira Code',monospace;
-      font-size: 13px; padding: 8px 18px;
-      border: 1px solid var(--border); border-radius: 20px;
-      background: transparent; color: var(--muted);
-      cursor: pointer; transition: border-color .2s, color .2s, background .2s;
-    }
-    .filter-tab:hover { border-color: var(--accent); color: var(--text); }
-    .filter-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(0,232,122,.08); }
-
-    #demo-grid { padding-top: 32px; padding-bottom: 96px; }
-    .card[hidden] { display: none; }
-  </style>
+  a { color: #00e87a; }
+</style>
 </head>
 <body>
-
-<nav id="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="portfolio.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="portfolio.html">portfolio</a></li>
-      <li><a href="index.html">leistungen</a></li>
-      <li><a href="blog/">blog</a></li>
-    </ul>
-    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
-      <span class="lo active" id="lang-de">DE</span>
-      <span class="lang-sep">/</span>
-      <span class="lo" id="lang-en">EN</span>
-    </button>
-  </div>
-</nav>
-
-<main>
-<section id="demo-hero" class="demo-hero">
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="demo.tag">// showcase</div>
-    <h1 class="section-title reveal-left" style="font-size:clamp(32px,5vw,52px)" data-i18n="demo.h1">Plugins &amp; Projekte.</h1>
-    <p class="demo-sub reveal-left" data-i18n="demo.sub">Vier veröffentlichte Shopware 6 Plugins und eigene Software-Projekte, jeder Code ist echt, jeder Link führt zum Repository.</p>
-
-    <div class="filter-tabs reveal-left" id="filter-tabs">
-      <button type="button" class="filter-tab active" data-filter="all" data-i18n="demo.filter.all">alle</button>
-      <button type="button" class="filter-tab" data-filter="plugin" data-i18n="demo.filter.plugins">plugins</button>
-      <button type="button" class="filter-tab" data-filter="software" data-i18n="demo.filter.software">software</button>
-    </div>
-  </div>
-</section>
-
-<section id="demo-grid">
-  <div class="container">
-    <div class="cards" id="demo-cards">
-
-      <article class="card reveal" data-cat="plugin">
-        <a class="card-thumb" href="plugins/botprotection.html">
-          <img src="img/plugins/botprotection-dashboard.png" alt="BotProtection Admin-Dashboard" loading="lazy" data-i18n-alt="bp.gallery.1" / width="912" height="381">
-        </a>
-        <div class="card-cat card-cat--ai">SW6 Plugin · AI</div>
-        <div class="card-header">
-          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
-          </svg>
-          <a class="card-title" href="plugins/botprotection.html">BotProtection</a>
-        </div>
-        <p class="card-desc" data-i18n="card.botProtection.desc">Shopware 6 Plugin: Application-Layer-Schutz gegen Bots, Honeypot, Rate-Limiting und Time-Validation für Formulare. Admin-Dashboard mit optionaler KI-Bedrohungsanalyse (Claude).</p>
-        <ul class="plugin-features" style="margin-top:4px;">
-          <li data-i18n="demo.card.bp.f1">✓ Honeypot, Rate-Limiting &amp; Time-Validation</li>
-          <li data-i18n="demo.card.bp.f2">✓ Admin-Dashboard mit 14-Tage-Statistik</li>
-          <li data-i18n="demo.card.bp.f3">✓ Optionale KI-Bedrohungsanalyse (Claude)</li>
-          <li data-i18n="demo.card.bp.f4">✓ DSGVO-konformes Logging mit Auto-Löschung</li>
-        </ul>
-        <div class="card-footer">
-          <span class="lang-dot" style="background:#787CB5"></span>
-          <span class="lang">PHP</span>
-          <span class="lang-dot" style="background:#a855f7;margin-left:6px"></span>
-          <span class="lang">AI</span>
-          <a class="card-link" href="plugins/botprotection.html" data-i18n="demo.details" aria-label="Details: BotProtection">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="card reveal" data-cat="plugin">
-        <a class="card-thumb" href="plugins/ai-product-description.html">
-          <img src="img/plugins/ai-product-description-modal.png" alt="AiProductDescription Generierungs-Modal" loading="lazy" data-i18n-alt="ai.gallery.1" / width="835" height="764">
-        </a>
-        <div class="card-cat card-cat--ai">SW6 Plugin · AI</div>
-        <div class="card-header">
-          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
-          </svg>
-          <a class="card-title" href="plugins/ai-product-description.html">AiProductDescription</a>
-        </div>
-        <p class="card-desc" data-i18n="card.aiDesc.desc">Shopware 6 Plugin: AI-gestützter Produktbeschreibungs-Generator direkt im Admin. Unterstützt Claude (Anthropic) und ChatGPT (OpenAI), zwei Sprachen und drei Schreibstile.</p>
-        <ul class="plugin-features" style="margin-top:4px;">
-          <li data-i18n="demo.card.ai.f1">✓ Claude &amp; ChatGPT wählbar</li>
-          <li data-i18n="demo.card.ai.f2">✓ Deutsch &amp; Englisch</li>
-          <li data-i18n="demo.card.ai.f3">✓ Drei Schreibstile: Professionell, Casual, SEO</li>
-          <li data-i18n="demo.card.ai.f4">✓ API-Calls serverseitig, Keys verlassen nie den Server</li>
-        </ul>
-        <div class="card-footer">
-          <span class="lang-dot" style="background:#787CB5"></span>
-          <span class="lang">PHP</span>
-          <span class="lang-dot" style="background:#a855f7;margin-left:6px"></span>
-          <span class="lang">AI</span>
-          <a class="card-link" href="plugins/ai-product-description.html" data-i18n="demo.details" aria-label="Details: AiProductDescription">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="card reveal" data-cat="plugin">
-        <a class="card-thumb" href="plugins/coming-soon.html">
-          <img src="img/plugins/coming-soon-page.png" alt="ComingSoon Storefront-Seite" loading="lazy" data-i18n-alt="cs.gallery.1" / width="1909" height="906">
-        </a>
-        <div class="card-cat card-cat--sw">SW6 Plugin</div>
-        <div class="card-header">
-          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
-          </svg>
-          <a class="card-title" href="plugins/coming-soon.html">ComingSoon</a>
-        </div>
-        <p class="card-desc" data-i18n="card.comingSoon.desc">Shopware 6 Plugin: Coming-Soon-Modus mit Countdown-Timer und E-Mail-Benachrichtigung vor dem Shop-Launch.</p>
-        <ul class="plugin-features" style="margin-top:4px;">
-          <li data-i18n="demo.card.cs.f1">✓ Pro Sales Channel oder einzelne URLs</li>
-          <li data-i18n="demo.card.cs.f2">✓ IP-Whitelist &amp; geheimer Preview-Link</li>
-          <li data-i18n="demo.card.cs.f3">✓ SEO-sicher: HTTP 503 + Retry-After + Noindex</li>
-          <li data-i18n="demo.card.cs.f4">✓ Countdown mit automatischer Freischaltung</li>
-        </ul>
-        <div class="card-footer">
-          <span class="lang-dot" style="background:#787CB5"></span>
-          <span class="lang">PHP</span>
-          <a class="card-link" href="plugins/coming-soon.html" data-i18n="demo.details" aria-label="Details: ComingSoon">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="card reveal" data-cat="plugin">
-        <a class="card-thumb" href="plugins/price-on-request.html">
-          <img src="img/plugins/price-on-request-storefront-listing.png" alt="PriceOnRequest Storefront-Produktliste" loading="lazy" data-i18n-alt="pr.gallery.3" / width="869" height="620">
-        </a>
-        <div class="card-cat card-cat--sw">SW6 Plugin</div>
-        <div class="card-header">
-          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
-          </svg>
-          <a class="card-title" href="plugins/price-on-request.html">PriceOnRequest</a>
-        </div>
-        <p class="card-desc" data-i18n="card.priceReq.desc">Shopware 6 Plugin: Versteckt Preise und ersetzt den Warenkorb-Button durch ein Kontaktformular. Perfekt für B2B-Shops.</p>
-        <ul class="plugin-features" style="margin-top:4px;">
-          <li data-i18n="demo.card.pr.f1">✓ Preis pro Sales Channel ausblenden</li>
-          <li data-i18n="demo.card.pr.f2">✓ Konfigurierbarer Button-Text</li>
-          <li data-i18n="demo.card.pr.f3">✓ Anfrageformular als Modal</li>
-          <li data-i18n="demo.card.pr.f4">✓ E-Mail-Benachrichtigung an konfigurierbaren Empfänger</li>
-        </ul>
-        <div class="card-footer">
-          <span class="lang-dot" style="background:#787CB5"></span>
-          <span class="lang">PHP</span>
-          <a class="card-link" href="plugins/price-on-request.html" data-i18n="demo.details" aria-label="Details: PriceOnRequest">Details ansehen →</a>
-        </div>
-      </article>
-
-      <article class="card reveal" data-cat="software">
-        <div class="card-cat card-cat--tool">Software</div>
-        <div class="card-header">
-          <svg class="repo-icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8Z"/>
-          </svg>
-          <a class="card-title" href="https://github.com/MichaelBarabanov/finanz-dashboard" target="_blank" rel="noopener noreferrer">Finanz Dashboard</a>
-        </div>
-        <p class="card-desc" data-i18n="demo.card.fd.desc">Privates, lokales Finanz-Dashboard mit Laravel 11, Livewire 3 und SQLite. Konten, Buchungen, PDF-Kontoauszug-Import mit Salden-Prüfsumme, lernende Kategorisierungs-Regeln, Schulden- &amp; Ratentracking.</p>
-        <ul class="plugin-features" style="margin-top:4px;">
-          <li data-i18n="demo.card.fd.f1">✓ PDF-Import mit Dedup &amp; Prüfsumme</li>
-          <li data-i18n="demo.card.fd.f2">✓ Lernende Regel-Engine für Kategorisierung</li>
-          <li data-i18n="demo.card.fd.f3">✓ Schulden- &amp; Ratenplan-Tracking</li>
-          <li data-i18n="demo.card.fd.f4">✓ Läuft komplett lokal über Docker</li>
-        </ul>
-        <div class="card-footer">
-          <span class="lang-dot" style="background:#4F5AF5"></span>
-          <span class="lang">Laravel</span>
-          <a class="card-link" href="https://github.com/MichaelBarabanov/finanz-dashboard" target="_blank" rel="noopener noreferrer" aria-label="GitHub: Finanz Dashboard">GitHub →</a>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-privacy" data-i18n-html="footer.privacy">
-      <span class="fp-dot"></span>
-      // keine cookies · kein tracking · deine daten gehören dir
-    </div>
-    <div class="footer-bottom">
-      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
-      <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="blog/">Blog</a> · <a href="faq.html">FAQ</a> · <a href="index.html">Hire Me</a></span>
-    </div>
-  </div>
-</footer>
-
-<script src="i18n.js?v=20261014b"></script>
-<script src="main.js?v=20261014"></script>
-<script src="cat.js?v=20261012"></script>
+<p>
+  Die Projekte stehen jetzt unter
+  <a href="portfolio.html#arbeiten">Arbeiten</a>.<br>
+  Sie werden gleich weitergeleitet.
+</p>
 </body>
 </html>

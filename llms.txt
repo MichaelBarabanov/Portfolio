@@ -8,6 +8,7 @@
 - [Migration Shopware 5 auf 6](https://mbara.net/migration-shopware-5-auf-6): Bestandsaufnahme vor der Migration. Je Plugin steht im Bericht, ob es einen Nachfolger für Shopware 6 gibt, ob eine andere Erweiterung dasselbe kann oder ob neu gebaut werden muss. Shopware 5 ist seit dem 31. Juli 2024 ohne Herstellersupport.
 - [JTL-Wawi Update und Testsystem](https://mbara.net/jtl-wawi-update): Versionsupdates mit Kompatibilitätsprüfung je Komponente, Test auf einer Kopie der Datenbank, Livegang mit Sicherung. Dazu getrennte Testsysteme mit Übernahme echter Daten vor einem Wechsel der Warenwirtschaft.
 - [Schnittstellen über REST-API](https://mbara.net/schnittstellen): Verbindungen zwischen Shopware 6, JTL-Wawi und Drittsystemen. Verarbeitung im Hintergrund, Protokolle mit Grund je Fehlschlag, Wiederholung fehlgeschlagener Vorgänge. eBay über JTL-eazyAuction.
+- [Häufige Fragen](https://mbara.net/faq): Versionen, Ablauf, Preise, Zugänge, Zusammenarbeit mit Agenturen.
 - [Beispielbericht SEO- und GEO-Audit](https://mbara.net/beispiel-audit): Anonymisierter Prüfbericht eines echten Shopware-6-Shops. Alle Messwerte real erhoben, Messung von außen ohne Zugang zum Shop.
 
 ## Plugins
@@ -41,8 +42,8 @@ Vier eigene Shopware-6-Plugins, alle als Open Source auf GitHub, alle mit Tests.
 
 ## Optional
 
-- [Portfolio](https://mbara.net/portfolio): Persönliche Entwicklerseite mit Werdegang und Technikstapel
-- [Plugins und Projekte](https://mbara.net/demo): Übersicht mit Screenshots
-- [FAQ](https://mbara.net/faq): Häufige Fragen zur Zusammenarbeit
+- [Portfolio](https://mbara.net/portfolio): Arbeiten als Zeitstrahl, Werdegang, eigene Projekte
+- [Dokument-Viewer im Bundesarchiv](https://mbara.net/projekte/dokument-viewer-bundesarchiv): Koordinatenbasierter Viewer für über 100.000 digitalisierte Dokumente, täglich von mehreren Tausend Archivnutzern genutzt, bis heute im Einsatz. Python, PHP, HTML, CSS.
+- [Transkription eines Tonbestands](https://mbara.net/projekte/transkription-tonbestand-bundesarchiv): Über 100.000 Tonaufnahmen mit Whisper transkribiert und über den Inhalt durchsuchbar gemacht. Rund 85 Prozent weniger Handarbeit, gemessen.
 - [Impressum](https://mbara.net/impressum): Anbieterkennzeichnung
 - [Datenschutz](https://mbara.net/datenschutz): Datenschutzerklärung
