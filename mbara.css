@@ -1647,6 +1647,7 @@ summary:focus-visible,
   font-size: 14px;
   color: var(--hell);
 }
+@media (min-width: 821px) { .nebenbei ul { grid-template-columns: repeat(3, 1fr); } }
 .nebenbei svg {
   flex: 0 0 26px; width: 26px; height: 26px;
   fill: none; stroke: var(--gold); stroke-width: 1.6;
