@@ -219,11 +219,11 @@ figure { margin: 0; }
   align-items: center;
 }
 .hero h1 {
-  font-size: clamp(1.95rem, 3.5vw, 2.95rem);
+  font-size: clamp(1.95rem, 3.2vw, 2.6rem);
   line-height: 1.1;
   letter-spacing: -0.025em;
   margin-bottom: var(--s-5);
-  max-width: 24ch;
+  max-width: none;
   text-wrap: balance;
 }
 .hero .gross { color: var(--hell); max-width: 52ch; }
