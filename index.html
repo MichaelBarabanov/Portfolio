@@ -26,7 +26,7 @@
 <link rel="icon" href="favicon-mbara.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
-<link rel="stylesheet" href="mbara.css?v=20261018b">
+<link rel="stylesheet" href="mbara.css?v=20261115a">
 
 <script type="application/ld+json">
 {
@@ -175,6 +175,7 @@
     <a class="wortmarke" href="/">Michael Barabanov <span class="mono">mbara.net</span></a>
     <nav aria-label="Seitenbereiche">
       <a href="#leistungen">Leistungen</a>
+      <a href="#ergebnisse">Ergebnisse</a>
       <a href="#plugins">Plugins</a>
       <a href="#bericht">Beispielbericht</a>
       <a href="#bewertungen">Bewertungen</a>
@@ -456,6 +457,188 @@
           </ul>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt dunkel" id="ergebnisse">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="marke">Ergebnisse</span>
+      <h2>Was sich messbar geändert hat</h2>
+      <p class="gross">Drei Arbeiten aus einer laufenden Shopbetreuung, Shopware 6 mit JTL-Wawi. Jede Zahl hat eine Quelle.</p>
+    </div>
+
+    <div class="faelle">
+
+      <article class="fall">
+        <h3>Eine Adresse statt zwei</h3>
+        <div class="fall-bild" role="img" aria-label="Vorher liefen 80,3 Prozent der Zugriffe über die Adresse mit www und 19,7 Prozent über die Adresse ohne www. Nachher läuft der Shop unter einer Adresse, alte Links leiten dauerhaft weiter.">
+          <span class="zeile-beschr">vorher</span>
+          <div class="balken-geteilt">
+            <span class="seg seg-a" style="flex-basis:80.3%"></span>
+            <span class="seg seg-b" style="flex-basis:19.7%"></span>
+          </div>
+          <span class="zeile-beschr">nachher</span>
+          <div class="balken-geteilt nachher">
+            <span class="seg seg-a seg-voll">eine Adresse</span>
+          </div>
+          <div class="legende" aria-hidden="true"><span><i class="farbe-a"></i>www.ihr-shop.de 80,3&nbsp;%</span><span><i class="farbe-b"></i>ihr-shop.de 19,7&nbsp;%</span></div>
+        </div>
+        <dl class="vorher-nachher">
+          <div><dt>Seiten als Dublette gewertet</dt><dd><span class="v">172</span><span class="n">162</span></dd></div>
+          <div><dt>Seiten im Google-Index</dt><dd><span class="v">998</span><span class="n">1.050</span></dd></div>
+        </dl>
+        <span class="fall-stempel">Feed vorher umgestellt</span>
+        <span class="quelle"><b>Quelle</b>Google Search Console, Serverprotokolle</span>
+      </article>
+
+      <article class="fall">
+        <h3>Saubere Produktadressen</h3>
+        <div class="fall-bild" role="img" aria-label="Vorher endeten Produktadressen auf einem 32-stelligen Zufallscode und trugen einen verschachtelten Kategoriepfad. Nachher bestehen sie nur noch aus dem Produktnamen.">
+          <span class="zeile-beschr">vorher</span>
+          <code class="url url-alt">ihr-shop.de/<s>zubehoer/taschen/reise/</s>modell-x<s>-8f3a9c41e7d2b05a6c1f9e3d7a2b4c60</s></code>
+          <span class="zeile-beschr">nachher</span>
+          <code class="url url-neu">ihr-shop.de/modell-x</code>
+        </div>
+        <ul class="schrumpf">
+          <li style="--v:123;--n:1"><span class="schrumpf-beschr">Adressen mit Zufallscode</span><span class="spur"><i></i></span><span class="schrumpf-zahl">123 <b>1</b></span></li>
+          <li style="--v:107;--n:31"><span class="schrumpf-beschr">Adressen mit Kategoriepfad</span><span class="spur"><i></i></span><span class="schrumpf-zahl">107 <b>31</b></span></li>
+        </ul>
+        <p class="fall-zeile">122 von 123 umgestellt, jede alte Adresse leitet weiter.</p>
+        <span class="fall-stempel">kein Produkt angefasst</span>
+        <span class="quelle"><b>Quelle</b>Shopware-Datenbank, Livetest</span>
+      </article>
+
+      <article class="fall">
+        <h3>Varianten im Google-Feed gebündelt</h3>
+        <div class="fall-bild" role="img" aria-label="Schema: 79 einzeln gemeldete Artikel werden zu 24 Produktgruppen zusammengefasst, Farbvarianten treten nicht mehr gegeneinander an.">
+          <svg class="punktefeld" viewBox="0 0 300 150" aria-hidden="true">
+          <circle class="ring" r="9" cx="30.0" cy="40.0" style="--i:0"/>
+          <circle class="ring" r="9" cx="64.3" cy="40.0" style="--i:1"/>
+          <circle class="ring" r="9" cx="98.6" cy="40.0" style="--i:2"/>
+          <circle class="ring" r="9" cx="132.9" cy="40.0" style="--i:3"/>
+          <circle class="ring" r="9" cx="167.2" cy="40.0" style="--i:4"/>
+          <circle class="ring" r="9" cx="201.5" cy="40.0" style="--i:5"/>
+          <circle class="ring" r="9" cx="235.8" cy="40.0" style="--i:6"/>
+          <circle class="ring" r="9" cx="270.1" cy="40.0" style="--i:7"/>
+          <circle class="ring" r="9" cx="30.0" cy="82.0" style="--i:8"/>
+          <circle class="ring" r="9" cx="64.3" cy="82.0" style="--i:9"/>
+          <circle class="ring" r="9" cx="98.6" cy="82.0" style="--i:10"/>
+          <circle class="ring" r="9" cx="132.9" cy="82.0" style="--i:11"/>
+          <circle class="ring" r="9" cx="167.2" cy="82.0" style="--i:12"/>
+          <circle class="ring" r="9" cx="201.5" cy="82.0" style="--i:13"/>
+          <circle class="ring" r="9" cx="235.8" cy="82.0" style="--i:14"/>
+          <circle class="ring" r="9" cx="270.1" cy="82.0" style="--i:15"/>
+          <circle class="ring" r="9" cx="30.0" cy="124.0" style="--i:16"/>
+          <circle class="ring" r="9" cx="64.3" cy="124.0" style="--i:17"/>
+          <circle class="ring" r="9" cx="98.6" cy="124.0" style="--i:18"/>
+          <circle class="ring" r="9" cx="132.9" cy="124.0" style="--i:19"/>
+          <circle class="ring" r="9" cx="167.2" cy="124.0" style="--i:20"/>
+          <circle class="ring" r="9" cx="201.5" cy="124.0" style="--i:21"/>
+          <circle class="ring" r="9" cx="235.8" cy="124.0" style="--i:22"/>
+          <circle class="ring" r="9" cx="270.1" cy="124.0" style="--i:23"/>
+          <circle r="3.2" style="--x0:22.0px;--y0:18.0px;--x1:61.6px;--y1:81.4px;--d:0.19"/>
+          <circle r="3.2" style="--x0:43.3px;--y0:18.0px;--x1:27.6px;--y1:39.9px;--d:0.01"/>
+          <circle r="3.2" style="--x0:64.6px;--y0:18.0px;--x1:99.8px;--y1:83.9px;--d:0.14"/>
+          <circle r="3.2" style="--x0:85.9px;--y0:18.0px;--x1:238.4px;--y1:38.7px;--d:0.17"/>
+          <circle r="3.2" style="--x0:107.2px;--y0:18.0px;--x1:270.8px;--y1:82.6px;--d:0.11"/>
+          <circle r="3.2" style="--x0:128.5px;--y0:18.0px;--x1:32.4px;--y1:127.1px;--d:0.12"/>
+          <circle r="3.2" style="--x0:149.8px;--y0:18.0px;--x1:236.9px;--y1:36.9px;--d:0.18"/>
+          <circle r="3.2" style="--x0:171.1px;--y0:18.0px;--x1:168.2px;--y1:85.5px;--d:0.21"/>
+          <circle r="3.2" style="--x0:192.4px;--y0:18.0px;--x1:131.4px;--y1:39.2px;--d:0.17"/>
+          <circle r="3.2" style="--x0:213.7px;--y0:18.0px;--x1:129.6px;--y1:81.7px;--d:0.04"/>
+          <circle r="3.2" style="--x0:235.0px;--y0:18.0px;--x1:198.8px;--y1:36.9px;--d:0.19"/>
+          <circle r="3.2" style="--x0:256.3px;--y0:18.0px;--x1:267.5px;--y1:80.2px;--d:0.1"/>
+          <circle r="3.2" style="--x0:277.6px;--y0:18.0px;--x1:272.7px;--y1:37.1px;--d:0.11"/>
+          <circle r="3.2" style="--x0:22.0px;--y0:38.5px;--x1:236.1px;--y1:42.7px;--d:0.2"/>
+          <circle r="3.2" style="--x0:43.3px;--y0:38.5px;--x1:101.1px;--y1:122.4px;--d:0.1"/>
+          <circle r="3.2" style="--x0:64.6px;--y0:38.5px;--x1:29.0px;--y1:84.7px;--d:0.24"/>
+          <circle r="3.2" style="--x0:85.9px;--y0:38.5px;--x1:164.8px;--y1:37.7px;--d:0.06"/>
+          <circle r="3.2" style="--x0:107.2px;--y0:38.5px;--x1:131.0px;--y1:81.9px;--d:0.15"/>
+          <circle r="3.2" style="--x0:128.5px;--y0:38.5px;--x1:62.6px;--y1:36.5px;--d:0.1"/>
+          <circle r="3.2" style="--x0:149.8px;--y0:38.5px;--x1:97.7px;--y1:40.5px;--d:0.24"/>
+          <circle r="3.2" style="--x0:171.1px;--y0:38.5px;--x1:237.1px;--y1:40.1px;--d:0.15"/>
+          <circle r="3.2" style="--x0:192.4px;--y0:38.5px;--x1:168.4px;--y1:36.9px;--d:0.22"/>
+          <circle r="3.2" style="--x0:213.7px;--y0:38.5px;--x1:32.0px;--y1:126.6px;--d:0.2"/>
+          <circle r="3.2" style="--x0:235.0px;--y0:38.5px;--x1:269.3px;--y1:39.3px;--d:0.03"/>
+          <circle r="3.2" style="--x0:256.3px;--y0:38.5px;--x1:99.5px;--y1:78.9px;--d:0.02"/>
+          <circle r="3.2" style="--x0:277.6px;--y0:38.5px;--x1:28.0px;--y1:37.6px;--d:0.09"/>
+          <circle r="3.2" style="--x0:22.0px;--y0:59.0px;--x1:267.0px;--y1:120.5px;--d:0.04"/>
+          <circle r="3.2" style="--x0:43.3px;--y0:59.0px;--x1:95.8px;--y1:81.0px;--d:0.01"/>
+          <circle r="3.2" style="--x0:64.6px;--y0:59.0px;--x1:169.8px;--y1:40.8px;--d:0.04"/>
+          <circle r="3.2" style="--x0:85.9px;--y0:59.0px;--x1:131.2px;--y1:38.9px;--d:0.09"/>
+          <circle r="3.2" style="--x0:107.2px;--y0:59.0px;--x1:164.6px;--y1:126.4px;--d:0.25"/>
+          <circle r="3.2" style="--x0:128.5px;--y0:59.0px;--x1:167.0px;--y1:39.9px;--d:0.02"/>
+          <circle r="3.2" style="--x0:149.8px;--y0:59.0px;--x1:164.4px;--y1:122.9px;--d:0.07"/>
+          <circle r="3.2" style="--x0:171.1px;--y0:59.0px;--x1:238.1px;--y1:121.6px;--d:0.01"/>
+          <circle r="3.2" style="--x0:192.4px;--y0:59.0px;--x1:101.8px;--y1:124.2px;--d:0.04"/>
+          <circle r="3.2" style="--x0:213.7px;--y0:59.0px;--x1:270.4px;--y1:120.7px;--d:0.13"/>
+          <circle r="3.2" style="--x0:235.0px;--y0:59.0px;--x1:170.5px;--y1:84.5px;--d:0.17"/>
+          <circle r="3.2" style="--x0:256.3px;--y0:59.0px;--x1:62.6px;--y1:123.1px;--d:0.04"/>
+          <circle r="3.2" style="--x0:277.6px;--y0:59.0px;--x1:272.0px;--y1:40.2px;--d:0.19"/>
+          <circle r="3.2" style="--x0:22.0px;--y0:79.5px;--x1:200.3px;--y1:122.1px;--d:0.2"/>
+          <circle r="3.2" style="--x0:43.3px;--y0:79.5px;--x1:204.9px;--y1:42.5px;--d:0.2"/>
+          <circle r="3.2" style="--x0:64.6px;--y0:79.5px;--x1:135.1px;--y1:41.7px;--d:0.06"/>
+          <circle r="3.2" style="--x0:85.9px;--y0:79.5px;--x1:64.4px;--y1:123.0px;--d:0.01"/>
+          <circle r="3.2" style="--x0:107.2px;--y0:79.5px;--x1:26.7px;--y1:122.5px;--d:0.06"/>
+          <circle r="3.2" style="--x0:128.5px;--y0:79.5px;--x1:31.3px;--y1:43.2px;--d:0.11"/>
+          <circle r="3.2" style="--x0:149.8px;--y0:79.5px;--x1:238.9px;--y1:85.4px;--d:0.24"/>
+          <circle r="3.2" style="--x0:171.1px;--y0:79.5px;--x1:234.9px;--y1:122.0px;--d:0.06"/>
+          <circle r="3.2" style="--x0:192.4px;--y0:79.5px;--x1:199.4px;--y1:37.9px;--d:0.16"/>
+          <circle r="3.2" style="--x0:213.7px;--y0:79.5px;--x1:204.3px;--y1:84.4px;--d:0.12"/>
+          <circle r="3.2" style="--x0:235.0px;--y0:79.5px;--x1:236.9px;--y1:84.1px;--d:0.02"/>
+          <circle r="3.2" style="--x0:256.3px;--y0:79.5px;--x1:271.2px;--y1:84.9px;--d:0.2"/>
+          <circle r="3.2" style="--x0:277.6px;--y0:79.5px;--x1:31.8px;--y1:81.8px;--d:0.04"/>
+          <circle r="3.2" style="--x0:22.0px;--y0:100.0px;--x1:134.9px;--y1:122.8px;--d:0.2"/>
+          <circle r="3.2" style="--x0:43.3px;--y0:100.0px;--x1:67.6px;--y1:81.3px;--d:0.1"/>
+          <circle r="3.2" style="--x0:64.6px;--y0:100.0px;--x1:101.7px;--y1:41.6px;--d:0.04"/>
+          <circle r="3.2" style="--x0:85.9px;--y0:100.0px;--x1:130.3px;--y1:121.6px;--d:0.23"/>
+          <circle r="3.2" style="--x0:107.2px;--y0:100.0px;--x1:32.1px;--y1:79.5px;--d:0.21"/>
+          <circle r="3.2" style="--x0:128.5px;--y0:100.0px;--x1:204.9px;--y1:83.1px;--d:0.09"/>
+          <circle r="3.2" style="--x0:149.8px;--y0:100.0px;--x1:30.3px;--y1:37.4px;--d:0.0"/>
+          <circle r="3.2" style="--x0:171.1px;--y0:100.0px;--x1:204.8px;--y1:125.0px;--d:0.13"/>
+          <circle r="3.2" style="--x0:192.4px;--y0:100.0px;--x1:273.1px;--y1:39.5px;--d:0.22"/>
+          <circle r="3.2" style="--x0:213.7px;--y0:100.0px;--x1:32.3px;--y1:38.0px;--d:0.06"/>
+          <circle r="3.2" style="--x0:235.0px;--y0:100.0px;--x1:97.2px;--y1:38.2px;--d:0.15"/>
+          <circle r="3.2" style="--x0:256.3px;--y0:100.0px;--x1:62.6px;--y1:39.4px;--d:0.03"/>
+          <circle r="3.2" style="--x0:277.6px;--y0:100.0px;--x1:204.4px;--y1:81.0px;--d:0.11"/>
+          <circle r="3.2" style="--x0:22.0px;--y0:120.5px;--x1:236.4px;--y1:84.8px;--d:0.11"/>
+          <circle r="3.2" style="--x0:43.3px;--y0:120.5px;--x1:101.5px;--y1:40.0px;--d:0.13"/>
+          <circle r="3.2" style="--x0:64.6px;--y0:120.5px;--x1:30.2px;--y1:36.6px;--d:0.11"/>
+          <circle r="3.2" style="--x0:85.9px;--y0:120.5px;--x1:199.3px;--y1:36.5px;--d:0.2"/>
+          <circle r="3.2" style="--x0:107.2px;--y0:120.5px;--x1:62.0px;--y1:123.8px;--d:0.18"/>
+          <circle r="3.2" style="--x0:128.5px;--y0:120.5px;--x1:64.7px;--y1:38.8px;--d:0.13"/>
+          <circle r="3.2" style="--x0:149.8px;--y0:120.5px;--x1:133.3px;--y1:84.0px;--d:0.03"/>
+          <circle r="3.2" style="--x0:171.1px;--y0:120.5px;--x1:99.0px;--y1:38.2px;--d:0.07"/>
+          <circle r="3.2" style="--x0:192.4px;--y0:120.5px;--x1:100.5px;--y1:124.1px;--d:0.14"/>
+          <circle r="3.2" style="--x0:213.7px;--y0:120.5px;--x1:66.1px;--y1:42.9px;--d:0.11"/>
+          <circle r="3.2" style="--x0:235.0px;--y0:120.5px;--x1:65.1px;--y1:40.0px;--d:0.13"/>
+          <circle r="3.2" style="--x0:256.3px;--y0:120.5px;--x1:168.5px;--y1:81.7px;--d:0.13"/>
+          <circle r="3.2" style="--x0:277.6px;--y0:120.5px;--x1:132.7px;--y1:43.1px;--d:0.17"/>
+          <circle r="3.2" style="--x0:22.0px;--y0:141.0px;--x1:66.9px;--y1:85.1px;--d:0.06"/>
+          </svg>
+        </div>
+        <dl class="vorher-nachher">
+          <div><dt>Einträge im Produktfeed</dt><dd><span class="v">79</span><span class="n">24</span></dd></div>
+        </dl>
+        <p class="fall-zeile">79 Einzelartikel, daraus 24 Produktgruppen mit Farbe und Gruppenkennung.</p>
+        <span class="fall-stempel">jeder Eintrag gezählt</span>
+        <span class="quelle"><b>Quelle</b>Messung am ausgelieferten Feed</span>
+      </article>
+
+    </div>
+
+    <div class="nebenbei">
+      <span class="zeile-beschr">außerdem in derselben Betreuung</span>
+      <ul>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/></svg>QR-Code zum Bezahlen auf den Belegen</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M5 3 2 6M19 3l3 3"/></svg>Automatischer Mahnlauf in der Wawi</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5l8-3v19M12 9h8v12M7 8h2M7 12h2M7 16h2M15 13h2M15 17h2M2 21h20"/></svg>Firmendaten für Google, 11 Felder</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Auftragsbestätigung auf Französisch und Englisch</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17V9a4 4 0 0 1 4-4h9M13 1l4 4-4 4M4 21h16"/></svg>Weiterleitungen für verlinkte Adressen</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>Bilder auf hochauflösenden Handys 45&nbsp;% kleiner</li>
+      </ul>
     </div>
   </div>
 </section>

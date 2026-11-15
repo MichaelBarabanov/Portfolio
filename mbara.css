@@ -183,6 +183,30 @@ figure { margin: 0; }
 }
 .kopf nav a:hover { color: var(--hell); border-bottom-color: var(--gold); }
 .kopf .knopf { padding: 10px 18px; font-size: 15px; white-space: nowrap; }
+/* Unter 1000 Pixeln passen sechs Menuepunkte nicht mehr in eine Zeile.
+   Die Navigation rutscht dann in eine eigene, waagerecht scrollbare Zeile,
+   wie es unter 820 Pixeln ohnehin geregelt ist. */
+@media (max-width: 1000px) {
+  .kopf-in { flex-wrap: wrap; gap: var(--s-3) var(--s-4); padding-bottom: var(--s-2); }
+  .kopf .knopf { margin-left: auto; order: 2; }
+  .kopf nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    gap: var(--s-4);
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .kopf nav::-webkit-scrollbar { display: none; }
+  .kopf nav a { white-space: nowrap; font-size: 14px; }
+}
+@media (min-width: 1001px) and (max-width: 1140px) {
+  .kopf-in { gap: var(--s-4); }
+  .kopf nav { gap: 18px; }
+  .kopf nav a { font-size: 14px; }
+  .kopf .knopf { padding: 9px 14px; font-size: 14px; }
+}
 
 /* ------------------------------------------------------------
    Hero
@@ -1470,4 +1494,207 @@ summary:focus-visible,
 @media (max-width: 700px) {
   .beitrag { padding: var(--s-5); }
   .artikel pre { font-size: 12px; padding: var(--s-4); }
+}
+
+/* ------------------------------------------------------------
+   Ergebnisse: drei Fälle als Grafik, dazu eine Leiste Nebenarbeiten.
+   Grundzustand ist das Endbild. Die Bewegung läuft nur, wenn der
+   Browser scrollgesteuerte Animationen kann und keine reduzierte
+   Bewegung gewünscht ist. Ohne beides bleibt das fertige Bild stehen.
+   ------------------------------------------------------------ */
+.faelle {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: var(--s-5);
+}
+.fall {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  background: var(--tinte-2);
+  border: 1px solid var(--tinte-linie);
+  border-radius: 8px;
+}
+.fall h3 { font-size: 1.15rem; color: #fff; margin: 0; }
+
+.fall-bild {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  min-height: 150px;
+  padding: var(--s-4);
+  background: var(--tinte);
+  border: 1px solid var(--tinte-linie);
+  border-radius: 6px;
+}
+.zeile-beschr {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--hell-2);
+}
+
+/* Fall 1, geteilter Balken */
+.balken-geteilt {
+  display: flex;
+  height: 30px;
+  border-radius: 3px;
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+}
+.balken-geteilt + .zeile-beschr { margin-top: 6px; }
+.seg { display: flex; align-items: center; padding: 0 8px; white-space: nowrap; overflow: hidden; }
+.seg-a, .farbe-a { background: var(--gold); color: var(--tinte); }
+.seg-b, .farbe-b { background: #6d7fa6; color: #fff; }
+.seg-voll { flex: 1 1 100%; }
+.legende { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-family: var(--mono); font-size: 11px; color: var(--hell-2); }
+.legende span { display: inline-flex; align-items: center; gap: 6px; }
+.legende i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+
+/* Fall 2, Adresszeile und schrumpfende Balken */
+.url {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 3px;
+  background: #0a1730;
+  color: var(--hell);
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+.url-alt s { color: var(--hell-2); text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--gold); }
+.url-alt + .zeile-beschr { margin-top: 6px; }
+.url-neu { color: var(--gold); }
+
+.schrumpf { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-3); }
+.schrumpf li { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 10px; }
+.schrumpf-beschr { font-size: 13px; color: var(--hell-2); }
+.schrumpf-zahl { font-family: var(--mono); font-size: 13px; color: var(--hell-2); text-decoration-color: rgba(168,177,197,.6); }
+.schrumpf-zahl b { margin-left: 6px; color: var(--gold); font-weight: 500; }
+.spur { grid-column: 1 / -1; position: relative; height: 8px; }
+.spur::before {
+  content: "";
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: calc(var(--v) / 123 * 100%);
+  border: 1px dashed var(--hell-2);
+  border-radius: 2px;
+  opacity: .6;
+}
+.spur i {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: max(3px, calc(var(--n) / 123 * 100%));
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* Fall 3, Punktefeld */
+.punktefeld { display: block; width: 100%; height: auto; overflow: visible; }
+.punktefeld circle:not(.ring) { fill: var(--gold); transform: translate(var(--x1), var(--y1)); }
+.punktefeld .ring {
+  fill: none; stroke: var(--gold); stroke-width: 1; stroke-dasharray: 2 2; opacity: .55;
+  transform-box: fill-box; transform-origin: center;
+}
+
+/* Zahlen vorher und nachher */
+.vorher-nachher { margin: 0; display: grid; gap: var(--s-3); }
+.vorher-nachher > div {
+  display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 10px;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--tinte-linie);
+}
+.vorher-nachher dt { font-size: 13px; color: var(--hell-2); }
+.vorher-nachher dd { margin: 0; display: flex; align-items: baseline; gap: 10px; }
+.vorher-nachher .v { font-family: var(--mono); font-size: 15px; color: var(--hell-2); text-decoration: line-through; text-decoration-color: rgba(168,177,197,.6); }
+.vorher-nachher .n { font-size: 1.9rem; font-weight: 700; line-height: 1; color: var(--gold); }
+
+.fall-zeile { margin: 0; font-size: 14px; color: var(--hell); }
+.fall-stempel {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border: 2px solid var(--gold);
+  border-radius: 3px;
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  transform: rotate(-3deg);
+}
+.quelle { margin-top: auto; font-family: var(--mono); font-size: 11px; color: var(--hell-2); }
+.quelle b { margin-right: 8px; font-weight: 500; color: var(--hell); text-transform: uppercase; letter-spacing: .06em; }
+
+/* Leiste mit Nebenarbeiten */
+.nebenbei { margin-top: var(--s-7); }
+.nebenbei ul {
+  list-style: none; margin: var(--s-4) 0 0; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--s-3);
+}
+.nebenbei li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--tinte-linie);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--hell);
+}
+.nebenbei svg {
+  flex: 0 0 26px; width: 26px; height: 26px;
+  fill: none; stroke: var(--gold); stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* Bewegung, nur mit Scroll-Zeitleiste und ohne Wunsch nach Ruhe.
+   Jede Grafik hat ihre eigene Zeitleiste und ist fertig, wenn sie
+   in der Bildmitte steht. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fall-bild, .schrumpf, .vorher-nachher { view-timeline-name: --stueck; }
+    .fall .seg-voll,
+    .fall .url-alt s,
+    .fall .url-neu,
+    .fall .spur i,
+    .fall .punktefeld circle,
+    .fall .vorher-nachher .n {
+      animation-duration: auto;
+      animation-timeline: --stueck;
+      animation-fill-mode: both;
+      animation-timing-function: ease-out;
+      animation-range: entry 60% cover 50%;
+    }
+    .fall .seg-voll { animation-name: ergebnis-fuellen; animation-range: cover 30% cover 50%; }
+    .fall .url-alt s { animation-name: ergebnis-streichen; animation-range: entry 60% cover 35%; }
+    .fall .url-neu { animation-name: ergebnis-tippen; animation-range: cover 35% cover 50%; animation-timing-function: steps(20, end); }
+    .fall .spur i { animation-name: ergebnis-schrumpfen; }
+    .fall .punktefeld circle:not(.ring) { animation-name: ergebnis-sammeln; }
+    .fall .punktefeld .ring { animation-name: ergebnis-ring; animation-range: cover 40% cover 52%; }
+    .fall .vorher-nachher .n { animation-name: ergebnis-zahl; }
+    .fall .fall-stempel {
+      animation: ergebnis-stempel auto both cubic-bezier(.2, 1.6, .4, 1);
+      animation-timeline: view();
+      animation-range: entry 100% cover 45%;
+    }
+  }
+}
+@keyframes ergebnis-fuellen { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes ergebnis-streichen { from { color: var(--hell); text-decoration-color: transparent; } }
+@keyframes ergebnis-tippen { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes ergebnis-schrumpfen { from { width: calc(var(--v) / 123 * 100%); } }
+@keyframes ergebnis-sammeln { from { transform: translate(var(--x0), var(--y0)); fill: var(--hell-2); } }
+@keyframes ergebnis-ring { from { opacity: 0; transform: scale(.4); } }
+@keyframes ergebnis-stempel { from { opacity: 0; transform: rotate(-12deg) scale(1.6); } }
+@keyframes ergebnis-zahl { from { opacity: 0; transform: translateY(8px); } }
+
+@media (max-width: 560px) {
+  .fall { padding: var(--s-4); }
+  .vorher-nachher .n { font-size: 1.6rem; }
 }
