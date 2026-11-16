@@ -431,6 +431,7 @@ code, .mono { font-family: var(--mono); }
 .unter-hero { padding: clamp(48px, 5vw + 16px, 88px) 0 clamp(48px, 4vw + 16px, 80px); background: var(--weiss); color: var(--text); }
 /* Einspaltige Titelbänder stehen über der Lesespalte, damit die linken Kanten fluchten */
 .unter-hero > .wrap:not(.unter-hero-in) { max-width: calc(760px + 2 * clamp(20px, 4vw, 40px)); }
+.unter-hero.breit > .wrap { max-width: var(--breite); }
 .unter-hero-in { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .unter-hero h1 { font-size: var(--h1); max-width: 18ch; margin-bottom: var(--s-5); }
 .unter-hero .gross { max-width: 34em; margin: 0; }
