@@ -26,7 +26,7 @@
 <link rel="icon" href="favicon-mbara.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
-<link rel="stylesheet" href="mbara.css?v=20261116c">
+<link rel="stylesheet" href="mbara.css?v=20261116d">
 
 <script type="application/ld+json">
 {
@@ -86,6 +86,15 @@
     "name": "Leistungen",
     "itemListElement": [
       {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Artikelimport aus Lieferantendaten in JTL-Wawi",
+            "description": "Lieferantendaten aus Datanorm, CSV oder XML mit Preisen, Bildern und Herstellerartikelnummer in die JTL-Wawi, erster Lieferant zum Festpreis.",
+            "url": "https://mbara.net/artikelimport-jtl-wawi"
+          }
+        },
+        {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
@@ -175,11 +184,8 @@
     <a class="wortmarke" href="/">Michael Barabanov <span class="mono">mbara.net</span></a>
     <nav aria-label="Seitenbereiche">
       <a href="#leistungen">Leistungen</a>
-      <a href="#ergebnisse">Ergebnisse</a>
-      <a href="#plugins">Plugins</a>
-      <a href="#bericht">Beispielbericht</a>
-      <a href="#bewertungen">Bewertungen</a>
       <a href="#ablauf">Ablauf</a>
+      <a href="#ergebnisse">Ergebnisse</a>
     </nav>
     <a class="knopf" href="#kontakt">Anfrage schreiben</a>
   </div>
@@ -187,571 +193,299 @@
 
 <main id="inhalt">
 
-<section class="hero dunkel">
-  <div class="wrap hero-in">
-    <div>
-      <span class="marke">Shopware und JTL, Freelancer aus Koblenz, remote</span>
-      <h1>Artikelimport, Updates und Migration für <span class="zusammen">JTL-Wawi</span> und Shopware</h1>
-      <p class="gross">
-        Erst auf einer Kopie, dann im Livesystem. Was ich dort finde,
-        bekommen Sie schriftlich, bevor in Ihrem Shop etwas passiert.
-      </p>
-      <div class="hero-aktion">
-        <a class="knopf" href="#kontakt">Anfrage schreiben</a>
-        <a class="textlink" href="#leistungen">Leistungen ansehen</a>
-      </div>
-      <ul class="fakten">
-        <li>Shopware 5 und 6</li>
-        <li>JTL-Wawi und JTL-Shop</li>
-        <li>schriftlich, Rückruf auf Wunsch</li>
-      </ul>
+<section class="einstieg">
+  <div class="wrap">
+    <span class="dach">Shopware und JTL, aus Koblenz, remote</span>
+    <h1>JTL und Shopware, repariert und betreut</h1>
+    <p class="gross">Artikelimport, Versionsupdate, Umzug von Shopware 5 auf 6. Ich arbeite zuerst auf einer Kopie, Sie bekommen den Befund schriftlich, bevor im Livesystem etwas passiert.</p>
+    <div class="aktionen">
+      <a class="knopf" href="#kontakt">Anfrage schreiben</a>
+      <a class="textlink" href="#ablauf">So läuft ein Auftrag</a>
     </div>
+    <p class="antwortzeit">Antwort innerhalb eines Werktags</p>
 
-    <div class="buehne" role="img" aria-label="Schema der Arbeitsweise: Das Livesystem läuft unberührt weiter und nimmt währenddessen Bestellungen entgegen. Geprüft und gearbeitet wird auf einer Kopie. Erst wenn dort alles durchgetestet ist, folgt der Livegang mit Sicherung. Danach steht das Livesystem auf der neuen Version.">
-
-      <figure class="system system-live">
-        <div class="system-kopf">
-          <span class="system-name">Livesystem</span>
-          <span class="system-status laeuft">läuft weiter</span>
+    <div class="buehne" role="img" aria-label="Schema: Das Livesystem läuft unberührt weiter und nimmt Bestellungen an. Geprüft wird auf einer Kopie. Erst wenn dort alles durchgetestet ist, folgt der Livegang mit Sicherung.">
+      <div class="schirm schirm-live" aria-hidden="true">
+        <div class="schirm-kopf"><b>Livesystem</b><span class="status">läuft weiter</span></div>
+        <div class="schirm-inhalt">
+          <div class="zeile"><span>JTL-Wawi</span><span class="wert">1.11.8</span></div>
+          <div class="zeile"><span>Eingriffe</span><span class="mono">keine</span></div>
         </div>
-        <div class="version" aria-hidden="true">
-          <span class="version-beschr">JTL-Wawi</span>
-          <span class="version-fenster">
-            <b class="v-alt">1.11.8</b>
-            <b class="v-neu">2.0.6</b>
-          </span>
-        </div>
-        <div class="ticker" aria-hidden="true">
-          <span class="ticker-beschr">Bestellungen heute</span>
-          <span class="rolle"><i>23</i><i>24</i><i>25</i><i>26</i><i>27</i></span>
-        </div>
-        <figcaption class="stempel">kein Eingriff</figcaption>
-      </figure>
-
-      <div class="buehne-pfeil" aria-hidden="true">
-        <span class="pfeil-bahn"><i class="puls"></i></span>
-        <span class="pfeil-wort">Kopie</span>
+        <div class="schirm-gross"><span>Bestellungen heute</span><b>26</b></div>
       </div>
-
-      <figure class="system system-kopie">
-        <div class="system-kopf">
-          <span class="system-name">Kopie</span>
-          <span class="system-status arbeitet">hier wird gearbeitet</span>
-        </div>
-        <ol class="pruefung" aria-hidden="true">
-          <li style="--i:0">Datenbank kopiert</li>
-          <li style="--i:1">Plugins gegen Zielversion geprüft</li>
-          <li style="--i:2">Theme auf neuer Version gebaut</li>
-          <li style="--i:3">Bestellvorgang durchgetestet</li>
-          <li style="--i:4" class="ziel">Livegang mit Sicherung</li>
-        </ol>
-      </figure>
-
-      <div class="rueckweg" aria-hidden="true">Rückweg dokumentiert</div>
+      <div class="schirm schirm-kopie" aria-hidden="true">
+        <div class="schirm-kopf"><b>Kopie</b><span class="status offen">hier wird gearbeitet</span></div>
+        <ul class="haken">
+          <li>Datenbank kopiert</li>
+          <li>Plugins gegen Zielversion geprüft</li>
+          <li>Theme auf neuer Version gebaut</li>
+          <li>Bestellvorgang durchgetestet</li>
+          <li class="ziel">Livegang mit Sicherung</li>
+        </ul>
+      </div>
     </div>
+    <p class="buehne-unterschrift">Ihr Shop nimmt weiter Bestellungen an, während auf der Kopie geprüft wird.</p>
   </div>
 </section>
 
-<div class="streifen">
-  <div class="wrap streifen-in">
-    <div>
-      <span class="zahl-gross">30<sup>+</sup></span>
-      <span class="beschr">Shops betreut, vom Livegang bis zum Update</span>
-    </div>
-    <a class="streifen-eintrag" href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">
-      <span class="zahl-gross">5,0</span>
-      <span class="beschr">von 5 auf Malt, jede Kategorie</span>
-    </a>
-    <a class="streifen-eintrag" href="https://github.com/MichaelBarabanov" rel="noopener">
-      <span class="zahl-gross">4</span>
-      <span class="beschr">Plugins als Open Source, mit Tests</span>
-    </a>
-    <div>
-      <span class="zahl-gross">1<small>Werktag</small></span>
-      <span class="beschr">bis Sie eine Antwort haben</span>
-    </div>
-  </div>
-</div>
-
-<section class="abschnitt" id="leistungen">
+<section class="abschnitt grau" id="leistungen">
   <div class="wrap">
     <div class="abschnitt-kopf">
-      <span class="marke">Leistungen</span>
-      <h2>Womit Sie zu mir kommen</h2>
-      <p class="gross">Sieben Aufgaben, die regelmäßig bei mir landen. Zu jeder steht dabei, was Sie am Ende in der Hand haben.</p>
+      <span class="dach">Leistungen</span>
+      <h2>Womit Händler zu mir kommen</h2>
+      <p class="gross">Zu jeder der drei Aufgaben gibt es eine eigene Seite mit allen Einzelheiten.</p>
     </div>
 
-    <div class="reiter">
-      <input class="reiter-input" type="radio" name="leistung" id="r7" checked>
-      <input class="reiter-input" type="radio" name="leistung" id="r1">
-      <input class="reiter-input" type="radio" name="leistung" id="r2">
-      <input class="reiter-input" type="radio" name="leistung" id="r3">
-      <input class="reiter-input" type="radio" name="leistung" id="r4">
-      <input class="reiter-input" type="radio" name="leistung" id="r5">
-      <input class="reiter-input" type="radio" name="leistung" id="r6">
-
-      <div class="reiter-leiste">
-        <label for="r7"><span class="nr">01</span>Artikelimport</label>
-        <label for="r1"><span class="nr">02</span>Migration Shopware 5 auf 6</label>
-        <label for="r2"><span class="nr">03</span>Versionsupdates</label>
-        <label for="r3"><span class="nr">04</span>Testsystem</label>
-        <label for="r4"><span class="nr">05</span>Schnittstellen</label>
-        <label for="r5"><span class="nr">06</span>Plugins</label>
-        <label for="r6"><span class="nr">07</span>Fehlersuche und SEO</label>
-      </div>
-
-      <div class="reiter-panel p7" id="artikelimport">
-        <div>
-          <span class="nr-gross">01</span>
-          <h3>Artikelimport aus Lieferantendaten</h3>
-          <p>
-            Nach dem Import stehen Preise auf null, Bilder fehlen oder die
-            Herstellerartikelnummer ist leer. Meist liegt das nicht an der Wawi,
-            sondern an der Umwandlung der Lieferantendatei.
-          </p>
-          <p>
-            Ich sehe mir zuerst eine echte Datei an. Dann läuft ein Lieferant
-            vollständig durch, mit Preisen, Bildern und Herstellerartikelnummer.
-            Die übrigen folgen demselben Muster.
-          </p>
-          <a class="textlink" href="artikelimport-jtl-wawi.html">Mehr zum Artikelimport</a>
+    <div class="kacheln">
+      <article class="karte kachel">
+        <span class="problem">Preise oder Bilder fehlen nach dem Import</span>
+        <h3>Artikelimport reparieren</h3>
+        <p>Lieferantendaten aus Datanorm oder CSV so in die JTL-Wawi bringen, dass Preise, Bilder und Herstellerartikelnummer ankommen.</p>
+        <a class="textlink" href="artikelimport-jtl-wawi.html">Mehr zum Artikelimport</a>
+        <div class="schirm" aria-hidden="true">
+          <div class="schirm-kopf"><b>Importprotokoll</b><span class="status leise">Beispiel</span></div>
+          <div class="schirm-inhalt">
+            <div class="zeile"><span>Preis</span><span class="status">ok</span></div>
+            <div class="zeile"><span>Bild</span><span class="status">ok</span></div>
+            <div class="zeile"><span>HAN</span><span class="status offen">gemeldet</span></div>
+          </div>
         </div>
-        <div class="kasten">
-          <div class="kasten-kopf"><b>Erster Lieferant</b><span class="mono">Festpreis</span></div>
-          <p class="preis-zusatz">Den Preis nenne ich, sobald ich eine Datei gesehen habe. Danach ändert er sich nicht.</p>
-          <ul class="liste">
-            <li><span class="nr">01</span><span>Datanorm, CSV oder XML in ein festes Importprofil für die JTL-Ameise</span></li>
-            <li><span class="nr">02</span><span>Preise mit dem richtigen Kennzeichen für netto, brutto und Mengeneinheit</span></li>
-            <li><span class="nr">03</span><span>Bilder aus FTP oder Mediendatenbank zugeordnet</span></li>
-            <li><span class="nr">04</span><span>Anleitung für die nächste Preisrunde</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reiter-panel p1" id="migration">
-        <div>
-          <span class="nr-gross">02</span>
-          <h3>Migration von Shopware 5 auf Shopware 6</h3>
-          <p>
-            Shopware 5 bekommt seit Juli 2024 keine Updates vom Hersteller mehr.
-            Wer wechselt, scheitert selten am Shopware-Kern. Es sind die Plugins,
-            das Theme und die Anbindung an die Warenwirtschaft, die im neuen
-            System fehlen oder anders heißen.
-          </p>
-          <p>
-            Deshalb beginne ich mit einer Bestandsaufnahme. Sie bekommen einen
-            schriftlichen Bericht, mit dem Sie die Migration bei mir oder bei
-            jeder anderen Agentur beauftragen können.
-          </p>
-          <a class="textlink" href="migration-shopware-5-auf-6.html">Mehr zur Migration</a>
-        </div>
-        <div class="kasten">
-          <div class="kasten-kopf"><b>Bestandsaufnahme</b><span class="mono">Festpreis</span></div>
-          <p class="preis-zusatz">Den Preis nenne ich nach einer kurzen Prüfung. Er richtet sich nach der Zahl der Plugins und Schnittstellen und ändert sich danach nicht.</p>
-          <ul class="liste">
-            <li><span class="nr">01</span><span>Jedes Plugin: gibt es einen Nachfolger für Shopware 6 oder muss es neu gebaut werden</span></li>
-            <li><span class="nr">02</span><span>Theme und eigene Anpassungen am Template</span></li>
-            <li><span class="nr">03</span><span>Schnittstellen zu Warenwirtschaft, Zahlung und Versand</span></li>
-            <li><span class="nr">04</span><span>Aufwandsschätzung für die Migration selbst</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reiter-panel p2" id="updates">
-        <div>
-          <span class="nr-gross">03</span>
-          <h3>Versionsupdates für JTL-Wawi, JTL-Shop 5 und Shopware 6</h3>
-          <p>
-            Ein JTL-Wawi Update ist in einer Stunde eingespielt. Die Arbeit
-            steckt davor: Welche Erweiterungen laufen mit der neuen Version,
-            welche eigenen Vorlagen brechen, wie sieht der Rückweg aus, wenn
-            etwas schiefgeht.
-          </p>
-          <p>
-            Zuletzt habe ich eine JTL-Wawi von Version 1.11.8 auf 2.0.6
-            gebracht. Der Kunde hat den Ablauf in seiner Bewertung beschrieben,
-            sie steht weiter unten auf dieser Seite.
-          </p>
-          <a class="textlink" href="jtl-wawi-update.html">Mehr zu Updates</a>
-        </div>
-        <div class="kasten">
-          <div class="kasten-kopf"><b>So lief das letzte Update</b><span class="mono">JTL-Wawi 1.11.8 auf 2.0.6</span></div>
-          <ul class="liste">
-            <li><span class="haken">ok</span><span>Kompatibilität der eingesetzten Erweiterungen vorab geprüft</span></li>
-            <li><span class="haken">ok</span><span>Update zuerst auf einer Kopie der Datenbank getestet</span></li>
-            <li><span class="haken">ok</span><span>Checkliste vorher an den Kunden geschickt</span></li>
-            <li><span class="haken">ok</span><span>Livegang ohne Ausfall, am nächsten Morgen normaler Betrieb</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reiter-panel p3" id="testsystem">
-        <div>
-          <span class="nr-gross">04</span>
-          <h3>Testsystem mit Übernahme Ihrer Daten</h3>
-          <p>
-            Vor einem Wechsel der Warenwirtschaft oder vor einem großen Update
-            wollen Sie sehen, wie Ihre Artikel, Kunden und Bestellungen im neuen
-            System aussehen. Nicht die Demodaten des Herstellers.
-          </p>
-          <p>
-            Ich baue ein getrenntes System auf und spiele Ihre Daten ein. Ihr
-            Team probiert die Abläufe durch: Wareneingang, Versand, Retoure,
-            Rechnung. Das Livesystem bleibt unberührt.
-          </p>
-          <a class="textlink" href="jtl-wawi-update.html#testsystem">Mehr zum Testsystem</a>
-        </div>
-        <div class="kasten">
-          <div class="kasten-kopf"><b>Was Sie bekommen</b><span class="mono">getrennt vom Livesystem</span></div>
-          <ul class="liste">
-            <li><span class="nr">01</span><span>Eigene Umgebung, die den Livebetrieb nicht berührt</span></li>
-            <li><span class="nr">02</span><span>Artikel, Kunden und Bestellungen aus Ihrem Bestand</span></li>
-            <li><span class="nr">03</span><span>Zugänge für Ihr Team zum Ausprobieren</span></li>
-            <li><span class="nr">04</span><span>Protokoll, welche Datensätze bei der Übernahme nicht sauber durchkamen</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reiter-panel p4" id="schnittstellen">
-        <div>
-          <span class="nr-gross">05</span>
-          <h3>Schnittstellen über REST-API</h3>
-          <p>
-            Artikel, Bestände, Preise und Bestellungen sollen zwischen Shop,
-            Warenwirtschaft und Drittsystemen laufen, ohne dass morgens jemand
-            Listen abgleicht.
-          </p>
-          <p>
-            Ich baue die Anbindung über die REST-API von Shopware 6 oder JTL.
-            Mit Protokoll, aus dem hervorgeht, welcher Datensatz wann übertragen
-            wurde und welcher nicht.
-          </p>
-          <a class="textlink" href="schnittstellen.html">Mehr zu Schnittstellen</a>
-        </div>
-        <div class="kasten">
-          <div class="kasten-kopf"><b>Typische Verbindungen</b><span class="mono">REST-API</span></div>
-          <ul class="liste">
-            <li><span class="nr">01</span><span>Shopware 6 zu JTL-Wawi: Artikel, Bestände, Bestellungen</span></li>
-            <li><span class="nr">02</span><span>eBay über eazyAuction</span></li>
-            <li><span class="nr">03</span><span>Drittsysteme mit eigener API, in beide Richtungen</span></li>
-            <li><span class="nr">04</span><span>Hintergrundverarbeitung mit Wiederholung bei Fehlern</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="reiter-panel p5" id="plugin-entwicklung">
-        <div>
-          <span class="nr-gross">06</span>
-          <h3>Plugin-Entwicklung für Shopware 6</h3>
-          <p>
-            Wenn der Standard nicht reicht und es im Store nichts Passendes
-            gibt. Administrationsbereich, Storefront oder Hintergrundjobs, je
-            nachdem, wo die Lücke ist.
-          </p>
-          <p>
-            Vier eigene Plugins liegen als Open Source auf GitHub, alle mit
-            Tests. Sie können den Code lesen, bevor Sie mich beauftragen.
-          </p>
-          <a class="textlink" href="#plugins">Plugins ansehen</a>
-        </div>
-        <figure class="kasten-bild">
-          <img src="img/plugins/price-on-request-storefront-modal.png" alt="Anfrageformular des Plugins PriceOnRequest in der Shopware-Storefront, geöffnet über den Knopf Preis anfragen" width="1519" height="825" loading="lazy">
-          <figcaption>PriceOnRequest, Storefront: Anfrage statt Warenkorb</figcaption>
-        </figure>
-      </div>
-
-      <div class="reiter-panel p6" id="fehlersuche">
-        <div>
-          <span class="nr-gross">07</span>
-          <h3>Fehlersuche und technisches SEO</h3>
-          <p>
-            Wenn im Shop etwas hakt und keiner sagen kann, warum. Oder wenn der
-            Shop bei Google nicht auftaucht, obwohl Produkte und Preise stimmen.
-          </p>
-          <p>
-            Ich messe von außen, ohne Zugang zum Shop. Was ich finde, schreibe
-            ich auf. Ein Beispielbericht mit echten Messwerten steht weiter unten.
-          </p>
-          <a class="textlink" href="beispiel-audit.html">Beispielbericht lesen</a>
-        </div>
-        <div class="kasten">
-          <div class="kasten-kopf"><b>Was ich prüfe</b><span class="mono">von außen, ohne Shopzugang</span></div>
-          <ul class="liste">
-            <li><span class="nr">01</span><span>Ladezeit, Bildgewicht, Fremddomains</span></li>
-            <li><span class="nr">02</span><span>Erreichbarkeit unter einer einzigen Adresse</span></li>
-            <li><span class="nr">03</span><span>Überschriften, Kopfbereich, strukturierte Daten</span></li>
-            <li><span class="nr">04</span><span>Fehlerprotokolle und gerendertes DOM bei Funktionsfehlern</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="abschnitt dunkel" id="ergebnisse">
-  <div class="wrap">
-    <div class="abschnitt-kopf">
-      <span class="marke">Ergebnisse</span>
-      <h2>Was sich messbar geändert hat</h2>
-      <p class="gross">Drei Arbeiten aus einer laufenden Shopbetreuung, Shopware 6 mit JTL-Wawi. Jede Zahl hat eine Quelle.</p>
-    </div>
-
-    <div class="faelle">
-
-      <article class="fall">
-        <span class="fall-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span>
-        <p class="fall-zahl">122<small>von 123 Adressen</small></p>
-        <h3>Produktadressen ohne Zufallscode</h3>
-        <dl class="fall-vergleich">
-          <div><dt>vorher</dt><dd><code>ihr-shop.de/zubehoer/taschen/modell-x-8f3a9c41e7d2…</code></dd></div>
-          <div><dt>nachher</dt><dd><code class="neu">ihr-shop.de/modell-x</code></dd></div>
-        </dl>
-        <p class="fall-nutzen">Jede alte Adresse leitet weiter, kein Produkt wurde inhaltlich angefasst.</p>
-        <span class="quelle"><b>Quelle</b>Shopware-Datenbank, Livetest</span>
       </article>
 
-      <article class="fall">
-        <span class="fall-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 15 15 9"/><path d="M11 6l1-1a4 4 0 0 1 5.7 5.7l-1 1M13 18l-1 1a4 4 0 0 1-5.7-5.7l1-1"/><path d="M3 3l2 2M21 21l-2-2"/></svg></span>
-        <p class="fall-zahl">1.400<small>Aufrufe im Monat, gerundet</small></p>
-        <h3>Beworbene Produktseite lief ins Leere</h3>
-        <dl class="fall-vergleich">
-          <div><dt>vorher</dt><dd><span class="status status-fehler">Fehlerseite 404</span></dd></div>
-          <div><dt>nachher</dt><dd><span class="status status-ok">Weiterleitung angelegt</span></dd></div>
-        </dl>
-        <p class="fall-nutzen">Weiterleitungen für fünf verlinkte Adressen angelegt, darunter Links aus einem Fachmagazin und aus Social-Media-Beiträgen.</p>
-        <span class="quelle"><b>Quelle</b>Serverprotokolle, Livetest</span>
+      <article class="karte kachel">
+        <span class="problem">Ein Update steht an</span>
+        <h3>JTL-Wawi und Shopware aktualisieren</h3>
+        <p>Jede Komponente vorher gegen die Zielversion prüfen, auf einer Kopie testen, live gehen mit Sicherung und Rückweg.</p>
+        <a class="textlink" href="jtl-wawi-update.html">Mehr zu Updates</a>
+        <div class="schirm" aria-hidden="true">
+          <div class="schirm-kopf"><b>Update</b><span class="status leise">Beispiel</span></div>
+          <div class="schirm-inhalt">
+            <div class="zeile"><span>Plugins geprüft</span><span class="status">ok</span></div>
+            <div class="zeile"><span>Test auf Kopie</span><span class="status">ok</span></div>
+            <div class="zeile"><span>Rückweg</span><span class="status">dokumentiert</span></div>
+          </div>
+        </div>
       </article>
 
-      <article class="fall">
-        <span class="fall-ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/><path d="m3 17.5 9 4.5 9-4.5" opacity=".5"/></svg></span>
-        <p class="fall-zahl">24<small>Produktgruppen</small></p>
-        <h3>Farbvarianten im Google-Feed gebündelt</h3>
-        <dl class="fall-vergleich">
-          <div><dt>vorher</dt><dd>79 Einzeleinträge, jede Farbe für sich</dd></div>
-          <div><dt>nachher</dt><dd class="neu">24 Gruppen, alle 79 Artikel enthalten</dd></div>
-        </dl>
-        <p class="fall-nutzen">Kein Artikel verloren. Google bekommt die Farben jetzt als Varianten desselben Modells gemeldet.</p>
-        <span class="quelle"><b>Quelle</b>Messung am ausgelieferten Feed</span>
+      <article class="karte kachel">
+        <span class="problem">Shopware 5 bekommt keine Updates mehr</span>
+        <h3>Umzug auf Shopware 6</h3>
+        <p>Zuerst eine Bestandsaufnahme zum Festpreis: welche Plugins einen Nachfolger haben, was neu gebaut werden muss, was es kostet.</p>
+        <a class="textlink" href="migration-shopware-5-auf-6.html">Mehr zur Migration</a>
+        <div class="schirm" aria-hidden="true">
+          <div class="schirm-kopf"><b>Bestandsaufnahme</b><span class="status leise">Beispiel</span></div>
+          <div class="schirm-inhalt">
+            <div class="zeile"><span>Plugin mit Nachfolger</span><span class="status">ok</span></div>
+            <div class="zeile"><span>Plugin ohne Nachfolger</span><span class="status offen">Neubau</span></div>
+            <div class="zeile"><span>Theme</span><span class="status">erfasst</span></div>
+          </div>
+        </div>
       </article>
-
     </div>
 
-    <div class="nebenbei">
-      <span class="zeile-beschr">außerdem in derselben Betreuung</span>
-      <ul>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/><circle cx="12" cy="12" r="9"/></svg>Shop unter einer Adresse statt zwei</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/></svg>QR-Code zum Bezahlen auf den Belegen</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2M5 3 2 6M19 3l3 3"/></svg>Automatischer Mahnlauf in der Wawi</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5l8-3v19M12 9h8v12M7 8h2M7 12h2M7 16h2M15 13h2M15 17h2M2 21h20"/></svg>Firmendaten für Google, 11 Felder</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h9M8.5 3v2M6 5c0 4 3 7 6 8M11 5c0 4-3 8-7 9"/><path d="m13 21 4-9 4 9M14.5 18h5"/></svg>Auftragsbestätigung auf Französisch und Englisch</li>
-        <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>Bilder auf hochauflösenden Handys 45&nbsp;% kleiner</li>
-      </ul>
+    <div class="ausserdem">
+      <span>Außerdem</span>
+      <a href="schnittstellen.html">Schnittstellen über REST-API</a>
+      <a href="jtl-wawi-update.html#testsystem">Testsystem mit Ihren Daten</a>
+      <a href="plugins/">Plugin-Entwicklung</a>
+      <a href="beispiel-audit.html">Fehlersuche und technisches SEO</a>
     </div>
   </div>
 </section>
 
-<section class="abschnitt papier" id="plugins">
+<section class="abschnitt" id="ablauf">
   <div class="wrap">
     <div class="abschnitt-kopf">
-      <span class="marke">Eigene Plugins</span>
-      <h2>Arbeit, die Sie vor der Beauftragung ansehen können</h2>
-      <p class="gross">
-        Vier Plugins für Shopware 6, alle als Open Source auf GitHub, alle mit
-        Tests. Die Ausschnitte stammen aus dem Administrationsbereich und aus
-        der Storefront.
-      </p>
-    </div>
-
-    <ul class="plugin-liste">
-      <li><a href="plugins/ai-product-description.html">AiProductDescription</a><span>Erzeugt Produktbeschreibungen über Claude oder ChatGPT. Deutsch oder Englisch, drei Schreibstile, Ergebnis landet direkt im Beschreibungsfeld.</span></li>
-      <li><a href="plugins/botprotection.html">BotProtection</a><span>Bot-Schutz auf Anwendungsebene mit Honeypot, Zeitprüfung und Rate-Limit. Auswertung im Adminbereich, keine Daten an Dritte.</span></li>
-      <li><a href="plugins/price-on-request.html">PriceOnRequest</a><span>Preis auf Anfrage je Verkaufskanal. Ersetzt den Warenkorbknopf durch ein Formular mit Spamschutz.</span></li>
-      <li><a href="plugins/coming-soon.html">ComingSoon</a><span>Baustellenseite vor dem Start, mit Vorschau für angemeldete Nutzer.</span></li>
-    </ul>
-
-    <div class="galerie">
-      <figure class="karte">
-        <div class="rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/ai-product-description-modal.png" alt="Dialog zum Erzeugen einer Produktbeschreibung: Modus, Anbieter, Sprache und Schreibstil wählbar" width="835" height="764" loading="lazy"></div>
-        <figcaption><b>AiProductDescription</b><span>Beschreibung per Knopf im Produkt. Anbieter, Sprache und Stil wählbar, Text landet direkt im Feld.</span></figcaption>
-      </figure>
-      <figure class="karte">
-        <div class="rahmen dunkel-rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/botprotection-blocked-attempts.png" alt="Protokoll geblockter Anfragen mit Zeit, Endpunkt und Grund der Sperre" width="937" height="503" loading="lazy"></div>
-        <figcaption><b>BotProtection</b><span>Jede Sperre mit Grund im Protokoll. Honeypot, Zeitprüfung, Rate-Limit, keine Daten an Dritte.</span></figcaption>
-      </figure>
-      <figure class="karte">
-        <div class="rahmen" style="--pos: 50% 40%; --h: 300px"><img src="img/plugins/price-on-request-storefront-modal.png" alt="Anfrageformular in der Storefront, geöffnet über den Knopf Preis anfragen" width="1519" height="825" loading="lazy"></div>
-        <figcaption><b>PriceOnRequest</b><span>Anfrage statt Warenkorb, je Produkt und Verkaufskanal. Mit Spamschutz und Bestätigungsmail.</span></figcaption>
-      </figure>
-      <figure class="karte">
-        <div class="rahmen" style="--pos: 0 42%; --h: 300px"><img src="img/plugins/ai-product-description-2.png" alt="Produktformular mit dem Knopf AI Beschreibung generieren über dem Beschreibungsfeld" width="888" height="836" loading="lazy"></div>
-        <figcaption><b>AiProductDescription</b><span>Sitzt direkt im Produktformular, kein Wechsel in ein anderes Werkzeug.</span></figcaption>
-      </figure>
-      <figure class="karte">
-        <div class="rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/price-on-request-storefront-listing.png" alt="Produktliste, bei einem Produkt steht Preis anfragen statt des Warenkorbknopfs" width="869" height="620" loading="lazy"></div>
-        <figcaption><b>PriceOnRequest</b><span>Im Listing ersetzt der Knopf den Warenkorb nur dort, wo Sie es eingestellt haben.</span></figcaption>
-      </figure>
-      <figure class="karte">
-        <div class="rahmen dunkel-rahmen" style="--pos: 0 0; --h: 300px"><img src="img/plugins/botprotection-settings.png" alt="Einstellungen des Bot-Schutzes: Honeypot, Zeitprüfung, Rate-Limit je Formular" width="754" height="785" loading="lazy"></div>
-        <figcaption><b>BotProtection</b><span>Grenzwerte je Formular einstellbar: Kontakt, Newsletter, Login.</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="abschnitt dunkel" id="bericht">
-  <div class="wrap bericht-in">
-    <div>
-      <span class="marke">Beispielbericht</span>
-      <h2>Ein Prüfbericht mit echten Messwerten</h2>
-      <p class="gross">
-        So sieht es aus, wenn ich einen Shop von außen prüfe. Der Bericht ist
-        veröffentlicht, nur der Name des Shops fehlt. Alle Zahlen sind gemessen,
-        nicht geschätzt.
-      </p>
-      <p><a class="textlink" href="beispiel-audit.html">Vollständigen Bericht lesen</a></p>
-    </div>
-    <div class="dokument">
-      <div class="dokument-kopf">
-        <b>SEO- und GEO-Audit</b>
-        <span>Shopware 6</span>
-        <span>20.09.2026</span>
-        <span>anonymisiert</span>
-      </div>
-      <div class="befund">
-        <span class="status ok">geprüft</span>
-        <div><b>Ladezeit 2,3 Sekunden</b><p>Sechs Fremddomains, robots.txt schließt Filterseiten sauber aus.</p></div>
-      </div>
-      <div class="befund">
-        <span class="status offen">offen</span>
-        <div><b>Shop unter zwei Adressen erreichbar</b><p>Mit und ohne www, beide mit Status 200. Die Sitemap meldet beide getrennt an.</p></div>
-      </div>
-      <div class="befund">
-        <span class="status offen">offen</span>
-        <div><b>Startseite ohne H1</b><p>Acht H2 und sechs H3 sind da, die stärkste Überschrift fehlt.</p></div>
-      </div>
-      <div class="befund">
-        <span class="status offen">offen</span>
-        <div><b>Kundenbewertungen zeigen auf die falsche Domain</b><p>Fünfstellige Zahl an Bewertungen im Markup, die Adresse darin gehört zu einem anderen Shop.</p></div>
-      </div>
-      <div class="dokument-fuss">Messung von außen, ohne Zugang zum Shop. Jeder Befund mit Lösung und Aufwand.</div>
-    </div>
-  </div>
-</section>
-
-<section class="abschnitt" id="bewertungen">
-  <div class="wrap">
-    <div class="abschnitt-kopf">
-      <span class="marke">Bewertungen</span>
-      <h2>Was Kunden geschrieben haben</h2>
-    </div>
-    <div class="bewertung-in">
-      <a class="note" href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">
-        <div class="zahl">5,0<small>von 5</small></div>
-        <dl>
-          <dt>Qualität</dt><dd>5,0</dd>
-          <dt>Termintreue</dt><dd>5,0</dd>
-          <dt>Kommunikation</dt><dd>5,0</dd>
-        </dl>
-        <p class="quelle">Eine Bewertung auf Malt, öffentlich im Profil einsehbar. Dazu eine Empfehlung einer Agentur.</p>
-      </a>
-      <div class="zitate">
-        <blockquote class="zitat">
-          <p>
-            „Der Umstieg lief ohne Ausfall, am nächsten Morgen konnten wir normal
-            weiterarbeiten. Besonders gefallen hat uns, dass er sich von selbst
-            meldet, wenn ihm etwas auffällt, auch wenn es nicht zum Auftrag gehört.“
-          </p>
-          <footer>Tour Made GmbH, JTL-Wawi Update 1.11.8 auf 2.0.6, Bewertung auf Malt vom 04.09.2026</footer>
-        </blockquote>
-        <blockquote class="zitat">
-          <p>
-            „Besonders hervorheben möchte ich seine schnelle Reaktionszeit, den
-            stets freundlichen Kontakt und seine strukturierte, saubere
-            Vorgehensweise. Die Abstimmung war unkompliziert und professionell.“
-          </p>
-          <footer>Marcus Bodenstein, Geschäftsführer magnolia4 GmbH, Empfehlung auf Malt vom 23.09.2026</footer>
-        </blockquote>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="abschnitt papier" id="ablauf">
-  <div class="wrap">
-    <div class="abschnitt-kopf">
-      <span class="marke">Ablauf</span>
+      <span class="dach">Ablauf</span>
       <h2>Kein Eingriff ohne Rückweg</h2>
-      <p class="gross">Der teuerste Moment ist der, in dem ein Livesystem steht und keiner weiß, wie es vorher aussah. Darum läuft jeder Auftrag in dieser Reihenfolge.</p>
+      <p class="gross">Jeder Auftrag läuft in derselben Reihenfolge. Ihr Livesystem fasse ich erst an, wenn auf der Kopie alles durchgelaufen ist.</p>
     </div>
     <ol class="schritte">
-      <li><span class="nr">01</span><div><b>Sie schreiben, was klemmt</b><span>Eine Mail reicht. Welches System, welche Version, was gerade nicht geht.</span></div></li>
-      <li><span class="nr">02</span><div><b>Ich prüfe und nenne einen Preis</b><span>Nach der Bestandsaufnahme Stundensatz oder Festpreis. Vorher nenne ich keine Zahl, die ich später korrigieren müsste.<small class="preis-klein">Stundensatz 70 Euro, als Kleinunternehmer ohne Umsatzsteuer.</small></span></div></li>
-      <li><span class="nr">03</span><div><b>Checkliste vor dem ersten Handgriff</b><span>Schriftlich: was passiert, in welcher Reihenfolge, wie der Rückweg aussieht.</span></div></li>
-      <li><span class="nr">04</span><div><b>Erst die Kopie, dann live</b><span>Getestet wird bis durch den Bestellvorgang. Livegang mit Sicherung.</span></div></li>
-      <li><span class="nr">05</span><div><b>Was mir nebenbei auffällt, sage ich</b><span>Auch wenn es nicht zum Auftrag gehört. Ein Kunde hat genau das in seiner Bewertung hervorgehoben.</span></div></li>
+      <li>
+        <h3>Sie schreiben, was klemmt</h3>
+        <p>Eine Mail reicht, mit System, Version und dem, was nicht funktioniert. Auf Wunsch rufe ich Sie danach zurück.</p>
+      </li>
+      <li>
+        <h3>Ich prüfe und nenne einen Preis</h3>
+        <p>Nach der Prüfung Stundensatz oder Festpreis. Vorher nenne ich keine Zahl, die ich später korrigieren müsste.</p>
+        <a class="textlink" href="beispiel-audit.html">So sieht ein Prüfbericht aus</a>
+        <small class="preis-klein">Stundensatz 70 Euro, als Kleinunternehmer ohne Umsatzsteuer.</small>
+      </li>
+      <li>
+        <h3>Checkliste vor dem ersten Handgriff</h3>
+        <p>Schriftlich, was passiert, in welcher Reihenfolge und wie der Rückweg aussieht.</p>
+      </li>
+      <li>
+        <h3>Erst die Kopie, dann live</h3>
+        <p>Getestet wird bis durch den Bestellvorgang. Der Livegang läuft mit Sicherung.</p>
+      </li>
     </ol>
+  </div>
+</section>
+
+<section class="abschnitt grau" id="ergebnisse">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="dach">Ergebnisse</span>
+      <h2>Was dabei herausgekommen ist</h2>
+      <p class="gross">Aus laufenden Aufträgen, ohne Kundennamen. Jede Zahl hat eine Quelle.</p>
+    </div>
+
+    <div class="belege">
+      <article class="karte beleg">
+        <span class="ausgang">Versionsupdate der Warenwirtschaft</span>
+        <h3>Umstieg ohne Ausfall, am nächsten Morgen lief der Betrieb normal</h3>
+        <p>JTL-Wawi auf die neue Hauptversion gebracht, vorher auf einer Kopie getestet.</p>
+        <dl class="vergleich">
+          <div><dt>Vorher</dt><dd><code>1.11.8</code></dd></div>
+          <div><dt>Nachher</dt><dd><code class="neu">2.0.6</code></dd></div>
+        </dl>
+        <span class="quelle">Quelle: Bewertung des Kunden auf Malt, 04.09.2026</span>
+      </article>
+
+      <article class="karte beleg">
+        <span class="ausgang">Beworbene Produktseiten liefen ins Leere</span>
+        <h3>Links aus einem Fachmagazin und aus Social Media werden wieder umgeleitet</h3>
+        <p>Eine dieser Seiten hatte rund 1.400 Aufrufe im Monat, die auf einer Fehlerseite landeten.</p>
+        <dl class="vergleich">
+          <div><dt>Vorher</dt><dd>Fehlerseite 404</dd></div>
+          <div><dt>Nachher</dt><dd class="neu">Weiterleitungen für fünf Adressen angelegt</dd></div>
+        </dl>
+        <span class="quelle">Quelle: Serverprotokolle, Livetest</span>
+      </article>
+
+      <article class="karte beleg">
+        <span class="ausgang">Produktadressen mit Zufallscode</span>
+        <h3>Lesbare Produktadressen, alte Links funktionieren weiter</h3>
+        <p>122 von 123 Adressen umgestellt, kein Produkt inhaltlich verändert.</p>
+        <dl class="vergleich">
+          <div><dt>Vorher</dt><dd><code>ihr-shop.de/zubehoer/taschen/modell-x-8f3a9c41e7d2…</code></dd></div>
+          <div><dt>Nachher</dt><dd><code class="neu">ihr-shop.de/modell-x</code></dd></div>
+        </dl>
+        <span class="quelle">Quelle: Shopware-Datenbank, Livetest</span>
+      </article>
+
+      <article class="karte beleg">
+        <span class="ausgang">Farbvarianten einzeln im Google-Feed</span>
+        <h3>Google bekommt die Farben als Varianten eines Modells gemeldet</h3>
+        <p>Aus 79 Einzeleinträgen wurden 24 Produktgruppen, kein Artikel fehlt.</p>
+        <dl class="vergleich">
+          <div><dt>Vorher</dt><dd>79 Einträge, jede Farbe für sich</dd></div>
+          <div><dt>Nachher</dt><dd class="neu">24 Produktgruppen</dd></div>
+        </dl>
+        <span class="quelle">Quelle: Messung am ausgelieferten Feed</span>
+      </article>
+    </div>
+
+    <div class="stimmen">
+      <blockquote class="karte stimme">
+        <p>„Der Umstieg lief ohne Ausfall, am nächsten Morgen konnten wir normal weiterarbeiten. Besonders gefallen hat uns, dass er sich von selbst meldet, wenn ihm etwas auffällt, auch wenn es nicht zum Auftrag gehört.“</p>
+        <footer><b>Tour Made GmbH</b>JTL-Wawi Update, Bewertung auf Malt vom 04.09.2026</footer>
+      </blockquote>
+      <blockquote class="karte stimme">
+        <p>„Besonders hervorheben möchte ich seine schnelle Reaktionszeit, den stets freundlichen Kontakt und seine strukturierte, saubere Vorgehensweise. Die Abstimmung war unkompliziert und professionell.“</p>
+        <footer><b>Marcus Bodenstein, magnolia4 GmbH</b>Empfehlung auf Malt vom 23.09.2026</footer>
+      </blockquote>
+    </div>
+    <p class="stimmen-quelle">Beide Texte sind öffentlich in meinem <a href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Profil auf Malt</a> einsehbar.</p>
+  </div>
+</section>
+
+<section class="abschnitt" id="betreuung">
+  <div class="wrap">
+    <div class="abschnitt-kopf">
+      <span class="dach">Betreuung</span>
+      <h2>Nach der Reparatur bleibe ich erreichbar</h2>
+      <p class="gross">Wenn der Fehler behoben ist, kann die Arbeit als feste Betreuung weiterlaufen.</p>
+    </div>
+    <div class="zusagen">
+      <div class="karte zusage">
+        <h3>Feste Monatspauschale</h3>
+        <p>Mit einem klaren Stundenbudget. Was darüber hinausgeht, sprechen wir vorher ab.</p>
+      </div>
+      <div class="karte zusage">
+        <h3>Antwort innerhalb eines Werktags</h3>
+        <p>Auf jede Mail. Wenn ich für Ihr Anliegen nicht der Richtige bin, sage ich das in derselben Antwort.</p>
+      </div>
+      <div class="karte zusage">
+        <h3>Alles schriftlich</h3>
+        <p>Absprachen und Änderungen können Sie auch Monate später nachlesen. Rückruf auf Wunsch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="abschnitt grau" id="person">
+  <div class="wrap person">
+    <img src="img/michael.jpg" alt="Michael Barabanov" width="512" height="512" loading="lazy">
+    <div>
+      <span class="dach">Wer das macht</span>
+      <h2>Michael Barabanov</h2>
+      <p class="gross">Fachinformatiker für Anwendungsentwicklung aus Koblenz. Ich arbeite remote im gesamten deutschsprachigen Raum.</p>
+      <p>Über 30 Shops habe ich betreut, die meisten als Entwickler in einer E-Commerce-Agentur. Vier eigene Plugins für Shopware 6 sind als Open Source veröffentlicht, mit Tests.</p>
+      <div class="aktionen">
+        <a class="textlink" href="plugins/">Plugins ansehen</a>
+        <a class="textlink" href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Profil auf Malt</a>
+        <a class="textlink" href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="abschnitt dunkel kontakt" id="kontakt">
   <div class="wrap">
-    <div class="abschnitt-kopf">
-      <span class="marke">Kontakt</span>
-      <h2>Schreiben reicht</h2>
-      <p class="gross">
-        Schreiben Sie mir, welches System bei Ihnen läuft und was nicht
-        funktioniert. Nach Ihrer ersten Mail rufe ich Sie gern zurück. Ich sage
-        Ihnen, ob ich der Richtige bin. Wenn nicht, sage ich auch das.
-      </p>
+    <span class="dach">Kontakt</span>
+    <h2>Schreiben Sie mir, was klemmt</h2>
+    <p class="gross">Welches System, welche Version, was nicht funktioniert. Sie bekommen innerhalb eines Werktags eine Antwort. Nach Ihrer ersten Mail rufe ich Sie gern zurück.</p>
+    <div class="aktionen">
+      <a class="knopf" href="mailto:m.barabanov@mbara.net?subject=Anfrage%20%C3%BCber%20mbara.net&amp;body=Welches%20System%20und%20welche%20Version%3A%0A%0AWas%20gerade%20nicht%20funktioniert%3A%0A%0ABis%20wann%20es%20laufen%20soll%3A%0A%0A">Anfrage schreiben</a>
+      <a class="textlink mail" href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>
     </div>
-
-    <div class="zielgruppen">
-      <div class="ziel">
-        <h3>Für Shopbetreiber</h3>
-        <p>Sie brauchen kein IT-Wissen. Sie beschreiben, was nicht geht, ich übersetze das in Arbeitsschritte und nenne vorher den Preis.</p>
-        <span class="mono">Festpreis oder Stundensatz, Angebot nach kurzer Prüfung</span>
-      </div>
-      <div class="ziel">
-        <h3>Für Agenturen</h3>
-        <p>Unterauftrag remote und schriftlich. Auf Wunsch ohne Kontakt zu Ihrem Endkunden, Ergebnisse gehen über Sie raus.</p>
-        <span class="mono">Konditionen auf Anfrage, Abrechnung monatlich</span>
-      </div>
-    </div>
-
-    <p><a class="knopf" href="mailto:m.barabanov@mbara.net?subject=Anfrage%20%C3%BCber%20mbara.net&body=Welches%20System%20und%20welche%20Version%3A%0A%0AWas%20gerade%20nicht%20funktioniert%3A%0A%0ABis%20wann%20es%20laufen%20soll%3A%0A%0A">Anfrage schreiben</a></p>
-
-    <div class="visite">
-      <img src="img/michael.jpg" alt="Michael Barabanov" width="64" height="64" loading="lazy">
-      <div>
-        <div class="name">Michael Barabanov</div>
-        <div class="zeile">Shopware und JTL, Koblenz, remote im gesamten deutschsprachigen Raum</div>
-        <a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a>
-      </div>
-    </div>
+    <p class="agenturen">Agenturen beauftragen mich als Unterauftragnehmer, auf Wunsch ohne Kontakt zu ihrem Endkunden.</p>
   </div>
 </section>
 
 </main>
 
 <footer class="fuss">
-  <div class="wrap fuss-in">
-    <span>© 2026 Michael Barabanov, Koblenz</span>
-    <nav aria-label="Leistungen">
-      <a href="artikelimport-jtl-wawi.html">Artikelimport</a>
-      <a href="migration-shopware-5-auf-6.html">Shopware 5 auf 6</a>
-      <a href="jtl-wawi-update.html">JTL-Wawi Update</a>
-      <a href="schnittstellen.html">Schnittstellen</a>
-      <a href="beispiel-audit.html">Beispielbericht</a>
-      <a href="faq.html">Häufige Fragen</a>
-    </nav>
-    <nav aria-label="Weitere Seiten">
-      <a href="blog/">Blog</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a>
-      <a href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Malt</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
+  <div class="wrap">
+    <p class="fuss-satz">Erst auf einer Kopie, dann im Livesystem. <span>Shopware und JTL aus Koblenz, remote.</span></p>
+    <div class="fuss-spalten">
+      <div>
+        <h2>Leistungen</h2>
+        <ul>
+          <li><a href="artikelimport-jtl-wawi.html">Artikelimport</a></li>
+          <li><a href="jtl-wawi-update.html">JTL-Wawi Update</a></li>
+          <li><a href="migration-shopware-5-auf-6.html">Shopware 5 auf 6</a></li>
+          <li><a href="schnittstellen.html">Schnittstellen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Mehr</h2>
+        <ul>
+          <li><a href="beispiel-audit.html">Beispielbericht</a></li>
+          <li><a href="faq.html">Häufige Fragen</a></li>
+          <li><a href="plugins/">Plugins</a></li>
+          <li><a href="blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Kontakt</h2>
+        <ul>
+          <li><a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a></li>
+          <li><a href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Malt</a></li>
+          <li><a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fuss-unten">
+      <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="portfolio.html">Portfolio</a>
+      </nav>
+    </div>
   </div>
 </footer>
 

@@ -25,9 +25,6 @@
 
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 
-  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
-  <link rel="stylesheet" href="../style.css" />
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,163 +49,141 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="../fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="../mbara.css?v=20261116d">
 </head>
 <body>
 
-<nav id="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="../portfolio.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="../portfolio.html">portfolio</a></li>
-      <li><a href="../index.html">leistungen</a></li>
-      <li><a href="../blog/">blog</a></li>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="../index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="../index.html#leistungen">Leistungen</a>
+      <a href="../index.html#ablauf">Ablauf</a>
+      <a href="../index.html#ergebnisse">Ergebnisse</a>
+    </nav>
+    <a class="knopf" href="../index.html#kontakt">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main id="inhalt">
+
+<section class="unter-hero">
+  <div class="wrap unter-hero-in">
+    <div>
+      <a class="pfad" href="./">Plugins</a>
+      <h1>AiProductDescription</h1>
+      <p class="gross">Ein-Klick-Produktbeschreibungen direkt im Shopware-Admin. Claude oder ChatGPT wählbar, zwei Sprachen, drei Schreibstile, die API-Keys verlassen nie den Server.</p>
+      <ul class="etiketten"><li>Shopware 6.7.x</li><li>PHP 8.2+</li><li>AI</li><li>MIT License</li></ul>
+      <div class="aktionen">
+        <a class="knopf" href="https://github.com/MichaelBarabanov/AiProductDescription" rel="noopener">Quellcode auf GitHub</a>
+        <a class="textlink" href="./">Alle Plugins</a>
+      </div>
+    </div>
+    <div class="bildrahmen"><img src="../img/plugins/ai-product-description-modal.png" alt="AiProductDescription Generierungs-Modal" width="835" height="764"></div>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <div class="inhalt">
+      <h2>Was es kann</h2>
+      <ul>
+      <li>Ein-Klick-Button direkt über dem Beschreibungsfeld im Produkt-Editor</li>
+      <li>Zwei KI-Anbieter wählbar, Claude (Anthropic) und ChatGPT (OpenAI)</li>
+      <li>Zweisprachig, Deutsch und Englisch</li>
+      <li>Drei Schreibstile: Professionell, Casual, SEO-optimiert</li>
+      <li>API-Calls laufen serverseitig, die Keys verlassen nie den Browser</li>
+      <li>Automatik-Modus liest Produktname, Meta-Infos und Kategorien selbstständig aus</li>
     </ul>
-    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
-      <span class="lo active" id="lang-de">DE</span>
-      <span class="lang-sep">/</span>
-      <span class="lo" id="lang-en">EN</span>
-    </button>
-  </div>
-</nav>
-
-<main>
-<section class="product-hero">
-  <div class="container">
-    <div class="product-crumb reveal-left"><a href="../demo.html" data-i18n="pdp.back">← alle plugins</a></div>
-
-    <div class="product-badges reveal-left">
-      <span class="product-badge product-badge--sw">Shopware 6.7.x</span>
-      <span class="product-badge product-badge--php">PHP 8.2+</span>
-      <span class="product-badge product-badge--ai">AI</span>
-      <span class="product-badge product-badge--tool">MIT License</span>
-    </div>
-
-    <h1 class="product-h1 reveal-left">AiProductDescription</h1>
-    <p class="product-pitch reveal-left" data-i18n="ai.pitch">Ein-Klick-Produktbeschreibungen direkt im Shopware-Admin. Claude oder ChatGPT wählbar, zwei Sprachen, drei Schreibstile, die API-Keys verlassen nie den Server.</p>
-
-    <div class="product-ctas reveal-left">
-      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/AiProductDescription" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.gallery">// screenshots</div>
-    <div class="gallery reveal">
-      <a href="../img/plugins/ai-product-description-modal.png" target="_blank" rel="noopener noreferrer">
-        <img src="../img/plugins/ai-product-description-modal.png" alt="AiProductDescription Generierungs-Modal" loading="lazy" data-i18n-alt="ai.gallery.1" / width="835" height="764">
-      </a>
-      <a href="../img/plugins/ai-product-description-2.png" target="_blank" rel="noopener noreferrer">
-        <img src="../img/plugins/ai-product-description-2.png" alt="AiProductDescription Einstiegspunkt im Produkt-Editor" loading="lazy" data-i18n-alt="ai.gallery.2" / width="888" height="836">
-      </a>
-      <a href="../img/plugins/ai-product-description-3.png" target="_blank" rel="noopener noreferrer">
-        <img src="../img/plugins/ai-product-description-3.png" alt="AiProductDescription Plugin-Einstellungen" loading="lazy" data-i18n-alt="ai.gallery.3" / width="966" height="610">
-      </a>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.features">// features</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.features">Was es kann.</h2>
-    <ul class="plugin-features reveal" style="margin-top:20px; gap:14px; max-width:760px;">
-      <li data-i18n="ai.f1">Ein-Klick-Button direkt über dem Beschreibungsfeld im Produkt-Editor</li>
-      <li data-i18n="ai.f2">Zwei KI-Anbieter wählbar, Claude (Anthropic) und ChatGPT (OpenAI)</li>
-      <li data-i18n="ai.f3">Zweisprachig, Deutsch und Englisch</li>
-      <li data-i18n="ai.f4">Drei Schreibstile: Professionell, Casual, SEO-optimiert</li>
-      <li data-i18n="ai.f5">API-Calls laufen serverseitig, die Keys verlassen nie den Browser</li>
-      <li data-i18n="ai.f6">Automatik-Modus liest Produktname, Meta-Infos und Kategorien selbstständig aus</li>
-    </ul>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.config">// konfiguration</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.config">Konfiguration.</h2>
-    <table class="spec-table reveal">
+      <h2>Konfiguration</h2>
+      <div class="tabelle-rahmen"><table>
       <thead>
         <tr>
-          <th data-i18n="pdp.spec.setting">Einstellung</th>
-          <th data-i18n="pdp.spec.default">Standard</th>
-          <th data-i18n="pdp.spec.desc">Beschreibung</th>
+          <th>Einstellung</th>
+          <th>Standard</th>
+          <th>Beschreibung</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Anthropic API Key</td><td>empty</td><td data-i18n="ai.cfg.d1">Aktiviert die Verbindung zu Anthropic Claude</td></tr>
-        <tr><td>OpenAI API Key</td><td>empty</td><td data-i18n="ai.cfg.d2">Aktiviert die Verbindung zu OpenAI ChatGPT</td></tr>
-        <tr><td>Mindestens ein Key</td><td>-</td><td data-i18n="ai.cfg.d3">Mindestens einer der beiden Keys ist erforderlich</td></tr>
+        <tr><td>Anthropic API Key</td><td>empty</td><td>Aktiviert die Verbindung zu Anthropic Claude</td></tr>
+        <tr><td>OpenAI API Key</td><td>empty</td><td>Aktiviert die Verbindung zu OpenAI ChatGPT</td></tr>
+        <tr><td>Mindestens ein Key</td><td>-</td><td>Mindestens einer der beiden Keys ist erforderlich</td></tr>
       </tbody>
-    </table>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.install">// installation</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.install">Installation.</h2>
-    <p class="demo-sub reveal" data-i18n="ai.install.lead" style="margin-bottom:20px;">Plugin nach custom/plugins/ kopieren, installieren und die Admin-Oberfläche neu bauen:</p>
-    <div class="iterm reveal">
-      <div class="iterm-bar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <span class="iterm-title">michael@shop:~</span>
-      </div>
-      <div class="iterm-output">
-        <div class="iterm-row"><span class="ip">$ </span><span>cp -r AiProductDescription custom/plugins/MichaAiProductDescription</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:refresh</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:install --activate MichaAiProductDescription</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>bin/build-administration.sh</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>bin/console cache:clear</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section style="padding-bottom:32px;">
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.usage">// verwendung</div>
-    <h2 class="section-title reveal-left" data-i18n="ai.usage.lead" style="margin-bottom:20px;">So wird es benutzt:</h2>
-    <ol class="plugin-features reveal" style="margin-top:0; gap:10px; max-width:680px; list-style: decimal; padding-left: 20px;">
-      <li data-i18n="ai.usage.1">Produkt im Admin öffnen und zum Beschreibungsfeld scrollen</li>
-      <li data-i18n="ai.usage.2">Auf „AI Beschreibung generieren" klicken</li>
-      <li data-i18n="ai.usage.3">Anbieter (Claude/ChatGPT), Sprache und Schreibstil wählen</li>
-      <li data-i18n="ai.usage.4">Automatisch oder manuell mit eigenen Stichpunkten generieren lassen</li>
-      <li data-i18n="ai.usage.5">Ergebnis prüfen und optional direkt im Editor anpassen</li>
-      <li data-i18n="ai.usage.6">Übernehmen, fertig, ohne die Seite zu verlassen</li>
+    </table></div>
+      <h2>Installation</h2>
+      <p>Plugin nach custom/plugins/ kopieren, installieren und die Admin-Oberfläche neu bauen:</p>
+      <pre><code>$ cp -r AiProductDescription custom/plugins/MichaAiProductDescription
+$ bin/console plugin:refresh
+$ bin/console plugin:install --activate MichaAiProductDescription
+$ bin/build-administration.sh
+$ bin/console cache:clear</code></pre>
+      <h2>So wird es benutzt</h2>
+      <ol>
+      <li>Produkt im Admin öffnen und zum Beschreibungsfeld scrollen</li>
+      <li>Auf „AI Beschreibung generieren" klicken</li>
+      <li>Anbieter (Claude/ChatGPT), Sprache und Schreibstil wählen</li>
+      <li>Automatisch oder manuell mit eigenen Stichpunkten generieren lassen</li>
+      <li>Ergebnis prüfen und optional direkt im Editor anpassen</li>
+      <li>Übernehmen, fertig, ohne die Seite zu verlassen</li>
     </ol>
-  </div>
-</section>
-
-<section style="padding-bottom:96px;">
-  <div class="container">
-    <div class="product-ctas">
-      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/AiProductDescription" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
-      <a class="btn btn-outline" href="../demo.html" data-i18n="pdp.back">← alle plugins</a>
+      <h2>Weitere Ansichten</h2>
+      <div class="galerie">
+        <a class="bildrahmen" href="../img/plugins/ai-product-description-2.png"><img src="../img/plugins/ai-product-description-2.png" alt="AiProductDescription Einstiegspunkt im Produkt-Editor" width="888" height="836" loading="lazy"></a>
+        <a class="bildrahmen" href="../img/plugins/ai-product-description-3.png"><img src="../img/plugins/ai-product-description-3.png" alt="AiProductDescription Plugin-Einstellungen" width="966" height="610" loading="lazy"></a>
+      </div>
+      <h2>Ein Plugin anpassen lassen</h2>
+      <p>Wenn Sie ein Plugin für Ihren Shop brauchen oder dieses angepasst haben möchten, schreiben Sie mir. Nach Ihrer ersten Mail rufe ich Sie gern zurück.</p>
+      <p><a class="mail-gross" href="mailto:m.barabanov@mbara.net?subject=Plugin%20ai-product-description">m.barabanov@mbara.net</a></p>
     </div>
   </div>
 </section>
+
 </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-privacy" data-i18n-html="footer.privacy">
-      <span class="fp-dot"></span>
-      // keine cookies · kein tracking · deine daten gehören dir
+<footer class="fuss">
+  <div class="wrap">
+    <p class="fuss-satz">Erst auf einer Kopie, dann im Livesystem. <span>Shopware und JTL aus Koblenz, remote.</span></p>
+    <div class="fuss-spalten">
+      <div>
+        <h2>Leistungen</h2>
+        <ul>
+          <li><a href="../artikelimport-jtl-wawi.html">Artikelimport</a></li>
+          <li><a href="../jtl-wawi-update.html">JTL-Wawi Update</a></li>
+          <li><a href="../migration-shopware-5-auf-6.html">Shopware 5 auf 6</a></li>
+          <li><a href="../schnittstellen.html">Schnittstellen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Mehr</h2>
+        <ul>
+          <li><a href="../beispiel-audit.html">Beispielbericht</a></li>
+          <li><a href="../faq.html">Häufige Fragen</a></li>
+          <li><a href="../plugins/">Plugins</a></li>
+          <li><a href="../blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Kontakt</h2>
+        <ul>
+          <li><a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a></li>
+          <li><a href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Malt</a></li>
+          <li><a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom">
-      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
-      <span><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a> · <a href="../blog/">Blog</a> · <a href="../index.html">Hire Me</a></span>
+    <div class="fuss-unten">
+      <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+      <nav aria-label="Rechtliches">
+        <a href="../impressum.html">Impressum</a>
+        <a href="../datenschutz.html">Datenschutz</a>
+        <a href="../portfolio.html">Portfolio</a>
+      </nav>
     </div>
   </div>
 </footer>
 
-<script src="../i18n.js?v=20261018b"></script>
-<script src="../main.js?v=20261014"></script>
-<script src="../cat.js?v=20261018b"></script>
 </body>
 </html>

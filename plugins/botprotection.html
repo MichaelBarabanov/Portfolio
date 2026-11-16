@@ -25,9 +25,6 @@
 
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 
-  <link rel="stylesheet" href="../fonts/plus-jakarta-sans.css" />
-  <link rel="stylesheet" href="../style.css" />
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,221 +49,168 @@
     ]
   }
   </script>
+<link rel="stylesheet" href="../fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="../mbara.css?v=20261116d">
 </head>
 <body>
 
-<nav id="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="../portfolio.html"><span class="p">&gt;</span> mb<span class="c-blink">_</span></a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menü">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="../portfolio.html">portfolio</a></li>
-      <li><a href="../index.html">leistungen</a></li>
-      <li><a href="../blog/">blog</a></li>
-    </ul>
-    <button class="lang-btn" id="lang-btn" aria-label="Switch language">
-      <span class="lo active" id="lang-de">DE</span>
-      <span class="lang-sep">/</span>
-      <span class="lo" id="lang-en">EN</span>
-    </button>
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="../index.html">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="../index.html#leistungen">Leistungen</a>
+      <a href="../index.html#ablauf">Ablauf</a>
+      <a href="../index.html#ergebnisse">Ergebnisse</a>
+    </nav>
+    <a class="knopf" href="../index.html#kontakt">Anfrage schreiben</a>
   </div>
-</nav>
+</header>
 
-<main>
-<section class="product-hero">
-  <div class="container">
-    <div class="product-crumb reveal-left"><a href="../demo.html" data-i18n="pdp.back">← alle plugins</a></div>
+<main id="inhalt">
 
-    <div class="product-badges reveal-left">
-      <span class="product-badge product-badge--sw">Shopware 6.7.x</span>
-      <span class="product-badge product-badge--php">PHP 8.2+</span>
-      <span class="product-badge product-badge--ai">AI</span>
-      <span class="product-badge product-badge--tool">MIT License</span>
+<section class="unter-hero">
+  <div class="wrap unter-hero-in">
+    <div>
+      <a class="pfad" href="./">Plugins</a>
+      <h1>BotProtection</h1>
+      <p class="gross">Application-Layer-Schutz für Formulare in Shopware 6, dort, wo Netzwerkschutz wie Cloudflare nicht hinsieht. Honeypot, Rate-Limiting und Time-Validation, mit Admin-Dashboard und optionaler KI-Bedrohungsanalyse.</p>
+      <ul class="etiketten"><li>Shopware 6.7.x</li><li>PHP 8.2+</li><li>AI</li><li>MIT License</li></ul>
+      <div class="aktionen">
+        <a class="knopf" href="https://github.com/MichaelBarabanov/Shopware---BotProtection" rel="noopener">Quellcode auf GitHub</a>
+        <a class="textlink" href="./">Alle Plugins</a>
+      </div>
     </div>
-
-    <h1 class="product-h1 reveal-left">BotProtection</h1>
-    <p class="product-pitch reveal-left" data-i18n="bp.pitch">Application-Layer-Schutz für Formulare in Shopware 6, dort, wo Netzwerkschutz wie Cloudflare nicht hinsieht. Honeypot, Rate-Limiting und Time-Validation, mit Admin-Dashboard und optionaler KI-Bedrohungsanalyse.</p>
-
-    <div class="product-ctas reveal-left">
-      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/Shopware---BotProtection" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
-    </div>
+    <div class="bildrahmen"><img src="../img/plugins/botprotection-blocked-attempts.png" alt="BotProtection: blockierte Versuche mit Grund und IP" width="937" height="503"></div>
   </div>
 </section>
 
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.gallery">// screenshots</div>
-    <div class="gallery reveal">
-      <a href="../img/plugins/botprotection-dashboard.png" target="_blank" rel="noopener noreferrer">
-        <img src="../img/plugins/botprotection-dashboard.png" alt="BotProtection Admin-Dashboard mit 14-Tage-Statistik" loading="lazy" data-i18n-alt="bp.gallery.1" / width="912" height="381">
-      </a>
-      <a href="../img/plugins/botprotection-settings.png" target="_blank" rel="noopener noreferrer">
-        <img src="../img/plugins/botprotection-settings.png" alt="BotProtection Einstellungen: Honeypot, Time-Validation, Rate-Limiting" loading="lazy" data-i18n-alt="bp.gallery.2" / width="754" height="785">
-      </a>
-      <a href="../img/plugins/botprotection-blocked-attempts.png" target="_blank" rel="noopener noreferrer">
-        <img src="../img/plugins/botprotection-blocked-attempts.png" alt="BotProtection: blockierte Versuche mit Grund und IP" loading="lazy" data-i18n-alt="bp.gallery.3" / width="937" height="503">
-      </a>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.features">// features</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.features">Was es kann.</h2>
-    <ul class="plugin-features reveal" style="margin-top:20px; gap:14px; max-width:760px;">
-      <li data-i18n="bp.f1">Honeypot-Feld, unsichtbar per Off-Screen-Positionierung platziert, nicht per display:none, das einfache Bots erkennen</li>
-      <li data-i18n="bp.f2">Rate-Limiting pro Endpoint, prüft IP und Session kombiniert, sodass ein einzelner Client blockiert wird, ohne ein ganzes Firmennetzwerk zu bestrafen</li>
-      <li data-i18n="bp.f3">Time-based Form-Validation, blockiert Formulare, die schneller abgeschickt werden als ein konfigurierbarer Schwellenwert; das Zeit-Token ist HMAC-signiert und braucht keine Session</li>
-      <li data-i18n="bp.f4">Admin-Dashboard, Statistiken, 14-Tage-Chart, die letzten blockierten Versuche und die komplette Plugin-Konfiguration an einem Ort</li>
-      <li data-i18n="bp.f5">Optionale KI-Bedrohungsanalyse, Ein-Klick-Zusammenfassung der letzten 7 Tage, powered by Claude; übertragen werden nur aggregierte Zahlen, nie IPs oder User-Agents</li>
-      <li data-i18n="bp.f6">DSGVO-konformes Logging, IP-Adressen werden nach 7 Tagen entfernt, ganze Einträge nach 30 Tagen gelöscht (beides konfigurierbar); Session-IDs nur als SHA-256-Hash</li>
+<section class="seite">
+  <div class="wrap">
+    <div class="inhalt">
+      <h2>Was es kann</h2>
+      <ul>
+      <li>Honeypot-Feld, unsichtbar per Off-Screen-Positionierung platziert, nicht per display:none, das einfache Bots erkennen</li>
+      <li>Rate-Limiting pro Endpoint, prüft IP und Session kombiniert, sodass ein einzelner Client blockiert wird, ohne ein ganzes Firmennetzwerk zu bestrafen</li>
+      <li>Time-based Form-Validation, blockiert Formulare, die schneller abgeschickt werden als ein konfigurierbarer Schwellenwert; das Zeit-Token ist HMAC-signiert und braucht keine Session</li>
+      <li>Admin-Dashboard, Statistiken, 14-Tage-Chart, die letzten blockierten Versuche und die komplette Plugin-Konfiguration an einem Ort</li>
+      <li>Optionale KI-Bedrohungsanalyse, Ein-Klick-Zusammenfassung der letzten 7 Tage, powered by Claude; übertragen werden nur aggregierte Zahlen, nie IPs oder User-Agents</li>
+      <li>DSGVO-konformes Logging, IP-Adressen werden nach 7 Tagen entfernt, ganze Einträge nach 30 Tagen gelöscht (beides konfigurierbar); Session-IDs nur als SHA-256-Hash</li>
     </ul>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.notdo">// was es nicht macht</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.notdo">Was es bewusst nicht macht.</h2>
-    <ul class="not-list reveal" style="max-width:680px;">
-      <li data-i18n="bp.not1">Kein CAPTCHA und keine Drittanbieter-Dienste, alles läuft selbst-gehostet innerhalb von Shopware</li>
-      <li data-i18n="bp.not2">Keine Firewall oder Netzwerk-Level-IP-Sperre, ausschließlich Application-Layer</li>
-      <li data-i18n="bp.not3">Blockierte Anfragen bekommen eine saubere Fehlermeldung (JSON-Alert oder Flash-Message + Redirect), nie einen harten 403</li>
+      <h2>Was es bewusst nicht macht</h2>
+      <ul>
+      <li>Kein CAPTCHA und keine Drittanbieter-Dienste, alles läuft selbst-gehostet innerhalb von Shopware</li>
+      <li>Keine Firewall oder Netzwerk-Level-IP-Sperre, ausschließlich Application-Layer</li>
+      <li>Blockierte Anfragen bekommen eine saubere Fehlermeldung (JSON-Alert oder Flash-Message + Redirect), nie einen harten 403</li>
     </ul>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.config">// konfiguration</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.config">Konfiguration.</h2>
-    <table class="spec-table reveal">
+      <h2>Konfiguration</h2>
+      <div class="tabelle-rahmen"><table>
       <thead>
         <tr>
-          <th data-i18n="pdp.spec.setting">Einstellung</th>
-          <th data-i18n="pdp.spec.default">Standard</th>
-          <th data-i18n="pdp.spec.desc">Beschreibung</th>
+          <th>Einstellung</th>
+          <th>Standard</th>
+          <th>Beschreibung</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Honeypot field active</td><td>on</td><td data-i18n="bp.cfg.d1">Unsichtbares Feld, ausgefüllt bedeutet Bot</td></tr>
-        <tr><td>Time based validation active</td><td>on</td><td data-i18n="bp.cfg.d2">Minimale Sekunden zwischen Seitenaufruf und Absenden</td></tr>
-        <tr><td>Minimum time in seconds</td><td>3</td><td data-i18n="bp.cfg.d3">Schnellere Übermittlungen gelten als Bot</td></tr>
-        <tr><td>Rate limiting active</td><td>on</td><td data-i18n="bp.cfg.d4">Feste Zeitfenster-Ratenbegrenzung</td></tr>
-        <tr><td>Time window in minutes</td><td>15</td><td data-i18n="bp.cfg.d5">Fensterlänge und Dauer der temporären Sperre</td></tr>
-        <tr><td>Contact form limit</td><td>5</td><td data-i18n="bp.cfg.d6">Max. Anfragen pro Zeitfenster</td></tr>
-        <tr><td>Newsletter limit</td><td>5</td><td data-i18n="bp.cfg.d7">Max. Anfragen pro Zeitfenster</td></tr>
-        <tr><td>Login limit</td><td>10</td><td data-i18n="bp.cfg.d8">Max. Versuche pro Zeitfenster</td></tr>
-        <tr><td>Registration limit</td><td>5</td><td data-i18n="bp.cfg.d9">Max. Anfragen pro Zeitfenster</td></tr>
-        <tr><td>Delete log entries after</td><td>30 days</td><td data-i18n="bp.cfg.d10">Vollständige Löschung der Log-Einträge</td></tr>
-        <tr><td>Remove IP addresses after</td><td>7 days</td><td data-i18n="bp.cfg.d11">IPs werden früher entfernt als der Rest des Eintrags</td></tr>
-        <tr><td>Anthropic API Key</td><td>empty</td><td data-i18n="bp.cfg.d12">Optional, aktiviert die KI-Bedrohungsanalyse</td></tr>
+        <tr><td>Honeypot field active</td><td>on</td><td>Unsichtbares Feld, ausgefüllt bedeutet Bot</td></tr>
+        <tr><td>Time based validation active</td><td>on</td><td>Minimale Sekunden zwischen Seitenaufruf und Absenden</td></tr>
+        <tr><td>Minimum time in seconds</td><td>3</td><td>Schnellere Übermittlungen gelten als Bot</td></tr>
+        <tr><td>Rate limiting active</td><td>on</td><td>Feste Zeitfenster-Ratenbegrenzung</td></tr>
+        <tr><td>Time window in minutes</td><td>15</td><td>Fensterlänge und Dauer der temporären Sperre</td></tr>
+        <tr><td>Contact form limit</td><td>5</td><td>Max. Anfragen pro Zeitfenster</td></tr>
+        <tr><td>Newsletter limit</td><td>5</td><td>Max. Anfragen pro Zeitfenster</td></tr>
+        <tr><td>Login limit</td><td>10</td><td>Max. Versuche pro Zeitfenster</td></tr>
+        <tr><td>Registration limit</td><td>5</td><td>Max. Anfragen pro Zeitfenster</td></tr>
+        <tr><td>Delete log entries after</td><td>30 days</td><td>Vollständige Löschung der Log-Einträge</td></tr>
+        <tr><td>Remove IP addresses after</td><td>7 days</td><td>IPs werden früher entfernt als der Rest des Eintrags</td></tr>
+        <tr><td>Anthropic API Key</td><td>empty</td><td>Optional, aktiviert die KI-Bedrohungsanalyse</td></tr>
       </tbody>
-    </table>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.install">// installation</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.install">Installation.</h2>
-    <p class="demo-sub reveal" data-i18n="bp.install.lead" style="margin-bottom:20px;">Plugin nach custom/plugins/ kopieren, dann installieren und aktivieren:</p>
-    <div class="iterm reveal">
-      <div class="iterm-bar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <span class="iterm-title">michael@shop:~</span>
-      </div>
-      <div class="iterm-output">
-        <div class="iterm-row"><span class="ip">$ </span><span>cp -r Shopware---BotProtection custom/plugins/MichaBotProtection</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:refresh</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>bin/console plugin:install --activate MichaBotProtection</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>bin/console cache:clear</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="pdp.tag.arch">// architektur</div>
-    <h2 class="section-title reveal-left" data-i18n="pdp.h2.arch">Architektur.</h2>
-    <ul class="plugin-features reveal" style="margin-top:20px; gap:14px; max-width:760px;">
-      <li data-i18n="bp.arch.1">Subscriber/FormProtectionSubscriber, hängt sich nach dem Routing in den Kernel-Request und prüft die vier geschützten Routen</li>
-      <li data-i18n="bp.arch.2">Service/HoneypotValidator, TimeValidator, RateLimiter, reine, unit-getestete Erkennungslogik</li>
-      <li data-i18n="bp.arch.3">Service/BlockedAttemptLogger, schreibt blockierte Versuche über das DAL-Repository</li>
-      <li data-i18n="bp.arch.4">Core/Content/BlockedAttempt, DAL-Entity für die Log-Tabelle</li>
-      <li data-i18n="bp.arch.5">ScheduledTask/CleanupTaskHandler, tägliche DSGVO-Bereinigung</li>
-      <li data-i18n="bp.arch.6">Service/AiThreatAnalyzer + Controller/ThreatAnalysisController, optionale KI-Analyse über die Admin-API</li>
+    </table></div>
+      <h2>Installation</h2>
+      <p>Plugin nach custom/plugins/ kopieren, dann installieren und aktivieren:</p>
+      <pre><code>$ cp -r Shopware---BotProtection custom/plugins/MichaBotProtection
+$ bin/console plugin:refresh
+$ bin/console plugin:install --activate MichaBotProtection
+$ bin/console cache:clear</code></pre>
+      <h2>Architektur</h2>
+      <ul>
+      <li>Subscriber/FormProtectionSubscriber, hängt sich nach dem Routing in den Kernel-Request und prüft die vier geschützten Routen</li>
+      <li>Service/HoneypotValidator, TimeValidator, RateLimiter, reine, unit-getestete Erkennungslogik</li>
+      <li>Service/BlockedAttemptLogger, schreibt blockierte Versuche über das DAL-Repository</li>
+      <li>Core/Content/BlockedAttempt, DAL-Entity für die Log-Tabelle</li>
+      <li>ScheduledTask/CleanupTaskHandler, tägliche DSGVO-Bereinigung</li>
+      <li>Service/AiThreatAnalyzer + Controller/ThreatAnalysisController, optionale KI-Analyse über die Admin-API</li>
     </ul>
-  </div>
-</section>
-
-<section id="proof" class="proof-section">
-  <div class="container">
-    <div class="page-tag reveal-left" data-i18n="demo.proof.tag">// verifiziert</div>
-    <h2 class="section-title reveal-left" data-i18n="demo.proof.h2">Nicht nur getestet, live geprüft.</h2>
-    <p class="proof-lead reveal" data-i18n="demo.proof.lead">BotProtection wurde end-to-end gegen eine laufende Shopware 6.7 Instanz getestet, nicht nur isoliert unit-getestet. Drei Angriffsszenarien wurden live ausgelöst und erschienen innerhalb von Sekunden im Admin-Dashboard.</p>
-
-    <div class="proof-stats reveal">
-      <span class="proof-stat">20 Tests · 126 Assertions</span>
-      <span class="proof-stat">PHPStan Level 8</span>
-      <span class="proof-stat">0 Errors</span>
-    </div>
-
-    <div class="iterm reveal">
-      <div class="iterm-bar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <span class="iterm-title">michael@shop:~</span>
+      <h2>Nicht nur getestet, live geprüft</h2>
+      <p>BotProtection wurde end-to-end gegen eine laufende Shopware 6.7 Instanz getestet, nicht nur isoliert unit-getestet. Drei Angriffsszenarien wurden live ausgelöst und erschienen innerhalb von Sekunden im Admin-Dashboard.</p>
+      <ul class="kennwerte"><li>20 Tests · 126 Assertions</li><li>PHPStan Level 8</li><li>0 Errors</li></ul>
+      <pre><code><span class="code-kommentar"># 1. Honeypot, verstecktes Feld gefüllt (Kontaktformular)</span>
+$ curl -X POST https://shop.example/form/contact -d "micha_bp_website=http://spam-bot.example" -d "email=bot@spam.example"
+<span class="code-kommentar">[{"type":"danger","alert":"Your request could not be processed."}]</span>
+<span class="code-kommentar"># 2. Time-Validation, kein signiertes Token (Login)</span>
+$ curl -X POST https://shop.example/account/login -d "email=bot2@spam.example" -d "password=irrelevant123"
+<span class="code-kommentar">status: 302 redirect mit Flash-Message</span>
+<span class="code-kommentar"># 3. Rate-Limit, 6 Requests, Limit ist 5 (Newsletter)</span>
+<span class="code-kommentar">Request 1 bis 5: "type":"success"</span>
+<span class="code-kommentar">Request 6:   "type":"danger", blockiert, Limit überschritten</span></code></pre>
+      <p>Alle drei Versuche erscheinen sofort unter <strong>Settings, Bot Protection</strong>, mit korrektem Grund, Zeitstempel und IP.</p>
+      <h2>Weitere Ansichten</h2>
+      <div class="galerie">
+        <a class="bildrahmen" href="../img/plugins/botprotection-dashboard.png"><img src="../img/plugins/botprotection-dashboard.png" alt="BotProtection Admin-Dashboard mit 14-Tage-Statistik" width="912" height="381" loading="lazy"></a>
+        <a class="bildrahmen" href="../img/plugins/botprotection-settings.png"><img src="../img/plugins/botprotection-settings.png" alt="BotProtection Einstellungen: Honeypot, Time-Validation, Rate-Limiting" width="754" height="785" loading="lazy"></a>
       </div>
-      <div class="iterm-output">
-        <div class="proof-case"><span class="n">1.</span> <span data-i18n="demo.proof.case1">Honeypot, verstecktes Feld gefüllt (Kontaktformular)</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>curl -X POST https://shop.example/form/contact -d "micha_bp_website=http://spam-bot.example" -d "email=bot@spam.example"</span></div>
-        <div class="ir"><div>[{"type":"danger","alert":"Your request could not be processed."}]</div></div>
-
-        <div class="proof-case" style="margin-top:18px;"><span class="n">2.</span> <span data-i18n="demo.proof.case2">Time-Validation, kein signiertes Token (Login)</span></div>
-        <div class="iterm-row"><span class="ip">$ </span><span>curl -X POST https://shop.example/account/login -d "email=bot2@spam.example" -d "password=irrelevant123"</span></div>
-        <div class="ir"><div><span data-i18n="demo.proof.case2.result">status: 302  → redirect mit Flash-Message</span></div></div>
-
-        <div class="proof-case" style="margin-top:18px;"><span class="n">3.</span> <span data-i18n="demo.proof.case3">Rate-Limit, 6 Requests, Limit ist 5 (Newsletter)</span></div>
-        <div class="ir">
-          <div>Request 1 bis 5: "type":"success"</div>
-          <div>Request 6:   "type":"danger"  ← <span data-i18n="demo.proof.case3.result">blockiert, Limit überschritten</span></div>
-        </div>
-      </div>
-    </div>
-
-    <p class="proof-note reveal" data-i18n-html="demo.proof.note">Alle drei Versuche erscheinen sofort unter <strong>Settings → Bot Protection</strong>, mit korrektem Grund, Zeitstempel und IP.</p>
-  </div>
-</section>
-
-<section style="padding-bottom:96px;">
-  <div class="container">
-    <div class="product-ctas">
-      <a class="btn btn-primary" href="https://github.com/MichaelBarabanov/Shopware---BotProtection" target="_blank" rel="noopener noreferrer" data-i18n="pdp.cta.github">GitHub ansehen →</a>
-      <a class="btn btn-outline" href="../demo.html" data-i18n="pdp.back">← alle plugins</a>
+      <h2>Ein Plugin anpassen lassen</h2>
+      <p>Wenn Sie ein Plugin für Ihren Shop brauchen oder dieses angepasst haben möchten, schreiben Sie mir. Nach Ihrer ersten Mail rufe ich Sie gern zurück.</p>
+      <p><a class="mail-gross" href="mailto:m.barabanov@mbara.net?subject=Plugin%20botprotection">m.barabanov@mbara.net</a></p>
     </div>
   </div>
 </section>
+
 </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-privacy" data-i18n-html="footer.privacy">
-      <span class="fp-dot"></span>
-      // keine cookies · kein tracking · deine daten gehören dir
+<footer class="fuss">
+  <div class="wrap">
+    <p class="fuss-satz">Erst auf einer Kopie, dann im Livesystem. <span>Shopware und JTL aus Koblenz, remote.</span></p>
+    <div class="fuss-spalten">
+      <div>
+        <h2>Leistungen</h2>
+        <ul>
+          <li><a href="../artikelimport-jtl-wawi.html">Artikelimport</a></li>
+          <li><a href="../jtl-wawi-update.html">JTL-Wawi Update</a></li>
+          <li><a href="../migration-shopware-5-auf-6.html">Shopware 5 auf 6</a></li>
+          <li><a href="../schnittstellen.html">Schnittstellen</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Mehr</h2>
+        <ul>
+          <li><a href="../beispiel-audit.html">Beispielbericht</a></li>
+          <li><a href="../faq.html">Häufige Fragen</a></li>
+          <li><a href="../plugins/">Plugins</a></li>
+          <li><a href="../blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Kontakt</h2>
+        <ul>
+          <li><a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a></li>
+          <li><a href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Malt</a></li>
+          <li><a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom">
-      <span data-i18n-html="footer.copy">© 2026 Michael Barabanov · Koblenz, Deutschland · <a href="https://github.com/MichaelBarabanov" target="_blank" rel="noopener noreferrer">github.com/MichaelBarabanov</a></span>
-      <span><a href="../impressum.html">Impressum</a> · <a href="../datenschutz.html">Datenschutz</a> · <a href="../blog/">Blog</a> · <a href="../index.html">Hire Me</a></span>
+    <div class="fuss-unten">
+      <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+      <nav aria-label="Rechtliches">
+        <a href="../impressum.html">Impressum</a>
+        <a href="../datenschutz.html">Datenschutz</a>
+        <a href="../portfolio.html">Portfolio</a>
+      </nav>
     </div>
   </div>
 </footer>
 
-<script src="../i18n.js?v=20261018b"></script>
-<script src="../main.js?v=20261014"></script>
-<script src="../cat.js?v=20261018b"></script>
 </body>
 </html>
