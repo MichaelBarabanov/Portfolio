@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JTL-Wawi an Shopify anbinden | mbara.net</title>
+<meta name="description" content="Shopify mit JTL-Wawi verbinden: Artikel, Bestände und Bestellungen über den JTL ERP-Connector, eingerichtet und geprüft, bevor echte Daten fließen. Festpreis nach Bestandsaufnahme.">
+<link rel="canonical" href="https://mbara.net/jtl-wawi-shopify">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Michael Barabanov">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'self';">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JTL-Wawi an Shopify anbinden">
+<meta property="og:description" content="Artikel, Bestände und Bestellungen zwischen JTL-Wawi und Shopify, mit klarer Regel, welches System führt.">
+<meta property="og:url" content="https://mbara.net/jtl-wawi-shopify">
+<meta property="og:image" content="https://mbara.net/og-mbara.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Michael Barabanov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mbara.net/og-mbara.png">
+<link rel="icon" href="favicon-mbara.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="fonts/plus-jakarta-sans.css">
+<link rel="stylesheet" href="mbara.css?v=20261116e">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "JTL-Wawi an Shopify anbinden",
+  "serviceType": "Systemintegration",
+  "areaServed": "DACH",
+  "provider": { "@type": "Person", "name": "Michael Barabanov", "url": "https://mbara.net/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Start", "item": "https://mbara.net/" },
+    { "@type": "ListItem", "position": 2, "name": "JTL-Wawi an Shopify", "item": "https://mbara.net/jtl-wawi-shopify" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Brauche ich dafür ein Zusatzprogramm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für die Verbindung gibt es die App „JTL ERP-Connector“ von JTL im Shopify App Store. Die aktuellen Kosten stehen dort, sie können sich ändern. Ich richte die App ein und prüfe den Abgleich, bevor er mit echten Daten läuft."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welches System führt nach der Einrichtung?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Das legen wir vor dem Start schriftlich fest. Üblich ist, dass Artikel, Preise und Bestände in der Wawi gepflegt werden und Shopify sie übernimmt. Wer danach im Shopify-Backend dieselben Felder ändert, riskiert, dass der nächste Abgleich sie überschreibt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was, wenn der Connector meinen Fall nicht abdeckt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dann sage ich das vor dem Start. Es bleibt eine eigene Anbindung über die Programmierschnittstellen beider Systeme. Wie ich solche Verbindungen baue, steht auf der Seite zu Schnittstellen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet das?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nach einer kurzen Bestandsaufnahme nenne ich einen Festpreis für die Einrichtung. Die laufende Betreuung danach geht als Monatspauschale."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="sprung" href="#inhalt">Zum Inhalt springen</a>
+
+<header class="kopf">
+  <div class="wrap kopf-in">
+    <a class="wortmarke" href="/">Michael Barabanov <span class="mono">mbara.net</span></a>
+    <nav aria-label="Seitenbereiche">
+      <a href="index.html#leistungen">Leistungen</a>
+      <a href="index.html#ablauf">Ablauf</a>
+      <a href="index.html#ergebnisse">Ergebnisse</a>
+    </nav>
+    <a class="knopf" href="index.html#kontakt">Anfrage schreiben</a>
+  </div>
+</header>
+
+<main id="inhalt">
+
+<section class="unter-hero">
+  <div class="wrap unter-hero-in">
+    <div>
+    <a class="pfad" href="index.html#leistungen">Leistungen</a>
+    <h1>Shopify mit <span class="zusammen">JTL-Wawi</span> verbinden</h1>
+    <p class="gross">Für die Verbindung gibt es einen offiziellen Connector von JTL. Ob er zu Ihrem Shop passt, entscheidet sich an Varianten, Preisen und der Frage, welches System führt.</p>
+    </div>
+    <div class="skizze-rahmen">
+<svg class="skizze" viewBox="0 0 520 300" role="img" aria-label="Schema: JTL-Wawi und Shopify tauschen über den JTL ERP-Connector Artikel, Bestände und Bestellungen aus. Im Protokoll steht je Vorgang die Richtung und das Ergebnis.">
+<rect x="10" y="40" width="130" height="40" rx="4" fill="#182c55" stroke="#2b406c"/>
+<text x="75" y="65" fill="#ece8de" font-size="12.5" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">JTL-Wawi</text>
+<rect x="195" y="40" width="130" height="40" rx="20" fill="#182c55" stroke="#d7a73d" stroke-width="1.5"/>
+<text x="260" y="65" fill="#d7a73d" font-size="12" letter-spacing="1" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">JTL-Connector</text>
+<rect x="380" y="40" width="130" height="40" rx="4" fill="#182c55" stroke="#2b406c"/>
+<text x="445" y="65" fill="#ece8de" font-size="12.5" text-anchor="middle" style="font-family:'JetBrains Mono','Consolas',monospace">Shopify</text>
+<path class="fluss" d="M140 60 L195 60" fill="none" stroke="#d7a73d" stroke-width="1.5" stroke-dasharray="5 6"/>
+<path class="fluss" d="M325 60 L380 60" fill="none" stroke="#d7a73d" stroke-width="1.5" stroke-dasharray="5 6"/>
+<text x="40" y="156" fill="#a8b1c5" font-size="11" letter-spacing="2" style="font-family:'JetBrains Mono','Consolas',monospace">PROTOKOLL</text>
+<line x1="40" y1="166" x2="480" y2="166" stroke="#2b406c"/>
+<text x="40" y="184" fill="#ece8de" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Artikel</text>
+<text x="150" y="184" fill="#a8b1c5" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Wawi zu Shopify</text>
+<circle cx="372" cy="180" r="4" fill="#5cc083"/>
+<text x="384" y="184" fill="#5cc083" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">ok</text>
+<line x1="40" y1="194" x2="480" y2="194" stroke="#2b406c"/>
+<text x="40" y="212" fill="#ece8de" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Bestand</text>
+<text x="150" y="212" fill="#a8b1c5" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Wawi zu Shopify</text>
+<circle cx="372" cy="208" r="4" fill="#5cc083"/>
+<text x="384" y="212" fill="#5cc083" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">ok</text>
+<line x1="40" y1="222" x2="480" y2="222" stroke="#2b406c"/>
+<text x="40" y="240" fill="#ece8de" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Bestellung</text>
+<text x="150" y="240" fill="#a8b1c5" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Shopify zu Wawi</text>
+<circle cx="372" cy="236" r="4" fill="#5cc083"/>
+<text x="384" y="240" fill="#5cc083" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">ok</text>
+<line x1="40" y1="250" x2="480" y2="250" stroke="#2b406c"/>
+<text x="40" y="268" fill="#ece8de" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Versand</text>
+<text x="150" y="268" fill="#a8b1c5" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">Wawi zu Shopify</text>
+<circle cx="372" cy="264" r="4" fill="#5cc083"/>
+<text x="384" y="268" fill="#5cc083" font-size="12" style="font-family:'JetBrains Mono','Consolas',monospace">ok</text>
+</svg>
+    </div>
+  </div>
+</section>
+
+<section class="seite">
+  <div class="wrap">
+    <div class="inhalt">
+
+      <h2>Was die Verbindung leistet</h2>
+      <p>JTL bietet im Shopify App Store die App „JTL ERP-Connector“ an. Laut ihrem Eintrag deckt sie ab:</p>
+      <ul>
+        <li>Artikeldaten und Bestände aus der JTL-Wawi in den Shopify-Shop</li>
+        <li>Bestellungen aus Shopify automatisch in die Wawi</li>
+        <li>Versandmeldungen zurück an Shopify</li>
+      </ul>
+
+      <div class="merk">
+        <p>
+          Die App ist schnell installiert. Die Arbeit steckt in der Frage, ob Ihre
+          Artikel, Varianten und Preise so in der Wawi stehen, dass Shopify sie
+          richtig darstellt.
+        </p>
+      </div>
+
+      <h2>Woran es in der Praxis hängt</h2>
+      <ul>
+        <li><b>Welches System führt.</b> Wenn Artikel in beiden Systemen gepflegt werden, überschreibt der nächste Abgleich die Änderung des anderen. Deshalb gibt es vor dem Start eine schriftliche Regel.</li>
+        <li><b>Varianten.</b> Shopify bildet Varianten über Optionen ab, die Wawi über Variationen. Variantenartikel müssen vor dem ersten Abgleich zur Shopify-Logik passen.</li>
+        <li><b>Preise.</b> Kundengruppen- und Staffelpreise aus der Wawi gehören geprüft, bevor sie live gehen.</li>
+        <li><b>Bestehender Shop.</b> Läuft Shopify schon mit eigenen Artikeln, muss geklärt sein, wie die Wawi-Artikel ihnen zugeordnet werden, sonst entstehen Dubletten.</li>
+      </ul>
+
+      <h2>Wie ich vorgehe</h2>
+      <ol>
+        <li>Bestandsaufnahme: welche Daten in welche Richtung fließen, welche Felder gebraucht werden, welches System führt.</li>
+        <li>Einrichtung gegen einen Testshop und eine Kopie der Wawi, nicht gegen Ihren Livebetrieb.</li>
+        <li>Abgleich zuerst mit wenigen Artikeln, dann vollständig, jeweils mit Protokoll.</li>
+        <li>Livegang mit dokumentiertem Rückweg.</li>
+        <li>Wenn Sie möchten, danach die laufende Betreuung als Monatspauschale.</li>
+      </ol>
+
+      <h2>Häufige Fragen</h2>
+
+      <details>
+        <summary>Brauche ich dafür ein Zusatzprogramm?</summary>
+        <p>Für die Verbindung gibt es die App „JTL ERP-Connector“ von JTL im Shopify App Store. Die aktuellen Kosten stehen dort, sie können sich ändern. Ich richte die App ein und prüfe den Abgleich, bevor er mit echten Daten läuft.</p>
+      </details>
+
+      <details>
+        <summary>Welches System führt nach der Einrichtung?</summary>
+        <p>Das legen wir vor dem Start schriftlich fest. Üblich ist, dass Artikel, Preise und Bestände in der Wawi gepflegt werden und Shopify sie übernimmt. Wer danach im Shopify-Backend dieselben Felder ändert, riskiert, dass der nächste Abgleich sie überschreibt.</p>
+      </details>
+
+      <details>
+        <summary>Was, wenn der Connector meinen Fall nicht abdeckt?</summary>
+        <p>Dann sage ich das vor dem Start. Es bleibt eine eigene Anbindung über die Programmierschnittstellen beider Systeme. Wie ich solche Verbindungen baue, steht auf der Seite zu Schnittstellen.</p>
+      </details>
+
+      <details>
+        <summary>Was kostet das?</summary>
+        <p>Nach einer kurzen Bestandsaufnahme nenne ich einen Festpreis für die Einrichtung. Die laufende Betreuung danach geht als Monatspauschale.</p>
+      </details>
+
+      <h2 id="anfragen">Anfragen</h2>
+      <p>
+        Schreiben Sie mir, ob Shopify schon läuft oder neu aufgebaut wird und wie
+        viele Artikel mit Varianten dazugehören. Nach Ihrer ersten Mail rufe ich
+        Sie gern zurück.
+      </p>
+      <p><a class="mail-gross" href="mailto:m.barabanov@mbara.net?subject=JTL-Wawi%20und%20Shopify&amp;body=L%C3%A4uft%20Shopify%20schon%20oder%20wird%20es%20neu%20aufgebaut%3A%0A%0AWie%20viele%20Artikel%20und%20Varianten%3A%0A%0ABis%20wann%20es%20laufen%20soll%3A%0A%0A">m.barabanov@mbara.net</a></p>
+      <h2>Verwandte Themen</h2>
+      <div class="weiter">
+        <a href="artikelimport-jtl-wawi.html"><b>Artikelimport</b><span>Lieferantendaten aus Datanorm oder CSV mit Preisen und Bildern in die JTL-Wawi.</span></a>
+        <a href="schnittstellen.html"><b>Schnittstellen</b><span>Eigene Anbindungen über REST-API oder Dateiwege, wenn ein Connector nicht reicht.</span></a>
+        <a href="jtl-wawi-update.html"><b>JTL-Wawi aktualisieren</b><span>Kompatibilitätsprüfung vorab, Test auf einer Kopie, Livegang ohne Ausfall.</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="fuss">
+  <div class="wrap">
+    <p class="fuss-satz">Erst auf einer Kopie, dann im Livesystem. <span>Shopware und JTL aus Koblenz, remote.</span></p>
+    <div class="fuss-spalten">
+      <div>
+        <h2>Leistungen</h2>
+        <ul>
+          <li><a href="artikelimport-jtl-wawi.html">Artikelimport</a></li>
+          <li><a href="jtl-wawi-update.html">JTL-Wawi Update</a></li>
+          <li><a href="migration-shopware-5-auf-6.html">Shopware 5 auf 6</a></li>
+          <li><a href="schnittstellen.html">Schnittstellen</a></li>
+          <li><a href="jtl-wawi-shopify.html">JTL-Wawi an Shopify</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Mehr</h2>
+        <ul>
+          <li><a href="beispiel-audit.html">Beispielbericht</a></li>
+          <li><a href="faq.html">Häufige Fragen</a></li>
+          <li><a href="plugins/">Plugins</a></li>
+          <li><a href="blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Kontakt</h2>
+        <ul>
+          <li><a href="mailto:m.barabanov@mbara.net">m.barabanov@mbara.net</a></li>
+          <li><a href="https://www.malt.de/profile/michaelbarabanov" rel="noopener">Malt</a></li>
+          <li><a href="https://github.com/MichaelBarabanov" rel="noopener">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fuss-unten">
+      <span>&copy; 2026 Michael Barabanov, Koblenz</span>
+      <nav aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="portfolio.html">Portfolio</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
