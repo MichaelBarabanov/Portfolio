@@ -738,3 +738,26 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 .ergebnis h3 { font-size: var(--h3); }
 .ergebnis p { margin: 0; color: var(--text-2); }
 @media (max-width: 860px) { .ergebnisse { grid-template-columns: 1fr; } }
+
+/* Außerdem: eigene kleine Überschrift, darunter Pillen in ruhigem Fluss.
+   Einträge mit eigener Seite sind Links, die übrigen stehen als Text. */
+.ausserdem { display: block; margin-top: var(--s-7); }
+.ausserdem h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 0 0 var(--s-3); }
+.ausserdem ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.ausserdem li a, .ausserdem li span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 980px;
+  font-size: .9375rem;
+  white-space: nowrap;
+}
+.ausserdem li a { background: var(--weiss); border: 1px solid var(--linie); color: var(--text); text-decoration: none; }
+.ausserdem li a:hover { border-color: var(--gold); }
+.ausserdem li span { background: var(--grau); border: 1px solid transparent; color: var(--text-2); }
+.abschnitt.grau .ausserdem li span { background: var(--grau-2); }
+@media (max-width: 560px) {
+  .ausserdem ul { gap: 8px; }
+  .ausserdem li a, .ausserdem li span { white-space: normal; min-height: 36px; padding: 6px 12px; font-size: .875rem; line-height: 1.3; }
+}
