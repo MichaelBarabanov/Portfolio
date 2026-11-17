@@ -631,3 +631,110 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ------------------------------------------------------------
+   Fassung 3 der Startseite (18.11.2026)
+   Auftakt mit Porträt, Leistungen als Bildkacheln, Ablauf als Fluss,
+   Ergebnisse kompakt.
+   ------------------------------------------------------------ */
+
+/* Auftakt: Text links, Porträt rechts */
+.auftakt { padding: clamp(40px, 5vw + 16px, 96px) 0 var(--abschnitt); }
+.auftakt-in { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 5vw, 80px); align-items: center; }
+.auftakt h1 { font-size: clamp(2.1rem, 1rem + 3.2vw, 3.6rem); letter-spacing: -0.035em; line-height: 1.02; margin-bottom: var(--s-5); max-width: none; }
+.auftakt .gross { max-width: 30em; margin-bottom: var(--s-6); }
+.auftakt .antwortzeit { margin: var(--s-3) 0 0; font-size: var(--klein); color: var(--text-2); }
+.auftakt-bild { position: relative; margin: 0; }
+.auftakt-bild img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 28px; }
+.stimmen-marke {
+  position: absolute;
+  left: -28px;
+  bottom: -28px;
+  max-width: 300px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 18px 40px -18px rgba(15,31,61,.35);
+}
+.stimmen-marke q { display: block; font-size: .9375rem; line-height: 1.4; color: var(--text); quotes: "„" "“"; }
+.stimmen-marke .wer { display: block; margin-top: 8px; font-size: 13px; color: var(--text-2); }
+@media (max-width: 820px) {
+  .auftakt-in { grid-template-columns: 1fr; }
+  .auftakt-bild { max-width: 420px; margin-bottom: 24px; }
+  .stimmen-marke { left: 12px; right: 12px; bottom: -24px; max-width: none; }
+}
+
+.mitte { text-align: center; margin-left: auto; margin-right: auto; }
+.stimmen-quelle.mitte { text-align: center; }
+
+/* Leistungen: Bildkacheln, ganze Kachel ist der Link */
+.leistungen { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.leistung {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--grau);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.leistung:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -24px rgba(15,31,61,.35); }
+.leistung-bild { display: block; aspect-ratio: 16 / 9; background: var(--grau-2) center / cover no-repeat; }
+.leistung-bild:empty:not([style]) { display: none; }
+.leistung-text { display: flex; flex-direction: column; gap: 6px; padding: clamp(22px, 2vw + 10px, 32px); }
+.leistung-text b { font-size: var(--h3); font-weight: 600; letter-spacing: -0.015em; }
+.leistung-text span { color: var(--text-2); }
+.leistung-text::after { content: "Mehr erfahren"; margin-top: var(--s-2); font-weight: 600; font-size: .9375rem; text-decoration: underline; text-decoration-color: var(--linie); text-underline-offset: 4px; }
+.leistung:hover .leistung-text::after { text-decoration-color: var(--gold); }
+@media (max-width: 760px) { .leistungen { grid-template-columns: 1fr; } }
+
+/* Ablauf als Fluss: Linie mit Fortschritt, Schritte werden beim Scrollen hell */
+.fluss { --fortschritt: 1; position: relative; list-style: none; margin: 0 auto; padding: 0; max-width: 720px; display: grid; gap: clamp(20px, 3vw, 40px); }
+.fluss::before, .fluss::after {
+  content: "";
+  position: absolute;
+  left: 23px;
+  top: 24px;
+  bottom: 24px;
+  width: 2px;
+  border-radius: 2px;
+  z-index: 0;
+}
+.fluss::before { background: var(--linie); }
+.fluss::after { background: var(--gold); transform-origin: top; transform: scaleY(var(--fortschritt)); }
+.fluss-schritt { position: relative; z-index: 1; display: grid; grid-template-columns: 48px 1fr; gap: clamp(16px, 2vw, 28px); align-items: start; }
+.fluss-nr {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1.125rem;
+  box-shadow: 0 0 0 6px var(--grau);
+}
+.fluss .karte h3 { font-size: var(--h3); margin-bottom: var(--s-2); }
+.fluss .karte p { color: var(--text-2); margin: 0; }
+.fluss .karte .textlink { min-height: 36px; margin-top: var(--s-2); font-size: .9375rem; }
+.fluss .preis-klein { display: block; font-size: var(--klein); color: var(--text-2); }
+
+/* Nur mit Skript: Schritte starten gedämpft und werden beim Erreichen hell */
+.fluss.bereit .fluss-schritt .karte { opacity: .35; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+.fluss.bereit .fluss-nr { background: var(--weiss); border: 2px solid var(--linie); color: var(--text-2); transition: background .4s ease, border-color .4s ease, color .4s ease; }
+.fluss.bereit .fluss-schritt.aktiv .karte { opacity: 1; transform: none; }
+.fluss.bereit .fluss-schritt.aktiv .fluss-nr { background: var(--gold); border-color: var(--gold); color: var(--text); }
+
+/* Ergebnisse kompakt */
+.ergebnisse { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.ergebnis { display: flex; flex-direction: column; gap: var(--s-3); }
+.ergebnis h3 { font-size: var(--h3); }
+.ergebnis p { margin: 0; color: var(--text-2); }
+@media (max-width: 860px) { .ergebnisse { grid-template-columns: 1fr; } }
